@@ -12,9 +12,6 @@ if repo_keywords == [] or repo_keywords[0].gsub(' ','') == ''
 	repo_keywords << [' ']
 end
 
-puts "here are your repo keywords:"
-repo_keywords.each { |k| p "keyword: #{k}" }
-
 config_yml = './config.yml'
 config_yml = File.read(config_yml)
 config_yml.gsub!(/(- repo|public_host)/, "$$$\n\\1")
