@@ -19,6 +19,17 @@ function comment_out_all_repos_except {
 
 alias coare='comment_out_all_repos_except'
 
+# run the command renumber_steps FILE_TO_RENUMBER to renumber the docs-standard formatted steps (as described in comments in the program file step_numberer.rb)
+
+function renumber_steps {
+
+	ruby /Users/mtrestman/bin/step_numberer.rb $@
+
+}
+
+alias renumber_steps='renumber_steps'
+
+
 
 
 
