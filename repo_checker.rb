@@ -11,6 +11,9 @@ class RepoChecker
 
   def report
 
+    puts "All repos"
+    @repos.each { |esr| puts "\t#{esr.path}" }
+
     sorted_repos = sort_repos @repos
 
     puts "the following repos are even_steven:"
@@ -20,6 +23,8 @@ class RepoChecker
     sorted_repos[:needs_pull].each { |npr| puts "\t#{npr.path}"}
 
 
+
+    puts "Other repos:"
     (@repos - sorted_repos[:needs_pull] - sorted_repos[:even_steven] ) .each do |repo|
       # sort_repos
       puts "||||||||||||||||||||||||||"
@@ -28,6 +33,16 @@ class RepoChecker
       puts "@@@@@@@@@@@@@@@@@@@@@@@@@@"
     end
   end
+
+  def get_urls
+    urls = @repos.map do |repo|
+      Dir.chdir repo.path
+      url = `git remote show origin | grep "Fetch" `
+    end
+
+    p urls
+  end
+
 
   def fetch_statuses_sequentially
     @repos.each do |repo|
@@ -134,6 +149,7 @@ def interact rc
   puts "1: exit RepoChecker"
   puts "2: view statuses of repos that need a pull"
   puts "3: stash local changes, rebase, then stash pop all repos"
+  puts "4: get urls (really slow, under construction)"
   print "your response:"
 
   response = gets.chomp
@@ -142,6 +158,8 @@ def interact rc
     rc.stash_rebase_stashpop 
     rc.report
     interact rc
+  elsif response == "4"
+    rc.get_urls
   end
 
 end
