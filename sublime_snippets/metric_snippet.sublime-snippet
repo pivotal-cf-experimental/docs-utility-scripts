@@ -1,0 +1,34 @@
+<snippet>
+<content><![CDATA[
+
+## <a id=${1:id}></a>${2:id}
+
+<%= image_tag ${3:image_path} %>
+
+### What we monitor 
+
+${4:blah}
+
+### Why we monitor it
+
+${5:blah}
+
+### The system metric behind it
+
+${6:blah}
+
+### Alerts
+
+${7:blah}
+
+### Other things to know
+
+${8:blah}
+
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>metric</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>*.html*</scope> -->
+</snippet>

@@ -1,0 +1,32 @@
+<snippet>
+	<content><![CDATA[
+
+<table border='1' class='nice'>
+<tr>
+	<th>What we monitor</th>
+	<td>${1:what}</td>
+</tr>
+<tr>
+	<th>Why we monitor it</th>
+	<td>${2:why}</td>
+</tr>
+<tr>
+	<th>The system metric</th>
+	<td><code>${3:system metric}</code></td>
+</tr>
+<tr>
+	<th>Alerts triggered</th>
+	<td>${4:None}</td>
+</tr>
+<tr>
+	<th>Other things to know</th>
+	<td>${5:None}</td>
+</tr>
+</table>
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>metrictable</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

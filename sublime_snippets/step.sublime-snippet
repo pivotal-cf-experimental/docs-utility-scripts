@@ -1,0 +1,12 @@
+<snippet>
+	<content><![CDATA[
+
+## <a id='${1:step-id}'></a>Step ${2:666}: ${3:StepName} ##
+${4:Do stuff. Srsly, do it!}
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>step</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

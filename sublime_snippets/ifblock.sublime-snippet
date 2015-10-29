@@ -1,0 +1,17 @@
+<snippet>
+	<content><![CDATA[
+
+<% if vars.product_title == "Elastic Runtime" %>
+${1:stuff}
+<% elsif  vars.product_title == "Cloud Foundry" %>
+${2:other stuff}
+<% elsif vars.product_title == "Pivotal Web Services (PWS)" %>
+${3:still other stuff}
+<% end %>
+
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>ifblock</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

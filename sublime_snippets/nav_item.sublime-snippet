@@ -1,0 +1,13 @@
+<snippet>
+	<content><![CDATA[
+<li class="menu-link">
+  <a href="${1:topic/path}.html">
+    ${2:Topic Title}
+  </a>
+</li>
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>navitem</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>
