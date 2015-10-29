@@ -8,7 +8,7 @@ class RepoChecker
     @repos_needing_a_pull = []
     @repos_needing_a_push = []
 
-    Dir.glob("/Users/mtrestman/workspace/docs-*/") { |repo|
+    Dir.glob("/Users/michaeltrestman/workspace/docs-*/") { |repo|
       @repos.push(Repo.new repo)
       @repos.reject!{|r| r.path.include? 'docs-utility'}
     }
@@ -52,12 +52,12 @@ class RepoChecker
 
   def fetch_statuses_sequentially
     @repos.each do |repo|
-  
+
       Dir.chdir repo.path
-      
+
       status = `git fetch; git status`
       repo.status = status
-  
+
     end
 
   end
@@ -67,7 +67,7 @@ class RepoChecker
     needs_pull = []
     needs_push = []
     even_steven = []
-    
+
     repos.each do |repo|
       even_steven << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
       needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
@@ -90,9 +90,9 @@ class RepoChecker
     @repos.each do |repo|
       threads.push(Thread.new do
         Dir.chdir repo.path
-        
+
         status = `git fetch; git status`
-        
+
         {
           repo: repo,
           status: status
@@ -100,11 +100,11 @@ class RepoChecker
       end)
     end
 
-    threads.each do |t| 
-      t.join 
+    threads.each do |t|
+      t.join
     end
 
-    threads.each do |t| 
+    threads.each do |t|
       t.value[:repo].status = t.value[:status]
     end
 
@@ -116,20 +116,20 @@ class RepoChecker
     @repos.each do |repo|
       threads.push(Thread.new do
         Dir.chdir repo.path
-        
+
         status = `git fetch; git stash; git rebase; git stash pop`
-        
+
         {
           repo: repo,
           status: status
         }
       end)
     end
-    threads.each do |t| 
-      t.join 
+    threads.each do |t|
+      t.join
     end
 
-    threads.each do |t| 
+    threads.each do |t|
       t.value[:repo].status = t.value[:status]
     end
 
@@ -141,7 +141,7 @@ class RepoChecker
 
       threads.push(Thread.new do
         Dir.chdir repo.path
-        
+
         status = `git add .; git commit -m '#{message}'; git push`
 
         {
@@ -151,14 +151,39 @@ class RepoChecker
 
       end)
     end
-    threads.each do |t| 
-      t.join 
+    threads.each do |t|
+      t.join
     end
 
-    threads.each do |t| 
+    threads.each do |t|
       t.value[:repo].status = t.value[:status]
     end
 
+  end
+
+  def get_user_to_choose choices
+    choices = self.methods - self.class.superclass.new.methods
+
+    puts "please enter the number of your choice."
+
+    choices.push('quit') unless choices.any? { |choice| choice == 'quit' }
+    choices.each_with_index do |choice, i|
+      puts "- #{i}": choice
+    end
+    print "Choice:  "
+    choice = user_choice = gets.downcase.gsub(/\s/, '_')
+
+    choice = choice.to_i
+
+    if choice == 0 or choice > choices.length - 1
+      get_user_to_choose choices
+    elsif self.respond_to? choices[choice]
+      self.send choices[choice]
+    elsif choice == choices.length - 1
+      return nil
+    end
+    get_user_to_choose choices
+    return nil
   end
 
 end
@@ -190,9 +215,9 @@ def interact rc
   print "your response:"
 
   response = gets.chomp
-  
+
   if response == "3"
-    rc.stash_rebase_stashpop 
+    rc.stash_rebase_stashpop
     rc.report
     interact rc
   elsif response == "4"
@@ -210,6 +235,8 @@ def interact rc
 
 end
 
+
+
 rc = RepoChecker.new
 
 rc.fetch_statuses_concurrently
@@ -218,7 +245,9 @@ rc.fetch_statuses_concurrently
 
 rc.report
 
-interact rc
+# interact rc
+
+rc.get_user_to_choose [ 'get high', 'get real fucking high', 'eat a burrito']
 
 
 
