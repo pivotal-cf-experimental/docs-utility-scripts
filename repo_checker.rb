@@ -130,7 +130,13 @@ class RepoChecker
     report
   end
 
-  def batch_push_with_message message
+  def batch_commit_and_push_with_message
+    puts "this method is under construction"
+    return
+    # puts "*****************\nthis method is pretty dangerous; make sure you really want to commit and push everything. You should probably rebase first too."
+
+
+
     threads = []
     @repos_needing_a_push.each do |repo|
 
@@ -214,19 +220,22 @@ class RepoChecker
     puts "please enter the number of your choice."
 
     choices.push('quit') unless choices.any? { |choice| choice == 'quit' }
+  
     choices.each_with_index do |choice, i|
-      puts "- #{i}: #{choice}"
+      puts "- #{i}: #{choice.to_s.gsub('_', ' ')}"
     end
+
     print "Choice:  "
     choice = user_choice = gets.downcase.gsub(/\s/, '_')
 
     choice = choice.to_i
 
-    if choice > choices.length - 1
-      get_user_to_choose
-    elsif self.respond_to? choices[choice]
+    if self.respond_to? choices[choice]
       self.send choices[choice]
-    elsif choice == choices.length - 1
+    elsif choice > choices.length - 1
+      get_user_to_choose
+    elsif choice.to_i == choices.length - 1
+      puts "bye!"
       return nil
     end
     return nil
