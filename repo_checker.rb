@@ -1,101 +1,88 @@
 class RepoChecker
 
-  attr_accessor :repos
-
   def initialize
 
     @repos = []
     @repos_needing_a_pull = []
     @repos_needing_a_push = []
+    @repos_not_on_master = []
 
-    Dir.glob("/Users/michaeltrestman/workspace/docs-*/") { |repo|
+    Dir.glob("/Users/mtrestman/workspace/docs-*/") { |repo|
       @repos.push(Repo.new repo)
       @repos.reject!{|r| r.path.include? 'docs-utility'}
     }
-
+    fetch_statuses
+    get_user_to_choose
   end
 
+
+  def show_repos_needing_a_pull
+    unless @repos_needing_a_pull.length
+      puts "no repos need a pull"
+      return
+    end
+    @repos_needing_a_pull.each do |repo|
+      puts "-----------------------"
+      puts repo.status
+      puts "-----------------------"
+
+    end
+    get_user_to_choose
+  end
+
+  
   def report
 
-    puts "All repos"
+    puts "All repos being tracked:"
     @repos.each { |esr| puts "\t#{esr.path}" }
 
-    sorted_repos = sort_repos @repos
+    puts "-------------------------"
+    
+    sort_repos @repos
 
     puts "the following repos are even steven:"
-    sorted_repos[:even_steven].each { |esr| puts "\t#{esr.path}" }
-
+    @even_steven.each { |esr| puts "\t#{esr.path}" }
+    puts "-------------------------"
     puts "the following repos need a pull:"
-    sorted_repos[:needs_pull].each { |npr| puts "\t#{npr.path}"}
+    @repos_needing_a_pull.each { |npr| puts "\t#{npr.path}"}
+    puts "-------------------------"
 
     puts "the following repos need a push: "
     @repos_needing_a_push.each { |npr| puts "\t#{npr.path}"}
+    puts "-------------------------"
+
+    puts "the following repos are not on master: "
+    @repos_not_on_master.each { |nmr| puts "\t#{nmr.path} is on branch #{nmr.branch}"}
+    puts "-------------------------"
 
     puts "Other repos:"
-    (@repos - sorted_repos[:needs_pull] - sorted_repos[:even_steven] ) .each do |repo|
-      # sort_repos
-      puts "-------------------------"
-      puts "Hi I'm a repo! My path is #{repo.path}!\n Here's my status:\n"
+
+    ( @repos - @repos_needing_a_pull - @repos_needing_a_push - @even_steven) .each do |repo|
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
+      puts "Repo path:\n\t#{repo.path}!\n branch:\b\t#{repo.branch}\nstatus:\n\t#{repo.status}"
       p repo.status
-      puts "-------------------------"
+      puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
     end
+    get_user_to_choose
   end
 
-  def get_urls
-    urls = @repos.map do |repo|
-      Dir.chdir repo.path
-      url = `git remote show origin | grep "Fetch" `
-    end
 
-    p urls
-  end
-
-  def fetch_statuses_sequentially
-    @repos.each do |repo|
-
-      Dir.chdir repo.path
-
-      status = `git fetch; git status`
-      repo.status = status
-
-    end
-
-  end
-
-  def sort_repos repos
-
-    needs_pull = []
-    needs_push = []
-    even_steven = []
-
-    repos.each do |repo|
-      even_steven << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
-      needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
-      needs_push << repo if (
-        repo.status.include? "Changes not staged for commit:" and repo.status.include? "modified:"
-        )
-    end
-
-    @repos_needing_a_push = needs_push
-    {
-      needs_push: needs_push,
-      needs_pull: needs_pull,
-      even_steven: even_steven
-    }
-  end
-
-  def fetch_statuses_concurrently
+  def fetch_statuses
     threads = []
 
     @repos.each do |repo|
       threads.push(Thread.new do
         Dir.chdir repo.path
+        branch = `git branch -a | grep '*'`.gsub(/[*\s]/, '')
 
+        Dir.chdir repo.path
         status = `git fetch; git status`
+        
 
         {
           repo: repo,
-          status: status
+          status: status,
+          branch: branch
         }
       end)
     end
@@ -105,15 +92,19 @@ class RepoChecker
     end
 
     threads.each do |t|
-      t.value[:repo].status = t.value[:status]
+      repo = t.value[:repo]
+      status = t.value[:status]
+      branch = t.value[:branch]
+      repo.branch = branch
+      repo.status = status
     end
-
+    report
   end
 
   def stash_rebase_stashpop
     threads = []
 
-    @repos.each do |repo|
+    @repos_needing_a_pull.each do |repo|
       threads.push(Thread.new do
         Dir.chdir repo.path
 
@@ -130,9 +121,13 @@ class RepoChecker
     end
 
     threads.each do |t|
-      t.value[:repo].status = t.value[:status]
+      repo = t.value[:repo]
+      if repo.status != t.value[:status]
+        p t.value[:status]
+        repo.status = t.value[:status]
+      end
     end
-
+    report
   end
 
   def batch_push_with_message message
@@ -158,42 +153,93 @@ class RepoChecker
     threads.each do |t|
       t.value[:repo].status = t.value[:status]
     end
+    get_user_to_choose
+  end
+
+
+  private
+
+  def get_urls
+    urls = @repos.map do |repo|
+      Dir.chdir repo.path
+      url = `git remote show origin | grep "Fetch" `
+    end
+
+    p urls
+    get_user_to_choose
+  end
+
+  def fetch_statuses_sequentially
+    @repos.each do |repo|
+
+      Dir.chdir repo.path
+
+      status = `git fetch; git status`
+      repo.status = status
+
+    end
+    get_user_to_choose
+  end
+
+  def sort_repos repos
+
+    needs_pull = []
+    needs_push = []
+    even_steven = []
+    not_on_master = []
+    
+    repos.each do |repo|
+      even_steven << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
+      needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
+      needs_push << repo if ( repo.status.include? "Changes not staged for commit:" and repo.status.include? "modified:")
+      not_on_master << repo if repo.branch != "master"
+    end
+
+    @repos_needing_a_push = needs_push
+    @repos_needing_a_pull = needs_pull
+    @even_steven = even_steven
+    @repos_not_on_master = not_on_master
+    
+    return nil
 
   end
 
-  def get_user_to_choose choices
+
+  attr_accessor :repos
+
+  def get_user_to_choose
+
     choices = self.methods - self.class.superclass.new.methods
 
     puts "please enter the number of your choice."
 
     choices.push('quit') unless choices.any? { |choice| choice == 'quit' }
     choices.each_with_index do |choice, i|
-      puts "- #{i}": choice
+      puts "- #{i}: #{choice}"
     end
     print "Choice:  "
     choice = user_choice = gets.downcase.gsub(/\s/, '_')
 
     choice = choice.to_i
 
-    if choice == 0 or choice > choices.length - 1
-      get_user_to_choose choices
+    if choice > choices.length - 1
+      get_user_to_choose
     elsif self.respond_to? choices[choice]
       self.send choices[choice]
     elsif choice == choices.length - 1
       return nil
     end
-    get_user_to_choose choices
     return nil
   end
 
 end
 
 class Repo
-  attr_accessor :path, :status, :current_branch
+  attr_accessor :path, :status, :branch
 
   @status
   @path
-  @current_branch
+  @branch
 
   def initialize path
     @path = path
@@ -216,19 +262,26 @@ def interact rc
 
   response = gets.chomp
 
-  if response == "3"
-    rc.stash_rebase_stashpop
+  if response == "2"
+    rc.show_repos_needing_a_pull
+    interact rc
+
+  elsif response == "3"
+    rc.stash_rebase_stashpop 
     rc.report
     interact rc
+
   elsif response == "4"
     rc.get_urls
+
   elsif response == "5"
     puts
     print "enter commit message:   "
     message = gets.chomp
     rc.batch_push_with_message message
+
   elsif response == "6"
-    rc.fetch_statuses_concurrently
+    rc.fetch_statuses
     rc.report
     interact rc
   end
@@ -239,15 +292,13 @@ end
 
 rc = RepoChecker.new
 
-rc.fetch_statuses_concurrently
+rc.fetch_statuses
 
 # rc.stash_rebase_stashpop
 
 rc.report
 
 # interact rc
-
-rc.get_user_to_choose [ 'get high', 'get real fucking high', 'eat a burrito']
 
 
 
