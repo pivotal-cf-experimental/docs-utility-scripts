@@ -15,7 +15,6 @@ class RepoChecker
     get_user_to_choose
   end
 
-
   def show_repos_needing_a_pull
     unless @repos_needing_a_pull.length
       puts "no repos need a pull"
@@ -30,6 +29,8 @@ class RepoChecker
     get_user_to_choose
   end
 
+
+
   
   def report
 
@@ -40,8 +41,8 @@ class RepoChecker
     
     sort_repos @repos
 
-    puts "the following repos are even steven:"
-    @even_steven.each { |esr| puts "\t#{esr.path}" }
+    puts "the following repos are even with origin/master:"
+    @even.each { |esr| puts "\t#{esr.path}" }
     puts "-------------------------"
     puts "the following repos need a pull:"
     @repos_needing_a_pull.each { |npr| puts "\t#{npr.path}"}
@@ -57,7 +58,7 @@ class RepoChecker
 
     puts "Other repos:"
 
-    ( @repos - @repos_needing_a_pull - @repos_needing_a_push - @even_steven) .each do |repo|
+    ( @repos - @repos_needing_a_pull - @repos_needing_a_push - @even) .each do |repo|
       puts "~~~~~~~~~~~~~~~~~~~~~~~~~"
       puts "Repo path:\n\t#{repo.path}!\n branch:\b\t#{repo.branch}\nstatus:\n\t#{repo.status}"
       p repo.status
@@ -191,11 +192,11 @@ class RepoChecker
 
     needs_pull = []
     needs_push = []
-    even_steven = []
+    even = []
     not_on_master = []
     
     repos.each do |repo|
-      even_steven << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
+      even << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
       needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
       needs_push << repo if ( repo.status.include? "Changes not staged for commit:" and repo.status.include? "modified:")
       not_on_master << repo if repo.branch != "master"
@@ -203,13 +204,12 @@ class RepoChecker
 
     @repos_needing_a_push = needs_push
     @repos_needing_a_pull = needs_pull
-    @even_steven = even_steven
+    @even = even
     @repos_not_on_master = not_on_master
     
     return nil
 
   end
-
 
   attr_accessor :repos
 
