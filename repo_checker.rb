@@ -6,6 +6,8 @@ class RepoChecker
     @repos_needing_a_pull = []
     @repos_needing_a_push = []
     @repos_not_on_master = []
+    @has_changes_to_be_commited = []
+    @has_changes_not_staged_for_commit
 
     Dir.glob("/Users/mtrestman/workspace/docs-*/") { |repo|
       @repos.push(Repo.new repo)
@@ -21,15 +23,14 @@ class RepoChecker
       return
     end
     @repos_needing_a_pull.each do |repo|
-      puts "-----------------------"
+      puts "\n-----------------------\n\n"
+      puts repo.path
+      puts
       puts repo.status
-      puts "-----------------------"
-
+      puts "\n-----------------------\n\n"
     end
     get_user_to_choose
   end
-
-
 
   
   def report
@@ -43,10 +44,18 @@ class RepoChecker
 
     puts "the following repos are even with origin/master:"
     @even.each { |esr| puts "\t#{esr.path}" }
+
     puts "-------------------------"
+
     puts "the following repos need a pull:"
     @repos_needing_a_pull.each { |npr| puts "\t#{npr.path}"}
+
     puts "-------------------------"
+
+
+    puts "the following repos have changes not staged for commit"
+    @has_changes_not_staged_for_commit.each {|cnsc| puts "\t#{cnsc.path}"}
+
 
     puts "the following repos need a push: "
     @repos_needing_a_push.each { |npr| puts "\t#{npr.path}"}
@@ -194,18 +203,25 @@ class RepoChecker
     needs_push = []
     even = []
     not_on_master = []
+    has_changes_to_be_commited = []
+    has_changes_not_staged_for_commit = []
+
     
     repos.each do |repo|
       even << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
       needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
       needs_push << repo if ( repo.status.include? "Changes not staged for commit:" and repo.status.include? "modified:")
       not_on_master << repo if repo.branch != "master"
+      has_changes_to_be_commited << repo if repo.status.include? "Changes to be committed"
+      has_changes_not_staged_for_commit << repo if repo.status.include? "Changes not staged for commit"
     end
 
     @repos_needing_a_push = needs_push
     @repos_needing_a_pull = needs_pull
     @even = even
     @repos_not_on_master = not_on_master
+    @has_changes_to_be_commited = has_changes_to_be_commited
+    @has_changes_not_staged_for_commit = has_changes_not_staged_for_commit
     
     return nil
 
