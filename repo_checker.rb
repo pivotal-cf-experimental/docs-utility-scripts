@@ -6,8 +6,8 @@ class RepoChecker
     @repos_needing_a_pull = []
     @repos_needing_a_push = []
     @repos_not_on_master = []
-    @has_changes_to_be_commited = []
-    @has_changes_not_staged_for_commit
+    @has_changes_to_be_committed = []
+    @has_changes_not_staged_for_commit = []
 
     Dir.glob("/Users/mtrestman/workspace/docs-*/") { |repo|
       @repos.push(Repo.new repo)
@@ -17,23 +17,8 @@ class RepoChecker
     get_user_to_choose
   end
 
-  def show_repos_needing_a_pull
-    unless @repos_needing_a_pull.length
-      puts "no repos need a pull"
-      return
-    end
-    @repos_needing_a_pull.each do |repo|
-      puts "\n-----------------------\n\n"
-      puts repo.path
-      puts
-      puts repo.status
-      puts "\n-----------------------\n\n"
-    end
-    get_user_to_choose
-  end
 
-  
-  def report
+    def report
 
     puts "All repos being tracked:"
     @repos.each { |esr| puts "\t#{esr.path}" }
@@ -52,10 +37,13 @@ class RepoChecker
 
     puts "-------------------------"
 
-
     puts "the following repos have changes not staged for commit"
     @has_changes_not_staged_for_commit.each {|cnsc| puts "\t#{cnsc.path}"}
+    puts "-------------------------"
 
+    puts "the following repos have changes to be committed"
+    @has_changes_to_be_committed.each {|cnsc| puts "\t#{cnsc.path}"}
+    puts "-------------------------"
 
     puts "the following repos need a push: "
     @repos_needing_a_push.each { |npr| puts "\t#{npr.path}"}
@@ -78,23 +66,27 @@ class RepoChecker
 
 
   def fetch_statuses
+
     threads = []
 
     @repos.each do |repo|
-      threads.push(Thread.new do
-        Dir.chdir repo.path
-        branch = `git branch -a | grep '*'`.gsub(/[*\s]/, '')
+      threads.push(
 
-        Dir.chdir repo.path
-        status = `git fetch; git status`
-        
+        Thread.new do
+          Dir.chdir repo.path
+          branch = `git branch -a | grep '*'`.gsub(/[*\s]/, '')
 
-        {
-          repo: repo,
-          status: status,
-          branch: branch
-        }
-      end)
+          Dir.chdir repo.path
+          status = `git fetch; git status`
+
+          {
+            repo: repo,
+            status: status,
+            branch: branch
+          }
+        end
+      )
+
     end
 
     threads.each do |t|
@@ -108,7 +100,65 @@ class RepoChecker
       repo.branch = branch
       repo.status = status
     end
+
     report
+
+  end
+
+
+  # def show_repos_needing_a_pull
+  #   puts
+  #   puts
+  #   puts "Repos needing a pull:"
+  #   unless @repos_needing_a_pull.length
+  #     puts "no repos need a pull"
+  #     return
+  #   end
+  #   @repos_needing_a_pull.each do |repo|
+  #     puts "\n-----------------------\n\n"
+  #     puts repo.path
+  #     puts
+  #     puts repo.status
+  #     puts "\n-----------------------\n\n"
+  #   end
+  #   get_user_to_choose
+  # end
+
+  def show_has_changes_to_be_committed
+    puts
+    puts
+    puts "Repos with changes staged for commit:"
+
+    unless @has_changes_to_be_committed.length
+      puts "no repos have changes to be committed"
+      return
+    end
+    @has_changes_to_be_committed.each do |repo|
+      puts "\n-----------------------\n\n"
+      puts repo.path
+      puts
+      puts repo.status
+      puts "\n-----------------------\n\n"
+    end
+    get_user_to_choose
+  end
+
+  def show_has_changes_not_staged_for_commit
+    puts
+    puts
+    puts "Repos with changes not staged for commit:"
+    unless @has_changes_not_staged_for_commit.length
+      puts "no repos have changes to be committed"
+      return
+    end
+    @has_changes_not_staged_for_commit.each do |repo|
+      puts "\n-----------------------\n\n"
+      puts repo.path
+      puts
+      puts repo.status
+      puts "\n-----------------------\n\n"
+    end
+    get_user_to_choose
   end
 
   def stash_rebase_stashpop
@@ -124,6 +174,7 @@ class RepoChecker
           repo: repo,
           status: status
         }
+
       end)
     end
     threads.each do |t|
@@ -144,7 +195,6 @@ class RepoChecker
     puts "this method is under construction"
     return
     # puts "*****************\nthis method is pretty dangerous; make sure you really want to commit and push everything. You should probably rebase first too."
-
 
 
     threads = []
@@ -203,7 +253,7 @@ class RepoChecker
     needs_push = []
     even = []
     not_on_master = []
-    has_changes_to_be_commited = []
+    has_changes_to_be_committed = []
     has_changes_not_staged_for_commit = []
 
     
@@ -212,7 +262,7 @@ class RepoChecker
       needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
       needs_push << repo if ( repo.status.include? "Changes not staged for commit:" and repo.status.include? "modified:")
       not_on_master << repo if repo.branch != "master"
-      has_changes_to_be_commited << repo if repo.status.include? "Changes to be committed"
+      has_changes_to_be_committed << repo if repo.status.include? "Changes to be committed"
       has_changes_not_staged_for_commit << repo if repo.status.include? "Changes not staged for commit"
     end
 
@@ -220,7 +270,7 @@ class RepoChecker
     @repos_needing_a_pull = needs_pull
     @even = even
     @repos_not_on_master = not_on_master
-    @has_changes_to_be_commited = has_changes_to_be_commited
+    @has_changes_to_be_committed = has_changes_to_be_committed
     @has_changes_not_staged_for_commit = has_changes_not_staged_for_commit
     
     return nil
@@ -236,9 +286,14 @@ class RepoChecker
     puts "please enter the number of your choice."
 
     choices.push('quit') unless choices.any? { |choice| choice == 'quit' }
-  
+    3.times {puts}
     choices.each_with_index do |choice, i|
-      puts "- #{i}: #{choice.to_s.gsub('_', ' ')}"
+      puts "- #{i}: #{
+        choice
+          .to_s
+          .gsub('_', ' ')
+          .gsub('has changes', 'repos with changes')
+      }"
     end
 
     print "Choice:  "
