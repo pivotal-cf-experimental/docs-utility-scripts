@@ -124,6 +124,28 @@ class RepoChecker
   #   get_user_to_choose
   # end
 
+  def show_repos_lagging_behind_master
+    puts
+    puts
+    puts "Repos lagging behind master:"
+
+    unless @has_changes_to_be_committed.length
+      puts "no repos lag behind master"
+      return
+    end
+    @repos_needing_a_pull.each do |repo|
+      puts "\n-----------------------\n\n"
+      puts repo.path
+      puts
+      puts repo.status
+      puts "\n-----------------------\n\n"
+    end
+    get_user_to_choose
+
+  end
+
+
+
   def show_has_changes_to_be_committed
     puts
     puts
