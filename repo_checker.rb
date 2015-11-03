@@ -9,6 +9,7 @@ class RepoChecker
     @has_changes_to_be_committed = []
     @has_changes_not_staged_for_commit = []
 
+
     Dir.glob("../docs-*/") { |repo|
       @repos.push(Repo.new repo)
       @repos.reject!{|r| r.path.include? 'docs-utility'}
@@ -23,7 +24,7 @@ class RepoChecker
     @repos.each { |esr| puts "\t#{esr.path}" }
 
     puts "-------------------------"
-    
+
     sort_repos @repos
 
     puts "the following repos are even with origin/master:"
@@ -62,7 +63,7 @@ class RepoChecker
     end
     get_user_to_choose
   end
-  
+
   def fetch_statuses
 
     threads = []
@@ -261,7 +262,7 @@ class RepoChecker
     has_changes_to_be_committed = []
     has_changes_not_staged_for_commit = []
 
-    
+
     repos.each do |repo|
       even << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
       needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
@@ -277,7 +278,7 @@ class RepoChecker
     @repos_not_on_master = not_on_master
     @has_changes_to_be_committed = has_changes_to_be_committed
     @has_changes_not_staged_for_commit = has_changes_not_staged_for_commit
-    
+
     return nil
 
   end
@@ -349,7 +350,7 @@ def interact rc
     interact rc
 
   elsif response == "3"
-    rc.stash_rebase_stashpop 
+    rc.stash_rebase_stashpop
     rc.report
     interact rc
 
