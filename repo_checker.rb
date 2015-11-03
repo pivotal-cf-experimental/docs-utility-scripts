@@ -9,7 +9,7 @@ class RepoChecker
     @has_changes_to_be_committed = []
     @has_changes_not_staged_for_commit = []
 
-    Dir.glob("/Users/mtrestman/workspace/docs-*/") { |repo|
+    Dir.glob("../docs-*/") { |repo|
       @repos.push(Repo.new repo)
       @repos.reject!{|r| r.path.include? 'docs-utility'}
     }
@@ -17,8 +17,7 @@ class RepoChecker
     get_user_to_choose
   end
 
-
-    def report
+  def report
 
     puts "All repos being tracked:"
     @repos.each { |esr| puts "\t#{esr.path}" }
@@ -63,12 +62,7 @@ class RepoChecker
     end
     get_user_to_choose
   end
-
-  def quit
-    puts "goodbye!!"
-    exit
-    return nil
-  end
+  
   def fetch_statuses
 
     threads = []
@@ -229,7 +223,11 @@ class RepoChecker
     get_user_to_choose
   end
 
-
+  def quit
+    puts "goodbye!!"
+    exit
+    return nil
+  end
   private
 
   def get_urls
@@ -292,7 +290,7 @@ class RepoChecker
 
     puts "please enter the number of your choice."
 
-    choices.push('quit') unless choices.any? { |choice| choice == 'quit' }
+    # choices.push('quit') unless choices.any? { |choice| choice == 'quit' }
     3.times {puts}
     choices.each_with_index do |choice, i|
       puts "- #{i}: #{
