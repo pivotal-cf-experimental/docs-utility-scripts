@@ -64,7 +64,11 @@ class RepoChecker
     get_user_to_choose
   end
 
-
+  def quit
+    puts "goodbye!!"
+    exit
+    return nil
+  end
   def fetch_statuses
 
     threads = []
@@ -104,25 +108,6 @@ class RepoChecker
     report
 
   end
-
-
-  # def show_repos_needing_a_pull
-  #   puts
-  #   puts
-  #   puts "Repos needing a pull:"
-  #   unless @repos_needing_a_pull.length
-  #     puts "no repos need a pull"
-  #     return
-  #   end
-  #   @repos_needing_a_pull.each do |repo|
-  #     puts "\n-----------------------\n\n"
-  #     puts repo.path
-  #     puts
-  #     puts repo.status
-  #     puts "\n-----------------------\n\n"
-  #   end
-  #   get_user_to_choose
-  # end
 
   def show_repos_lagging_behind_master
     puts
@@ -327,9 +312,6 @@ class RepoChecker
       self.send choices[choice]
     elsif choice > choices.length - 1
       get_user_to_choose
-    elsif choice.to_i == choices.length - 1
-      puts "bye!"
-      return nil
     end
     return nil
   end
