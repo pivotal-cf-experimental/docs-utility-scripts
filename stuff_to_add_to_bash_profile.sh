@@ -1,13 +1,13 @@
 #Add this code to your bash profile to enable the utility scripts
 
 
-# 'find_link KEYWORD' searches the entire workspace directory (exluding the output of bookbinder) for links containing the keyword. it returns a list of these with the line number and file name where the link appears.
+# 'find_thing PATTERN' searches the entire workspace directory (exluding the output of bookbinder and the big nasty cf-release directory) for PATTERN. it returns a list of these with the line number and file name where the link appears.
 
-function find_link {
-	grep -E -r -n --exclude-dir='*final*' --exclude-dir='*output*' "(<a.+href|\().+$1.+html.+(>|\))" ~/workspace
+function find_thing {
+	grep -E -i -r -n --exclude-dir='*final*' --exclude-dir='*output*' --exclude-dir='*cf-release*' "$1" ~/workspace
 }
 
-export -f find_link
+export -f find_thing
 
 #  run the command 'coare' inside of a docs-book- directory to comment out all of the repos in the config.yml except for those including the keyword entered after the prompt. this makes bookbinder bind local run much faster. run `coare` and just hit enter when prompted for a keyword to uncomment all repos, returning the config.yml to its original state.
 
