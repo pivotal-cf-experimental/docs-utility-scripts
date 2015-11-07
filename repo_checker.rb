@@ -50,7 +50,7 @@ class RepoChecker
     puts "-------------------------"
 
     puts "the following repos are not on master: "
-    @repos_not_on_master.each { |nmr| puts "\t#{nmr.path} is on branch #{nmr.branch}"}
+    @repos_not_on_master.each { |nmr| puts "\t#{nmr.path} is on branch |#{nmr.branch}|"}
     puts "-------------------------"
 
     puts "Other repos:"
@@ -267,7 +267,7 @@ class RepoChecker
       even << repo if repo.status == "On branch master\nYour branch is up-to-date with 'origin/master'.\nnothing to commit, working directory clean\n"
       needs_pull << repo if repo.status.include? "On branch master\nYour branch is behind 'origin/master'"
       needs_push << repo if ( repo.status.include? "Changes not staged for commit:" and repo.status.include? "modified:")
-      not_on_master << repo if repo.branch != "master"
+      not_on_master << repo unless repo.branch.include? "master"
       has_changes_to_be_committed << repo if repo.status.include? "Changes to be committed"
       has_changes_not_staged_for_commit << repo if repo.status.include? "Changes not staged for commit"
     end
