@@ -1,66 +1,55 @@
 require 'optparse'
+# source_required_files # make helpers available
+Dir["./models/*.rb"].each {|file| require file }
+Dir["./views/*.rb"].each {|file| require file }
+Dir["./helpers/*.rb"].each {|file| require file }
 # see source_required_files for 'require' source_required_files
+
+# =====SOME ARGV STUFF=====
+# ARGV << '--help' if ARGV.empty
+
+# aliases = {
+# 	'u' => 'url' # to return the (pcf?) url equivalent of the repo 
+# 	'c' => 'commit' # to commit all the changes, pull --rebase, push
+# 	'd' => 'deliver' # to checkout and merge branch into master (or pre-release), and delete branch
+# }
+# =====SOME ARGV STUFF=====
 
 class Scribe
   attr_accessor :repos, :workspace
 
 	def initialize
-		source_required_files
 		@repos = []
 		@current_dir = ''
 		@workspace = ''
-		find_home
-		add_docs_dirs_repos
+		main
 	end
 
-	def source_required_files
-		Dir["./models/*.rb"].each {|file| require file }
-		Dir["./helpers/*.rb"].each {|file| require file }
+	def main
+		find_home # helper show pwd and sets workspace
+		add_docs_dirs_repos #helper adds repos to model
+		repo_statuses #helper to check and show repo statuses
+    # batch push?
+    # set commit message
+    # set story number/branch
+    # report owners list
 	end
 
-	# check status
-	 #  def fetch_statuses_sequentially
-  #   @repos.each do |repo|
-
-  #     Dir.chdir repo.path
-
-  #     status = `git fetch; git status`
-  #     repo.status = status
-
-  #   end
-  #   get_user_to_choose
-  # end
-
-
-	def find_home
-	  show_current_dir
-	  set_workspace
-	raise "Unable to locate find workspace directory" unless show_current_dir == true
+	def repo_statuses
+		check_statuses
+		show_statuses
 	end
 
-	def show_current_dir
-	  @current_dir = `pwd`
-	  puts "Your pwd is #{@current_dir}"
-	  return true if @workspace.include?('workspace')
-	end
+  # has_changes_to_be_committed << repo if repo.status.include? "Changes to be committed"
 
-	def set_workspace
-	  @workspace = @current_dir.sub(/workspace\/.+/) { "workspace" }
-	  puts "Scribe will reference #{@workspace} as your workspace."		
-	end
-
-	def add_docs_dirs_repos
-    Dir.glob("#{@workspace.chomp}/docs-*/") do |repo|
-        @repos.push(Repo.new repo)
-        @repos.reject!{|r| r.path.include? 'docs-utility'}
-      end
-    @repos.each do |i|
-	    puts i.path 
-	end
-	puts "<" * 25
-	puts @repos[0].path
-
-	puts "<" * 25
-	end
 end
-scribe = Scribe.new
+scribe = Scribe.new 
+
+case ARGV
+when '-f'
+  blah
+when ''
+
+
+
+

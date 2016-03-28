@@ -84,7 +84,7 @@ class RepoChecker
             branch: branch
           }
         end
-      )
+        )
 
     end
 
@@ -295,10 +295,10 @@ class RepoChecker
     3.times {puts}
     choices.each_with_index do |choice, i|
       puts "- #{i}: #{
-        choice
-          .to_s
-          .gsub('_', ' ')
-          .gsub('has changes', 'repos with changes')
+      choice
+      .to_s
+      .gsub('_', ' ')
+      .gsub('has changes', 'repos with changes')
       }"
     end
 
