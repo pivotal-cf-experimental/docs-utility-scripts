@@ -36,9 +36,12 @@ class Scribe
 	end
 
 	def repo_statuses
-		check_statuses
-		show_statuses
+		check_statuses 	#checks all statuses
+		show_statuses	#sends to the view
 	end
+
+
+	
 
   # has_changes_to_be_committed << repo if repo.status.include? "Changes to be committed"
 

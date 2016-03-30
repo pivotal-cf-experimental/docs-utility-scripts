@@ -39,3 +39,31 @@ scribe diff (report + verbose)
 #scribe commit "commit message"
 	Batch commit
 
+
+<!-- ======= -->
+# ~/workspace/docs-pcf-install|detached:origin/pre-release S:4 ✗
+# master 	|	modified
+# 				helpers/...
+# 				scribe.rb
+#
+ 				# modified:   cloudform-er-config.html.md.erb
+ 				# modified:   config-er-vmware.html.md.erb
+ 				# modified:   pcf-aws-manual-er-config.html.md.erb 				# 
+
+# =============
+
+
+
+
+# how to deal w:
+	# rebase conflicts
+	# merge conflicts
+	# git colors
+	# 
+
+
+# where flow is:
+	# change content_repose -->
+	# git status -->
+	# func(message, branch) = git commit -am "message "
+

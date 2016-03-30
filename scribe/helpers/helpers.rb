@@ -24,6 +24,9 @@ def check_statuses
   @repos.each do |repo|
     Dir.chdir repo.path
     repo.status = `git status`
+    # interact with `git status` and `pwd` 
+    # where these items inform an object? a property of an object
+    # repo. 
 	end
 end
 
