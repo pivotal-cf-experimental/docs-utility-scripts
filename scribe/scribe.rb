@@ -36,22 +36,15 @@ class Scribe
 	end
 
 	def repo_statuses
-		check_statuses 	#checks all statuses
+		check_statuses 	#checks all statuses, populates repos.status
 		show_statuses	#sends to the view
 	end
-
-
-	
 
   # has_changes_to_be_committed << repo if repo.status.include? "Changes to be committed"
 
 end
 scribe = Scribe.new 
 
-case ARGV
-when '-f'
-  blah
-when ''
 
 
 

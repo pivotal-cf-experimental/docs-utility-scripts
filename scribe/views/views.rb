@@ -11,5 +11,15 @@ end
 
 def show_statuses
 	# puts "TEMP RETURN VALUE FOR `show_statuses`"
-	@repos.each{|r|puts r.status}
+	# should puts string built from status report
+	@repos.each{|r|puts "\n#{r.docs_dir} \n#{r.status}" }
+
+	# status = `git fetch; git stash; git rebase; git stash pop`
+
+	# {
+	#   repo: repo,
+	#   status: status
+	# }
+
+
 end

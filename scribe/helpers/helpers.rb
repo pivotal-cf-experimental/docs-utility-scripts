@@ -23,7 +23,9 @@ end
 def check_statuses		
   @repos.each do |repo|
     Dir.chdir repo.path
-    repo.status = `git status`
+    repo.docs_dir = repo.path.gsub(/.*\/workspace\//,'REPO: ').gsub(/\//,'')
+    repo.status = `git status` # | grep master`
+
     # interact with `git status` and `pwd` 
     # where these items inform an object? a property of an object
     # repo. 
@@ -35,7 +37,7 @@ end
 #  Thread.new do
 # 	 Dir.chdir repo.path 
 
-def fetch_statuses
+def fetch_statuses #currently not called
 	threads = []
 	@repos.each do |repo|
 		threads.push( new_thread )
