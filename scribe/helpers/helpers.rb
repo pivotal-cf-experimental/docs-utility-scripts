@@ -1,31 +1,31 @@
 # helper functions
 
 	# display pwd and dir that scribe sets as the 'workspace'
-def find_home
-  show_current_dir  # view 
-  @workspace = set_workspace		# helper
-	show_workspace workspace
-  raise "Unable to locate find workspace directory" unless show_current_dir == true
-end
 
-def set_workspace
-	return @current_dir.sub(/workspace\/.+/) { "workspace" }
+
+def set_workspace_name
+	if `pwd`.include?("workspace") 
+		@workspace_name = `pwd`.sub(/workspace\/.+/, "workspace").chomp 
+	else
+		raise "Unable to locate find workspace directory" 
+	end
 end
 
 # This method should probably eventually use the pubtools method that scrubs the book's configs for repos, and adds those, rather than depend on a 'clean' workspace
 def add_docs_dirs_repos
-    Dir.glob("#{@workspace.chomp}/docs-*/") do |repo|
+    Dir.glob("#{@workspace_name.chomp}/docs-*/") do |repo|
     	break if repo.include? 'docs-utility'
         @repos.push Repo.new repo
 	end
 end
 
 def check_statuses		
-  @repos.each do |repo|
-    Dir.chdir repo.path
-    repo.docs_dir = repo.path.gsub(/.*\/workspace\//,'REPO: ').gsub(/\//,'')
-    repo.branch = `git status | grep branch`.gsub(/On branch/, 'Branch:').gsub(/\n.*/, "")
-    repo.status = `git status | grep behind`
+	show_checking_status_courtesy
+	@repos.each do |repo|
+    	Dir.chdir repo.path
+	    repo.docs_dir = repo.path.gsub(/.*\/workspace\//,'REPO: ').gsub(/\//,'') 
+	    repo.branch = `git status | grep branch`.gsub(/On branch/, 'Branch:').gsub(/\n.*/, "")
+	    repo.status = `git status` # | grep behind` 
     # repo.status = `git status | grep modified`
 
     # repo.status_report << `git status`.gsub(/\n.*diverged.*$/,' Diverged').gsub(/\n.*up-to-date.*$/, ' Up-to-date').gsub(/\n.*nothing to commit, working directory clean$/, " Directory Clean")
@@ -34,6 +34,17 @@ def check_statuses
     # repo. 
 	end
 end
+
+def get_nonclean_repos
+	nonclean = []
+	@repos.each do |d|
+		Dir.chdir(d) do
+			Open3.popen3('git status') do |stdin, stdout, stderr|
+			nonclean.push(d) unless stdout.read.include?('clean')
+			end
+		end
+	end
+end	
 
 def check_repos
 	puts "YOU ARE CHECKING REPOS"
@@ -49,6 +60,10 @@ def check_repos
 	  # repo.status = `git status | grep modified`
 	# end	
 	
+end
+
+def call_help
+	show_help
 end
 
 #  Using this space to temporarily rethink 'fetch_statuses'

@@ -1,12 +1,13 @@
 
 def show_current_dir
-	@current_dir = `pwd`
+	puts "%" * 50
+	puts "@current_dir is set to #{@current_dir}"
+	puts "%" * 50
 	puts "Your pwd is #{@current_dir}"
-	return true if @workspace.include?('workspace')
 end
 
-def show_workspace(workspace)
-	puts "Scribe will reference #{workspace} as your workspace."		
+def show_workspace
+	puts "Scribe will reference #{@workspace_name} as your workspace."		
 end
 
 def show_statuses
@@ -20,6 +21,19 @@ def show_statuses
 	#   repo: repo,
 	#   status: status
 	# }
+end
+
+def show_checking_status_courtesy
+	puts ""
+	puts "    Checking git status for docs repos"
+end
+
+def show_help
+	puts "YOU ARE SHOWING HELP"
+	puts "#" * 50
+	puts "#" * 50
+	puts "#" * 50
+	puts "#" * 50
 end
 
 

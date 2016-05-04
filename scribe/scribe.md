@@ -12,7 +12,9 @@ scribe
 	master							Puts all branches back to master, stashing all changes (or committing them with 'wip')
 										(any prior 'wip' commits could be squashed into future commits (as default), or rolled back manually)
 	deliver							Checks out master merges story branch, deletes branch commits?
-
+	pcf watch --> aliases to a path and 'bookbinder watch' so it can be run from ANYWHERE	
+	cf watch
+	pws watch - same thing, diff book
 
 ## Accept branch-and-story-id
 
