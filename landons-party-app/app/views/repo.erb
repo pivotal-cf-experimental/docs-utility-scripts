@@ -1,0 +1,13 @@
+<h1><%= @repo %></h1><br/>
+<p>
+	<h2>topics</h2>
+	<ul>
+	<% @monster_hash.each do |k,v| %>
+		<strong><%= v[0] %></strong>
+		<ul>
+			<li><strong>filename</strong>: <%= k %></li>
+			<li><strong>owner</strong>: <%= v[1] %></li>
+			<li><a href="<%= v[2] %>">link</a></li>
+		</ul>
+	<% end %>
+	</ul>

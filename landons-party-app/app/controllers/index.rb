@@ -11,8 +11,11 @@ get	'/book/:book_name' do
 	erb :book
 end
 
-get '/repo/:repo_name' do
+get '/book/:book_name/repo/:repo_name' do
+	@book = params[:book_name]
 	@repo = params[:repo_name]
+	r = Repo.new(@repo, @book)
+	@monster_hash = r.get_info
 	erb :repo
 end
 
