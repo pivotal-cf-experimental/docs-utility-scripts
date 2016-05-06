@@ -1,5 +1,21 @@
 body {
 	background: black;
 	font-family: Courier;
+	color: white;
 }
 
+.book {
+	border: 2px solid white;
+}
+
+#pcf {
+	background: green;
+}
+
+#oss {
+	background: blue;
+}
+
+#pws {
+	background: red;
+}
