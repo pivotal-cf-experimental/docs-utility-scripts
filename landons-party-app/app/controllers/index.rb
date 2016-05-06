@@ -1,3 +1,6 @@
+require 'sinatra'
+require 'json'
+
 get '/?' do	
 	erb :index
 end
@@ -12,3 +15,6 @@ get '/repo/:repo_name' do
 	erb :repo
 end
 
+post '/payload' do
+  push = JSON.parse(request.body.read)
+end
