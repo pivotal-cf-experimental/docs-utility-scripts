@@ -89,7 +89,13 @@ class Repo
 					end
 				end
 
-				titles_owners_links = [parsed_topic['title'], parsed_topic['owner'], @uri]
+				# if @filename[0] == '_'
+				# 	title = '[Partial]' 
+				# else
+				# 	title = parsed_topic['title']
+				# end
+
+				titles_owners_links = ['z', parsed_topic['owner'], @uri]
 				monster_hash[@filename] = titles_owners_links
 			end
 		end

@@ -1,4 +1,6 @@
-<h1><%= @book %></h1><br/>
+<div class="container">
+<h2 class"t"><a href="/">back</a></h2>
+<h1 class="test"><%= @book %></h1><br/>
 <p>
 	<h2>repos</h2>
 	<ul>
@@ -7,11 +9,14 @@
 	<% end %>
 	</ul>
 </p>
+</div>
+<div class="container">
 <p>
-	<h2 class="header">template variables</h2>
+	<h2 class="">template variables</h2>
 	<ul>
-	<% @vars.each do |v| %>
-		<li class="header"><%= h v %></li>
+	<% @vars.sort.each do |v| %>
+		<li class=""><strong><%= h v[0] %></strong>: <p class="tab"> <%= h v[1] %></p></li>
 	<% end %>
 	</ul>
 </p>
+</div>

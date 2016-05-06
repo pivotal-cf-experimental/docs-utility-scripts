@@ -1,20 +1,29 @@
 * {
-	border: 1px dotted red !important;
+	/*border: 1px dotted red !important;*/
 	/*color: white;*/
 }
+
 body {
-	background-color: #0B0F11;
+	background-color: #b5b5b5;
+	background-color: #b5b5b5;
+	background-color: #03786D;
 	font-family: Courier;
-	/*color: white;*/
+	color: #4b6475;
+	height: 1.5em;
+	font-size: 1.5em;
+
+}
+
+.test{
+	color: #4b6475;
+	/*color: green;	*/
 }
 
 .book {
-	/*border: 2px solid white;*/
 }
 
-.book {
-	height: 1.2em;
-	font-size: 1.2em;
+.tab{
+	padding-left: 2em;
 }
 
 #pcf {
@@ -29,21 +38,17 @@ body {
 	background: red;
 }
 
-/*====*/
-
-* {
-	/*border: 1px dotted red !important;*/
-	color: white;
-}
-
-
 .container {
   margin: 20px auto;
-  width: 600px;
+  width: 80%;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
-  background-color: #424242;
+  background-color: #eceae9;
   display: block;
+}
+
+a:hover{
+ background-color: #00a79d;
 }
 
 th {
@@ -54,7 +59,7 @@ th {
 	padding: 2em;
 }
 .t {
-	color: #0B0F11;
+	color: white;
 }
 
 input[type="password"], textarea, input[type="email"] {
