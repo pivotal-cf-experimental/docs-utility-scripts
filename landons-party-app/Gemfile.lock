@@ -90,6 +90,7 @@ DEPENDENCIES
   capybara
   factory_girl
   faker
+  json
   rack-test
   rake
   rspec
