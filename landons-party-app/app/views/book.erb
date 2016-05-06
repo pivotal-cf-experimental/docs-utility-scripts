@@ -3,7 +3,7 @@
 	<h2>repos</h2>
 	<ul>
 	<% @repos.each do |r| %>
-		<a href="./repo/<%= r %>"><li><%= r %></a></li>
+		<li><a href='/book/<%= @book %>/repo/<%= r %>'><%= r %></a></li>
 	<% end %>
 	</ul>
 </p>
