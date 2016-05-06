@@ -21,5 +21,5 @@ end
 
 post '/payload' do
   push = JSON.parse(request.body.read)
-  puts push
+  erb :payload
 end
