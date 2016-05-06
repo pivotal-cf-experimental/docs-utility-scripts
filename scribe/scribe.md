@@ -1,12 +1,15 @@
 Requirements
 
 scribe
-	report 							Also shows any stashed changes on story branch
-		[-v] verbose calls diff
-	diff
-	pull 							Pulls current (CODE SMELL: pull should only be done on master, prior to,	... yes?)
-		[-v] 						Verbose shows git conflict messages
-	story 							Shows all stories in flight (perhaps branches are stored as 'SCRIBE-branch-name-and-id')
+	report [-v]	Shows any stashed changes on story branch
+			-v 	Calls diff
+	diff     	Shows changes 
+
+	pull [-v]
+		Pulls current (CODE SMELL: pull should only be done on master, prior to,	... yes?)
+		-v 		Verbose shows git conflict messages
+
+	story 		Shows all stories in flight (perhaps branches are stored as 'SCRIBE-branch-name-and-id')
 		[branch-and-story-id]		Starts new story 
 	commit 'commit message'			
 	master							Puts all branches back to master, stashing all changes (or committing them with 'wip')
