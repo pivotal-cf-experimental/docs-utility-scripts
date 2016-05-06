@@ -7,3 +7,8 @@ get	'/book/:book_name' do
 	erb :book
 end
 
+get '/repo/:repo_name' do
+	@repo = params[:repo_name]
+	erb :repo
+end
+
