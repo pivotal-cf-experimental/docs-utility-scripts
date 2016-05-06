@@ -1,0 +1,17 @@
+<h1><%= @book %></h1><br/>
+<p>
+	<h2>repos</h2>
+	<ul>
+	<% @repos.each do |r| %>
+		<a href="./repo/<%= r %>"><li><%= r %></a></li>
+	<% end %>
+	</ul>
+</p>
+<p>
+	<h2>template variables</h2>
+	<ul>
+	<% @vars.each do |v| %>
+		<li><%= h v %></li>
+	<% end %>
+	</ul>
+</p>
