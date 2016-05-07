@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# script to git pull and be update
+# all book-level and local doc level repos
+
+# Add the following to your .bash_profile
+# export PATH="/User/pivotal:$PATH"
+
+cd ~/workspace/docs-book-cloudfoundry
+echo
+echo Update context 1 of 3
+echo Update the OSS book repo
+echo
+git pull
+echo
+echo Update the local repos
+echo
+bundle exec bookbinder update_local_doc_repos
+echo
+echo Done: git pull executed on all OSS repos
+echo
+
+cd ~/workspace/docs-book-pivotalcf
+echo
+echo Update context 2 of 3
+echo Update the PCF book repo
+echo
+git pull
+echo
+echo Update the local repos
+echo
+bundle exec bookbinder update_local_doc_repos
+echo
+echo Done: git pull executed on all PCF repos
+echo
+
+cd ~/workspace/docs-book-cloudfoundry
+echo
+echo Update context 3 of 3
+echo Update the PWS book repo
+echo
+git pull
+echo
+echo Update the local repos
+echo
+bundle exec bookbinder update_local_doc_repos
+echo
+echo Done: git pull executed on all PWS repos
+echo
+
+
