@@ -1,14 +1,12 @@
 class RepoChecker
 
   def initialize
-
     @repos = []
     @repos_needing_a_pull = []
     @repos_needing_a_push = []
     @repos_not_on_master = []
     @has_changes_to_be_committed = []
     @has_changes_not_staged_for_commit = []
-
 
     Dir.glob("../docs-*/") { |repo|
       @repos.push(Repo.new repo)
@@ -19,7 +17,6 @@ class RepoChecker
   end
 
   def report
-
     puts "All repos being tracked:"
     @repos.each { |esr| puts "\t#{esr.path}" }
 
@@ -382,6 +379,3 @@ rc.fetch_statuses
 rc.report
 
 # interact rc
-
-
-
