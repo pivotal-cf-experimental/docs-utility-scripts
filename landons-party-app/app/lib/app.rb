@@ -67,13 +67,22 @@ class Repo
 		monster_hash = {}
 		if Dir.exist?(@path_to_repo)
 			Find.find(@path_to_repo) do |path|
-			if path.include?('html')
+			@filename = path.split(@repo)[1]
+			puts @filename
+			if path.include?('html') && unless path.include?('/_')
+
+				# first_line = File.open(path, &:readline) 
+				# if first_line.include?('---')
+
 				parsed_topic = begin
-					YAML.load(File.open(path))
+					five_lines = File.open(path) do |f|
+						5.times.map{f.readline}.join("\n").to_s
+					end
+				puts five_lines
+					YAML.load(five_lines)
 				rescue ArgumentError => e
 		  			puts "Could not parse YAML: #{e.message}"
 				end
-				@filename = path.split(@repo)[1]
 				
 				parsed_book = begin
   				YAML.load(File.open(@path_to_config_yml))
@@ -88,19 +97,19 @@ class Repo
 						@uri = domain + n['directory'] + edited_filename
 					end
 				end
+			end
 
-				# if @filename[0] == '_'
-				# 	title = '[Partial]' 
-				# else
-				# 	title = parsed_topic['title']
-				# end
-
-				titles_owners_links = ['z', parsed_topic['owner'], @uri]
+				titles_owners_links = [parsed_topic['title'], parsed_topic['owner'], @uri]
 				monster_hash[@filename] = titles_owners_links
 			end
 		end
 		monster_hash
 		end
 	end
+
+	def get_partials
+	#future feature: list partials in a separate list
+	end
 end
+
 
