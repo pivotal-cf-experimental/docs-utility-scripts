@@ -16,6 +16,7 @@ require 'active_record'
 require 'logger'
 
 require 'json'
+require 'octokit'
 
 require 'sinatra'
 require "sinatra/reloader" if development?

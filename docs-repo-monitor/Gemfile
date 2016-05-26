@@ -1,0 +1,15 @@
+source 'https://rubygems.org'
+ruby '2.3.0'
+
+# PostgreSQL driver
+# gem 'pg'
+
+# Sinatra driver
+gem 'sinatra'
+
+gem 'rake'
+
+gem 'json'
+gem 'octokit'
+
+gem 'shotgun'
