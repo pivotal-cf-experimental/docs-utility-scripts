@@ -22,7 +22,7 @@ post '/payload' do
   @push = JSON.parse(request.body.read)
   @push = @push["commits"][0]["id"]
 
-  client = Octokit::Client.new :access_token => 'b28264d44885ca48e60db55d128654ed06fed267'
+  client = Octokit::Client.new :access_token => ''
   # client.create_issue("ljarzynski/asdf", 'Update pre-release', 'The following commit was made to master: ' + @push)
   pre_release_hash = client.refs("ljarzynski/asdf")
   pre_release_hash.each do |i|
