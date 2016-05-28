@@ -6,7 +6,7 @@ post '/payload' do
 
   client = Octokit::Client.new :access_token => ENV['git_token']
   @pr_message = "These changes were made on master and need to be made on " + ENV['pre_release']
-  @issue_message = "The following commit was made to master and causes conflicts. Resolve the conflicts and make the change to " + "1.8"
+  @issue_message = "The following commit(s) was made to master and causes conflicts when trying to merge with #{ENV['pre_release']}. Cherry pick the commits from master to #{ENV['pre_release']} and resolve the conflicts." 
   @push = JSON.parse(request.body.read) # push data
   @array_of_commits = []
   @repo = ""
@@ -39,13 +39,9 @@ post '/payload' do
     end
   end
 
-  if @conflicts.length == @array_of_commits.length
+  if @conflicts.length > 0 
     client.create_issue(@repo, "Master to " + ENV['pre_release'], @issue_message + @conflicts.to_s)
-    client.delete_ref(@repo, @new_branch)
-  elsif @conflicts.length > 0 
-    client.create_issue(@repo, "Master to " + ENV['pre_release'], @issue_message + @conflicts.to_s)
-    @merge_msg = "Merge this pull request to bring commits into the #{ENV['pre_release']} branch. These commits had conflicts: " + @conflicts.to_s
-    client.create_pull_request(@repo, "refs/heads/" + ENV['pre_release'], @new_branch, "Master to " + ENV['pre_release'], @merge_msg)
+    client.delete_ref(@repo, "heads/master-to-pre-release-" + @pre_release_sha[0..5])
   else
     @merge_msg = "Merge this pull request to bring commits into the #{ENV['pre_release']} branch."
     client.create_pull_request(@repo, "refs/heads/" + ENV['pre_release'], @new_branch, "Master to " + ENV['pre_release'], @merge_msg)
