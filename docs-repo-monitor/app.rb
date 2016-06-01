@@ -6,7 +6,7 @@ post '/payload' do
 
   client = Octokit::Client.new :access_token => ENV['git_token']
   @pr_message = "These changes were made on master and need to be made on " + ENV['pre_release']
-  @issue_message = "The following commit(s) was made to master and causes conflicts when trying to merge with #{ENV['pre_release']}. Cherry pick the commits from master to #{ENV['pre_release']} and resolve the conflicts." 
+  @issue_message = "The following commit(s) was made to master and causes conflicts when trying to merge with #{ENV['pre_release']}. Cherry pick the commit(s) from master to #{ENV['pre_release']} and resolve the conflicts." 
   @push = JSON.parse(request.body.read) # push data
   @array_of_commits = []
   @repo = ""
