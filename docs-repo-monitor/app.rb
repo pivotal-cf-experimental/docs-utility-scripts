@@ -31,20 +31,26 @@ post '/payload' do
   client.create_ref(@repo, @new_branch, @pre_release_sha)
   @conflicts = []
 
+  print "Repo: " + @repo.to_s
+  print "Attempting to merge..."
   @array_of_commits.each do |i|
     begin
       r = client.merge(@repo, @new_branch, i)
   rescue Octokit::Conflict => e
       @conflicts.push(i)
+      print "Merge failed."
     end
   end
 
   if @conflicts.length > 0 
     client.create_issue(@repo, "Master to " + ENV['pre_release'], @issue_message + @conflicts.to_s)
+    print "Issue created."
     client.delete_ref(@repo, "heads/master-to-pre-release-" + @pre_release_sha[0..5])
+    print "Branch deleted."
   else
     @merge_msg = "Merge this pull request to bring commits into the #{ENV['pre_release']} branch."
     client.create_pull_request(@repo, "refs/heads/" + ENV['pre_release'], @new_branch, "Master to " + ENV['pre_release'], @merge_msg)
+    print "PR created."
   end
 
 end
