@@ -5,7 +5,7 @@ end
 get	'/book/:book_name' do
 	@book = params[:book_name]
 	b = Book.new(@book)
-	@repos = b.get_repos.sort!
+	@repos = b.get_repos
 	@vars = b.get_vars
 	erb :book
 end

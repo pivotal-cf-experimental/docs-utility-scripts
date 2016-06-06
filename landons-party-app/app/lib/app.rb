@@ -13,20 +13,15 @@ class Book
 	#returns an array of all the repos that belong to a book
 	def get_repos
 		repo_list = []
-		
 		parsed_config = begin
 			YAML.load(File.open(@path_to_config_yml))
 		rescue ArgumentError => e
   			puts "Could not parse YAML: #{e.message}"
 		end
-		
-		parsed_config['sections'].each do |n|
-			repo = n['repository']['name']
-			repo = repo.split('/')[1] if repo.include?('/')
-			repo_list.push(repo)
+		parsed_config['sections'].each do |section|
+			repo_list.push(section['repository']['name'].gsub(/\w*-?\w*\//,''))
 		end
-
-		repo_list
+		repo_list.sort
 	end
 
 	#returns a hash of all the template vars that belong to a book
@@ -67,7 +62,7 @@ class Repo
 		monster_hash = {}
 		if Dir.exist?(@path_to_repo)
 			Find.find(@path_to_repo) do |path|
-			@filename = path.split(@repo)[1]
+			@filename = path.split(@repo)[1] #refactor with regex to avoid extra array
 			puts @filename
 			if path.include?('html') && unless path.include?('/_')
 
