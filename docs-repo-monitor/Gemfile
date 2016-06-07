@@ -7,7 +7,7 @@ ruby '2.3.0'
 # Sinatra driver
 gem 'sinatra'
 
-# gem 'rake'
+gem 'rake'
 
 gem 'json'
 gem 'octokit'
