@@ -34,7 +34,6 @@ end
 
 # `git clone` a repository
 def clone_repo(repo)
-	repo = repo.gsub(/\w*-?\w*\//,'')
 	puts ""
 	puts "It seems you do not have a local copy of #{repo}."
 	puts "  ...Cloning it from Github, now."
