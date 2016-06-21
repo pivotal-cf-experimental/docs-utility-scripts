@@ -3,8 +3,8 @@
 
 require 'yaml'
 
-# Send a list of the book repositories to be cloned_or_updated
-def get_repos (book)
+# Create a list of the book repositories to be cloned_or_updated, and send them to cloner/updater.
+def gather_repos (book)
 	repo_list = []
 	book_repos = begin
 		YAML.load(File.open(Dir.home + '/workspace/' + book + '/config.yml'))
@@ -22,7 +22,7 @@ def clone_or_update(repo_list)
 	end	
 end
 
-# `git pull` repo 
+# `git pull` a repository 
 def update_repo(repo)
 	repo = repo.gsub(/\w*-?\w*\//,'')
 	puts ""
@@ -30,7 +30,7 @@ def update_repo(repo)
 	`cd ~/workspace/#{repo}; git checkout master; git pull`
 end
 
-# `git clone` repo
+# `git clone` a repository
 def clone_repo(repo)
 	repo = repo.gsub(/\w*-?\w*\//,'')
 	puts ""
@@ -39,13 +39,7 @@ def clone_repo(repo)
 	`cd ~/workspace; git clone git@github.com:#{repo}.git`
 end
 
-
-
-get_repos 'docs-book-cloudfoundry'
-get_repos 'docs-book-pcfservices'
-get_repos 'docs-book-pivotalcf'
-get_repos 'docs-book-runpivotal'
-# get_repos 'docs-book-offline'
-
-
-
+gather_repos 'docs-book-cloudfoundry'
+gather_repos 'docs-book-pcfservices'
+gather_repos 'docs-book-pivotalcf'
+gather_repos 'docs-book-runpivotal'
