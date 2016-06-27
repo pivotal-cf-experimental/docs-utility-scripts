@@ -16,6 +16,7 @@ def gather_repos(books)
 		end
 	end
 	repo_list.push("docs-layout-repo")
+	repo_list.push("docs-utility-scripts")
 	clone_or_update repo_list.uniq
 end
 
