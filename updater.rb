@@ -7,6 +7,7 @@ require 'yaml'
 @books = ['docs-book-cloudfoundry', 'docs-book-pcfservices', 'docs-book-pivotalcf', 'docs-book-runpivotal']
 
 # Create a list of the book repositories to be cloned_or_updated, and send them to cloner/updater.
+# Adds docs layout repo as requirement
 def gather_repos(books)
 	repo_list = []
 	books.map do |book|
@@ -14,6 +15,7 @@ def gather_repos(books)
 			repo_list.push(section['repository']['name'])
 		end
 	end
+	repo_list.push("docs-layout-repo")
 	clone_or_update repo_list.uniq
 end
 
