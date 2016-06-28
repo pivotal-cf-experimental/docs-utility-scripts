@@ -59,9 +59,13 @@ post '/sso' do
 
   client = Octokit::Client.new :access_token => ENV['git_token']
   @pr = JSON.parse(request.body.read) 
+  @repos = ""
+  @num = ""
   if @pr['action'] == "opened" 
-    @repo = @pr['repo']['full_name']
+    @repos = @pr['repository']['full_name']
+    puts @repos
     @num = @pr['number']
-    client.add_comment(@repo, @num, "Docs team: find out if these changes need to be made to the master-pws branch as well, if so cherry-pick them.")
+    puts @num
+    client.add_comment(@repos, @num, "Docs team: find out if these changes need to be made to the master-pws branch as well, if so cherry-pick them.")
   end 
 end
