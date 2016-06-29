@@ -74,7 +74,7 @@ class RepoChecker
 
           Dir.chdir repo.path
           status = `git fetch; git status`
-
+          
           {
             repo: repo,
             status: status,

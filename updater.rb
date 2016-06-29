@@ -3,12 +3,13 @@
 
 require 'pp'
 require 'yaml'
-# require 'open3'
+require 'open3'
 
 # Add new books to this array, as necessary
 @books = ['docs-book-cloudfoundry', 'docs-book-pcfservices', 'docs-book-pivotalcf', 'docs-book-runpivotal']
 @modified_repos = []
 @repo_list = ["docs-layout-repo", "docs-utility-scripts"]
+@output = {}
 
 # Create a list of the book repositories to be cloned_or_updated, send them to cloner/updater, and display the ignored modified repos.
 def gather_repos(books)
@@ -21,6 +22,7 @@ def gather_repos(books)
 	multithread_pipe reduced_list.uniq
 	# clone_or_update reduced_list.uniq
 	display_modified_repos @modified_repos
+	pp @output
 end
 
 # Removes repos with changes from @repo_list 
@@ -33,11 +35,27 @@ end
 
 def multithread_pipe(list_of_repos)
 	threads = []
-	list_of_repos.each do |repo|
-		threads << Thread.new { clone_or_update repo}
-	end
+	list_of_repos.each{|repo| threads << Thread.new { clone_or_update repo}}
 	threads.each{|t|t.join}
+	puts "========\nYour working repos have been updated \n"
 end
+
+# def multithread_pipe(list_of_repos)
+# 	threads = []
+# 	list_of_repos.each do |repo|
+# 		threads << Thread.new do
+			# Open3.popen3(clone_or_update repo) do |stdin, stdout, stderr|
+			  # @output[repo] = "STDOUT: #{stdout.read}"
+			  # @output[repo] = stdin.read
+			  # @output[repo] = "STDERR: #{stderr.read}"
+			  # clone_or_update repo
+			# end
+		 
+		# end
+	# end
+	# pp @output
+	# threads.each{|t|t.join}
+# end
 
 # Ternary operation that checks for directory existence, if none, clones; otherwise updates repo
 def clone_or_update(repo)
