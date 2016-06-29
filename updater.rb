@@ -1,15 +1,18 @@
 # Copy/paste the following line to your shell (without the #) to add `update` as an alias:
 # echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater.rb"' >> ~/.bash_profile; source ~/.bash_profile
 
-require 'pp'
+require 'colorize'
 require 'yaml'
-require 'open3'
+
+#Feature request. Update `updater.rb` before updating other repos
+def get_latest_updater
+	# ? METAPROGRAMMING?????
+end
 
 # Add new books to this array, as necessary
 @books = ['docs-book-cloudfoundry', 'docs-book-pcfservices', 'docs-book-pivotalcf', 'docs-book-runpivotal']
 @modified_repos = []
 @repo_list = ["docs-layout-repo", "docs-utility-scripts"]
-@output = {}
 
 # Create a list of the book repositories to be cloned_or_updated, send them to cloner/updater, and display the ignored modified repos.
 def gather_repos(books)
@@ -20,9 +23,8 @@ def gather_repos(books)
 	end
 	reduced_list = reduce_list_for_current_work @repo_list
 	multithread_pipe reduced_list.uniq
-	# clone_or_update reduced_list.uniq
 	display_modified_repos @modified_repos
-	pp @output
+	evangelize_updater
 end
 
 # Removes repos with changes from @repo_list 
@@ -37,25 +39,8 @@ def multithread_pipe(list_of_repos)
 	threads = []
 	list_of_repos.each{|repo| threads << Thread.new { clone_or_update repo}}
 	threads.each{|t|t.join}
-	puts "========\nYour working repos have been updated \n"
+	puts "\n=====================================\nYour working repos have been updated! \n=====================================\n".green
 end
-
-# def multithread_pipe(list_of_repos)
-# 	threads = []
-# 	list_of_repos.each do |repo|
-# 		threads << Thread.new do
-			# Open3.popen3(clone_or_update repo) do |stdin, stdout, stderr|
-			  # @output[repo] = "STDOUT: #{stdout.read}"
-			  # @output[repo] = stdin.read
-			  # @output[repo] = "STDERR: #{stderr.read}"
-			  # clone_or_update repo
-			# end
-		 
-		# end
-	# end
-	# pp @output
-	# threads.each{|t|t.join}
-# end
 
 # Ternary operation that checks for directory existence, if none, clones; otherwise updates repo
 def clone_or_update(repo)
@@ -65,9 +50,8 @@ end
 # Displays repos with modifications
 def display_modified_repos(modified_repos)
 	if modified_repos
-		puts ""
-		puts "The following repos were ignored, as they have modified contents:"
-	 modified_repos.uniq.each{|repo| puts "  #{repo.gsub(/\w*-?\w*\//,'')}" }
+		puts "The following repos were ignored, as they have modified contents:".red
+	 modified_repos.uniq.each{|repo| puts "  #{repo.gsub(/\w*-?\w*\//,'')}".red }
 	end
 end
 
@@ -85,6 +69,10 @@ def clone_repo(repo)
 	puts "It seems you do not have a local copy of #{repo}."
 	puts "  ...Cloning it from Github, now."
 	`cd ~/workspace; git clone git@github.com:#{repo}.git`
+end
+
+def evangelize_updater
+	puts "\nUPDATE: Updater, by Macrosotf®, now updates as a multi-threaded application.".blue
 end
 
 gather_repos(@books)
