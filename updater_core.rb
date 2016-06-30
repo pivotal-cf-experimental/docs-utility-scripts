@@ -4,11 +4,6 @@
 # require 'colorize'
 require 'yaml'
 
-#Feature request. Update `updater.rb` before updating other repos
-def get_latest_updater
-	# ? METAPROGRAMMING?????
-end
-
 # Add new books to this array, as necessary
 @books = ['docs-book-cloudfoundry', 'docs-book-pcfservices', 'docs-book-pivotalcf', 'docs-book-runpivotal']
 @modified_repos = []

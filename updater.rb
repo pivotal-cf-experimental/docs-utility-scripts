@@ -13,4 +13,4 @@ def get_current_updater
 end
 
 get_current_updater
-require "#{Dir.home}" + '/workspace/' + 'docs-utility-scripts/updater_core.rb'
+require "#{Dir.home}" + '/workspace/docs-utility-scripts/updater_core.rb'
