@@ -16,10 +16,15 @@ def gather_repos(books)
 			@repo_list.push(section['repository']['name'])
 		end
 	end
+	get_wiki
 	reduced_list = reduce_list_for_current_work @repo_list
 	multithread_pipe reduced_list.uniq
 	display_modified_repos @modified_repos
 	evangelize_updater
+end
+
+def get_wiki
+	File.directory?(Dir.home + '/workspace/docs-wiki-internal.wiki') ? `cd ~/workspace/docs-wiki-internal.wiki; git checkout master; git pull` : `cd ~/workspace; git clone git@github.com:pivotal-cf-experimental/docs-wiki-internal.wiki.git`
 end
 
 # Removes repos with changes from @repo_list 

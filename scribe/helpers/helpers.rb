@@ -17,6 +17,17 @@ def add_docs_dirs_repos
     	break if repo.include? 'docs-utility'
         @repos.push Repo.new repo
 	end
+	# from updater.rb
+	books.map do |book|
+		YAML.load(File.open(Dir.home + '/workspace/' + book + '/config.yml'))['sections'].each do |section| 
+			@repo_list.push(section['repository']['name'])
+		end
+	end
+	reduced_list = reduce_list_for_current_work @repo_list
+	multithread_pipe reduced_list.uniq
+	display_modified_repos @modified_repos
+	evangelize_updater
+
 end
 
 def check_statuses		

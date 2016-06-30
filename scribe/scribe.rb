@@ -24,6 +24,7 @@ class Scribe
 
 	def initialize options={}
 		# ARGV << 'status' if ARGV.empty?
+		@books = ['docs-book-cloudfoundry', 'docs-book-pcfservices', 'docs-book-pivotalcf', 'docs-book-runpivotal']
 		@repos = []
 		@workspace_name = ''
 		main
