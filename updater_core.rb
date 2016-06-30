@@ -72,7 +72,7 @@ def clone_repo(repo)
 end
 
 def evangelize_updater
-	puts "\nUPDATE: Updater Suite®, by Macrosotf, now updates as a multi-threaded application."
+	puts "\n==================================================================================\nUPDATE: Updater Suite®, by Macrosotf, now updates as a multi-threaded application."
 	puts "        Updater Suite® now updates itself before it updates your repos! "
 end
 
