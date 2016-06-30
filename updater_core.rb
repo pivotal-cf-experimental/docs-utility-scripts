@@ -5,9 +5,9 @@
 require 'yaml'
 
 # Add new books to this array, as necessary
-@books = ['docs-book-cloudfoundry', 'docs-book-pcfservices', 'docs-book-pivotalcf', 'docs-book-runpivotal']
+@books = ["docs-book-cloudfoundry", "docs-book-pcfservices", "docs-book-pivotalcf", "docs-book-runpivotal"]
 @modified_repos = []
-@repo_list = ["docs-layout-repo", "docs-utility-scripts"]
+@repo_list = ["docs-layout-repo", "docs-utility-scripts", "docs-book-cloudfoundry", "docs-book-pcfservices", "docs-book-pivotalcf", "docs-book-runpivotal"]
 
 # Create a list of the book repositories to be cloned_or_updated, send them to cloner/updater, and display the ignored modified repos.
 def gather_repos(books)
@@ -74,6 +74,8 @@ end
 def evangelize_updater
 	puts "\n==================================================================================\nUPDATE: Updater Suite®, by Macrosotf, now updates as a multi-threaded application."
 	puts "        Updater Suite® now updates itself before it updates your repos! "
+	puts "        Updater Suite® now loads the docs internal wiki repository!"
+	puts "        Updater Suite® now updates all of the docs books!"
 end
 
 gather_repos(@books)
