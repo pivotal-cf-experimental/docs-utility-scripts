@@ -1,7 +1,7 @@
 # Copy/paste the following line to your shell (without the #) to add `update` as an alias:
 # echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater.rb"' >> ~/.bash_profile; source ~/.bash_profile
 
-require 'colorize'
+# require 'colorize'
 require 'yaml'
 
 #Feature request. Update `updater.rb` before updating other repos
@@ -39,7 +39,7 @@ def multithread_pipe(list_of_repos)
 	threads = []
 	list_of_repos.each{|repo| threads << Thread.new { clone_or_update repo}}
 	threads.each{|t|t.join}
-	puts "\n=====================================\nYour working repos have been updated! \n=====================================\n".green
+	puts "\n=====================================\nYour working repos have been updated! \n=====================================\n"
 end
 
 # Ternary operation that checks for directory existence, if none, clones; otherwise updates repo
@@ -50,8 +50,8 @@ end
 # Displays repos with modifications
 def display_modified_repos(modified_repos)
 	if modified_repos
-		puts "The following repos were ignored, as they have modified contents:".red
-	 modified_repos.uniq.each{|repo| puts "  #{repo.gsub(/\w*-?\w*\//,'')}".red }
+		puts "The following repos were ignored, as they have modified contents:"
+	 modified_repos.uniq.each{|repo| puts "  #{repo.gsub(/\w*-?\w*\//,'')}" }
 	end
 end
 
@@ -72,7 +72,7 @@ def clone_repo(repo)
 end
 
 def evangelize_updater
-	puts "\nUPDATE: Updater, by Macrosotf®, now updates as a multi-threaded application.".blue
+	puts "\nUPDATE: Updater, by Macrosotf®, now updates as a multi-threaded application." #.blue
 end
 
 gather_repos(@books)
