@@ -11,7 +11,7 @@ require 'yaml'
 
 # Create a list of the book repositories to be cloned_or_updated, send them to cloner/updater, and display the ignored modified repos.
 def gather_repos(books)
-	books.map do |book|
+	books.each do |book|
 		YAML.load(File.open(Dir.home + '/workspace/' + book + '/config.yml'))['sections'].each do |section| 
 			@repo_list.push(section['repository']['name'])
 		end

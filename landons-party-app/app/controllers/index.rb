@@ -36,3 +36,7 @@ post '/payload' do
   client.create_pull_request("ljarzynski/asdf", "refs/heads/pre-release", "refs/heads/test4", "test")
   erb :payload
 end
+
+get '/operations' do
+  erb :guide
+end
