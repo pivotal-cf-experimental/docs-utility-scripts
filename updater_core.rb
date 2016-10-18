@@ -16,29 +16,14 @@ def gather_repos(books)
 			@repo_list.push(section['repository']['name'])
 		end
 	end
-	reduced_list = reduce_list_for_current_work @repo_list
-	multithread_pipe reduced_list.uniq
+	@repo_list.delete('cloudfoundry/uaa')
+	review_check @repo_list.uniq
 end
 
-
-# Removes repos with changes from @repo_list 
-def reduce_list_for_current_work(working_repos_array)
-	working_repos_array.reject! do |repo|
-		repo &&	@modified_repos.push(repo) if File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,'')) && `cd ~/workspace/#{repo.gsub(/\w*-?\w*\//,'')}; git status`.include?('modified')		
-	end
-	working_repos_array.compact.uniq
-end
-
-def multithread_pipe(list_of_repos)
-	threads = []
-	list_of_repos.each{|repo| threads << Thread.new { add_review_branch? repo}}
-	threads.each{|t|t.join}
-	puts "\n=====================================\nYour working repos all have Re√iewable 'review' branches! \n=====================================\n"
-end
-
-# Ternary operation that checks for directory existence, if none, clones; otherwise updates repo
-def add_review_branch?(repo)
-		create_review_branch(repo) if File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,'')) 
+def review_check(repo_list)
+	repo_list.each do |repo|
+		create_review_branch(repo) if File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,''))
+	end	
 end
 
 # creates 'review' branch for every repo
@@ -46,7 +31,7 @@ def create_review_branch(repo)
 	repo = repo.gsub(/\w*-?\w*\//,'')
 	puts ""
 	puts "Creating review branch for #{repo}"
-	`git branch review; git push -u origin review`
+	`cd ~/workspace/#{repo}; git branch review; git push -u origin review`
 end
 
 gather_repos(@books)
