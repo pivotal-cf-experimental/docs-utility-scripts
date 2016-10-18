@@ -10,5 +10,5 @@ def get_current_updater
 	puts "Updater Re√iew updated."
 end
 
-get_current_updater
+# get_current_updater
 require "#{Dir.home}" + '/workspace/docs-utility-scripts/updater_core.rb'

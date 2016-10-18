@@ -18,7 +18,6 @@ def gather_repos(books)
 	end
 	reduced_list = reduce_list_for_current_work @repo_list
 	multithread_pipe reduced_list.uniq
-	display_modified_repos @modified_repos
 end
 
 
