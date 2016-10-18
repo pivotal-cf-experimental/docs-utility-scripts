@@ -1,13 +1,13 @@
-# Copy/paste the following line to your shell (without the #) to add `update` as an alias:
-# echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater.rb"' >> ~/.bash_profile; source ~/.bash_profile
+# Use this branch, the 'review' branch, to idempotently add review branches to all repos listed in the config.yml files of the four docs books: OSS, PWS, core & services. If this branch is checked out, just run `update` from CL.
 
-# require 'colorize'
+# Additionally, the review sites can be used to review changes to the docs-layout-repo, so this script adds the review branch there, as well, and all commercial books publish off of the review branch of the layout repo.
+
 require 'yaml'
 
 # Add new books to this array, as necessary
 @books = ["docs-book-cloudfoundry", "docs-book-pcfservices", "docs-book-pivotalcf", "docs-book-runpivotal"]
 @modified_repos = []
-@repo_list = ["docs-layout-repo", "docs-utility-scripts", "docs-book-cloudfoundry", "docs-book-pcfservices", "docs-book-pivotalcf", "docs-book-runpivotal"]
+@repo_list = ["docs-layout-repo", "docs-book-cloudfoundry", "docs-book-pcfservices", "docs-book-pivotalcf", "docs-book-runpivotal"]
 
 # Create a list of the book repositories to be cloned_or_updated, send them to cloner/updater, and display the ignored modified repos.
 def gather_repos(books)
@@ -16,16 +16,11 @@ def gather_repos(books)
 			@repo_list.push(section['repository']['name'])
 		end
 	end
-	get_wiki
 	reduced_list = reduce_list_for_current_work @repo_list
 	multithread_pipe reduced_list.uniq
 	display_modified_repos @modified_repos
-	evangelize_updater
 end
 
-def get_wiki
-	File.directory?(Dir.home + '/workspace/docs-wiki-internal.wiki') ? `cd ~/workspace/docs-wiki-internal.wiki; git checkout master; git pull` : `cd ~/workspace; git clone git@github.com:pivotal-cf-experimental/docs-wiki-internal.wiki.git`
-end
 
 # Removes repos with changes from @repo_list 
 def reduce_list_for_current_work(working_repos_array)
@@ -37,45 +32,22 @@ end
 
 def multithread_pipe(list_of_repos)
 	threads = []
-	list_of_repos.each{|repo| threads << Thread.new { clone_or_update repo}}
+	list_of_repos.each{|repo| threads << Thread.new { add_review_branch? repo}}
 	threads.each{|t|t.join}
-	puts "\n=====================================\nYour working repos have been updated! \n=====================================\n"
+	puts "\n=====================================\nYour working repos all have Re√iewable 'review' branches! \n=====================================\n"
 end
 
 # Ternary operation that checks for directory existence, if none, clones; otherwise updates repo
-def clone_or_update(repo)
-		File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,'')) ? update_repo(repo) : clone_repo(repo) 
+def add_review_branch?(repo)
+		create_review_branch(repo) if File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,'')) 
 end
 
-# Displays repos with modifications
-def display_modified_repos(modified_repos)
-	if modified_repos
-		puts "The following repos were ignored, as they have modified contents:"
-	 modified_repos.uniq.each{|repo| puts "  #{repo.gsub(/\w*-?\w*\//,'')}" }
-	end
-end
-
-# `git pull` a repository 
-def update_repo(repo)
+# creates 'review' branch for every repo
+def create_review_branch(repo)
 	repo = repo.gsub(/\w*-?\w*\//,'')
 	puts ""
-	puts "Updating #{repo}"
-	`cd ~/workspace/#{repo}; git checkout master; git pull`
-end
-
-# `git clone` a repository
-def clone_repo(repo)
-	puts ""
-	puts "It seems you do not have a local copy of #{repo}."
-	puts "  ...Cloning it from Github, now."
-	`cd ~/workspace; git clone git@github.com:#{repo}.git`
-end
-
-def evangelize_updater
-	puts "\n==================================================================================\nUPDATE: Updater Suite®, by Macrosotf, now updates as a multi-threaded application."
-	puts "        Updater Suite® now updates itself before it updates your repos! "
-	puts "        Updater Suite® now loads the docs internal wiki repository!"
-	puts "        Updater Suite® now updates all of the docs books!"
+	puts "Creating review branch for #{repo}"
+	`git branch review; git push -u origin review`
 end
 
 gather_repos(@books)
