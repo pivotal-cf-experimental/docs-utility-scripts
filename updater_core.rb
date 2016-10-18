@@ -1,6 +1,8 @@
 # Copy/paste the following line to your shell (without the #) to add `update` as an alias:
 # echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater.rb"' >> ~/.bash_profile; source ~/.bash_profile
 
+# Checkout the 'review' branch of this repo for the review functionality of the updater script.
+
 # require 'colorize'
 require 'yaml'
 

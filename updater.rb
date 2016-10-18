@@ -4,6 +4,8 @@
 # This file acts as the updater for updater.rb. This script calls updater_core.rb
 # for the docs repositories update functionality.
 
+# Checkout the 'review' branch of this repo for the review functionality of the updater script.
+
 # Updates docs-utility-scripts
 def get_current_updater
 	puts "Getting newest version of Updater Suite® and docs-utility-scripts"
