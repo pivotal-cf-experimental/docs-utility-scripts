@@ -1,3 +1,49 @@
+
+
+scribe: cli driven production tasks for doc contributors
+	
+cli
+	scribe update [-g, --guide][-a, -all]
+		default set to last used guide
+		calls update with all branches from .scribe config
+	scribe status: [-c, --context: OSS, PCF, PWS]
+		tracks change in workspace or of files listed in .scribe config 
+		displays relevant metadata/frontmatter of changed files (owners, contributor team) if set
+		status of last bump to staging
+	scribe bind: [-g, --guide] <GUIDE-NAME>
+		publishes local doc of guide set in .scribe, or sets it by matching from .scribe
+	scribe add-commit:
+		git commits all patches to guide interactively, but does not git push
+	scribe bump [-p, --production], [-r, --review], [-s, --staging]:
+		defaults to staging
+		pushes commits to staging, and trigger-job to bump production or review if pass
+		creates multi-version multi-repo commits to ci/cd
+		pushes add-commits to master on repos and updates ci/cd (fly), starts test suite
+		if commits pass 
+			git merge to staging branch
+			test suite ==> staging = === = > production
+		else
+			git reverts 
+	scribe fly:
+		sets and updates pipelines from book configs (or other content structure)
+	scribe checkout [-s, --story: <STORY-NUMBER>]:
+		returns branch name or sets it
+	scribe branch:
+		alias 'scribe checkout'
+	scribe message, -m
+		returns message body and prompts 'Change commit message? [y/n]'
+		message contains story number and description on line two
+	scribe prune
+		prunes branches except in .scribe config
+		
+
+
+
+		# handle_args
+find_home # helper sets workspace([what?]) and show pwd 
+add_docs_dirs_repos #helper adds repos to model
+
+
 Requirements
 
 scribe
@@ -20,6 +66,7 @@ scribe
 	pws watch - same thing, diff book
 
 ## Accept branch-and-story-id
+
 
 # scribe (default is to report)
 ## Find all docs-books and store the config content repos.
