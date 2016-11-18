@@ -4,6 +4,10 @@
 
 require 'yaml'
 
+# Change this number to the branch name you wish to create.
+NEW_VERSION = '1.8'
+
+
 # Add new books to this array, as necessary
 @books = ["docs-book-cloudfoundry", "docs-book-pcfservices", "docs-book-pivotalcf", "docs-book-runpivotal"]
 @modified_repos = []
@@ -21,17 +25,25 @@ def gather_repos(books)
 end
 
 def review_check(repo_list)
+	version = NEW_VERSION
 	repo_list.each do |repo|
-		create_review_branch(repo) if File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,''))
+		check_for_branch(repo, version) if File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,''))
+		# create_versioned_branch(repo, version) if File.directory?(Dir.home + '/workspace/' + repo.gsub(/\w*-?\w*\//,''))
 	end	
 end
 
+def check_for_branch(repo, version)
+	repo = repo.gsub(/\w*-?\w*\//,'')
+	
+end
+
+
 # creates 'review' branch for every repo
-def create_review_branch(repo)
+def create_versioned_branch(repo, version)
 	repo = repo.gsub(/\w*-?\w*\//,'')
 	puts ""
-	puts "Creating review branch for #{repo}"
-	`cd ~/workspace/#{repo}; git branch review; git push -u origin review`
+	puts "Creating #{version} branch for #{repo}"
+	`cd ~/workspace/#{repo}; git checkout -b #{version}; git checkout #{version}; git pull; git merge master; git push -u origin #{version}`
 end
 
 gather_repos(@books)
