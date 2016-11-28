@@ -34,7 +34,11 @@ class Scribe < Thor
     config_hash_for_context = config.yaml[current_context]
     config_hash_for_context["repositories"].each do |repo_config|
       Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_config["repository"]["name"]}")
-      Open3.popen3("git status")
+      stdout, stdeerr, status = Open3.capture3("git status --short")
+      next if stdout.empty?
+      puts "#{set_color(repo_config["repository"]["name"], :green)}:"
+      puts stdout
+      puts
     end
   end
 
