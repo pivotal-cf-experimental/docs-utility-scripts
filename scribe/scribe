@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'thor'
+
+class Scribe < Thor
+  desc "help", "Show this help message"
+end
+
+Scribe.start(ARGV)
