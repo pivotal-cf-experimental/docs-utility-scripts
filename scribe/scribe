@@ -47,10 +47,19 @@ class Scribe < Thor
   
   no_commands do
     def list_contexts
-      p config.yaml
+      config.yaml.each do |context, _|
+        if context == current_context
+          print "* "
+        else
+          print "  "
+        end
+
+        puts context
+      end
     end
 
     def current_context
+      return @current_context if @current_context
       FileUtils.touch(CONTEXT_CONFIG_PATH) unless File.exist?(CONTEXT_CONFIG_PATH)
 
       File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
