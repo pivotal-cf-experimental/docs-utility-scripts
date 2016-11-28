@@ -11,7 +11,7 @@ security-1.8:
         name: docs-cloudfoundry-concepts
         ref: 'scribe'
     - repository:
-        name: pivotal-cf/pcf-release-notes
+        name: pcf-release-notes
         ref: 'scribe'
 security-1.9:
     description: "security guide"
