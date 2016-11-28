@@ -1,0 +1,140 @@
+.scribe_template
+
+---
+book_repo: pivotal-cf/docs-book-pivotalcf
+layout_repo: pivotal-cf/docs-layout-repo
+
+Context: example_template
+	guide: security
+		- repository:
+		    name: cloudfoundry/docs-buildpacks
+		- repository:
+		    name: cloudfoundry/docs-cf-admin
+			ref: 'scribe'
+		- repository:
+		    name: cloudfoundry/docs-cloudfoundry-concepts
+		    ref: 'scribe'
+	    - repository:
+	        name: pivotal-cf/pcf-release-notes
+	        ref: 'scribe'
+
+Context: security_oss 	
+	version: current 
+		guide: security
+			repo-foo
+			repo-bar
+
+Context: security_1_7 
+	guide: security
+		repo-bar - branch 1-7
+		repo-baz - branch 1-7
+
+
+Context: security_pws
+	guide: security
+		repo-bar - branch master
+		repo-baz - branch master
+		repo-zoolander - branch master
+
+sections:
+# pivotalcf repos: alphabetical within org cloudfoundry
+  directory: pivotalcf/1-8/buildpacks
+  product_id: pcf
+  product_info: *local_pcf
+  dependent_sections:
+  - repository:
+      name: cloudfoundry-samples/pong_matcher_grails
+    no_docs: true
+  - repository:
+      name: cloudfoundry-samples/pong_matcher_groovy
+    no_docs: true
+  - repository:
+      name: cloudfoundry-samples/pong_matcher_spring
+    no_docs: true
+  - repository:
+      name: cloudfoundry-samples/pong_matcher_ruby
+    no_docs: true
+  directory: pivotalcf/1-8/adminguide
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: cloudfoundry/docs-cf-cli
+  directory: pivotalcf/1-8/cf-cli
+  product_id: pcf
+  product_info: *local_pcf
+  directory: pivotalcf/1-8/concepts
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: cloudfoundry/docs-dev-guide
+  directory: pivotalcf/1-8/devguide
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: cloudfoundry/docs-loggregator
+  directory: pivotalcf/1-8/loggregator
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: cloudfoundry/docs-services
+  directory: pivotalcf/1-8/services
+  product_id: pcf
+  product_info: *local_pcf
+
+# pivotalcf repos: alphabetical within org pivotal-cf
+- repository:
+    name: pivotal-cf/docs-ops-guide
+  directory: pivotalcf/1-8/opsguide
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: pivotal-cf/docs-pcf-dev
+  directory: pcf-dev
+  product_id: pcf-dev
+  subnav_template: pivotal_pcfdev_subnav.erb
+- repository:
+    name: pivotal-cf/docs-pcf-gsg
+  directory: pivotalcf/1-8/installing
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: pivotal-cf/docs-pcf-install
+  directory: pivotalcf/1-8/customizing
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: pivotal-cf/docs-pcf-pws
+  directory: pivotalcf/1-8/appsman-services
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: pivotal-cf/docs-pcf-refarch
+  directory: pivotalcf/1-8/refarch
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: pivotal-cf/docs-pcf-windows
+    at_path: docs-content
+  directory: pivotalcf/1-8/windows
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: pivotal-cf/docs-pivotalcf-console
+  directory: pivotalcf/1-8/console
+  product_id: pcf
+  product_info: *local_pcf
+- repository:
+    name: pivotal-cf/pcf-release-notes
+    ref: '1.8'
+  directory: pivotalcf/1-8/pcf-release-notes
+  product_id: pcf
+  product_info: *local_pcf
+
+# cross-product resources
+- repository:
+    name: pivotal-cf/docs-pdfs
+  directory: archives
+- repository:
+    name: pivotal-cf/product-compatibility-matrix
+  directory: resources
+  product_id: pcf
