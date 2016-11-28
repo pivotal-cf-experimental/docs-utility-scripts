@@ -20,7 +20,7 @@ prioritized list
 ======
 
 	
-	add 			a 		
+   	add 			a 		
 	bordify			bt		[-o, --overwrite] <PATH-TO-IMAGE>
 	bind:			b		<GUIDE-NAME>
 	bump			bc		[-p, --production], [-r, --review], [-s, --staging],
@@ -37,83 +37,83 @@ prioritized list
 
 
 cli
-	scribe add (alias: a)[-f]<OPTIONAL-ROOT-BRANCH-FROM-WHICH-TO-CHECKOUT>
-		creates branch with story name for all tracked changes in guide, or uses default 'wip'
-		git commits all patches to guide context interactively, 
-		does not git push
-	scribe bordify (alias: bt)[-o, --overwrite] <PATH-TO-IMAGE>
-		calls bordify on image
-	scribe bind: (alias: b, build) <GUIDE-NAME>
-		build and serve local doc of guide (calling coare first for all unrelated repos)
-		defaults to guide set in .scribe, or sets it by matching from .scribe
-	scribe bump (alias: bc)[-p, --production], [-r, --review], [-s, --staging],
-			[-nc, --no-commit],[--email, -e]
-		creates multi-version multi-repo commits/commits-as-PRs to bump ci/cd
-		default merges/PRs story branch commits to master and passes story name in git message
-		passes optional `fly trigger-job` to bump for production or review after tests
-		passing --email will send pre-generated message to email distirbution list
-		calls `scribe fly` if changes exist in book-configs (bookbinder)
-		bumps 'fly trigger-job' production or review CI/CD without commits if -nc
-	scribe edit-config (alias: ec)
-		opens .scribe config from workspace in default editor
-		set context list and children content repos for guide/book
-		see below for details on guide syntax 
-			`context: OSS		`
-			`	repo: some-repo	- branch name`
-	scribe fly (alias: f)
-		sets and updates pipelines from book configs (or other content structure)
-	scribe get-guide (alias: gg, update) [--all,-a] <NAME-OF-GUIDE>
-		defaults to displaying all the guides on the guide list in .scribe config
-	 	gets and/or updates all appropriate repos for passed guide name 
-		default set to last used guide
-		calls update with all repos from guide from .scribe config
-	scribe guide (alias g) [--set, -s] GUIDE-NAME, [--verbose, -v], [--all, -a]
-		defaults to return value of guide based on rest resource, /security, /runtime,
-		passing --set changes guide in .scribe config
-		passing --all shows all guides from the .scribe config
-		passing --verbose shows all children contexts and repos
-			guide: security
-				context: oss
-					repo-foo - branch master
-					repo-bar - branch master
-				context: pws 
-					repo-bar - branch pws
-					repo-baz - branch pws
-				context: pcf
-					repo-bar - branch security
-					repo-baz - branch security
-					repo-zoolander - branch security
-	scribe message (alias: m)
-		returns message body and prompts 'Change commit message? [y/n]'
-		message contains story number and description on line two
-	scribe prune (alias: p) [--all, -a]
-		prunes current set story and story-named branches
-		interactively locally prunes branches except in .scribe config
-		could also prune older than x months
-	scribe review (alias: r)
-		reviews, approve and reject PRs that have passed tests from master to staging (for what? context? guide?)
-	scribe story: (alias: s)[-c, --context: OSS, PCF, PWS]<YOUR-STORY-NAME-AND-NUMBER>:
-			[-v, --verbose]
-		returns story name or sets and adds it to .scribe config if arg passed,
-		returns name of story context or sets it if flag passed
-		returns story status of all git-tracked changes in current context repos
-		'context' limits scope of tracking to repos under .scribe config
-			context setting acts as flag to publish to contexts
-		'verbose' displays story normal return values, the metadata/frontmatter of changed files (owners, contributor team), details about the last successful bump to staging, and lists the repos in current context 
+    scribe add (alias: a)[-f]<OPTIONAL-ROOT-BRANCH-FROM-WHICH-TO-CHECKOUT>
+        creates branch with story name for all tracked changes in guide, or uses default 'wip'
+        git commits all patches to guide context interactively, 
+        does not git push
+    scribe bordify (alias: bt)[-o, --overwrite] <PATH-TO-IMAGE>
+        calls bordify on image
+    scribe bind: (alias: b, build) <GUIDE-NAME>
+        build and serve local doc of guide (calling coare first for all unrelated repos)
+        defaults to guide set in .scribe, or sets it by matching from .scribe
+    scribe bump (alias: bc)[-p, --production], [-r, --review], [-s, --staging],
+            [-nc, --no-commit],[--email, -e]
+        creates multi-version multi-repo commits/commits-as-PRs to bump ci/cd
+        default merges/PRs story branch commits to master and passes story name in git message
+        passes optional `fly trigger-job` to bump for production or review after tests
+        passing --email will send pre-generated message to email distirbution list
+        calls `scribe fly` if changes exist in book-configs (bookbinder)
+        bumps 'fly trigger-job' production or review CI/CD without commits if -nc
+    scribe edit-config (alias: ec)
+        opens .scribe config from workspace in default editor
+        set context list and children content repos for guide/book
+        see below for details on guide syntax 
+            `context: OSS        `
+            `    repo: some-repo    - branch name`
+    scribe fly (alias: f)
+        sets and updates pipelines from book configs (or other content structure)
+    scribe get-guide (alias: gg, update) [--all,-a] <NAME-OF-GUIDE>
+        defaults to displaying all the guides on the guide list in .scribe config
+         gets and/or updates all appropriate repos for passed guide name 
+        default set to last used guide
+        calls update with all repos from guide from .scribe config
+    scribe guide (alias g) [--set, -s] GUIDE-NAME, [--verbose, -v], [--all, -a]
+        defaults to return value of guide based on rest resource, /security, /runtime,
+        passing --set changes guide in .scribe config
+        passing --all shows all guides from the .scribe config
+        passing --verbose shows all children contexts and repos
+            guide: security
+                context: oss
+                    repo-foo - branch master
+                    repo-bar - branch master
+                context: pws 
+                    repo-bar - branch pws
+                    repo-baz - branch pws
+                context: pcf
+                    repo-bar - branch security
+                    repo-baz - branch security
+                    repo-zoolander - branch security
+    scribe message (alias: m)
+        returns message body and prompts 'Change commit message? [y/n]'
+        message contains story number and description on line two
+    scribe prune (alias: p) [--all, -a]
+        prunes current set story and story-named branches
+        interactively locally prunes branches except in .scribe config
+        could also prune older than x months
+    scribe review (alias: r)
+        reviews, approve and reject PRs that have passed tests from master to staging (for what? context? guide?)
+    scribe story: (alias: s)[-c, --context: OSS, PCF, PWS]<YOUR-STORY-NAME-AND-NUMBER>:
+            [-v, --verbose]
+        returns story name or sets and adds it to .scribe config if arg passed,
+        returns name of story context or sets it if flag passed
+        returns story status of all git-tracked changes in current context repos
+        'context' limits scope of tracking to repos under .scribe config
+            context setting acts as flag to publish to contexts
+        'verbose' displays story normal return values, the metadata/frontmatter of changed files (owners, contributor team), details about the last successful bump to staging, and lists the repos in current context 
 HERECONFIG-->
-	context:
-		- <CONTENT-REPO>
-		- <OTHER-CONTENT-REPO>
-			
+    context:
+        - <CONTENT-REPO>
+        - <OTHER-CONTENT-REPO>
+            
 <--HERECONFIG
 
-	scribe update (alias: u)
-		calls update for the context repos
-	scribe watch (alias: w)
-		builds and interactively updates local version of guide with build tool (calling coare against unrelated repos)
+    scribe update (alias: u)
+        calls update for the context repos
+    scribe watch (alias: w)
+        builds and interactively updates local version of guide with build tool (calling coare against unrelated repos)
 
 feature request
-	scribe context matcher: 
+    scribe context matcher: 
 
 
 Understanding multiple context, versioned products within a guide setting using single-sourced content:
