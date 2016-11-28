@@ -1,8 +1,72 @@
 #!/usr/bin/env ruby
 require 'thor'
+require 'yaml'
+require 'shell'
+require 'fileutils'
+require 'open3'
+
+CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
 
 class Scribe < Thor
   desc "help", "Show this help message"
+
+  def context(new_context=nil)
+    list_contexts && return if new_context.nil?
+
+    from = "(was #{current_context})" unless current_context.empty?
+
+    File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
+      puts "Changing context to #{set_color(new_context, :blue)} #{from}"
+
+      File.truncate(file, 0)
+      file.write new_context
+    end
+  end
+
+  # alias s
+  desc "story", "show git status in the repos within this context"
+  def story
+    unless current_context
+      puts "Please set your context with `scribe context [new context name]`"
+      exit 1
+    end
+
+    config_hash_for_context = config.yaml[current_context]
+    config_hash_for_context["repositories"].each do |repo_config|
+      Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_config["repository"]["name"]}")
+      Open3.popen3("git status")
+    end
+  end
+
+
+  no_commands do
+    def list_contexts
+      p config.yaml
+    end
+
+    def current_context
+      FileUtils.touch(CONTEXT_CONFIG_PATH) unless File.exist?(CONTEXT_CONFIG_PATH)
+
+      File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
+        @current_context = file.read.chomp
+      end
+    end
+
+    def config
+      return @config if @config
+
+      @config = ScribeConfig.new
+    end
+  end
+end
+
+class ScribeConfig
+  def yaml
+    return @yaml if @yaml
+
+    Dir.chdir("#{ENV["HOME"]}/workspace/docs-utility-scripts")
+    @yaml = YAML.load_file('.scribe')
+  end
 end
 
 Scribe.start(ARGV)
