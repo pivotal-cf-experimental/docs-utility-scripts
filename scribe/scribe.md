@@ -154,6 +154,9 @@ The .scribe file and its guide context and settings allow scribe to focus on a s
 How to set up the config files?
 	From a bookbinder perspective (for users using bookbinder), it would be swell if the config could populate with a short list of book repos and branches for those. While nice, that increases the scope of the contexts to the entire book. Not a terrible place to begin, but ideally we limit the scope to guide-level, not book level. Are both possible? Why not? Let's start with the book level and create subsets from there building off of the template of those product-wide contexts. 
 
+product/version/guide/section/topic.html
+pivotalcf/1-7/adminguide/config/somethingfoo.html
+
 Context: security_oss 	
 	version: current 
 		guide: security
