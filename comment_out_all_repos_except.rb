@@ -1,6 +1,6 @@
-curr_dirr = `pwd`
+current_dir = `pwd`
 
-unless /docs-book-/.match curr_dirr
+unless /docs-book-/.match current_dir
 	puts 'error: you must be in the top level of a docs-book-* directory with a config.yml to use this script!'
 	exit
 end
