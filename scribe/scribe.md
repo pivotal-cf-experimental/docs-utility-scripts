@@ -4,7 +4,9 @@ scribe: cli driven production tasks for doc contributors
 ------
 prioritized list
 ------
+						
 							--help, -h
+	context 		c 						
 	bind:			b		<GUIDE-NAME>
 	watch			w		
 	story			s		[-c, --context: OSS, PCF, PWS]<YOUR-STORY-NAME-AND-NUMBER>:
@@ -54,6 +56,9 @@ cli
         passing --email will send pre-generated message to email distirbution list
         calls `scribe fly` if changes exist in book-configs (bookbinder)
         bumps 'fly trigger-job' production or review CI/CD without commits if -nc
+    scribe context 
+    	returns list of contexts from config
+    	with passed argument sets context
     scribe edit-config (alias: ec)
         opens .scribe config from workspace in default editor
         set context list and children content repos for guide/book

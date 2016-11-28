@@ -10,6 +10,8 @@ CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
 class Scribe < Thor
   desc "help", "Show this help message"
 
+  desc "context", ""
+  method_option :context , :aliases => "c" , :desc => "Context" 
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
 
@@ -42,7 +44,7 @@ class Scribe < Thor
     end
   end
 
-
+  
   no_commands do
     def list_contexts
       p config.yaml
@@ -62,6 +64,7 @@ class Scribe < Thor
       @config = ScribeConfig.new
     end
   end
+
 end
 
 class ScribeConfig
