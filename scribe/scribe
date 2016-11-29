@@ -8,9 +8,13 @@ require 'open3'
 CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
 
 class Scribe < Thor
+
+  map '--version' => :version
+  map '--help' => :help
+
   desc "help", "Show this help message"
 
-  desc "context", ""
+  desc "context", "Set or display the available contexts"
   method_option :context , :aliases => "c" , :desc => "Context" 
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
@@ -30,10 +34,10 @@ class Scribe < Thor
       puts "Please set your context with `scribe context [new context name]`"
       exit 1
     end
-
+      puts "    Here are the changes to repos in #{set_color(current_context, :green)} context:"
     each_repo do |name, repo_config|
       Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
-      stdout, stdeerr, status = Open3.capture3("git status --short")
+      stdout, stdeerr, status = Open3.capture3("git status --porcelain")
 
       next if stdout.empty?
 
@@ -84,14 +88,14 @@ class Scribe < Thor
       @config = ScribeConfig.new
     end
   end
+  # desc "coare", ""
+  # def coare
+  #    config.yaml[current_context]["repositories"].each do |k,v|
+  #       puts k #["name"]
+  #     end
+  #   # puts "#{current_context}"
+  # end
 
-  desc "coare", ""
-  def coare
-     config.yaml[current_context]["repositories"].each do |k,v|
-        puts k #["name"]
-      end
-    # puts "#{current_context}"
-  end
 
 end
 

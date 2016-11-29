@@ -6,19 +6,33 @@ prioritized list
 ------
 						
 							--help, -h
+√	story			s		[-c, --context: OSS, PCF, PWS]<YOUR-STORY-NAME-AND-NUMBER>:
+		Complete
 	context 		c 						
-	bind:			b		<GUIDE-NAME>
-	watch			w		
-	story			s		[-c, --context: OSS, PCF, PWS]<YOUR-STORY-NAME-AND-NUMBER>:
-	get-guide		gg	 	[--all,-a] <NAME-OF-GUIDE>, alias update
+		Still needs to run story and create wip branches in order to change context
 	add 			a 		
-	fly				f		
-	bordify			bt		[-o, --overwrite] <PATH-TO-IMAGE>
-	bump			bc		[-p, --production], [-r, --review], [-s, --staging], [--email, -e]
-	edit-config		ec		
 	message			m	
-	prune 			p
+
+===========MVP================
+	fly				f		
+		Somewhat of a feature that we already have, this commands reduces some complexity	
+	bump			bc		[-p, --production], [-r, --review], [-s, --staging], [--email, -e]
 	review 			r
+		This feature would be sick, but we don't have PR's running through our system yet.	
+	prune 			p
+		Cleanup feature
+
+Wraps current function
+	get-guide		gg	 	[--all,-a] <NAME-OF-GUIDE>, alias update
+		Updater
+	bind:			b		<GUIDE-NAME>
+		Bookbinder
+	watch			w		
+		Bookbinder
+	edit-config		ec		
+		Any Editor
+	bordify			bt		[-o, --overwrite] <PATH-TO-IMAGE>
+	 	Bordify
 ======
 
 	
