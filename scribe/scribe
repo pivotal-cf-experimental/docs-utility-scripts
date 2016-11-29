@@ -15,9 +15,8 @@ class Scribe < Thor
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
 
-    from = "(was #{current_context})" unless current_context.empty?
-
     File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
+      from = "(was #{current_context})" unless current_context.empty?
       puts "Changing context to #{set_color(new_context, :blue)} #{from}"
 
       File.truncate(file, 0)
@@ -25,7 +24,6 @@ class Scribe < Thor
     end
   end
 
-  # alias s
   desc "story", "show git status in the repos within this context"
   def story
     unless current_context
@@ -33,18 +31,19 @@ class Scribe < Thor
       exit 1
     end
 
-    config_hash_for_context = config.yaml[current_context]
-    config_hash_for_context["repositories"].each do |repo_config|
-      Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_config["repository"]["name"]}")
+    each_repo do |name, repo_config|
+      Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
       stdout, stdeerr, status = Open3.capture3("git status --short")
+
       next if stdout.empty?
-      puts "#{set_color(repo_config["repository"]["name"], :green)}:"
+
+      puts "#{set_color(name, :green)}:"
       puts stdout
       puts
     end
   end
 
-  
+
   no_commands do
     def list_contexts
       config.yaml.each do |context, _|
@@ -58,6 +57,13 @@ class Scribe < Thor
       end
     end
 
+    def each_repo
+      config_hash_for_context = config.yaml[current_context]
+      config_hash_for_context["repositories"].each do |repo_config|
+        yield(repo_config["repository"]["name"], repo_config["repository"])
+      end
+    end
+
     def current_context
       return @current_context if @current_context
       FileUtils.touch(CONTEXT_CONFIG_PATH) unless File.exist?(CONTEXT_CONFIG_PATH)
@@ -65,6 +71,10 @@ class Scribe < Thor
       File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
         @current_context = file.read.chomp
       end
+
+      raise Thor::Error unless @current_context
+
+      @current_context
     end
 
     def config
