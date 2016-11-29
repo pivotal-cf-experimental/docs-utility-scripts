@@ -22,11 +22,11 @@ prioritized list
 	prune 			p
 		Cleanup feature
 
-Wraps current function
+Wraps current functions or tools - Rather easy to do and greatly extends the likelihood of user adoption
 	get-guide		gg	 	[--all,-a] <NAME-OF-GUIDE>, alias update
 		Updater
 	bind:			b		<GUIDE-NAME>
-		Bookbinder
+		Bookbinder + coare
 	watch			w		
 		Bookbinder
 	edit-config		ec		
