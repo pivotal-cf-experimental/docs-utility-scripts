@@ -27,3 +27,15 @@ security-1.9:
       - repository:
           name: pcf-release-notes
           ref: 'scribe'
+security-2.0:
+    book: docs-book-pivotalcf
+    description: "security guide"
+    repositories:
+      - repository:
+          name: docs-buildpacks
+      - repository:
+          name: docs-cloudfoundry-concepts
+          ref: 'scribe'
+      - repository:
+          name: pcf-release-notes
+          ref: 'scribe'

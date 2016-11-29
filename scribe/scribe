@@ -74,6 +74,14 @@ class Scribe < Thor
     end
   end
 
+  desc "coare", ""
+  def coare
+     config.yaml[current_context]["repositories"].each do |k,v|
+        puts k #["name"]
+      end
+    # puts "#{current_context}"
+  end
+
 end
 
 class ScribeConfig
