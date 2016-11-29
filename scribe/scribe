@@ -41,6 +41,7 @@ class Scribe < Thor
       puts stdout
       puts
     end
+
   end
 
 
