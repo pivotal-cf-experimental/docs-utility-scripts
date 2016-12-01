@@ -16,7 +16,7 @@ prioritized list
 ===========MVP================
 	fly				f		
 		Somewhat of a feature that we already have, this commands reduces some complexity	
-	bump			bc		[-p, --production], [-r, --review], [-s, --staging], [--email, -e]
+	bump			bc		[-p, --production], [-r, --review], [-s, --staging], [--email, -e] [--nc]
 	review 			r
 		This feature would be sick, but we don't have PR's running through our system yet.	
 	prune 			p
