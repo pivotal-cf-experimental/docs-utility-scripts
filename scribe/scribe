@@ -39,11 +39,14 @@ class Scribe < Thor
       Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
       stdout, stdeerr, status = Open3.capture3("git status --porcelain")
 
-      next if stdout.empty?
-
-      puts "#{set_color(name, :green)}:"
-      puts stdout
-      puts
+      if stdout.empty?
+        puts "#{name}: - #{set_color('√', :magenta)}"
+        next 
+      else
+      end
+      
+      puts "\n#{name + ": - " + set_color("CHANGES:", :magenta)}"
+      puts "#{stdout}\n"
     end
 
   end

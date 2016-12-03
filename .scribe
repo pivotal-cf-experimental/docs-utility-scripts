@@ -4,6 +4,7 @@ security-1.8:
   repositories:
     - repository:
         name: docs-buildpacks
+        ref: 'scribe'
     - repository:
         name: docs-cf-admin
         ref: 'scribe'
