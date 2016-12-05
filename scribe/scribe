@@ -40,12 +40,12 @@ class Scribe < Thor
       stdout, stdeerr, status = Open3.capture3("git status --porcelain")
 
       if stdout.empty?
-        puts "#{name}: - #{set_color('√', :magenta)}"
+        puts set_color("#{name}: - √", :magenta)
         next 
       else
       end
       
-      puts "\n#{name + ": - " + set_color("CHANGES:", :magenta)}"
+      puts set_color("\n#{name}: - CHANGES", :magenta)
       puts "#{stdout}\n"
     end
 
