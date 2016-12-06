@@ -20,16 +20,11 @@ class Scribe < Thor
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
     # TODO implement wip-stash, and wip-pop if wip-stash-branch
-    if git_changes?
-      wip_stash 
-    else
-      puts "no changes for you!"
-    end
-    # wip_stash unless git_changes?
-    # puts git_changes? ?  'yesh' : 'nope'
-    # if status is not empty - wip_stash
     if config.yaml.include?(new_context)
+      wip_stash(current_context, new_context) if git_changes?
       write_context(current_context, new_context)
+      switch_branches(new_context)
+      # wip_pop if dev-null-wips exist
     else
       scribe_error("Bad context match", new_context)
     end
@@ -59,13 +54,21 @@ class Scribe < Thor
 
   no_commands do
 
-    def wip_stash
-      puts "WIP STASH IS HERE"
-      # on context change if status is not empty - wip_stash
-      # "git checkout -b #{context}-dev-null-wip"
-      # "git add -A"
-      # "git commit -m 'auto generated wip'"
-      # "git checkout <NEW-CONTEXT>"
+    def wip_stash(current_context, new_context)
+      puts "WIP STASHing your changes to #{set_color((current_context + "-scribe-autogen-wip"), :magenta)} branch"
+      # for each repo branch with changes
+        # stdout, stdeerr, status = Open3.capture3(
+        #   "git checkout -b #{current_context}-scribe-autogen-wip;
+        #   git add -A;
+        #   git commit -m 'auto generated scribe wip';")
+    end
+
+    def switch_branches(new_context)
+      puts new_context
+      each_repo do |repo|
+        puts repo
+      end
+        git checkout #{new_context}"
     end
 
     def git_changes?
@@ -74,17 +77,18 @@ class Scribe < Thor
         stdout, stderr, status = Open3.capture3("git status --porcelain")
         return true unless stdout.gsub(/"/,"").to_s.empty?
       end
-      false
+      return false
     end
 
-    # def wip_pop(context)
-      # upon return to context - wip_pop
+    def wip_pop(context)
+      puts "About to pretend we're Wip Popping your #{context} branches yo!"
+      # upon return to context - wip_pop each branch with branch #{new_context}-scribe-auto-wip
       # "git checkout #{context}-dev-null-wip"
       # "git reset HEAD~1"
       # "git checkout #{context}"
       # "git branch -D #{context}-dev-null-wip"
-    # end
-      
+    end
+
     def write_context(current_context, new_context)
       File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
         from = "(was #{current_context})" unless current_context.empty?
