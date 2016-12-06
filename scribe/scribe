@@ -18,13 +18,12 @@ class Scribe < Thor
   method_option :context , :aliases => "c" , :desc => "Context" 
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
-
-    File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
-      from = "(was #{current_context})" unless current_context.empty?
-      puts "Changing context to #{set_color(new_context, :blue)} #{from}"
-
-      File.truncate(file, 0)
-      file.write new_context
+    # wip_stash unless git_changes?
+    # if status is not empty - wip_stash
+    if config.yaml.include?(new_context)
+      write_context(current_context, new_context)
+    else
+      scribe_error("Bad context match", new_context)
     end
   end
 
@@ -53,6 +52,41 @@ class Scribe < Thor
 
 
   no_commands do
+
+    def wip_stash
+      puts "WIP STASH IS HERE"
+      # on context change if status is not empty - wip_stash
+      # "git checkout -b #{context}-dev-null-wip"
+      # "git add -A"
+      # "git commit -m 'auto generated wip'"
+      # "git checkout <NEW-CONTEXT>"
+    end
+
+    # def wip_pop
+      # upon return to context - wip_pop
+      # "git checkout #{context}-dev-null-wip"
+      # "git reset HEAD~1"
+      # "git checkout #{context}"
+    # end
+    def write_context(current_context, new_context)
+      File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
+        from = "(was #{current_context})" unless current_context.empty?
+        puts "Changing context to #{set_color(new_context, :blue)} #{from}"
+
+        File.truncate(file, 0)
+        file.write new_context
+      end
+    end
+
+    def scribe_error(msg, data)
+      puts set_color("==================================================", :red)
+      puts set_color("#{msg}", :red)
+      puts set_color("==================================================", :red)
+      puts set_color("=>#{data}", :red, :bold) + " does not match scribe context list:"
+      list_contexts
+      raise Thor::Error, set_color("Please set new contexts in the .scribe config.", :magenta)
+    end
+
     def list_contexts
       config.yaml.each do |context, _|
         if context == current_context
