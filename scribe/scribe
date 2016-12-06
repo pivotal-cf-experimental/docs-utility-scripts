@@ -4,6 +4,7 @@ require 'yaml'
 require 'shell'
 require 'fileutils'
 require 'open3'
+require 'pp'
 
 CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
 
@@ -18,7 +19,9 @@ class Scribe < Thor
   method_option :context , :aliases => "c" , :desc => "Context" 
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
+    wip_stash if git_changes?
     # wip_stash unless git_changes?
+    # puts git_changes? ?  'yesh' : 'nope'
     # if status is not empty - wip_stash
     if config.yaml.include?(new_context)
       write_context(current_context, new_context)
@@ -33,19 +36,18 @@ class Scribe < Thor
       puts "Please set your context with `scribe context [new context name]`"
       exit 1
     end
-      puts "    Here are the changes to repos in #{set_color(current_context, :green)} context:"
+    puts "\nStatus for repos in #{set_color(current_context, :green)} context:"
     each_repo do |name, repo_config|
       Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
       stdout, stdeerr, status = Open3.capture3("git status --porcelain")
 
       if stdout.empty?
-        puts set_color("#{name}: - √", :magenta)
+        puts set_color("  #{name}: - √", :magenta)
         next 
       else
+        puts set_color("  #{name}: - CHANGES", :magenta)
+        print "    #{stdout.gsub(/\n/, "\n    ").gsub(/\n    $/,"\n")}"
       end
-      
-      puts set_color("\n#{name}: - CHANGES", :magenta)
-      puts "#{stdout}\n"
     end
 
   end
@@ -60,6 +62,15 @@ class Scribe < Thor
       # "git add -A"
       # "git commit -m 'auto generated wip'"
       # "git checkout <NEW-CONTEXT>"
+    end
+
+    def git_changes?
+      each_repo do |name, repo_config|
+        Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
+        stdout, stderr, status = Open3.capture3("git status --porcelain")
+        return true unless stdout.gsub(/"/,"").to_s.empty?
+      end
+      false
     end
 
     # def wip_pop
