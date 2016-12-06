@@ -19,7 +19,12 @@ class Scribe < Thor
   method_option :context , :aliases => "c" , :desc => "Context" 
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
-    wip_stash if git_changes?
+    # TODO implement wip-stash, and wip-pop if wip-stash-branch
+    if git_changes?
+      wip_stash 
+    else
+      puts "no changes for you!"
+    end
     # wip_stash unless git_changes?
     # puts git_changes? ?  'yesh' : 'nope'
     # if status is not empty - wip_stash
@@ -44,10 +49,9 @@ class Scribe < Thor
       if stdout.empty?
         puts set_color("  #{name}: - √", :magenta)
         next 
-      else
-        puts set_color("  #{name}: - CHANGES", :magenta)
-        print "    #{stdout.gsub(/\n/, "\n    ").gsub(/\n    $/,"\n")}"
       end
+      puts set_color("  #{name}: - CHANGES", :magenta)
+      print "    #{stdout.gsub(/\n/, "\n    ").gsub(/\n    $/,"\n")}"
     end
 
   end
@@ -73,12 +77,14 @@ class Scribe < Thor
       false
     end
 
-    # def wip_pop
+    # def wip_pop(context)
       # upon return to context - wip_pop
       # "git checkout #{context}-dev-null-wip"
       # "git reset HEAD~1"
       # "git checkout #{context}"
+      # "git branch -D #{context}-dev-null-wip"
     # end
+      
     def write_context(current_context, new_context)
       File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
         from = "(was #{current_context})" unless current_context.empty?
