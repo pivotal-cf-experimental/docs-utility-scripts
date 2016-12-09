@@ -1,3 +1,29 @@
+a:
+  book: docs-book-cloudfoundry
+  description: "TEST A - Cloud Foundry master docs"
+  repositories:
+  - repository:
+      name: docs-buildpacks
+      ref: 'a'
+  - repository:
+      name: docs-cf-admin
+      ref: 'a'
+  - repository:
+      name: docs-cf-cli
+      ref: 'a'
+b:
+  book: docs-book-cloudfoundry
+  description: "TEST - BCloud Foundry master docs"
+  repositories:
+  - repository:
+      name: docs-buildpacks
+      ref: 'b'
+  - repository:
+      name: docs-cf-admin
+      ref: 'b'
+  - repository:
+      name: docs-cf-cli
+      ref: 'b'
 sec-1.8:
   description: "security guide"
   version: 1.8
@@ -46,7 +72,7 @@ cf:
   repositories:
   - repository:
       name: docs-buildpacks
-      ref: 'test'
+      ref: 'master'
   - repository:
       name: docs-cf-admin
       ref: 'master'
