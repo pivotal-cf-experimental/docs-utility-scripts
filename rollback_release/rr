@@ -26,6 +26,17 @@ class RollbackRelease < Thor
   # rr ripcord
   desc "ripcord", "Pull ripcord -- relax, and roll back like a boss."
   def ripcord
+  puts set_color("\n  You pulled the ripcord!\n\n  Relax, breath, and let's roll that app back like a boss!", :magenta)
+  cache_list
+  app = ask(set_color("\n  Which product would you like to rollback?", :magenta),  :limited_to => products_to_numbered_list )
+  if yes?("\n  You want to roll back to yesterday's version of the #{set_color(get_product_name(app), :magenta)} app? [y/n] ")
+    puts set_color("\n  OK, let's double check the org, space and apps.", :magenta)
+    rollback_app, space, org = get_app_name(app) + "-yellow", get_space(app), get_org(app)
+    exec("export ROLLBACKAPP='#{rollback_app}'; export SPACE='#{space}'; export ORG='#{org}';sh ripcord.sh")
+  else
+    puts "  \nYou backed out. Bye!"
+    exit
+  end
   end
 
   # interactively choose app from .rr_config
@@ -49,7 +60,6 @@ class RollbackRelease < Thor
   desc "prime", "manually primes rr release by pushing and starting app"
   def prime
     cache_list
-    # products_to_numbered_list
     app = ask("\n  Which product would you like to prime?",  :limited_to => products_to_numbered_list )
     yes?("    #{set_color(get_product_name(app), :magenta)}\n\n  Do you want to prime this app: [y/n] ")
     blue_or_green = ask("\n  Ok, and should the app be #{set_color(get_app_name(app) + "-green", :green)} or #{set_color(get_app_name(app) + "-blue", :blue, :bold)}?", :limited_to => ["green", "blue"])
