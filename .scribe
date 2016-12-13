@@ -1,0 +1,103 @@
+a:
+  book: docs-book-cloudfoundry
+  branch: "some-product-release-number-or-branch-name"
+  description: "TEST A - Cloud Foundry master docs"
+  repositories:
+  - repository:
+      name: docs-buildpacks
+      ref: '225'
+  - repository:
+      name: docs-cf-admin
+      ref: 'a'
+  - repository:
+      name: docs-cf-cli
+      ref: 'a'
+b:
+  book: docs-book-cloudfoundry
+  description: "TEST - BCloud Foundry master docs"
+  repositories:
+  - repository:
+      name: docs-buildpacks
+      ref: '235'
+  - repository:
+      name: docs-cf-admin
+      ref: 'b'
+  - repository:
+      name: docs-cf-cli
+      ref: 'b'
+sec-1.8:
+  description: "security guide"
+  version: 1.8
+  repositories:
+    - repository:
+        ref: 'scribe'
+        name: docs-buildpacks
+    - repository:
+        name: docs-cf-admin
+    - repository:
+        name: docs-cloudfoundry-concepts
+        ref: 'scribe'
+    - repository:
+        name: pcf-release-notes
+        ref: 'scribe'
+security-1.9:
+  description: "security guide"
+  repositories:
+    - repository:
+        name: docs-buildpacks
+    - repository:
+        name: docs-cf-admin
+        ref: 'scribe'
+    - repository:
+        name: docs-cloudfoundry-concepts
+        ref: 'scribe'
+    - repository:
+        name: pcf-release-notes
+        ref: 'scribe'
+security-2.0:
+  book: docs-book-pivotalcf
+  description: "security guide"
+  repositories:
+    - repository:
+        name: docs-buildpacks
+    - repository:
+        name: docs-cloudfoundry-concepts
+        ref: 'scribe'
+    - repository:
+        name: pcf-release-notes
+        ref: 'scribe'
+
+cf:
+  book: docs-book-cloudfoundry
+  description: "Cloud Foundry master docs"
+  repositories:
+  - repository:
+      name: docs-buildpacks
+      ref: 'master'
+  - repository:
+      name: docs-cf-admin
+      ref: 'master'
+  - repository:
+      name: docs-cf-cli
+      ref: 'master'
+  - repository:
+      name: docs-cloudfoundry-concepts
+      ref: 'master'
+  - repository:
+      name: docs-deploying-cf
+      ref: 'master'
+  - repository:
+      name: docs-dev-guide
+      ref: 'master'
+  - repository:
+      name: docs-loggregator
+      ref: 'master'
+  - repository:
+      name: docs-running-cf
+      ref: 'master'
+  - repository:
+      name: docs-services
+      ref: 'master'
+  - repository:
+      name: uaa
+      ref: 'gh-pages'

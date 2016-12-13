@@ -1,0 +1,212 @@
+#!/usr/bin/env ruby
+require 'thor'
+require 'yaml'
+require 'shell'
+require 'fileutils'
+require 'open3'
+require 'pp'
+
+CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
+
+class Scribe < Thor
+
+  map '--version' => :version
+  map '--help' => :help
+
+  desc "help", "Show this help message"
+
+  desc "context", "Set or display the available contexts"
+  method_option :context , :aliases => "c" , :desc => "Context" 
+  def context(new_context=nil)
+    list_contexts && return if new_context.nil?
+    if new_context == current_context
+      show_context(new_context)
+      return
+    end
+    # TODO implement wip-stash, and wip-pop if wip-stash-branch
+    if config.yaml.include?(new_context)
+      wip_stash(current_context, new_context) if git_changes?
+      #TODO needs to check for branch existence before trying to switch
+        # make new branch or throw error if branch doesn't exist
+      context_accurate?(new_context)
+      switch_branches(new_context)
+      write_context(current_context, new_context)
+      wip_pop(new_context) 
+    else
+      scribe_error("Bad context match", new_context)
+    end
+  end
+
+  desc "story", "show git status in the repos within this context"
+  def story
+    unless current_context
+      puts "Please set your context with `scribe context [new context name]`"
+      exit 1
+    end
+    puts "\nStatus for repos in #{set_color(current_context, :green)} context:"
+    each_repo do |name, repo_config|
+      Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
+      stdout, stdeerr, status = Open3.capture3("git status --porcelain")
+
+      if stdout.empty?
+        puts set_color("  #{name}: - √", :magenta)
+        next 
+      end
+      puts set_color("  #{name}: - CHANGES", :magenta)
+      print "    #{stdout.gsub(/\n/, "\n    ").gsub(/\n    $/,"\n")}"
+    end
+
+  end
+
+
+  no_commands do
+
+    def wip_stash(current_context, new_context)
+      puts "Stashing your changes to #{set_color((current_context + "-scribe-autogen-wip"), :magenta)} branch"
+      each_repo(new_context) do |repo_name, config_values|
+        branch = config_values['ref'] || 'master'
+        puts "  #{set_color(repo_name, :magenta)} => #{set_color(branch, :magenta)} branch"
+        Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_name}")
+        stdout, stderr, status = Open3.capture3("git status --porcelain")
+        unless stdout.gsub(/"/,"").to_s.empty?
+          stdout, stderr, status = Open3.capture3("git checkout -b #{current_context}-scribe-autogen-wip; git add -A; git commit -m 'auto generated scribe wip'; git checkout #{branch}")
+          puts "  #{repo_name}:\n#{stdout}"
+        end
+      end
+    end
+
+    def context_accurate?(context)
+      puts "Need to implement check whether context branch exists?"
+      # each_repo
+        # unless #context branch exist
+        each_repo(context) do |repo_name, config_values|
+          branch = config_values['ref'] || 'master'
+          Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_name}")
+          Open3.popen3("git branch -a") do |stdout, stderr, status, thread|
+            while line=stderr.gets do 
+              # print "WAT: "
+              # puts line
+              line = line.strip.gsub(/remotes\/origin\//,"")
+              # puts("#{line.inspect} <=> #{branch}" ) 
+              puts set_color("Yarg++++++++++++++++++++", :blue) if line.strip.gsub(/remotes\/origin\//,"") == branch
+            end
+          end
+          # stdout, stderr, status = Open3.capture3("git branch -a")
+          puts "#{set_color(repo_name, :red)}" + set_color("=============================", :red)
+          # puts stdout
+          # raise Thor::Error, set_color("Please set new contexts in the .scribe config.", :magenta)
+          puts "Need to check if remote branch exists, and if not:"
+          puts "  fetch it and set origin to track it"
+        end
+      puts "raise Thor error if needed"
+    end
+
+    def switch_branches(new_context)
+      puts "Switching context branches."
+      each_repo(new_context) do |repo_name, config_values|
+        branch = config_values['ref'] || 'master'
+        puts "  #{set_color(repo_name, :magenta)} => #{set_color(branch, :magenta)} branch"
+        Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_name}")
+        stdout, stderr, status = Open3.capture3("git checkout #{branch}")
+      end
+    end
+
+    def git_changes?
+      each_repo do |name, repo_config|
+        Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
+        stdout, stderr, status = Open3.capture3("git status --porcelain")
+        return true unless stdout.gsub(/"/,"").to_s.empty?
+      end
+      return false
+    end
+
+    def wip_pop(context)
+      each_repo(context) do |repo_name, config_values|
+        branch = config_values['ref'] || 'master'
+        Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_name}")
+        stdout, stderr, status = Open3.capture3("git branch")
+        if stdout.include?("#{current_context}-scribe-autogen-wip")
+          stdout, stderr, status = Open3.capture3(
+            "git checkout #{current_context}-scribe-autogen-wip;
+            git reset HEAD~1;
+            git checkout #{branch};
+            git branch -D #{context}-scribe-autogen-wip")
+          puts stdout
+        end
+      end
+    end
+
+    def write_context(current_context, new_context)
+      File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
+        from = "(was #{current_context})" unless current_context.empty?
+        puts "Changing context to #{set_color(new_context, :blue)} #{from}"
+
+        File.truncate(file, 0)
+        file.write new_context
+      end
+    end
+
+    def scribe_error(msg, data=nil)
+      puts set_color("==================================================", :red)
+      puts set_color("#{msg}", :red)
+      puts set_color("==================================================", :red)
+      puts set_color("=>#{data}", :red, :bold) + " does not match scribe context list:"
+      list_contexts
+      raise Thor::Error, set_color("Please set new contexts in the .scribe config.", :magenta)
+    end
+
+    def list_contexts
+      config.yaml.each do |context, _|
+        if context == current_context
+          print "* "
+        else
+          print "  "
+        end
+        puts context
+      end
+    end
+
+    def each_repo(context=current_context)
+      config_hash_for_context = config.yaml[context]
+      config_hash_for_context["repositories"].each do |repo_config|
+        yield(repo_config["repository"]["name"], repo_config["repository"])
+      end
+    end
+
+    def current_context
+      return @current_context if @current_context
+      FileUtils.touch(CONTEXT_CONFIG_PATH) unless File.exist?(CONTEXT_CONFIG_PATH)
+
+      File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
+        @current_context = file.read.chomp
+      end
+
+      raise Thor::Error unless @current_context
+
+      @current_context
+    end
+
+    def config
+      return @config if @config
+
+      @config = ScribeConfig.new
+    end
+
+    def show_context(new_context)
+      puts "The current context is already set to #{new_context}"
+    end
+
+  end
+
+end
+
+class ScribeConfig
+  def yaml
+    return @yaml if @yaml
+
+    Dir.chdir("#{ENV["HOME"]}/workspace/docs-utility-scripts")
+    @yaml = YAML.load_file('.scribe')
+  end
+end
+
+Scribe.start(ARGV)
