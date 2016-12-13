@@ -1,0 +1,173 @@
+#!/usr/bin/env ruby
+require 'thor'
+require 'yaml'
+require 'shell'
+require 'fileutils'
+require 'open3'
+require 'pp'
+
+# CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
+
+class RollbackRelease < Thor
+
+  # map '--version' => :version
+  # map '--help' => :help
+
+  # desc "help", "Show this help message"
+
+  # desc "thing", "describes thing"
+  # method_option :thing , :aliases => "t" , :desc => "shorter?" 
+  # def thing
+  # end
+
+  # interactively choose non-running rollback app from .rr_config
+  # requires valid, pushed, unstarted, yellow rollback apps 
+  # cf start, scale, and re-route
+  # rr ripcord
+  desc "ripcord", "Pull ripcord -- relax, and roll back like a boss."
+  def ripcord
+  end
+
+  # interactively choose app from .rr_config
+  #   cf scale 
+  #   cf map-route
+  #   confirm running at command line (y/N)
+  #   cf un-map old route
+  #   cf stop old blue or green versions
+  # rr release
+  desc "release", "Releases new documents! Scales primed app and switches routes"
+  def release
+
+  end
+
+  # manually primes rr release by pushing and starting app
+  # like cache, but choose from chooses from scribe context?
+  #   √ interactively choose app from .rr_config
+  #   √ interactively choose whether to name it blue or green
+  #   √ shells out APP, SPACE, & ORG to prime.sh to cf push and start app with test route 
+  # rr prime 
+  desc "prime", "manually primes rr release by pushing and starting app"
+  def prime
+    cache_list
+    # products_to_numbered_list
+    app = ask("\n  Which product would you like to prime?",  :limited_to => products_to_numbered_list )
+    yes?("    #{set_color(get_product_name(app), :magenta)}\n\n  Do you want to prime this app: [y/n] ")
+    blue_or_green = ask("\n  Ok, and should the app be #{set_color(get_app_name(app) + "-green", :green)} or #{set_color(get_app_name(app) + "-blue", :blue, :bold)}?", :limited_to => ["green", "blue"])
+    primed_app = get_app_name(app) + "-" + blue_or_green
+    space = get_space(app)
+    org =  get_org(app)
+    exec("export PRIMEDAPP='#{primed_app}'; export SPACE='#{space}'; export ORG='#{org}';sh prime.sh")
+  end
+
+  # cache
+  # builds product cache of all rollbacks and releases
+  # includes two sets of builds, yellow rollbacks and green releases
+  # same result can be achieved by running the following for each product/ver:
+  #   cd ~ path/to/product, such as ~/<USER>/workspace/docs-book-pivotalcf/
+  #   git checkout version, such as 1.8
+  #   bookbinder bind remote
+  #   cd final_app
+  #   cf push app-name-yellow --no-start
+  #
+  # rr cache
+  desc "cache", "builds product cache of all rollbacks and releases"
+  def cache
+    puts "Not ready for primetime."
+  end
+
+  # check
+  # check to see that cache is full of valid builds
+  #  interactively choose which one
+  #  cf start the cache & `open a bunch of browser windows
+  # runs as cron job on Florida Man at 9:00AM every day
+  # rr check
+  desc "check", "check to see that cache is full of valid builds"
+  def check
+    puts "Not ready for primetime."
+  end
+
+  no_commands do
+
+    def products_to_numbered_list
+      config.yaml.each_with_index.map { |x,i| (i+1).to_s }
+    end
+
+    def cache_list
+      puts "\nProduct list:"
+      index = 1
+      config.yaml.each do |key, _|
+        puts "  #{index}: #{key}"
+        index += 1
+      end
+    end
+
+    def get_app_name(num)
+      app_name = ''
+      config.yaml.each_with_index do |(key,value),index|
+        app_name << value['app_name'] if (index + 1) == num.to_i
+      end
+      app_name
+    end
+
+    def get_product_name(num)
+      product_name = ''
+      config.yaml.each_with_index do |(key,value),index|
+        product_name << key if (index + 1) == num.to_i
+      end
+      product_name
+    end
+
+    def get_space(num)
+      space_name = ''
+      config.yaml.each_with_index do |(key,value),index|
+        space_name << value['space'] if (index + 1) == num.to_i
+      end
+      space_name
+    end
+
+    def get_org(num)
+      org_name = ''
+      config.yaml.each_with_index do |(key,value),index|
+        org_name << value['org'] if (index + 1) == num.to_i
+      end
+      org_name
+    end
+
+
+    def some_error
+      raise Thor::Error, set_color("Please set new contexts in the .scribe config.", :magenta)
+    end 
+
+    # def current_context
+    #   return @current_context if @current_context
+    #   FileUtils.touch(CONTEXT_CONFIG_PATH) unless File.exist?(CONTEXT_CONFIG_PATH)
+
+    #   File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
+    #     @current_context = file.read.chomp
+    #   end
+
+    #   raise Thor::Error unless @current_context
+
+    #   @current_context
+    # end
+
+    def config
+      return @config if @config
+
+      @config = RRConfig.new
+    end
+
+  end
+
+end
+
+class RRConfig
+  def yaml
+    return @yaml if @yaml
+
+    Dir.chdir("#{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release")
+    @yaml = YAML.load_file('.rr_config')
+  end
+end
+
+RollbackRelease.start(ARGV)

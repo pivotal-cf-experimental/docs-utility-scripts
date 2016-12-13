@@ -1,0 +1,67 @@
+PCF-1-9:
+  book: docs-book-pivotalcf
+  app_name: docs-pcf-1-9
+  branch: '1.9'
+  space: 'pivotalcf-prod'
+  org: 'pivotal-pubtools' 
+PCF-1-8:
+  book: docs-book-pivotalcf
+  app_name: docs-pcf-1-8
+  branch: '1.8'
+  space: 'pivotalcf-prod'
+  org: 'pivotal-pubtools' 
+PCF-1-7:
+  book: docs-book-pivotalcf
+  app_name: docs-pcf-1-7
+  branch: '1.7'
+  space: 'pivotalcf-prod'
+  org: 'pivotal-pubtools' 
+PCF-1-6:
+  book: docs-book-pivotalcf
+  app_name: docs-pcf-1-6
+  branch: '1.6'
+  space: 'pivotalcf-prod'
+  org: 'pivotal-pubtools' 
+PCF-Review:
+  book: docs-book-pivotalcf
+  app_name: docs-pcf-review
+  branch: 'review'
+  space: 'pivotalcf-staging'
+  org: 'pivotal-pubtools' 
+PCF-Services:
+  book: docs-book-pcfservices
+  app_name: docs-pcf-services
+  branch: 'review'
+  space: 'pivotalcf-prod'
+  org: 'pivotal-pubtools' 
+PCF-Services-Review:
+  book: docs-book-pcfservices
+  app_name: docs-pcf-service-review
+  branch: 'review'
+  space: 'pivotalcf-staging'
+  org: 'pivotal-pubtools' 
+CF:
+  book: docs-book-cloudfoundry
+  app_name: docs-cloudfoundry
+  branch: 'master'
+  space: 'docs-prod'
+  org: 'cfcommunity' 
+CF-Review:
+  book: docs-book-cloudfoundry
+  app_name: docs-cloudfoundry-review
+  branch: 'review'
+  space: 'docs-staging'
+  org: 'cfcommunity' 
+PWS:
+  book: docs-book-pws
+  app_name: docs-pws
+  branch: 'master'
+  space: 'pws-prod'
+  org: 'pivotal-pubtools' 
+PWS-Review:
+  book: docs-book-pws
+  app_name: docs-pws
+  branch: 'review'
+  space: 'pws-staging'
+  org: 'pivotal-pubtools' 
+

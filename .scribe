@@ -1,10 +1,11 @@
 a:
   book: docs-book-cloudfoundry
+  branch: "some-product-release-number-or-branch-name"
   description: "TEST A - Cloud Foundry master docs"
   repositories:
   - repository:
       name: docs-buildpacks
-      ref: 'a'
+      ref: '225'
   - repository:
       name: docs-cf-admin
       ref: 'a'
@@ -17,7 +18,7 @@ b:
   repositories:
   - repository:
       name: docs-buildpacks
-      ref: 'b'
+      ref: '235'
   - repository:
       name: docs-cf-admin
       ref: 'b'

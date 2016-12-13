@@ -26,6 +26,9 @@ class Scribe < Thor
     # TODO implement wip-stash, and wip-pop if wip-stash-branch
     if config.yaml.include?(new_context)
       wip_stash(current_context, new_context) if git_changes?
+      #TODO needs to check for branch existence before trying to switch
+        # make new branch or throw error if branch doesn't exist
+      context_accurate?(new_context)
       switch_branches(new_context)
       write_context(current_context, new_context)
       wip_pop(new_context) 
@@ -70,6 +73,32 @@ class Scribe < Thor
           puts "  #{repo_name}:\n#{stdout}"
         end
       end
+    end
+
+    def context_accurate?(context)
+      puts "Need to implement check whether context branch exists?"
+      # each_repo
+        # unless #context branch exist
+        each_repo(context) do |repo_name, config_values|
+          branch = config_values['ref'] || 'master'
+          Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_name}")
+          Open3.popen3("git branch -a") do |stdout, stderr, status, thread|
+            while line=stderr.gets do 
+              # print "WAT: "
+              # puts line
+              line = line.strip.gsub(/remotes\/origin\//,"")
+              # puts("#{line.inspect} <=> #{branch}" ) 
+              puts set_color("Yarg++++++++++++++++++++", :blue) if line.strip.gsub(/remotes\/origin\//,"") == branch
+            end
+          end
+          # stdout, stderr, status = Open3.capture3("git branch -a")
+          puts "#{set_color(repo_name, :red)}" + set_color("=============================", :red)
+          # puts stdout
+          # raise Thor::Error, set_color("Please set new contexts in the .scribe config.", :magenta)
+          puts "Need to check if remote branch exists, and if not:"
+          puts "  fetch it and set origin to track it"
+        end
+      puts "raise Thor error if needed"
     end
 
     def switch_branches(new_context)

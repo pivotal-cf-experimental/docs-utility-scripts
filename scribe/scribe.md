@@ -14,7 +14,132 @@ prioritized list
 	message			m	
 
 ===========MVP================
+
+MVP for release:
+use switch_it.sh as reference
+figure out in cf-sandbox the cf commands to:
+  push unstarted app
+  start app -i 1 to check it
+  re-route app to production
+  call 
+
+
+	digest
+		store in .config
+			For each repo
+				Yesterdays
+				Two days 
+				add link to git commit
+				parse diff output for path/h2's, where path is book/version/guide/section/topic 
+				publish changes(∆) with strikethoughs(-) and highlights (¶)
+					use html output to xml crawl the DOM for h2s
+					publish within guides
+						add links at top of guide to current guide index page in docs
+	rollback & digest(pdf)(does not cover case for no pubtools machine)
+		0500 M-F cron job for FloridaPerson to build yellow rollback apps 
+			bind remote and copy final apps to rollback cache as follows
+
+				docs-pcf-1-6-yellow			T  0/3  256M  1G 
+				docs-pcf-yellow  			T  0/3  256M  1G 
+				docs-pcf-1-8-yellow			T  0/3  256M  1G 
+				docs-pcfservices-yellow		T  0/3  256M  1G 
+				docs-pws-yellow 			T  0/3  256M  1G
+				docs-oss-yellow				T  0/3  256M  1G
+
+		manually create release build cache 
+			to include
+				docs-pcf-1-6-cyan			T  0/3  256M  1G  
+				docs-pcf-cyan		  		T  0/3  256M  1G 
+				docs-pcf-1-8-cyan			T  0/3  256M  1G 
+				docs-pcf-1-9-cyan
+				docs-pcfservices-cyan		T  0/3  256M  1G 
+				docs-pws-cyan		 		T  0/3  256M  1G
+
+		cli with methods to start, scale and route apps with appropriate start flags 
+				has methods to push yellow or cyan to prod or staging
+					rollback docs-pcf-1-6-yellow, staging
+						cf start
+						cf scale -i 3
+						cf map-route to add staging route
+						cf unmap-route to 
+					rollback docs-pcfservices-yellow, staging
+				method to push yellow to staging, for example:
+					release docs-pcf-1-9-cyan, staging
+					release docs-pcf-1-9-cyan, staging
+					# Final check the releases and links work,
+					release docs-pcf-1-9-cyan, prod
+					release docs-pcf-1-9-cyan, prod
+				docs-pcf-1-6-yellow			A  3/3  256M  1G 
+
+
+
+===============
+					edge
+				core 
+					latest
+					supported
+					supported
+					supported
+					archive
+					archive
+				OSS
+					latest	
+					edge
+		post form that makes call to sinatra app endpoint which makes a cf push call with popen.3
+
+		digest
+		can be handled by parsing the schema in the .config
+			scribe 
+			traverse final_app structure according to context .config
+				publish changes to any config by outputting diff of daily digests
+
+
+	
+	rollback pipeline (does not mitigate if our CI/CD tooling goes down, but manages 80% of the time or better)	- brute force production backup solution
+
+		one pipeline - production job but it publishes yesterdays tarball
+			===¬ pcf edge
+			===¬ pcf 1.9
+			===¬ pcf 1.8
+			===¬ pcf 1.7
+			===¬ pcf 1.6
+			===¬ pcf 1.5
+			===¬ pcf 1.4
+			===¬ pcf 1.3
+			===¬ pcf review			
+			===¬ OSS edge
+			===¬ OSS
+			===¬ OSS review
+			===¬ pws edge
+			===¬ pws
+			===¬ pws review
+			===¬ bookbinder s3 - rewrites the file with the old one
+			===¬ bookbinder bundle s3 - rewrites the file with the old one
+			===¬ concourse scripts bundle - rewrites the file with the old one			
+
+			with lots of groups (pcf, data?)
+
+					|–––––––––o
+
+	ripcord! release!
+	rollback and release jumpbox on aws or pws
+		app for my sandbox
+		best case scenario
+			cron job gather s3 buckets
+			ssh in to jumpox (mothership) to run ricord! script
+				manually pushes yesterday's build
+	login and running script should take under 5 minutes
+		can be run from FloridaMan
+		can be run from endpoint behind auth with one button
+			shows today's version of all of published sites with a rollback button
+				vm is logged in with pubtools account and can only send one command 
+					cf push	
+				creds in ENV (should be rotated => learn the 3 Rs)
+
+
+
 	fly				f		
+
 		Somewhat of a feature that we already have, this commands reduces some complexity	
 	bump			bc		[-p, --production], [-r, --review], [-s, --staging], [--email, -e] [--nc]
 	review 			r
