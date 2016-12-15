@@ -2,7 +2,7 @@
 # This script receives ROLLBACKAPP, SPACE, & ORG
 # It is a rollback script to 'cf start', 'scale', and 'map-route' a one day stale prod app 
 
-set -ex
+set -e
 MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 NC='\033[0m' 

@@ -1,25 +1,16 @@
 #!/bin/bash
 #   receives PRIMEDAPP, SPACE, & ORG for cf push and start app with test route 
-
-set -e
 MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 NC='\033[0m' 
+set -ex
 
-printf "\n  ${MAGENTA}=>${NC} Make sure you are in the ${MAGENTA}final app${NC} directory of the appropriate ${MAGENTA}book${NC} to push docs.\n"
-printf "\n  ${MAGENTA}=>${NC} You are in ${MAGENTA}$PWD${NC} and these are the contents you are about to push:\n\n"
+# Need to export path as necessary
+ANYPATH=''
 
-ls -l
- # echo $(ls -l)
-
-printf "\n  ${MAGENTA}=>${NC} Push this directory as the ${MAGENTA}$PRIMEDAPP${NC} app? [Y/n]\n"
-while true; do
-    read -p '' yn
-    case $yn in
-        [Yy]* ) echo "  Pushing $PRIMEDAPP\n"; break;;
-        [Nn]* ) echo "  No $PRIMEDAPP will be pushed.\n"; exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
-done
-
-echo "we pushed $PRIMEDAPP"
+# push the app
+echo "cf push $PRIMEDAPP -i 1 -m 256M -k 1024M -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 -d cfapps.io --no-route"
+# Add a test route:
+echo "cf map-route $PRIMEDAPP cfapps.io -n $PRIMEDAPP-primed-for-prod" 
+# Show link for app
+echo "Your app is available at http://$PRIMEDAPP-primed-for-prod.cfapps.io$ANYPATH."

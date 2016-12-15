@@ -15,11 +15,6 @@ class RollbackRelease < Thor
 
   # desc "help", "Show this help message"
 
-  # desc "thing", "describes thing"
-  # method_option :thing , :aliases => "t" , :desc => "shorter?" 
-  # def thing
-  # end
-
   # interactively choose non-running rollback app from .rr_config
   # requires valid, pushed, unstarted, yellow rollback apps 
   # cf start, scale, and re-route
@@ -27,10 +22,10 @@ class RollbackRelease < Thor
   desc "ripcord", "Pull ripcord -- relax, and roll back like a boss."
   def ripcord
   puts set_color("\n  You pulled the ripcord!\n\n  Relax, breath, and let's roll that app back like a boss!", :magenta)
-  cache_list
-  app = ask(set_color("\n  Which product would you like to rollback?", :magenta),  :limited_to => products_to_numbered_list )
+  show_product_list
+  app = ask(set_color("\n  Which product would you like to rollback?", :magenta),  :limited_to => products_to_numbered_array )
   if yes?("\n  You want to roll back to yesterday's version of the #{set_color(get_product_name(app), :magenta)} app? [y/n] ")
-    puts set_color("\n  OK, let's double check the org, space and apps.", :magenta)
+    puts set_color("\n  OK, let's double check the org, space, and apps.", :magenta)
     rollback_app, space, org = get_app_name(app) + "-yellow", get_space(app), get_org(app)
     exec("export ROLLBACKAPP='#{rollback_app}'; export SPACE='#{space}'; export ORG='#{org}';sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/ripcord.sh")
   else
@@ -48,81 +43,104 @@ class RollbackRelease < Thor
   # rr release
   desc "release", "Releases new documents! Scales primed app and switches routes"
   def release
+    puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it."
+
     puts "Not ready for primetime."
   end
 
   # manually primes rr release by pushing and starting app
-  # like cache, but choose from chooses from scribe context?
-  #   √ interactively choose app from .rr_config
-  #   √ interactively choose whether to name it blue or green
-  #   √ shells out APP, SPACE, & ORG to prime.sh to cf push and start app with test route 
+  #   interactively choose app from .rr_config
+  #   interactively choose whether to name it blue or green
+  #   shells out APP, SPACE, & ORG to prime.sh to cf push and start app with test route 
   # rr prime 
   desc "prime", "manually primes rr release by pushing and starting app"
   def prime
-    cache_list
-    app = ask("\n  #{set_color("=> ", :magenta)}Which product would you like to prime?",  :limited_to => products_to_numbered_list )
-    space = get_space(app)
-    org = get_org(app)
-    yes?("\n  #{set_color("=> ", :magenta)}#{set_color(get_product_name(app), :magenta)}\n\n  #{set_color("=> ", :magenta)}Do you want to prime this app: [y/n] ")
-    puts "\n  #{set_color("=> ", :magenta)}OK, lets check the details of the #{set_color(space, :magenta)} space in the #{set_color(org, :magenta)} org:"
-    # stdout, stderr, status = Open3.capture3("cf target -o #{org} -s #{space}; cf apps")
-    system ("cf target -o #{org} -s #{space}; cf apps")
-    # puts stdout
-
-    # puts stderr
-    blue_or_green = ask("\n  #{set_color("=> ", :magenta)}Ok, and should the app be #{set_color(get_app_name(app) + "-green", :green)} or #{set_color(get_app_name(app) + "-blue", :blue, :bold)}?\n  (Normally, you would push an app for which there is a stopped app of the same name.)", :limited_to => ["green", "blue"])
-    primed_app = get_app_name(app) + "-" + blue_or_green
-    exec("export PRIMEDAPP='#{primed_app}'; export SPACE='#{space}'; export ORG='#{org}';sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/prime.sh")
-  end
-
-  # cache
-  # builds product cache of all rollbacks and releases
-  # includes two sets of builds, yellow rollbacks and green releases
-  # same result can be achieved by running the following for each product/ver:
-  #   cd ~ path/to/product, such as ~/<USER>/workspace/docs-book-pivotalcf/
-  #   git checkout version, such as 1.8
-  #   bookbinder bind remote
-  #   cd final_app
-  #   cf push app-name-yellow --no-start
-  #
-  # rr cache
-  desc "cache", "builds product cache of all rollbacks and releases"
-  def cache
-    puts "Not ready for primetime."
-  end
-
-  # check
-  # check to see that cache is full of valid builds
-  #  interactively choose which one
-  #  cf start the cache & `open a bunch of browser windows
-  # runs as cron job on Florida Man at 9:00AM every day
-  # rr check
-  desc "check", "check to see that cache is full of valid builds"
-  def check
-    puts "Not ready for primetime."
+    prime_release_text_description 
+    set_product
+    prime_app if verify_dir? && verify_prime?
   end
 
   no_commands do
 
-    def products_to_numbered_list
+    def set_product    
+      show_product_list
+      product 
+      verify_product_name?
+    end
+
+    def prime_app
+      puts "\n#{set_color("  =>", :magenta)} OK, here we go!"
+      exec("export PRIMEDAPP='#{primed_app_name}'; export SPACE='#{config.yaml[product]['space']}'; export ORG='#{config.yaml[product]['org']}';sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/prime.sh")
+    end
+
+    def product
+      return @product if @product
+
+      @product = get_product_name(choose_app_num)
+    end
+
+    def primed_app_name
+      return @primed_app_name if @primed_app_name
+
+      @primed_app_name = config.yaml[product]['app_name'] + "-" + blue_or_green
+    end
+
+    def verify_dir?
+      puts ""
+      system('pwd')
+      puts ""
+      system('ls -l')
+      yes?("\n  #{set_color("=> ", :magenta)}Are the files above the correct contents of the app? [y/N]")
+    end
+
+    def verify_prime?
+      target_space_and_org
+      show_app_space_org_details
+      yes?("\n  #{set_color("=> ", :magenta)}Prime this app as #{set_color(primed_app_name, :magenta)} in #{set_color(config.yaml[product]['space'], :magenta)} space, #{set_color(config.yaml[product]['org'], :magenta)} org? [y/N]")
+    end
+
+    def prime_release_text_description
+     puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it."
+     puts "\n#{set_color("  rr prime", :magenta)}"
+     puts "  The prime function pushes an app to the correct production space, starts it, and assigns it a test route in the #{set_color("cfapps.io", :magenta)} domain."
+     puts "  After you check that it is running properly, flip the routing switch to map it to production with #{set_color("rr release", :magenta)}."
+     puts "\n#{set_color("  rr release", :magenta)}"
+     puts "  The release function scales a primed app, maps it to production, and unmaps the test route."
+    end
+
+    def blue_or_green
+      ask("\n  #{set_color("=> ", :magenta)}Ok, should the app be #{set_color(config.yaml[product]['app_name'] + "-green", :green)} or #{set_color(config.yaml[product]['app_name'] + "-blue", :blue, :bold)}?\n  (Normally, you would push an app for which there is a stopped app of the same name.)", :limited_to => ["green", "blue"])
+    end
+
+    def choose_app_num
+      ask("\n  #{set_color("=> ", :magenta)}Which product would you like to prime?",  :limited_to => products_to_numbered_array )
+    end
+
+    def verify_product_name?
+      yes?("\n  #{set_color("=> ", :magenta)}#{set_color(product, :magenta)}\n\n  #{set_color("=> ", :magenta)}Do you want to prime an app for this product: [y/n] ")  
+    end
+
+    def target_space_and_org
+      puts "\n  #{set_color("=> ", :magenta)}OK, targeting the #{set_color(config.yaml[product]['space'], :magenta)} space in the #{set_color(config.yaml[product]['org'], :magenta)} org for #{set_color(product, :magenta)}...\n\n"
+      system ("cf target -o #{config.yaml[product]['org']} -s #{config.yaml[product]['space']}")
+    end
+
+    def show_app_space_org_details
+      puts "\n  #{set_color("=> ", :magenta)}OK, checking the apps in the #{set_color(config.yaml[product]['space'], :magenta)} space in the #{set_color(config.yaml[product]['org'], :magenta)} org...\n\n"
+      system("cf apps")
+    end
+
+    def products_to_numbered_array
       config.yaml.each_with_index.map { |x,i| (i+1).to_s }
     end
 
-    def cache_list
+    def show_product_list
       puts "\nProduct list:"
       index = 1
       config.yaml.each do |key, _|
         puts "  #{index}: #{key}"
         index += 1
       end
-    end
-
-    def get_app_name(num)
-      app_name = ''
-      config.yaml.each_with_index do |(key,value),index|
-        app_name << value['app_name'] if (index + 1) == num.to_i
-      end
-      app_name
     end
 
     def get_product_name(num)
@@ -133,39 +151,10 @@ class RollbackRelease < Thor
       product_name
     end
 
-    def get_space(num)
-      space_name = ''
-      config.yaml.each_with_index do |(key,value),index|
-        space_name << value['space'] if (index + 1) == num.to_i
-      end
-      space_name
-    end
-
-    def get_org(num)
-      org_name = ''
-      config.yaml.each_with_index do |(key,value),index|
-        org_name << value['org'] if (index + 1) == num.to_i
-      end
-      org_name
-    end
-
 
     def some_error
       raise Thor::Error, set_color("Please set new contexts in the .scribe config.", :magenta)
     end 
-
-    # def current_context
-    #   return @current_context if @current_context
-    #   FileUtils.touch(CONTEXT_CONFIG_PATH) unless File.exist?(CONTEXT_CONFIG_PATH)
-
-    #   File.open(CONTEXT_CONFIG_PATH, "r+") do |file|
-    #     @current_context = file.read.chomp
-    #   end
-
-    #   raise Thor::Error unless @current_context
-
-    #   @current_context
-    # end
 
     def config
       return @config if @config
