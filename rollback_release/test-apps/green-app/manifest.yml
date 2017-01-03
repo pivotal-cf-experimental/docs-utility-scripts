@@ -1,0 +1,4 @@
+---
+applications:
+- name: tophers-staticfile-app
+  memory: 512M

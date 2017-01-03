@@ -83,7 +83,7 @@ class Scribe < Thor
           branch = config_values['ref'] || 'master'
           Dir.chdir("#{ENV["HOME"]}/workspace/#{repo_name}")
           Open3.popen3("git branch -a") do |stdout, stderr, status, thread|
-            while line=stderr.gets do 
+            while line=stdout.gets do 
               # print "WAT: "
               # puts line
               line = line.strip.gsub(/remotes\/origin\//,"")
