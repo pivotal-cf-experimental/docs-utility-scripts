@@ -30,13 +30,13 @@ PCF-Review:
   org: 'pivotal-pubtools' 
 PCF-Services:
   book: docs-book-pcfservices
-  app_name: 'docs-pcf-services'
+  app_name: 'docs-pcfservices'
   branch: 'review'
   space: 'pivotalcf-prod'
   org: 'pivotal-pubtools' 
 PCF-Services-Review:
   book: docs-book-pcfservices
-  app_name: 'docs-pcf-service-review'
+  app_name: 'docs-pcfservices-review'
   branch: 'review'
   space: 'pivotalcf-staging'
   org: 'pivotal-pubtools' 
@@ -70,5 +70,5 @@ Test:
   branch: ''
   space: 'development'
   org: 'cf-docs-sandbox'
-PWD: '/Users/jheron/workspace/docs-utility-scripts'
-/Users/jheron/workspace/docs-utility-scripts
+Service:
+  

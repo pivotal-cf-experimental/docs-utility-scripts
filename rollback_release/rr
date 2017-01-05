@@ -25,7 +25,7 @@ class RollbackRelease < Thor
   def ripcord
     ripcord_text_description
     set_product 
-    roll_back rollback_choice if rollback_choices
+    roll_back rollback_choice if rollback_choices?
   end
 
   # interactively choose app from .rr_config
@@ -59,7 +59,7 @@ class RollbackRelease < Thor
 
     def prime_app
       puts "\n#{set_color("  =>", :magenta)} OK, here we go!"
-      exec("export PRIMEDAPP='#{primed_app_name}'; export SPACE='#{config.yaml[product]['space']}'; export ORG='#{config.yaml[product]['org']}';sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/prime.sh")
+      exec("export RR_DIR='#{rr_dir}'; export PRIMEDAPP='#{primed_app_name}'; export SPACE='#{config.yaml[product]['space']}'; export ORG='#{config.yaml[product]['org']}';sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/prime.sh")
     end
 
     def roll_back(rollback_app)
@@ -86,37 +86,22 @@ class RollbackRelease < Thor
     end
 
     def rollback_choice
-      return @rollback_choice if @rollback_choice
-
-      @rollback_choice = false #get_product_name(choose_app_num)
+      show_app_space_org_details
+      choice = ask("\n  #{set_color("=> ", :magenta)}Ok, what color app do you want to roll back to production for #{set_color(product, :magenta)}?", :limited_to => @rollback_choices)
     end
 
-    def rollback_choices
+
+    def rollback_choices?
       target_space_and_org  
       stdout, stderr, status = Open3.capture3("cf apps")
-      stdout.split("\n").each do |line|
-        puts line
-        puts "end of line"
-        line =~ /docs.*stopped/
-      end
-      choices = []
-      choices << "rose" if stdout.include?("#{product['app_name']}-rose") 
-      choices << "blue" if stdout.include?("#{product['app_name']}-blue" && "stopped")
-      choices << "green" if stdout.include?("#{product['app_name']}-green" && "stopped")
-      choices << "yellow"if stdout.include?("#{product['app_name']}-yellow")
-      # puts "The #{set_color(config.yaml[product]['space'], :magenta)} space has rollback apps #{set_color(product['app_name']+'-yellow', :yellow)} rollback app is unavailable."  
-      # puts "Sorry, the #{set_color(product['app_name']+'-rose', :pink)} rollback app is unavailable."   
-      # yes?("\n  You want to roll back to the yellow's version of the #{set_color(product, :magenta)} app? [y/n] ")
-
-      # ask("\n  #{set_color("=> ", :magenta)}Rollback the yellow or rose #{set_color(product['app_name'], :magenta)} app in #{set_color(config.yaml[product]['space'], :magenta)} space, #{set_color(config.yaml[product]['org'], :magenta)} org?", :limited_to => ["yellow", "rose"])
-      puts "done"
-      # choices.length > 0 ? choices : false
+      possibilities = []
+      possibilities << "rose" if stdout.include?("#{product['app_name']}-rose") 
+      possibilities << "blue" if stdout.include?("#{product['app_name']}-blue")
+      possibilities << "green" if stdout.include?("#{product['app_name']}-green")
+      possibilities << "yellow" if stdout.include?("#{product['app_name']}-yellow")
+      @rollback_choices = possibilities
+      possibilities.length > 0 ? true : false
     end
-
-    def rollback_choice
-      ask("\n  #{set_color("=> ", :magenta)}Ok, should the app be #{set_color(config.yaml[product]['app_name'] + "-green", :green)} or #{set_color(config.yaml[product]['app_name'] + "-blue", :blue, :bold)}?\n  (Normally, you would push an app for which there is a stopped app of the same name.)", :limited_to => ["green", "blue"])
-    end
-
 
     def primed_app_name
       return @primed_app_name if @primed_app_name
@@ -129,18 +114,9 @@ class RollbackRelease < Thor
     end
 
     def verify_app_dir?
-      puts ""
-      # Dir.pwd
-      test = `echo $ENV[$PWD]`
-      puts test
-      puts "APP_PWD = #{APP_PWD}"
-      puts "END TEST CALL"
-      system('pwd')
-      puts ""
-      system('ls -l')
+      puts "\n#{rr_dir}"
+      system("ls -l #{rr_dir}")
       yes?("\n  #{set_color("=> ", :magenta)}Are the files above the correct contents of the app? [y/N]")
-
-      clean_rr_pwd
     end
 
     def verify_prime_candidate?
@@ -212,6 +188,12 @@ class RollbackRelease < Thor
       @config = RRConfig.new
     end
 
+    def rr_dir
+      return @rr_dir if @rr_dir
+
+      @rr_dir = ENV["PWD"]
+    end
+
   end
 
 end
@@ -225,24 +207,6 @@ class RRConfig
   end
 end
 
-class RRPwd
-
-  def read_rr_pwd
-    Dir.chdir("#{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release")
-
-    a = IO.readlines(".rr_pwd")
-    puts a[0]   #=> "This is line one\n"
-  end
-
-  def clean_rr_pwd
-    return @read_rr_pwd if @read_rr_pwd
-
-    Dir.chdir("#{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release")
-    @read_rr_pwd = YAML.load_file('.rr_pwd')
-    f = File.new("out", "w")
-    f.syswrite("") 
-  end
-end
 
 
 RollbackRelease.start(ARGV)
