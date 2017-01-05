@@ -28,7 +28,8 @@ class RollbackRelease < Thor
     roll_back rollback_choice if rollback_choices?
   end
 
-  # interactively choose app from .rr_config
+  # interactively choose product from .rr_config
+  # interactively choose app from space 
   #   cf scale 
   #   cf map-route
   #   confirm running at command line (y/N)
@@ -37,8 +38,9 @@ class RollbackRelease < Thor
   # rr release
   desc "release", "Releases new documents! Scales primed app and switches routes"
   def release
-
-    release_app
+    prime_release_text_description
+    set_product
+    release_app if verify_release_candidate?
     puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it."
 
     puts "Not ready for primetime."
