@@ -21,4 +21,13 @@ Using RR:
 
 All of the `rr` commands prompt you for choices
 
+`rr prime` - Prime an app you want to release
+To use `rr prime`, you must navigate to the root directory for the app you wish to push. For `bookbinder` apps, the app you push is the `final_app` directory, so navigate there for the appropriate product and version. Then, run `rr prime` and follow the prompts.
+
+`rr release` - Release an app
+To release an app, you must have primed the app first. Then, run `rr release` and follow along.
+
+`rr ripcord` - Roll back a product to an older, good app
+To rollback an app to an older version, run `rr ripcord` and follow the prompts.
+
 You can also refer to `rr` help display for description about the three sub-commands to `rr`.
