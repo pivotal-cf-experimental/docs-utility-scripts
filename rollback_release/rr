@@ -6,19 +6,12 @@ require 'fileutils'
 require 'open3'
 require 'pp'
 
-# CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
-
 class RollbackRelease < Thor
 
   map '--version' => :version
   map '--help' => :help
 
-  # desc "help", "Show this help message"
-
-  # interactively choose non-running rollback app from .rr_config
-  # requires valid, pushed, unstarted, yellow and/or rose colored rollback apps 
-  # cf start, scale, and re-route to prod, stops green and or blue
-  # rr ripcord
+  desc "help", "Show this help message"
   desc "ripcord", "Pull ripcord -- relax, and roll back like a boss."
 
 
