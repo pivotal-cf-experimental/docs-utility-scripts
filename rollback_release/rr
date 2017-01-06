@@ -29,14 +29,14 @@ class RollbackRelease < Thor
   end
 
 
-  desc "prime", "  Pushes app to product space and org, and maps the app to an out-of-the-way route for review. \n  RR Prime also starts the app with one instance."
+  desc "prime", "Pushes app to product space and org, and maps the app to an out-of-the-way route for review. \nRR Prime also starts the app with one instance."
   def prime
     prime_release_text_description 
     set_product
     prime_app if verify_app_dir? && verify_prime_candidate?
   end
 
-  desc "release", "  Releases primed apps to production. \n  Scales primed app and switches route according to blue-green CI/CD rule set. \n  Unmaps and stops old blue or green version."
+  desc "release", "Releases primed apps to production. \nScales primed app and switches route according to blue-green CI/CD rule set. \nUnmaps and stops old blue or green version."
   def release
     prime_release_text_description
     set_product
@@ -169,7 +169,7 @@ class RollbackRelease < Thor
      puts "  The prime function pushes an app to the correct production space, starts it, and assigns it a test route in the #{set_color("cfapps.io", :magenta)} domain."
      puts "  After you check that it is running properly, flip the routing switch to map it to production with #{set_color("rr release", :magenta)}."
      puts "\n#{set_color("  rr release", :magenta)}"
-     puts "  The release function scales a primed app, maps it to production, and unmaps the test route."
+     puts "  The release function scales a primed app, maps it to production, and stops the apps with the same root name."
     end
 
     def ripcord_text_description
