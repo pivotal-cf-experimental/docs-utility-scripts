@@ -14,13 +14,11 @@ class RollbackRelease < Thor
   desc "help", "Show this help message"
   desc "ripcord", "Pull ripcord -- relax, and roll back like a boss."
 
-
   def ripcord
     ripcord_text_description
     set_product 
     roll_back rollback_choice if rollback_choices?
   end
-
 
   desc "prime", "Pushes app to product space and org, and maps the app to an out-of-the-way route for review. \nRR Prime also starts the app with one instance."
   def prime
@@ -120,7 +118,6 @@ class RollbackRelease < Thor
       @rollback_choice << ask("\n  #{set_color("=> ", :magenta)}Ok, what app do you want to roll back to production for #{set_color(config.yaml[product]['app_name'], :magenta)}? The other app(s) will be stopped.", :limited_to => @rollback_choices)
     end
 
-
     def rollback_choices?
       target_space_and_org  
       stdout, stderr, status = Open3.capture3("cf apps")
@@ -154,7 +151,6 @@ class RollbackRelease < Thor
       show_app_space_org_details
       yes?("\n  #{set_color("=> ", :magenta)}Prime this app as #{set_color(primed_app_name, :magenta)} in #{set_color(config.yaml[product]['space'], :magenta)} space, #{set_color(config.yaml[product]['org'], :magenta)} org? [y/N]")
     end
-
 
     def prime_release_text_description
      puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it. The #{set_color(".rr_config", :magenta)} file sets the app names, orgs, spaces, branches, and books that #{set_color("rr", :magenta)} manages."
@@ -236,7 +232,5 @@ class RRConfig
     @yaml = YAML.load_file('.rr_config')
   end
 end
-
-
 
 RollbackRelease.start(ARGV)
