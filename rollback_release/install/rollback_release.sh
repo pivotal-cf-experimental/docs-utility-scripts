@@ -1,6 +1,6 @@
 #!/bin/bash
 # To install rollback_release, run this script by pasting the following command at the command line (not including the '#' symbol):
-# sh $HOME/workspace/docs-utility-scripts/rollback_release/install/rollback_release.sh
+# sh $HOME/workspace/docs-utility-scripts/rollback_release/install/rollback_release.sh; source ~/.bash_profile
 
 set -e
 
