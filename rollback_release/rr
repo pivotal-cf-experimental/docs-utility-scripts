@@ -20,7 +20,7 @@ class RollbackRelease < Thor
     roll_back rollback_choice if rollback_choices?
   end
 
-  desc "prime", "Pushes app to product space and org, and maps the app to an out-of-the-way route for review. \nRR Prime also starts the app with one instance."
+  desc "prime", "Pushes app to product space and org, and maps the app to an out-of-the-way route for review. \nRR Prime also starts the app with one instance. You must navigate to the directory for the app you want to push before you run 'rr prime'."
   def prime
     prime_release_text_description 
     set_product
