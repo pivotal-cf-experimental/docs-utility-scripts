@@ -28,51 +28,67 @@ class RollbackRelease < Thor
     roll_back rollback_choice if rollback_choices?
   end
 
-  # interactively choose product from .rr_config
-  # interactively choose app from space 
-  #   cf scale 
-  #   cf map-route
-  #   confirm running at command line (y/N)
-  #   cf un-map old route
-  #   cf stop old blue or green versions
-  # rr release
-  desc "release", "Releases new documents! Scales primed app and switches routes"
-  def release
-    prime_release_text_description
-    set_product
-    release_app if verify_release_candidate?
-    puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it."
 
-    puts "Not ready for primetime."
-  end
-
-  desc "prime", "manually primes rr release by pushing and starting app"
+  desc "prime", "  Pushes app to product space and org, and maps the app to an out-of-the-way route for review. \n  RR Prime also starts the app with one instance."
   def prime
     prime_release_text_description 
     set_product
     prime_app if verify_app_dir? && verify_prime_candidate?
   end
 
+  desc "release", "  Releases primed apps to production. \n  Scales primed app and switches route according to blue-green CI/CD rule set. \n  Unmaps and stops old blue or green version."
+  def release
+    prime_release_text_description
+    set_product
+    set_release_candidate
+    release_app if verify_release_candidate?
+  end
+
   no_commands do
 
     def release_app
-      puts 'calls release_app'
-    end
-
-    def prime_app
-      puts "\n#{set_color("  =>", :magenta)} OK, here we go!"
-      exec("export RR_DIR='#{rr_dir}'; export PRIMEDAPP='#{primed_app_name}'; export SPACE='#{config.yaml[product]['space']}'; export ORG='#{config.yaml[product]['org']}';sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/prime.sh")
+      if release_choice == false
+        puts "There is no app to roll back. Exiting." 
+        exit 1
+      end
+      puts "Executing release with arguments; #{release_choice} for #{product}."
+      exec("
+        export RELEASE_APP='#{release_choice}'; 
+        export SPACE='#{config.yaml[product]['space']}'; 
+        export ORG='#{config.yaml[product]['org']}'; 
+        export ROUTE_PATH='#{config.yaml[product]['route_path']}'; 
+        export DOMAIN='#{config.yaml[product]['domain']}'; 
+        export HOSTNAME='#{config.yaml[product]['hostname']}'; 
+        sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/release.sh")
     end
 
     def roll_back(rollback_app)
       if rollback_app == false
-        puts "nope" 
+        puts "There is no app to roll back. Exiting." 
         exit 1
       end
-      puts "Calls rollback with passed arg: rollback_app=#{rollback_app} for #{product}"
-      # needs app?
-      #   exec("export ROLLBACKAPP='#{rollback_app}'; export SPACE='#{space}'; export ORG='#{org}';sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/ripcord.sh")
-      # stops blue and green if they exist
+      puts "Executing rollback with arguments: #{rollback_app} for #{product}."
+      exec("
+        export ROLLBACKAPP='#{rollback_app}'; 
+        export SPACE='#{config.yaml[product]['space']}'; 
+        export ORG='#{config.yaml[product]['org']}'; 
+        export ROUTE_PATH='#{config.yaml[product]['route_path']}'; 
+        export DOMAIN='#{config.yaml[product]['domain']}'; 
+        export HOSTNAME='#{config.yaml[product]['hostname']}';  
+        sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/ripcord.sh")
+    end
+
+    def prime_app
+      puts "\n#{set_color("  =>", :magenta)} OK, here we go!"
+      exec("
+        export RR_DIR='#{rr_dir}'; 
+        export PRIMEDAPP='#{primed_app_name}'; 
+        export SPACE='#{config.yaml[product]['space']}'; 
+        export ORG='#{config.yaml[product]['org']}'; 
+        export ROUTE_PATH='#{config.yaml[product]['route_path']}'; 
+        export DOMAIN='#{config.yaml[product]['domain']}'; 
+        export HOSTNAME='#{config.yaml[product]['hostname']}'; 
+        sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/prime.sh")
     end
 
     def set_product    
@@ -87,9 +103,28 @@ class RollbackRelease < Thor
       @product = get_product_name(choose_app_num)
     end
 
-    def rollback_choice
+    def set_release_candidate
+      target_space_and_org  
       show_app_space_org_details
-      choice = ask("\n  #{set_color("=> ", :magenta)}Ok, what color app do you want to roll back to production for #{set_color(product, :magenta)}?", :limited_to => @rollback_choices)
+      release_choice
+    end
+
+    def verify_release_candidate?
+      yes?("\n  #{set_color("=> ", :magenta)}Please verify:\n  #{set_color("=> ", :magenta)}Release #{set_color(release_app, :magenta)} in #{set_color(config.yaml[product]['space'], :magenta)} space, #{set_color(config.yaml[product]['org'], :magenta)} org? [y/N]")
+    end
+
+    def release_choice
+      return @release_choice if @release_choice
+      @release_choice = "#{config.yaml[product]['app_name']}-"
+      @release_choice << ask("\n  #{set_color("=> ", :magenta)}Ok, which app do you want to re-route and release to production for #{set_color(product, :magenta)}, #{set_color(config.yaml[product]['app_name'] + '-blue', :blue)} or #{set_color(config.yaml[product]['app_name'] + '-green', :green)}?", :limited_to => ["blue", "green"])
+      @release_choice
+    end
+
+    def rollback_choice
+      return @rollback_choice if @rollback_choice
+      show_app_space_org_details
+      @rollback_choice = "#{config.yaml[product]['app_name']}-"
+      @rollback_choice << ask("\n  #{set_color("=> ", :magenta)}Ok, what app do you want to roll back to production for #{set_color(config.yaml[product]['app_name'], :magenta)}? The other app(s) will be stopped.", :limited_to => @rollback_choices)
     end
 
 
@@ -97,10 +132,10 @@ class RollbackRelease < Thor
       target_space_and_org  
       stdout, stderr, status = Open3.capture3("cf apps")
       possibilities = []
-      possibilities << "rose" if stdout.include?("#{product['app_name']}-rose") 
-      possibilities << "blue" if stdout.include?("#{product['app_name']}-blue")
-      possibilities << "green" if stdout.include?("#{product['app_name']}-green")
-      possibilities << "yellow" if stdout.include?("#{product['app_name']}-yellow")
+      possibilities << "rose" if stdout.include?("#{config.yaml[product]['app_name']}-rose") 
+      possibilities << "blue" if stdout.include?("#{config.yaml[product]['app_name']}-blue")
+      possibilities << "green" if stdout.include?("#{config.yaml[product]['app_name']}-green")
+      possibilities << "yellow" if stdout.include?("#{config.yaml[product]['app_name']}-yellow")
       @rollback_choices = possibilities
       possibilities.length > 0 ? true : false
     end
@@ -129,7 +164,7 @@ class RollbackRelease < Thor
 
 
     def prime_release_text_description
-     puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it."
+     puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it. The #{set_color(".rr_config", :magenta)} file sets the app names, orgs, spaces, branches, and books that #{set_color("rr", :magenta)} manages."
      puts "\n#{set_color("  rr prime", :magenta)}"
      puts "  The prime function pushes an app to the correct production space, starts it, and assigns it a test route in the #{set_color("cfapps.io", :magenta)} domain."
      puts "  After you check that it is running properly, flip the routing switch to map it to production with #{set_color("rr release", :magenta)}."
@@ -142,7 +177,7 @@ class RollbackRelease < Thor
     end
 
     def blue_or_green
-      ask("\n  #{set_color("=> ", :magenta)}Ok, should the app be #{set_color(config.yaml[product]['app_name'] + "-green", :green)} or #{set_color(config.yaml[product]['app_name'] + "-blue", :blue, :bold)}?\n  (Normally, you would push an app for which there is a stopped app of the same name.)", :limited_to => ["green", "blue"])
+      ask("\n  #{set_color("=> ", :magenta)}Ok, should the app be #{set_color(config.yaml[product]['app_name'] + "-green", :green)} or #{set_color(config.yaml[product]['app_name'] + "-blue", :blue, :bold)}?\n  (Normally, you would push an app for which there is a stopped app of the same name.)", :limited_to => ["blue", "green"])
     end
 
     def choose_app_num

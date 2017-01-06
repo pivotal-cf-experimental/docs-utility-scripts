@@ -46,6 +46,19 @@
 #     esac
 # done
 
+
+
+
+# printf "\n  Are you in the right space to push the ${MAGENTA}$ROLLBACKAPP${NC} app? [Y/n]"
+# while true; do
+#     read -p "" yn
+#     case $yn in
+#         [Yy]* ) echo "\nOK, let's double check by viewing the 'cf apps'...\n"; break;;
+#         [Nn]* ) echo "Please 'cf target -s <YOUR-DESIRED-SPACE>\n"; exit;;
+#         * ) echo "Please answer yes or no.";;
+#     esac
+# done
+
 # set +x
 # echo ="testing echo"
 # read -p 'Press enter to shut down old app'

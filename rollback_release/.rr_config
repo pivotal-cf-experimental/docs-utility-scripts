@@ -1,74 +1,108 @@
-PCF-1-9:
-  book: docs-book-pivotalcf
-  app_name: 'docs-pcf-1-9'
-  branch: '1.9'
-  space: 'pivotalcf-prod'
-  org: 'pivotal-pubtools' 
-PCF-1-8:
-  book: docs-book-pivotalcf
-  app_name: 'docs-pcf-1-8'
-  branch: '1.8'
-  space: 'pivotalcf-prod'
-  org: 'pivotal-pubtools' 
-PCF-1-7:
-  book: docs-book-pivotalcf
-  app_name: 'docs-pcf-1-7'
-  branch: '1.7'
-  space: 'pivotalcf-prod'
-  org: 'pivotal-pubtools' 
-PCF-1-6:
-  book: docs-book-pivotalcf
-  app_name: 'docs-pcf-1-6'
-  branch: '1.6'
-  space: 'pivotalcf-prod'
-  org: 'pivotal-pubtools' 
-PCF-Review:
-  book: docs-book-pivotalcf
-  app_name: 'docs-pcf-review'
-  branch: 'review'
-  space: 'pivotalcf-staging'
-  org: 'pivotal-pubtools' 
-PCF-Services:
-  book: docs-book-pcfservices
-  app_name: 'docs-pcfservices'
-  branch: 'review'
-  space: 'pivotalcf-prod'
-  org: 'pivotal-pubtools' 
-PCF-Services-Review:
-  book: docs-book-pcfservices
-  app_name: 'docs-pcfservices-review'
-  branch: 'review'
-  space: 'pivotalcf-staging'
-  org: 'pivotal-pubtools' 
-CF:
-  book: docs-book-cloudfoundry
-  app_name: 'docs-cloudfoundry'
-  branch: 'master'
-  space: 'docs-prod'
-  org: 'cfcommunity' 
-CF-Review:
-  book: docs-book-cloudfoundry
-  app_name: 'docs-cloudfoundry-review'
-  branch: 'review'
-  space: 'docs-staging'
-  org: 'cfcommunity' 
-PWS:
-  book: docs-book-pws
-  app_name: 'docs-pws'
-  branch: 'master'
-  space: 'pws-prod'
-  org: 'pivotal-pubtools' 
-PWS-Review:
-  book: docs-book-pws
-  app_name: 'docs-pws'
-  branch: 'review'
-  space: 'pws-staging'
-  org: 'pivotal-pubtools' 
+# PCF-1-9:
+#   book: docs-book-pivotalcf
+#   app_name: 'docs-pcf-1-9'
+#   branch: '1.9'
+#   space: 'pivotalcf-prod'
+#   org: 'pivotal-pubtools' 
+#   hostname: ''
+#   domain: 'docs.pivotal.io'
+#   route_path: '--path /pivotalcf/1-9'
+# PCF-1-8:
+#   book: docs-book-pivotalcf
+#   app_name: 'docs-pcf-1-8'
+#   branch: '1.8'
+#   space: 'pivotalcf-prod'
+#   org: 'pivotal-pubtools' 
+#   hostname: ''
+#   domain: 'docs.pivotal.io'
+#   route_path: '--path /pivotalcf/1-8'
+# PCF-1-7:
+#   book: docs-book-pivotalcf
+#   app_name: 'docs-pcf-1-7'
+#   branch: '1.7'
+#   space: 'pivotalcf-prod'
+#   org: 'pivotal-pubtools' 
+#   hostname: ''
+#   domain: 'docs.pivotal.io'
+#   route_path: '--path /pivotalcf/1-7'
+# PCF-1-6:
+#   book: docs-book-pivotalcf
+#   app_name: 'docs-pcf-1-6'
+#   branch: '1.6'
+#   space: 'pivotalcf-prod'
+#   org: 'pivotal-pubtools' 
+#   hostname: ''
+#   domain: 'docs.pivotal.io'
+#   route_path: '--path /pivotalcf/1-6'
+# PCF-Review:
+#   book: docs-book-pivotalcf
+#   app_name: 'docs-pcf-review'
+#   branch: 'review'
+#   space: 'pivotalcf-staging'
+#   org: 'pivotal-pubtools' 
+#   hostname: ''
+#   domain: 'cfapps.io'
+#   route_path: ''
+# PCF-Services:
+#   book: docs-book-pcfservices
+#   app_name: 'docs-pcfservices'
+#   branch: 'review'
+#   space: 'pivotalcf-prod'
+#   org: 'pivotal-pubtools' 
+#   hostname: ''
+#   domain: 'docs.pivotal.io'
+#   route_path: ''
+# PCF-Services-Review:
+#   book: docs-book-pcfservices
+#   app_name: 'docs-pcfservices-review'
+#   branch: 'review'
+#   space: 'pivotalcf-staging'
+#   org: 'pivotal-pubtools' 
+#   hostname: ''
+#   domain: 'cfapps.io'
+#   route_path: ''
+# CF:
+#   book: docs-book-cloudfoundry
+#   app_name: 'docs-cloudfoundry'
+#   branch: 'master'
+#   space: 'docs-prod'
+#   org: 'cfcommunity' 
+#   hostname: '--hostname docs'
+#   domain: 'cloudfoundry.org'
+#   route_path: ''
+# CF-Review:
+#   book: docs-book-cloudfoundry
+#   app_name: 'docs-cloudfoundry-review'
+#   branch: 'review'
+#   space: 'docs-staging'
+#   org: 'cfcommunity' 
+#   hostname: '--hostname docs-cloudfoundry-review'
+#   domain: 'cfapps.io'
+#   route_path: ''
+# PWS:
+#   book: docs-book-pws
+#   app_name: 'docs-pws'
+#   branch: 'master'
+#   space: 'pws-prod'
+#   org: 'pivotal-pubtools' 
+#   hostname: '--hostname docs'
+#   domain: 'run.pivotal.io'
+#   route_path: ''
+# PWS-Review:
+#   book: docs-book-pws
+#   app_name: 'docs-pws'
+#   branch: 'review'
+#   space: 'pws-staging'
+#   org: 'pivotal-pubtools' 
+#   hostname: '--hostname docs-runpivotal-review'
+#   domain: 'cfapps.io'
+#   route_path: ''
 Test:
   book: test-book
-  app_name: test-app
+  app_name: 'test-app'
   branch: ''
   space: 'development'
   org: 'cf-docs-sandbox'
-Service:
-  
+  hostname: '--hostname mocked-production-hostname'
+  domain: 'cfapps.io'
+  route_path: ''

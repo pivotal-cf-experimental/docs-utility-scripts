@@ -1,106 +1,51 @@
 #!/bin/bash
-# receives ROLLBACKAPP, SPACE, & ORG for cf push and start app with test route 
-# echo $ROLLBACKAPP
-# echo $SPACE
-# echo $ORG
+# receives RELEASE_APP, OLD_APP, SPACE, & ORG for cf push and start app with test route 
+# This script receives these variables:
+#   RELEASE_APP
+#   SPACE
+#   ORG
+#   DOMAIN
+#   PATH
+#   HOSTNAME
+# This script is a release script to 'cf start', 'scale', and 'map-route' a new prod app to the natural green/blue cadence of CI/CD. The rollback app may be blue, green, yellow, or rose.
+set -ex
 
-set -e
+echo 'Checking inputs:'
+echo $RELEASE_APP
+echo $SPACE
+echo $ORG
+echo $DOMAIN
+echo $HOSTNAME
+
 MAGENTA='\033[0;35m'
 WHITE='\033[1;37m'
 NC='\033[0m' 
-# Black        0;30     Dark Gray     1;30
-# Red          0;31     Light Red     1;31
-# Green        0;32     Light Green   1;32
-# Brown/Orange 0;33     Yellow        1;33
-# Blue         0;34     Light Blue    1;34
-# Purple       0;35     Light Purple  1;35
-# Cyan         0;36     Light Cyan    1;36
-# Light Gray   0;37     White         1;37
+
+cf apps
 
 cf target -o $ORG -s $SPACE
+
+cf start $RELEASE_APP
+cf scale $RELEASE_APP -i 3
+
+cf map-route $RELEASE_APP $DOMAIN $HOSTNAME $ROUTE_PATH
+# If blue, stop green:
+if [[ $RELEASE_APP == *"blue"* ]]
+	then
+	cf stop ${RELEASE_APP/blue/green}
+fi
+
+# If green, stop blue
+if [[ $RELEASE_APP == *"green"* ]]
+	then
+	echo "  ==> Stopping blue app."
+	cf stop ${RELEASE_APP/green/blue}
+fi
+
 cf apps
-printf "\n  Are you sure you want to roll back the ${MAGENTA}$ROLLBACKAPP${NC} app? [Y/n]\n"
-# printf "\n  Let's check the 'cf target'..."
-# cf target
 
-# printf "\n  Are you in the right space to push the ${MAGENTA}$ROLLBACKAPP${NC} app? [Y/n]"
-# while true; do
-#     read -p "" yn
-#     case $yn in
-#         [Yy]* ) echo "\nOK, let's double check by viewing the 'cf apps'...\n"; break;;
-#         [Nn]* ) echo "Please 'cf target -s <YOUR-DESIRED-SPACE>\n"; exit;;
-#         * ) echo "Please answer yes or no.";;
-#     esac
-# done
-
-
-while true; do
-    read -p '' yn
-    case $yn in
-        [Yy]* ) echo "  Pushing $ROLLBACKAPP\n"; break;;
-        [Nn]* ) echo "  No $ROLLBACKAPP will be pushed.\n"; exit;;
-        * ) echo "  Please answer yes or no.";;
-    esac
-done
-
-echo "we pushed $ROLLBACKAPP"
+echo "The $RELEASE_APP app has been released into production."
 
 
 
 
-# NEW_ORG=pivotal-pubtools
-# NEW_SPACE=gemfire82-prod
-# NEW_APP_STATIC=docs-gemfire82-green
-# NEW_APP=docs-gemfire82-blue
-
-# OLD_ORG=pivotal
-# OLD_SPACE=docs
-#OLD_APP_BLUE=docs-gemfire-closed-blue
-#OLD_APP_GREEN=docs-gemfire-closed-green
-
-# DOMAIN=docs.gopivotal.com
-# HOSTNAME=gemfire
-
-#cf target -o ${NEW_ORG} -s ${NEW_SPACE}
-#cf start ${NEW_APP}
-#cf stop ${NEW_APP_STATIC}
-
-# cf target -o ${OLD_ORG} -s ${OLD_SPACE}
-# cf delete-route ${DOMAIN} -n ${HOSTNAME}
-
-# cf target -o ${NEW_ORG} -s ${NEW_SPACE}
-# cf map-route ${NEW_APP} ${DOMAIN} -n ${HOSTNAME}
-# cf map-route ${NEW_APP_STATIC} ${DOMAIN} -n ${HOSTNAME}
-
-# cf apps
-
-# echo "ruby rr"
-
-# while true; do
-#     read -p "Do you wish to install this program? [Y/n]" yn
-#     case $yn in
-#         [Yy]* ) echo ="yes"; break;;
-#         [Nn]* ) echo ="no"; exit;;
-#         * ) echo "Please answer yes or no.";;
-#     esac
-# done
-
-# set +x
-# echo ="testing echo"
-# read -p 'Press enter to shut down old app'
-
-# set -x
-
-# echo "Do you wish to install this program? [Y/n]"
-# select yn in "Yes" "No"; do
-#     case $yn in
-#         Yes ) echo ="yes"; break;;
-#         No ) echo ="no"; exit;;
-#     esac
-# done
-
-
-#cf target -o ${OLD_ORG} -s ${OLD_SPACE}
-
-#cf stop ${OLD_APP_BLUE}
-#cf stop ${OLD_APP_GREEN}
