@@ -15,11 +15,11 @@ There are two main functions of RR:
     2. You call `rr release` to start and scale your app, map it to a known, pre-defined route (production, staging, review), and stop the blue or green counterpart to that app (the old app).
   2. To roll back to older, functional apps (stale, but good, versions of our docs) to reduce production errors, stress and downtime. `rr ripcord` is the tool to safely accomplish this task. 
 
-The `.rr_config` YAML file contains the details for each of our versioned products, including book, app_name, branch, space, org, hostname, domain, route_path. Our products include PCF-1-9, PCF-1-8, PCF-1-7, PCF-1-6, PCF-Review, PCF-Services, PCF-Services-Review, CF, CF-Review, PWS, and PWS-Review.
+The `.rr_config` YAML file contains the details for each of our versioned products, including book, app_name, branch, space, org, hostname, domain, route_path. Our products include PCF-1-9, PCF-1-8, PCF-1-7, PCF-1-6, PCF-Review, PCF-Services, PCF-Services-Review, CF, CF-Review, PWS, and PWS-Review, in addition to all of the Data Docs.
 
 Using RR:
 
-All of the `rr` commands prompt you for choices
+All of the `rr` commands prompt you for choices.
 
 `rr prime` - Prime an app you want to release
 To use `rr prime`, you must navigate to the root directory for the app you wish to push. For `bookbinder` apps, the app you push is the `final_app` directory, so navigate there for the appropriate product and version. Then, run `rr prime` and follow the prompts.
