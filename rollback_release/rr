@@ -217,7 +217,7 @@ class RollbackRelease < Thor
     def rr_dir
       return @rr_dir if @rr_dir
 
-      @rr_dir = ENV["RR_PWD"]
+      @rr_dir = ENV["PWD"]
     end
 
   end
