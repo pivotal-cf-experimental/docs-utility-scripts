@@ -12,8 +12,8 @@ class RollbackRelease < Thor
   map '--help' => :help
 
   desc "help", "Show this help message"
-  desc "ripcord", "Pull ripcord -- relax, and roll back like a boss."
 
+  desc "ripcord", "Pull ripcord -- relax, and roll back like a boss."
   def ripcord
     ripcord_text_description
     set_product 
@@ -217,7 +217,7 @@ class RollbackRelease < Thor
     def rr_dir
       return @rr_dir if @rr_dir
 
-      @rr_dir = ENV["PWD"]
+      @rr_dir = ENV["RR_PWD"]
     end
 
   end
