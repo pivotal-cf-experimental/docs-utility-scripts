@@ -16,7 +16,7 @@ class Scribe < Thor
   desc "help", "Show this help message"
 
   desc "context", "Set or display the available contexts"
-  method_option :context , :aliases => "c" , :desc => "Context" 
+  method_option :context , :aliases => "c" , :desc => "Context"
   def context(new_context=nil)
     list_contexts && return if new_context.nil?
     if new_context == current_context
@@ -56,9 +56,17 @@ class Scribe < Thor
       print "    #{stdout.gsub(/\n/, "\n    ").gsub(/\n    $/,"\n")}"
     end
 
+  desc "update", "Update all book and content repos with current configs and content"
+  method_option :update , :aliases => "up" , :desc => "Context" 
+  def update()
   end
 
+  end
 
+# update: current on repos on master
+# update(repo, branch)
+# branch
+# update review
   no_commands do
 
     def wip_stash(current_context, new_context)

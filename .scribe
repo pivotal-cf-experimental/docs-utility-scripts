@@ -101,3 +101,12 @@ cf:
   - repository:
       name: uaa
       ref: 'gh-pages'
+  # Example from docs-book-pivotalcf config.yml
+  # TODO: for branch creator
+  # need to scrape first part of name for org
+  # - repository:
+  #     name: cloudfoundry/docs-cf-admin
+  #   directory: pivotalcf/1-9/adminguide
+  #   product_id: pcf
+  #   product_info: *local_pcf
+
