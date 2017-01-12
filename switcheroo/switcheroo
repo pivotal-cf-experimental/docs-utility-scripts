@@ -8,7 +8,7 @@ require 'pp'
 
 CONTEXT_CONFIG_PATH = "#{ENV["HOME"]}/workspace/.scribe-context"
 
-class Scribe < Thor
+class Switcheroo < Thor
 
   map '--version' => :version
   map '--help' => :help
@@ -17,77 +17,15 @@ class Scribe < Thor
 
   desc "context", "Set or display the available contexts"
   method_option :context , :aliases => "c" , :desc => "Context"
-  def context(new_context=nil)
-    list_contexts && return if new_context.nil?
-    if new_context == current_context
-      show_context(new_context)
-      return
-    end
-    # TODO implement wip-stash, and wip-pop if wip-stash-branch
-    if config.yaml.include?(new_context)
-      wip_stash(current_context, new_context) if git_changes?
-      #TODO needs to check for branch existence before trying to switch
-        # make new branch or throw error if branch doesn't exist
-      context_accurate?(new_context)
-      switch_branches(new_context)
-      write_context(current_context, new_context)
-      wip_pop(new_context) 
-    else
-      scribe_error("Bad context match", new_context)
-    end
+  def thing
+
   end
 
-  desc "story", "show git status in the repos within this context"
-  method_option :story , :aliases => "s" , :desc => "Story"
-  def story
-    unless current_context
-      puts "Please set your context with `scribe context [new context name]`"
-      exit 1
-    end
-    puts "\nStatus for repos in #{set_color(current_context, :green)} context:"
-    each_repo do |name, repo_config|
-      Dir.chdir("#{ENV["HOME"]}/workspace/#{name}")
-      stdout, stdeerr, status = Open3.capture3("git status --porcelain")
 
-      if stdout.empty?
-        puts set_color("  #{name}: - √", :magenta)
-        next 
-      end
-      puts set_color("  #{name}: - CHANGES", :magenta)
-      print "    #{stdout.gsub(/\n/, "\n    ").gsub(/\n    $/,"\n")}"
-    end
+  def update()
   end
 
-  desc "update", "Update all book and content repos with current configs and content"
-  method_option :update , :aliases => "up" , :desc => "Context" 
-  def update
-    puts 'update method'
   end
-
-  desc "map", "View the PCF/OSS publishing branch map for repos"
-  method_option :map , :aliases => "map" , :desc => "Map" 
-  def map
-    puts set_color(<<-publishing_map, :magenta)
-
-      Map PCF versions to branches in content repositories. Checkout the 
-    appropriate branch number to modify relevant content for the PCF 
-    core docs. The branches in the docs-book-pivotalcf also reflect this
-    publishing schema, as seen in the config.yml.
-
-   --------------------------------------------------------------------    
-  |  PCF Version =>          1.6   1.7   1.8   1.9    1.10             |
-  |  =====================================================             |
-  |  Commercial Branches     1.6   1.7   1.8   1.9    1.10             |
-  |  Open Source Branches    225   235   239   246    TBD              |
-   --------------------------------------------------------------------    
-    publishing_map
-  end
-
-# update: current on repos on master
-# update(repo, branch)
-# branch
-# update review
-
 
 # update: current on repos on master
 # update(repo, branch)

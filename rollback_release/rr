@@ -49,7 +49,7 @@ class RollbackRelease < Thor
         export ORG='#{config.yaml[product]['org']}'; 
         export ROUTE_PATH='#{config.yaml[product]['route_path']}'; 
         export DOMAIN='#{config.yaml[product]['domain']}'; 
-        export HOSTNAME='#{config.yaml[product]['hostname']}'; 
+        export SUBDOMAIN='#{config.yaml[product]['subdomain']}'; 
         sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/release.sh")
     end
 
@@ -65,7 +65,7 @@ class RollbackRelease < Thor
         export ORG='#{config.yaml[product]['org']}'; 
         export ROUTE_PATH='#{config.yaml[product]['route_path']}'; 
         export DOMAIN='#{config.yaml[product]['domain']}'; 
-        export HOSTNAME='#{config.yaml[product]['hostname']}';  
+        export SUBDOMAIN='#{config.yaml[product]['subdomain']}';  
         sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/ripcord.sh")
     end
 
@@ -78,7 +78,7 @@ class RollbackRelease < Thor
         export ORG='#{config.yaml[product]['org']}'; 
         export ROUTE_PATH='#{config.yaml[product]['route_path']}'; 
         export DOMAIN='#{config.yaml[product]['domain']}'; 
-        export HOSTNAME='#{config.yaml[product]['hostname']}'; 
+        export SUBDOMAIN='#{config.yaml[product]['subdomain']}'; 
         sh #{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release/lib/prime.sh")
     end
 
@@ -153,7 +153,7 @@ class RollbackRelease < Thor
     end
 
     def prime_release_text_description
-     puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it. The #{set_color(".rr_config", :magenta)} file sets the app names, orgs, spaces, branches, and books that #{set_color("rr", :magenta)} manages."
+     puts "\n  #{set_color("rr prime", :magenta)} and #{set_color("rr release", :magenta)} work together. Prime an app to prepare it for prod, verify it works as expected, and then release it. The #{set_color("rr_config.yml", :magenta)} file sets the app names, orgs, spaces, branches, and books that #{set_color("rr", :magenta)} manages."
      puts "\n#{set_color("  rr prime", :magenta)}"
      puts "  The prime function pushes an app to the correct production space, starts it, and assigns it a test route in the #{set_color("cfapps.io", :magenta)} domain."
      puts "  After you check that it is running properly, flip the routing switch to map it to production with #{set_color("rr release", :magenta)}."
@@ -229,7 +229,7 @@ class RRConfig
     return @yaml if @yaml
 
     Dir.chdir("#{ENV["HOME"]}/workspace/docs-utility-scripts/rollback_release")
-    @yaml = YAML.load_file('.rr_config')
+    @yaml = YAML.load_file('rr_config.yml')
   end
 end
 

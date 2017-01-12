@@ -4,7 +4,7 @@ PCF-1-9:
   branch: '1.9'
   space: 'pivotalcf-prod'
   org: 'pivotal-pubtools' 
-  hostname: ''
+  subdomain: ''
   domain: 'docs.pivotal.io'
   route_path: '--path /pivotalcf/1-9'
 PCF-1-8:
@@ -13,7 +13,7 @@ PCF-1-8:
   branch: '1.8'
   space: 'pivotalcf-prod'
   org: 'pivotal-pubtools' 
-  hostname: ''
+  subdomain: ''
   domain: 'docs.pivotal.io'
   route_path: '--path /pivotalcf/1-8'
 PCF-1-7:
@@ -22,7 +22,7 @@ PCF-1-7:
   branch: '1.7'
   space: 'pivotalcf-prod'
   org: 'pivotal-pubtools' 
-  hostname: ''
+  subdomain: ''
   domain: 'docs.pivotal.io'
   route_path: '--path /pivotalcf/1-7'
 PCF-1-6:
@@ -31,16 +31,26 @@ PCF-1-6:
   branch: '1.6'
   space: 'pivotalcf-prod'
   org: 'pivotal-pubtools' 
-  hostname: ''
+  subdomain: ''
   domain: 'docs.pivotal.io'
   route_path: '--path /pivotalcf/1-6'
+# For new alpha-edge docs, modify values for 'branch:' and 'route_path:'
+PCF-Alpha-Edge:
+  book: docs-book-pivotalcf
+  app_name: 'docs-pcf-edge'
+  branch: '1.10'
+  space: 'pivotalcf-staging'
+  org: 'pivotal-pubtools' 
+  subdomain: '--hostname docs-pcf-staging'
+  domain: 'cfapps.io'
+  route_path: '--path /pivotalcf/1-10'  
 PCF-Review:
   book: docs-book-pivotalcf
   app_name: 'docs-pcf-review'
   branch: 'review'
   space: 'pivotalcf-staging'
   org: 'pivotal-pubtools' 
-  hostname: ''
+  subdomain: ''
   domain: 'cfapps.io'
   route_path: ''
 PCF-Services:
@@ -49,7 +59,7 @@ PCF-Services:
   branch: 'review'
   space: 'pivotalcf-prod'
   org: 'pivotal-pubtools' 
-  hostname: ''
+  subdomain: ''
   domain: 'docs.pivotal.io'
   route_path: ''
 PCF-Services-Review:
@@ -58,7 +68,7 @@ PCF-Services-Review:
   branch: 'review'
   space: 'pivotalcf-staging'
   org: 'pivotal-pubtools' 
-  hostname: ''
+  subdomain: ''
   domain: 'cfapps.io'
   route_path: ''
 CF:
@@ -67,7 +77,7 @@ CF:
   branch: 'master'
   space: 'docs-prod'
   org: 'cfcommunity' 
-  hostname: '--hostname docs'
+  subdomain: '--hostname docs'
   domain: 'cloudfoundry.org'
   route_path: ''
 CF-Review:
@@ -76,7 +86,7 @@ CF-Review:
   branch: 'review'
   space: 'docs-staging'
   org: 'cfcommunity' 
-  hostname: '--hostname docs-cloudfoundry-review'
+  subdomain: '--hostname docs-cloudfoundry-review'
   domain: 'cfapps.io'
   route_path: ''
 PWS:
@@ -85,7 +95,7 @@ PWS:
   branch: 'master'
   space: 'pws-prod'
   org: 'pivotal-pubtools' 
-  hostname: '--hostname docs'
+  subdomain: '--hostname docs'
   domain: 'run.pivotal.io'
   route_path: ''
 PWS-Review:
@@ -94,7 +104,7 @@ PWS-Review:
   branch: 'review'
   space: 'pws-staging'
   org: 'pivotal-pubtools' 
-  hostname: '--hostname docs-runpivotal-review'
+  subdomain: '--hostname docs-runpivotal-review'
   domain: 'cfapps.io'
   route_path: ''
 Test:
@@ -103,6 +113,6 @@ Test:
   branch: ''
   space: 'development'
   org: 'cf-docs-sandbox'
-  hostname: '--hostname mocked-production-hostname'
+  subdomain: '--hostname mocked-production-hostname'
   domain: 'cfapps.io'
   route_path: ''
