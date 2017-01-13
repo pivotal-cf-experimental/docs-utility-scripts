@@ -1,5 +1,5 @@
 # Copy/paste the following line to your shell (without the #) to add `update` as an alias:
-# echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater.rb"' >> ~/.bash_profile; source ~/.bash_profile
+# echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater/updater.rb"' >> ~/.bash_profile; source ~/.bash_profile
 
 # This file acts as the updater for updater.rb. This script calls updater_core.rb for the docs repositories update functionality.
 
