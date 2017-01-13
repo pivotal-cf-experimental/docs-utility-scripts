@@ -35,6 +35,13 @@ class RollbackRelease < Thor
     release_app if verify_release_candidate?
   end
 
+  desc "switcheroo", "Create new commercial or OSS branches in all PCF content repos from PCF config.yml"
+  def switcheroo 
+    create_new_branches 
+    # switcheroo_text_description
+    # verify_pcf_book_branch? ? create_new_branches : warn_and_exit
+  end
+
   no_commands do
 
     def release_app
@@ -100,6 +107,20 @@ class RollbackRelease < Thor
       release_choice
     end
 
+    def verify_pcf_book_branch?
+      yes?("\n  The #{set_color("docs-book-pivotalcf", :magenta)} must be on the branch for the new PCF release for #{set_color("rr switcheroo", :magenta)} to make the correct branches. \n  Currently, the #{set_color("docs-book-pivotalcf", :magenta)} repo is on the #{set_color(get_docs_book_pcf_branch, :magenta)} branch. Is that correct? [y/N]")
+    end
+
+    def get_docs_book_pcf_branch
+      stdout, stderr, status = Open3.capture3("cd $HOME/workspace/docs-book-pivotalcf; git branch")
+      stdout[/(?:\*\s)([\w+-?]+)/][2..-1]
+    end
+
+    def warn_and_exit
+      puts "\n  Please checkout the correct branch for the alpha-edge #{set_color("docs-book-pivotalcf", :magenta)} release and try again.\n  Bye!"
+      exit 1
+    end
+
     def verify_release_candidate?
       yes?("\n  #{set_color("=> ", :magenta)}Please verify:\n  #{set_color("=> ", :magenta)}Release #{set_color(release_app, :magenta)} in #{set_color(config.yaml[product]['space'], :magenta)} space, #{set_color(config.yaml[product]['org'], :magenta)} org? [y/N]")
     end
@@ -136,8 +157,28 @@ class RollbackRelease < Thor
       @primed_app_name = config.yaml[product]['app_name'] + "-" + blue_or_green
     end
 
+    def create_new_branches
+      config = YAML.load_file(ENV['HOME'] + "/workspace/docs-book-pivotalcf/config.yml")
+      config['sections'].each do |section|
+        if section['repository']['ref']
+
+          puts "name: #{section['repository']['name']}\n ref: #{section['repository']['ref']}\n"
+          create_new_repo_branch(section['repository']['ref'], section['repository']['name']) if yes?("Do you want to make a #{section['repository']['ref']} branch for this repo?")
+        else
+          puts "name: #{section['repository']['name']}\n  #{set_color("==>", :magenta)} No #{set_color("'ref'", :magenta)} for this repo."
+        end
+      end
+      # {"repository"=>{"name"=>"cloudfoundry/docs-cf-admin", "ref"=>"246"},
+    end
+
+    def create_new_repo_branch(branch_name, repo)
+      repo = repo.gsub(/\w*-?\w*\//,'')
+      puts "Creating new #{set_color(branch_name, :magenta)} branch..."
+      `cd ~/workspace/#{repo}; git checkout master; git pull; git branch '#{branch_name}'; git push -u origin #{branch_name}`
+    end
+
     def verify_product_name?
-      yes?("\n  #{set_color("=> ", :magenta)}#{set_color(product, :magenta)}\n\n  #{set_color("=> ", :magenta)}Please verify you want to select an app for this product: [y/n] ")  
+      yes?("\n  #{set_color("=> ", :magenta)}#{set_color(product, :magenta)}\n\n  #{set_color("=> ", :magenta)}Please verify you want to select an app for this product: [y/n] ") 
     end
 
     def verify_app_dir?
@@ -159,6 +200,12 @@ class RollbackRelease < Thor
      puts "  After you check that it is running properly, flip the routing switch to map it to production with #{set_color("rr release", :magenta)}."
      puts "\n#{set_color("  rr release", :magenta)}"
      puts "  The release function scales a primed app, maps it to production, and stops the apps with the same root name."
+    end
+
+    def switcheroo_text_description
+      puts "\n  #{set_color("rr switcheroo", :magenta)} creates branches in repos that publish content for the PCF core docs. "
+      puts "  The branches it creates are mapped with a name that is the commercial PCF version number or the contemporary CF release."
+      puts "  Those branch mappings are pulled from the #{set_color("docs-book-pivotalcf/config.yml", :magenta)} branches of the PCF core docs."
     end
 
     def ripcord_text_description

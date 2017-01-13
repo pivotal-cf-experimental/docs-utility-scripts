@@ -15,18 +15,5 @@ def get_current_updater
 end
 
 get_current_updater
-require "#{Dir.home}" + '/workspace/docs-utility-scripts/updater_core.rb'
-
-# =================================================
-class Scribe < Thor
-
-  map '--version' => :version
-  map '--help' => :help
-
-  desc "help", "Show this help message"
-
-  desc "update", "Update all book and content repos with current configs and content"
-  method_option :update , :aliases => "up" , :desc => "Context" 
-  def update
-  end
+require "#{Dir.home}" + '/workspace/docs-utility-scripts/updater/updater_core.rb'
 

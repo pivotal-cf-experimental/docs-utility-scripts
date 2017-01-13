@@ -83,16 +83,6 @@ class Scribe < Thor
     publishing_map
   end
 
-# update: current on repos on master
-# update(repo, branch)
-# branch
-# update review
-
-
-# update: current on repos on master
-# update(repo, branch)
-# branch
-# update review
   no_commands do
 
     def wip_stash(current_context, new_context)
