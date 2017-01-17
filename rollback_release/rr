@@ -37,6 +37,8 @@ class RollbackRelease < Thor
 
   desc "switcheroo", "Create new commercial or OSS branches in all PCF content repos from PCF config.yml"
   def switcheroo 
+    puts "Make branches manually or fix me"
+    exit 1
     create_new_branches 
     # switcheroo_text_description
     # verify_pcf_book_branch? ? create_new_branches : warn_and_exit
@@ -159,6 +161,8 @@ class RollbackRelease < Thor
 
     def create_new_branches
       config = YAML.load_file(ENV['HOME'] + "/workspace/docs-book-pivotalcf/config.yml")
+      # TODO needs to be on correct branch for new release number to parse the config (1.9, 1.10...)
+      # The config needs to have the correct branches
       config['sections'].each do |section|
         if section['repository']['ref']
 
