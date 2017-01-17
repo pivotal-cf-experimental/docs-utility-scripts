@@ -168,13 +168,12 @@ class RollbackRelease < Thor
           puts "name: #{section['repository']['name']}\n  #{set_color("==>", :magenta)} No #{set_color("'ref'", :magenta)} for this repo."
         end
       end
-      # {"repository"=>{"name"=>"cloudfoundry/docs-cf-admin", "ref"=>"246"},
     end
 
     def create_new_repo_branch(branch_name, repo)
       repo = repo.gsub(/\w*-?\w*\//,'')
       puts "Creating new #{set_color(branch_name, :magenta)} branch..."
-      `cd ~/workspace/#{repo}; git checkout master; git pull; git branch '#{branch_name}'; git push -u origin #{branch_name}`
+      `cd ~/workspace/#{repo}; git checkout master; git pull; git branch #{branch_name}; git push -u origin #{branch_name}`
     end
 
     def verify_product_name?

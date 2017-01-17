@@ -44,6 +44,15 @@ PCF-Alpha-Edge:
   subdomain: '--hostname docs-pcf-staging'
   domain: 'cfapps.io'
   route_path: '--path /pivotalcf/1-10'  
+PCF-Services-Edge:
+  book: docs-book-pivotalcf
+  app_name: 'docs-edge-pcfservices'
+  branch: 'edge'
+  space: 'pivotalcf-staging'
+  org: 'pivotal-pubtools' 
+  subdomain: '--hostname docs-pcf-staging'
+  domain: 'cfapps.io'
+  route_path: ''  
 PCF-Review:
   book: docs-book-pivotalcf
   app_name: 'docs-pcf-review'
