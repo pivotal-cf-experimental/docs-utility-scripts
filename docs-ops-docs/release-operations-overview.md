@@ -8,7 +8,7 @@ This document addresses the two playbooks used by the docs team to accomplish a 
 
 2. The **Edge Documentation Playbook**l describes how to publish edge documentation to our staging site. Edge content documents the new, unreleased version of PCF. We need this edge documentation for our writers, PMs, field engineers, product owners, and SMEs to review prior to publishing.
 
-Those playbooks are located [here](https://github.com/pivotal-cf-experimental/docs-utility-scripts/tree/master/docs-ops-docs)
+These playbooks are located [here](https://github.com/pivotal-cf-experimental/docs-utility-scripts/tree/master/docs-ops-docs).
 
 ## Cadence
 

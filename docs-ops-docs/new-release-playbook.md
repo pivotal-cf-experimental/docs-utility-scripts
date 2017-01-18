@@ -1,6 +1,6 @@
 # New Release Playbook
 
-Refer to the (Release Operations Overview)[https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/docs-ops-docs/release-operations-overview.md] before you start this playbook.
+Refer to the [Release Operations Overview](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/docs-ops-docs/release-operations-overview.md) before you start this playbook.
 
 ## Step One: Prepare cf-current Pipeline
 
