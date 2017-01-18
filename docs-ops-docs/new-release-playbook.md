@@ -1,5 +1,7 @@
 # New Release Playbook
 
+Refer to the (Release Operations Overview)[https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/docs-ops-docs/release-operations-overview.md] before you start this playbook.
+
 ## Step One: Prepare cf-current Pipeline
 
 Perform the following steps to add a new group to the **cf-current** pipeline one to two days before the new release goes GA:
