@@ -1,3 +1,12 @@
+Partners:
+  book: docs-book-partners
+  app_name: 'docs-partners'
+  branch: ''
+  space: 'pivotalcf-prod'
+  org: 'pivotal-pubtools'
+  subdomain: ''
+  domain: 'docs.pivotal.io'
+  route_path: '--path /partners'
 PCF-1-10:
   book: docs-book-pivotalcf
   app_name: 'docs-pcf-1-10'
