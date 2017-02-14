@@ -47,8 +47,13 @@ TOTALLY-FINE-PRINT DETAILS:
  This script assumes: 
  
 • your workspace is located at ~/workspace
+
 • the docs group only has the four books: pcf, pws, cf and services
+
 • you have a .bash_profile file
+
 • you have added your RSA key for git cloning
+
 • you're ok with removing .update_repos.sh (the old repo update script)
+
 • you can clean up your .bash_profile if you want to remove the old "update" alias
