@@ -18,7 +18,7 @@ Copy/paste the following to your command line:
 
 `git pull`
 
-`echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater.rb"' >> ~/.bash_profile`
+`echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater/updater.rb"' >> ~/.bash_profile`
 
 `source ~/.bash_profile`
 
