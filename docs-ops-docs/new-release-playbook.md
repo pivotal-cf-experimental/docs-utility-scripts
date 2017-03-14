@@ -37,6 +37,7 @@ Perform the following steps to add a new group to the **cf-current** pipeline on
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-current/pcf-<NEW-VERSION-NUMBER>]`
 	1. `rake fly:set_pipeline[cf-current]`
+	1. `rake pipeline:update[cf-current]`
 1. Commit and push the changes to concourse-scripts-docs.
 1. Adding the new group adds the capacity to publish these docs to production using Concourse. Navigate to the [cf-current pipeline in Concourse](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current). The groups in the cf-current pipeline should look as follows:
 	* **oss**
