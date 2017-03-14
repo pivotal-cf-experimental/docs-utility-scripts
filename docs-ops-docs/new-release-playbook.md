@@ -55,12 +55,18 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 1. When the bind completes, change into the `final_app` directory.
 1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue`. For example:
 	`cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28`
-1. When the command completes, navigate to the app's route. The route should be provided in the output. For example:
+1. When the command completes, navigate to the app's route and ensure the content looks good. The route should be provided in the output. For example:
 	`urls: docs-pcf-1-10-blue.cfapps.io`
+1. Navigate to the Concourse UI and pause the `cf-edge` pipeline.
+1. Map the newly deployed app to the route currently mapped to `docs-pcf-edge-blue` and `docs-pcf-edge-green`. For instance:
+	`cf map-route docs-pcf-1-10-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/1-10`
+1. Navigate to the route and ensure the content looks good.
+1. Stop the running `docs-pcf-edge` app.
+1. Kick off a new build of the `pcf-NEW-VERSION-NUMBER-bind` under the `pcf-NEW-VERSION-NUMBER` group in `cf-current`. For instance, `pcf-1-10-bind` under `pcf-1-10` in `cf-current`.
+1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` are bound to Elastico service instances.
+1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` have basic auth enabled. To enable auth, set the following environment variables: `SITE_AUTH_USERNAME` to YOUR-USERNAME and `SITE_AUTH_PASSWORD` to YOUR-PASWORD.
 
-## Step Three: Update the Staging Pipeline
-
-## Step Four: Publish the New Release Docs
+## Step Three: Publish the New Release Docs
 
 Perform the following steps to publish the new release docs on the day the new release goes GA:
 
