@@ -4,7 +4,7 @@ Refer to the [Release Operations Overview](https://github.com/pivotal-cf-experim
 
 ## Step One: Prepare cf-current Pipeline
 
-Perform the following steps to add a new group to the **cf-current** pipeline one to two days before the new release goes GA:
+Perform the following steps to add a new group to the **cf-current** pipeline (with no path to production) one to two days before the new release goes GA:
 
 1. Navigate to the [cf-current pipeline in Concourse](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current). You should see the following groups: 
 	* **oss**
@@ -14,13 +14,14 @@ Perform the following steps to add a new group to the **cf-current** pipeline on
 1. Add a new group for **pcf-\<NEW-VERSION-NUMBER>** to **cf-current** pipeline by copying the directory that contains the **pcf-\<CURRENT-VERSION-NUMBER>** group and modifying its configuration files. These examples below assume that `1.10` is the new release, and `1.9` is the current release. 
 	1. `cd concourse-scripts-docs/cf-current`
 	1. `cp -r pcf-1-9 ./pcf-1-10`
-	1. Rename all the `pcf-1-9*` directories within `concourse-scripts-docs/cf-current/pcf-1-10` to `pcf-1-10*`.
+	1. Delete the `pcf-1-9-production` directory.
+	1. Rename the remaining `pcf-1-9*` directories within `concourse-scripts-docs/cf-current/pcf-1-10` to `pcf-1-10*`.
 	1. Open config.yml in pcf-1-10 and edit the following fields:
 		1. Remove Line 3: `book_branch: '1.9'`
 (If no branch is specified, it defaults to master.)
 		1. Line 5: `app_name: docs-pcf-1-9` => `docs-pcf-1-10`
 		1. Line 16: `path: pivotalcf/1-9` => `pivotalcf/1-10`
-		1. Line 25: `path: pivotalcf/1-9` => `pivotalcf/1-10`
+		1. Remove the production section.
 	1. Open `concourse-scripts-docs/cf-current/deployment-resources.yml` and add a new section for the S3 bucket:
 
 		```
@@ -39,15 +40,27 @@ Perform the following steps to add a new group to the **cf-current** pipeline on
 	1. `rake fly:set_pipeline[cf-current]`
 	1. `rake pipeline:update[cf-current]`
 1. Commit and push the changes to concourse-scripts-docs.
-1. Adding the new group adds the capacity to publish these docs to production using Concourse. Navigate to the [cf-current pipeline in Concourse](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current). The groups in the cf-current pipeline should look as follows:
+1. Adding the new group adds the capacity to publish these docs using Concourse. Navigate to the [cf-current pipeline in Concourse](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current). The groups in the cf-current pipeline should look as follows:
 	* **oss**
 	* **pws**
 	* **pcfservices**
 	* **pcf-\<CURRENT-VERSION-NUMBER>**
 	* **pcf-\<NEW-VERSION-NUMBER>**
-1. Communicate to the docs team at stand-up and with @here in #pcf-docs-team Slack, that there is now a **pcf-\<NEW-VERSION-NUMBER>** group in the cf-current pipeline with a path to production. Tell the team not to kick off any builds in the **pcf-\<NEW-VERSION-NUMBER>** group, including the bind and staging job.
+1. Communicate to the docs team at stand-up and with @here in #pcf-docs-team Slack, that there is now a **pcf-\<NEW-VERSION-NUMBER>** group in the cf-current pipeline. Tell the team not to kick off any builds in the **pcf-\<NEW-VERSION-NUMBER>** group, including the bind and staging job.
 
-## Step Two: Publish the New Release Docs
+## Step Two: Push a New Staging App
+
+1. Change into the `docs-book-pivotalcf` directory and switch to the `master` branch.
+1. Run `bookbinder bind remote`.
+1. When the bind completes, change into the `final_app` directory.
+1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue`. For example:
+	`cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28`
+1. When the command completes, navigate to the app's route. The route should be provided in the output. For example:
+	`urls: docs-pcf-1-10-blue.cfapps.io`
+
+## Step Three: Update the Staging Pipeline
+
+## Step Four: Publish the New Release Docs
 
 Perform the following steps to publish the new release docs on the day the new release goes GA:
 
