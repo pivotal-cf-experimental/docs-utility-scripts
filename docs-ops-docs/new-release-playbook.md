@@ -76,15 +76,24 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 
 Perform the following steps to publish the new release docs on the day the new release goes GA:
 
+1. Pause the `pcf-NEW-VERSION-NUMBER-bind` and `pcf-NEW-VERSION-NUMBER-staging` jobs using the `fly` CLI. For example:
+	`fly -t wings pause-job --job cf-current/pcf-1-10-bind`
+	`fly -t wings pause-job --job cf-current/pcf-1-10-staging`
 1. Change into `docs-book-pivotalcf` and ensure you're on the `master` branch.
+1. Remove the red banner by removing the line in the `config.yml` that specifies that the book consumes the `edge` branch of the `docs-layout-repo`.
+1. Update the redirects in `redirects.rb` to point to the correct version.
+1. Push and commit your changes to `docs-book-pivotalcf` on `master`.
 1. Run `bookbinder bind remote`.
 1. When the bind completes, change into the `final_app` directory.
 1. Make sure you are targeting the `pivotalcf-prod` space in the `pivotal-pubtools` org:
 	`cf target -o pivotal-pubtools -s pivotalcf-prod`
 1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue` with a random route. For example:
 	`cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 --random-route`
-1. Retrieve the random route from the command's output and navigate to it. Ensure the content looks good. Make sure that it references the right version.
-1. Remove the red banner.
+1. Retrieve the random route from the command's output and navigate to it. Ensure the content looks good. Make sure that it references the right version, that it does not contain the red banner, and that the redirects are pointing to the 1.10 docs.
+1. Change the redirects in `docs-book-pcfservices` but do not commit and push the changes.
+1. Add the correct route. For example:
+	`cf map-route docs-pcf-1-10-blue docs.pivotal.io --path pivotalcf/1-10`
+1. Push the changes to `docs-book-pcfservices`.
 
 ## Step Three: Publish the New Release Docs
 
@@ -110,7 +119,7 @@ Perform the following steps after **Step Two** to point redirects of current doc
 	1. Verify the staging build publishes the new release docs to the staging site.
 	1. Kick off the production job, wait for it to finish, and verify that the Pivotal Cloud Foundry docs link at docs.pivotal.io points to new release docs URL. 
 
-## Step Four: Move PCF-Not-So-Current to cf-previous-versions pipeline
+## Step Five: Move PCF-Not-So-Current to cf-previous-versions pipeline
 
 1. Copy the directories from cf-current to cf-previous-versions.
 1. Edit deployment-resources.yml to reflect the correct group.
