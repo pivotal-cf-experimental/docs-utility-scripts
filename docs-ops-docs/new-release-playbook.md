@@ -53,6 +53,11 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 1. Change into the `docs-book-pivotalcf` directory and switch to the `master` branch.
 1. Run `bookbinder bind remote`.
 1. When the bind completes, change into the `final_app` directory.
+1. Log in to PWS:
+	`cf api api.run.pivotal.io`
+	`cf login`
+1. Make sure you are targeting the `pivotalcf-staging` space in the `pivotal-pubtools` org:
+	`cf target -o pivotal-pubtools -s pivotalcf-staging`
 1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue`. For example:
 	`cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28`
 1. When the command completes, navigate to the app's route and ensure the content looks good. The route should be provided in the output. For example:
@@ -65,6 +70,21 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 1. Kick off a new build of the `pcf-NEW-VERSION-NUMBER-bind` under the `pcf-NEW-VERSION-NUMBER` group in `cf-current`. For instance, `pcf-1-10-bind` under `pcf-1-10` in `cf-current`.
 1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` are bound to Elastico service instances.
 1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` have basic auth enabled. To enable auth, set the following environment variables: `SITE_AUTH_USERNAME` to YOUR-USERNAME and `SITE_AUTH_PASSWORD` to YOUR-PASWORD.
+1. Wait until the new release goes GA, then complete the rest of this playbook.
+
+## Step Three: Push the Production App
+
+Perform the following steps to publish the new release docs on the day the new release goes GA:
+
+1. Change into `docs-book-pivotalcf` and ensure you're on the `master` branch.
+1. Run `bookbinder bind remote`.
+1. When the bind completes, change into the `final_app` directory.
+1. Make sure you are targeting the `pivotalcf-prod` space in the `pivotal-pubtools` org:
+	`cf target -o pivotal-pubtools -s pivotalcf-prod`
+1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue` with a random route. For example:
+	`cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 --random-route`
+1. Retrieve the random route from the command's output and navigate to it. Ensure the content looks good. Make sure that it references the right version.
+1. Remove the red banner.
 
 ## Step Three: Publish the New Release Docs
 
@@ -76,7 +96,7 @@ Perform the following steps to publish the new release docs on the day the new r
 	1. Verify the staging build publishes the new release docs to the staging site.
 	1. Kick off the production job, wait for it to finish, and verify that the new release docs are live. 
 
-## Step Three: Update Redirects to Serve the New Release Docs 
+## Step Four: Update Redirects to Serve the New Release Docs 
 
 Perform the following steps after **Step Two** to point redirects of current docs to the new release docs and as soon as the new release goes GA:
 
