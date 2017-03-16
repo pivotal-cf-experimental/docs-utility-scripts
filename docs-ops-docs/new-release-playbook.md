@@ -34,7 +34,7 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 		     access_key_id: "{{aws-access-key}}"
 		     secret_access_key: "{{aws-secret-key}}"
 		```
-1. Update concourse files with changes using the fly cli with the following rake commands:
+1. Update concourse files with changes using the `fly` CLI with the following rake commands:
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-current/pcf-<NEW-VERSION-NUMBER>]`
 	1. `rake fly:set_pipeline[cf-current]`
@@ -144,5 +144,38 @@ Perform the following steps to publish the new release docs on the day the new r
 
 ## Step Five: Move PCF-Not-So-Current to cf-previous-versions pipeline
 
-1. Copy the directories from cf-current to cf-previous-versions.
-1. Edit deployment-resources.yml to reflect the correct group.
+1. Change into `concourse-scripts-docs`.
+1. Move the directory that contains the not-so-current group from `cf-current` to `cf-previous-versions`. For example:
+	```
+	mv cf-current/pcf-1-9 cf-previous-versions/.
+	```
+1. Change into `cf-current`.
+1. Open `deployment-resources.yml` and cut the section for the not-so-current docs. For example, remove the following section:
+	```
+	- name: cf-current-pcf-1-9-s3
+          type: s3
+          source:
+            bucket: concourse-interim-steps
+            versioned_file: pcf-1-9-final_app.tar.gz
+            private: true
+            access_key_id: "{{aws-access-key}}"
+            secret_access_key: "{{aws-secret-key}}"
+    	```
+1. Change into `cf-previous-versions`.
+1. Open `deployment-resources.yml` and paste the section you cut from the other `deployment-resources.yml` and change the `name` to `cf-previous-versions-pcf-VERSION-NUMBER-s3`. For example:
+	```
+	- name: cf-previous-versions-pcf-1-9-s3
+          type: s3
+          source:
+            bucket: concourse-interim-steps
+            versioned_file: pcf-1-9-final_app.tar.gz
+            private: true
+            access_key_id: "{{aws-access-key}}"
+            secret_access_key: "{{aws-secret-key}}"
+    	```
+1. Update concourse files with changes using the `fly` CLI with the following rake commands:
+	1. `rake fly:login`
+	1. `rake scheme:update[cf-current/pcf-<NEW-VERSION-NUMBER>]`
+	1. `rake fly:set_pipeline[cf-current]`
+	1. `rake pipeline:update[cf-current]`
+1. Commit and push the changes to concourse-scripts-docs.
