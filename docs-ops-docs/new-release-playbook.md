@@ -94,6 +94,35 @@ Perform the following steps to publish the new release docs on the day the new r
 1. Add the correct route. For example:
 	`cf map-route docs-pcf-1-10-blue docs.pivotal.io --path pivotalcf/1-10`
 1. Push the changes to `docs-book-pcfservices`.
+1. When the `pcfservices-staging` job completes, navigate to the [staging site](https://docs-pcf-staging.cfapps.io) to make sure the redirects work properly.
+1. If the redirects are working on staging, kick off the `pcfservices-production` build.
+
+## Step Four: Hook Up Concourse
+
+1. Unpause the `pcf-NEW-VERSION-NUMBER-bind` and `pcf-NEW-VERSION-NUMBER-staging` jobs using the `fly` CLI. For example:
+	`fly -t wings unpause-job --job cf-current/pcf-1-10-bind`
+	`fly -t wings unpause-job --job cf-current/pcf-1-10-staging`
+1. Kick off another `pcf-NEW-VERSION-NUMBER-bind` job and wait for the staging job to complete. 
+1. Check the staging site to make sure everything looks good.
+1. Change into `concourse-scripts-docs/cf-current/pcf-NEW-VERSION-NUMBER` and open `config.yml`.
+1. Add the production job to the config. For example:
+	```
+	- name: production
+          depends_on: staging
+          trigger: false
+          endpoint: https://api.run.pivotal.io
+          organization: pivotal-pubtools
+          space: pivotalcf-prod
+          routes:
+            - domain: docs.pivotal.io
+              path: pivotalcf/1-10
+	```
+1. Update the pipeline with the new config:
+	`rake fly:login`
+	`rake scheme:update[cf-current/pcf-NEW-VERSION-NUMBER]`
+	`rake fly:set_pipeline[cf-current]`
+	`rake pipeline:update[cf-current]`
+1. Add, commit, and push your changes to `concourse-scripts-docs`.
 
 ## Step Three: Publish the New Release Docs
 
