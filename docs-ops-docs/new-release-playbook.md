@@ -54,17 +54,25 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 1. Run `bookbinder bind remote`.
 1. When the bind completes, change into the `final_app` directory.
 1. Log in to PWS:
-	`cf api api.run.pivotal.io`
-	`cf login`
+	1. `cf api api.run.pivotal.io`
+	1. `cf login`
 1. Make sure you are targeting the `pivotalcf-staging` space in the `pivotal-pubtools` org:
-	`cf target -o pivotal-pubtools -s pivotalcf-staging`
+	```
+	cf target -o pivotal-pubtools -s pivotalcf-staging
+	```
 1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue`. For example:
-	`cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28`
+	```
+	cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28
+	```
 1. When the command completes, navigate to the app's route and ensure the content looks good. The route should be provided in the output. For example:
-	`urls: docs-pcf-1-10-blue.cfapps.io`
+	```
+	urls: docs-pcf-1-10-blue.cfapps.io
+	```
 1. Navigate to the Concourse UI and pause the `cf-edge` pipeline.
 1. Map the newly deployed app to the route currently mapped to `docs-pcf-edge-blue` and `docs-pcf-edge-green`. For instance:
-	`cf map-route docs-pcf-1-10-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/1-10`
+	```
+	cf map-route docs-pcf-1-10-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/1-10
+	```
 1. Navigate to the route and ensure the content looks good.
 1. Stop the running `docs-pcf-edge` app.
 1. Kick off a new build of the `pcf-NEW-VERSION-NUMBER-bind` under the `pcf-NEW-VERSION-NUMBER` group in `cf-current`. For instance, `pcf-1-10-bind` under `pcf-1-10` in `cf-current`.
@@ -77,8 +85,8 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 Perform the following steps to publish the new release docs on the day the new release goes GA:
 
 1. Pause the `pcf-NEW-VERSION-NUMBER-bind` and `pcf-NEW-VERSION-NUMBER-staging` jobs using the `fly` CLI. For example:
-	`fly -t wings pause-job --job cf-current/pcf-1-10-bind`
-	`fly -t wings pause-job --job cf-current/pcf-1-10-staging`
+	1. `fly -t wings pause-job --job cf-current/pcf-1-10-bind`
+	1. `fly -t wings pause-job --job cf-current/pcf-1-10-staging`
 1. Change into `docs-book-pivotalcf` and ensure you're on the `master` branch.
 1. Remove the red banner by removing the line in the `config.yml` that specifies that the book consumes the `edge` branch of the `docs-layout-repo`.
 1. Update the redirects in `redirects.rb` to point to the correct version.
@@ -86,13 +94,19 @@ Perform the following steps to publish the new release docs on the day the new r
 1. Run `bookbinder bind remote`.
 1. When the bind completes, change into the `final_app` directory.
 1. Make sure you are targeting the `pivotalcf-prod` space in the `pivotal-pubtools` org:
-	`cf target -o pivotal-pubtools -s pivotalcf-prod`
+	```
+	cf target -o pivotal-pubtools -s pivotalcf-prod
+	```
 1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue` with a random route. For example:
-	`cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 --random-route`
+	```
+	cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 --random-route
+	```
 1. Retrieve the random route from the command's output and navigate to it. Ensure the content looks good. Make sure that it references the right version, that it does not contain the red banner, and that the redirects are pointing to the 1.10 docs.
 1. Change the redirects in `docs-book-pcfservices` but do not commit and push the changes.
 1. Add the correct route. For example:
-	`cf map-route docs-pcf-1-10-blue docs.pivotal.io --path pivotalcf/1-10`
+	```
+	cf map-route docs-pcf-1-10-blue docs.pivotal.io --path pivotalcf/1-10
+	```
 1. Push the changes to `docs-book-pcfservices`.
 1. When the `pcfservices-staging` job completes, navigate to the [staging site](https://docs-pcf-staging.cfapps.io) to make sure the redirects work properly.
 1. If the redirects are working on staging, kick off the `pcfservices-production` build.
@@ -100,8 +114,8 @@ Perform the following steps to publish the new release docs on the day the new r
 ## Step Four: Hook Up Concourse
 
 1. Unpause the `pcf-NEW-VERSION-NUMBER-bind` and `pcf-NEW-VERSION-NUMBER-staging` jobs using the `fly` CLI. For example:
-	`fly -t wings unpause-job --job cf-current/pcf-1-10-bind`
-	`fly -t wings unpause-job --job cf-current/pcf-1-10-staging`
+	1. `fly -t wings unpause-job --job cf-current/pcf-1-10-bind`
+	1. `fly -t wings unpause-job --job cf-current/pcf-1-10-staging`
 1. Kick off another `pcf-NEW-VERSION-NUMBER-bind` job and wait for the staging job to complete. 
 1. Check the staging site to make sure everything looks good.
 1. Change into `concourse-scripts-docs/cf-current/pcf-NEW-VERSION-NUMBER` and open `config.yml`.
@@ -118,35 +132,15 @@ Perform the following steps to publish the new release docs on the day the new r
               path: pivotalcf/1-10
 	```
 1. Update the pipeline with the new config:
-	`rake fly:login`
-	`rake scheme:update[cf-current/pcf-NEW-VERSION-NUMBER]`
-	`rake fly:set_pipeline[cf-current]`
-	`rake pipeline:update[cf-current]`
+	1. `rake fly:login`
+	1. `rake scheme:update[cf-current/pcf-NEW-VERSION-NUMBER]`
+	1. `rake fly:set_pipeline[cf-current]`
+	1. `rake pipeline:update[cf-current]`
 1. Add, commit, and push your changes to `concourse-scripts-docs`.
-
-## Step Three: Publish the New Release Docs
-
-Perform the following steps to publish the new release docs on the day the new release goes GA:
-
-1. Pause cf-edge pipeline.
-1. Navigate to the pcf-<NEW-VERSION-NUMBER> group in the [cf-current pipeline in Concourse](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current). 
-	1. Kick off the bind job, wait for it to populate green builds through to the staging job.
-	1. Verify the staging build publishes the new release docs to the staging site.
-	1. Kick off the production job, wait for it to finish, and verify that the new release docs are live. 
-
-## Step Four: Update Redirects to Serve the New Release Docs 
-
-Perform the following steps after **Step Two** to point redirects of current docs to the new release docs and as soon as the new release goes GA:
-
-1. Replace the master version of **docs-book-pcfservices/redirects.rb** with the edge version.
-	1. `git checkout master`
-	1. `git checkout edge redirects.rb`
-	1. `git commit -m “Adds new release redirects”`
-	1. `git push`
-1. Navigate to the **pcfservices group** in the **cf-current** pipeline in [Concourse ](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current?groups=pcfservices). 
-	1. Kick off the bind job, wait for it to populate green builds through to the staging job.
-	1. Verify the staging build publishes the new release docs to the staging site.
-	1. Kick off the production job, wait for it to finish, and verify that the Pivotal Cloud Foundry docs link at docs.pivotal.io points to new release docs URL. 
+1. Navigate to the Concourse UI. You should now see a `pcf-NEW-VERSION-NUMBER-production` job.
+1. Kick off the `pcf-NEW-VERSION-NUMBER-production` job.
+1. Pray.
+1. When the production job finishes, you should have a search-enabled site. Now Concourse manages everything, so no more manual app pushes.
 
 ## Step Five: Move PCF-Not-So-Current to cf-previous-versions pipeline
 
