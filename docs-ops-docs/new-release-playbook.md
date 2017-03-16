@@ -175,7 +175,10 @@ Perform the following steps to publish the new release docs on the day the new r
     	```
 1. Update concourse files with changes using the `fly` CLI with the following rake commands:
 	1. `rake fly:login`
-	1. `rake scheme:update[cf-current/pcf-<NEW-VERSION-NUMBER>]`
+	1. `rake scheme:update_all[cf-current]`
+	1. `rake scheme:update_all[cf-previous-versions]`
 	1. `rake fly:set_pipeline[cf-current]`
+	1. `rake fly:set_pipeline[cf-previous-versions]`
 	1. `rake pipeline:update[cf-current]`
+	1. `rake pipeline:update[cf-previous-versions]`
 1. Commit and push the changes to concourse-scripts-docs.
