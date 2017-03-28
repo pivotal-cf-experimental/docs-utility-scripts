@@ -5,7 +5,7 @@
 require 'yaml'
 
 # Add new books to this array, as necessary
-@books_full_name = YAML.load_file("all_books.yml").split(" ")
+@books_full_name = YAML.load_file(Dir.home + '/workspace/docs-utility-scripts/updater/all_books.yml').split(" ")
 @books = @books_full_name.map { |f| f.split("/").last }
 @modified_repos = []
 @repo_list = ["docs-layout-repo", "docs-utility-scripts"]
