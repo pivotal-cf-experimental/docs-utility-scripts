@@ -32,7 +32,7 @@ Copy/paste the following to your command line:
 
 `git clone git@github.com:pivotal-cf-experimental/docs-utility-scripts.git`
 
-`echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater.rb"' >> ~/.bash_profile`
+`echo 'alias update="ruby ~/workspace/docs-utility-scripts/updater/updater.rb"' >> ~/.bash_profile`
 
 `source ~/.bash_profile`
 
