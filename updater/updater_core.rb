@@ -5,13 +5,22 @@
 require 'yaml'
 
 # Add new books to this array, as necessary
-@books = ['docs-book-cloudfoundry', 'docs-book-pcfservices', 'docs-book-pivotalcf', 'docs-book-runpivotal']
+@books_full_name = YAML.load_file("all_books.yml").split(" ")
+@books = @books_full_name.map { |f| f.split("/").last }
 @modified_repos = []
 @repo_list = ["docs-layout-repo", "docs-utility-scripts"]
+
+# Make sure you have all the books, update or clone as necessary
+def get_books(books_full_name)
+	@books_full_name.each do |b|
+		File.directory?(Dir.home + '/workspace/' + b.split("/").last.gsub(/\w*-?\w*\//,'')) ? update_repo(b) : clone_repo(b) 
+	end
+end
 
 # Create a list of the book repositories to be cloned_or_updated, send them to cloner/updater, and display the ignored modified repos.
 def gather_repos(books)
 	books.map do |book|
+		puts book
 		YAML.load(File.open(Dir.home + '/workspace/' + book + '/config.yml'))['sections'].each do |section| 
 			@repo_list.push(section['repository']['name'])
 		end
@@ -76,4 +85,5 @@ def evangelize_updater
 	puts "        Updater Suite® now updates itself before it updates your repos! "
 end
 
+get_books(@books_full_name)
 gather_repos(@books)
