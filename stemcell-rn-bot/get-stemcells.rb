@@ -2,11 +2,10 @@ require 'json'
 require 'octokit'
 require_relative 'update-stemcell-rn'
 
-# starting stemcell version should be set as ENV VAR
-@starting_stemcell_version = '3363'
-@current_pcf_version_number = '1.10'
+@starting_stemcell_version = ENV['STARTING_STEMCELL_VERSION']
+@current_pcf_version_number = ENV['CURRENT_PCF_VERSION_NUMBER']
 @existing_stemcell_json = JSON.load(File.open('stemcell-releases.json')).to_json
-@client = Octokit::Client.new :access_token => ENV['stemcell_rn_bot_git_token']
+@client = Octokit::Client.new :access_token => ENV['STEMCELL_RN_BOT_GIT_TOKEN']
 
 def get_stemcells
 
