@@ -1,29 +1,55 @@
-def update_rn
-	stemcell_json = JSON.load(File.open('stemcell-releases.json')).to_json
-	rn_repo = Octokit::Repository.from_url('https://github.com/pivotal-cf/pcf-release-notes')
 
-	# this should be set as an ENV VAR
-	current_pcf_version_number = 'testtesttest'
+def build_new_rn
+	#build new release notes file
 
-	stemcell_rn_file = @client.contents(rn_repo, {:path => 'stemcell-rn.html.md.erb', :ref => current_pcf_version_number})
+	header = ["---", "title: Stemcell Release Notes", "Owner: BOSH", "---", " ", "This topic includes release notes for stemcells used with Pivotal Cloud Foundry (PCF) versions 1.10.x."]
+	
+	#add the header to the file
+	File.open('tmp', 'w') do |f| 
+      f.puts(header)
+	  end
 
-	sha_stemcell_file = stemcell_rn_file['sha']
+	JSON.parse(@existing_stemcell_json).each do |f|
 
-	decoded_file = Base64.decode64(stemcell_rn_file['content'])
+		#create stemcell number header
+		stemcell_number = f[0][1].split(" ").last
+		stemcell_number_a_id = stemcell_number.gsub(".", "-")
+		stemcell_number_header = "\#\# <a id=\"#{stemcell_number_a_id}\"></a>#{stemcell_number}"
 
-	File.open('tmp', 'w') {|f| f.write decoded_file }
+		#create date
+		date = f[1][1]
+		dateline = DateTime.parse(date).strftime("**Release Date**: %B %-d, %Y")
 
-	puts stemcell_json[4]
+		# create body
+		body = f[2][1]
+		# if body is more than one line, format it properly
+		if body.include?("\n")
+			body = body.gsub("\n", "\n" * 2)
+		end
 
-	# at line 8 of tmp, add stemcell_json[0]
-
-
-	# @client.update_contents(rn_repo,
- #                 "stemcell-rn.html.md.erb",
- #                 "Updating content",
- #                 stemcell_rn_file['sha'],
- #                 "File content",
- #                 :branch => current_pcf_version_number)
-
+		# write the file
+		File.open('tmp', 'a') do |f| 
+	      	f.puts("\n" + stemcell_number_header)
+	      	f.puts("\n" + dateline)
+	      	f.puts("\n" + body)
+	  	end
+	  end
 end
 
+def update_rn
+
+	rn_repo = Octokit::Repository.from_url('https://github.com/pivotal-cf/pcf-release-notes')
+	stemcell_rn_file = @client.contents(rn_repo, {:path => 'stemcell-rn.html.md.erb', :ref => @current_pcf_version_number})
+
+	# update the stemcell release notes
+	@client.update_contents(rn_repo,
+                 "stemcell-rn.html.md.erb",
+                 "Stemcell RN Bot automatically updating content from BOSH GitHub page",
+                 stemcell_rn_file['sha'],
+                 File.open('tmp').read,
+                 :branch => @current_pcf_version_number)
+
+	# clean up
+	File.delete('tmp')
+
+end
