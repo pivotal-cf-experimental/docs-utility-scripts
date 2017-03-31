@@ -1,6 +1,7 @@
-set -e
+#!/usr/bin/env bash
 
-chmod 700 
+set -ex
 
 bundle install
+
 ruby get-stemcells.rb
