@@ -4,7 +4,8 @@ require_relative 'update-stemcell-rn'
 
 @starting_stemcell_version = ENV['STARTING_STEMCELL_VERSION']
 @current_pcf_version_number = ENV['CURRENT_PCF_VERSION_NUMBER']
-@existing_stemcell_json = JSON.load(File.open('stemcell-releases.json')).to_json
+@path_to_stemcell_releases_json = 'docs-utility-scripts/stemcell-rn-bot/stemcell-releases.json'
+@existing_stemcell_json = JSON.load(File.open(@path_to_stemcell_releases_json)).to_json
 @client = Octokit::Client.new :access_token => ENV['STEMCELL_RN_BOT_GIT_TOKEN']
 
 def get_stemcells
@@ -44,8 +45,8 @@ end
 # write the new stemcell json and run the script that updates the stemcell releases notes
 new_stemcell_json = get_stemcells
 if new_stemcell_json != @existing_stemcell_json 
-  File.open('stemcell-releases.json', 'w') {|f| f.write new_stemcell_json }
-  @existing_stemcell_json = JSON.load(File.open('stemcell-releases.json')).to_json
+  File.open(@path_to_stemcell_releases_json, 'w') {|f| f.write new_stemcell_json }
+  @existing_stemcell_json = JSON.load(File.open(@path_to_stemcell_releases_json)).to_json
   build_new_rn
   update_rn
 end
