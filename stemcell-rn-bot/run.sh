@@ -2,6 +2,6 @@
 
 set -ex
 
-bundle install
+bundle install --gemfile=docs-utility-scripts/stemcell-rn-bot/Gemfile
 
 ruby get-stemcells.rb
