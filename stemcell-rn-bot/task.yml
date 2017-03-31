@@ -1,0 +1,17 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: pubtools/bookbinder-8.1
+
+params:
+  STARTING_STEMCELL_VERSION: {{starting_stemcell_version}}
+  CURRENT_PCF_VERSION_NUMBER: {{current_pcf_version_number}}
+  STEMCELL_RN_BOT_GIT_TOKEN: {{stemcell_rn_bot_git_token}}
+
+inputs:
+- name: docs-utility-scripts
+
+run:
+  path: docs-utility-scripts/stemcell-rn-bot/run.sh
