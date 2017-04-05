@@ -10,7 +10,7 @@ We start using the **cf-edge** pipeline 30-60 days prior to the release going GA
 
 Perform the following steps to move current content from master to a versioned branch:
 
-1. Create and checkout <CURRENT-VERSION-NUMBER> branch in the docs-book-pivotalcf repo.
+1. Create and checkout CURRENT-VERSION-NUMBER branch in the docs-book-pivotalcf repo.
 1. Populate config.yml refs with appropriate commercial and OSS branch numbers (1.6/225, 1.7/235, 1.8/239, 1.9/246) for content repos to specify the current version
 	1. Current content will publish off of the latest version branch instead of master.
 	1. Content for the upcoming release will publish off master.
