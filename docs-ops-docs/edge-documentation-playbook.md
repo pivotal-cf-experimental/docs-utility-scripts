@@ -24,8 +24,8 @@ Perform the following steps to move current content from master to a versioned b
 		1. Commit and push changes to **docs-book-pivotalcf** and new content repo branches. 
 1. At stand-up and with @here in Slack, tell #pcf-docs and #pcf-docs-team that you are completing this playbook. Specifically, 
 >From this point forward until release, contribute edge content to the master branch. Contribute current content to the versioned branch for that release number (ex. 1.9 content will live on the 1.9 branch). 
-1. Navigate to **concourse-scripts-docs/cf-current/pcf-<CURRENT-VERSION-NUMBER>** and open **config.yml**. Below the line that contains the `book:` key-value, add the following:
-`book-branch: ‘<CURRENT-LATEST-VERSION-NUMBER>’`
+1. Navigate to **concourse-scripts-docs/cf-current/pcf-CURRENT-VERSION-NUMBER** and open **config.yml**. Below the line that contains the `book:` key-value, add the following:
+`book-branch: ‘CURRENT-LATEST-VERSION-NUMBER’`
 1. Update concourse changes with the `fly cli`, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update_all[cf-edge]`
@@ -33,7 +33,7 @@ Perform the following steps to move current content from master to a versioned b
 1. Commit and push changes to **concourse-scripts-docs**.
 1. Check that the current content for PCF publishes from a versioned number branch: 
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
-	1. Click the group for the current version, pcf-<CURRENT-VERSION>
+	1. Click the group for the current version, pcf-CURRENT-VERSION
 	1. Visually verify that the concourse resource for docs-book-pivotalcf points to the correct versioned branch, 1.9 in the example below: 
 
 	image missing
@@ -55,7 +55,7 @@ Perform the following steps to publish edge content from master:
 1. Open **docs-book-pcfservices/redirects.rb** and checkout the `edge` branch.
 1. Edit the redirects to increment version numbers throughout. For example, increment `1-9` to `1-10` where it appears.
 1. Commit and push changes to the core and services repos.
-1. Modify **concourse-scripts-docs/cf-edge/deployment-resources.yml**, line 6: `versioned_file: pcf-<NEW-VERSION-NUMBER>-final_app.tar.gz`
+1. Modify **concourse-scripts-docs/cf-edge/deployment-resources.yml**, line 6: `versioned_file: pcf-NEW-VERSION-NUMBER-final_app.tar.gz`
 1. Update concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-edge/pcf-core]`
@@ -76,6 +76,6 @@ Perform the following steps to publish edge content from master:
 	1. Add a new product section for the next version product, including its new key/values. 
 1. Populate **scribe** with new map numbers (**docs-utility-scripts/scribe/scribe#map**)
 1. Update **docs-utility-scripts/rollback_release/rr_config.yml** `PCF-Alpha-Edge` values:
-	1. `branch: <EDGE-VERSION-NUMBER>`
-	1. `route_path: '--path /pivotalcf/<NEW-VERSION-NUMBER>`
+	1. `branch: EDGE-VERSION-NUMBER`
+	1. `route_path: '--path /pivotalcf/NEW-VERSION-NUMBER`
 
