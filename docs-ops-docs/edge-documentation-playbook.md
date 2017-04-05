@@ -28,8 +28,8 @@ Perform the following steps to move current content from master to a versioned b
 `book_branch: ‘CURRENT-VERSION-NUMBER’`
 1. Update concourse changes with the `fly cli`, using the following **rake** commands:
 	1. `rake fly:login`
-	1. `rake scheme:update_all[cf-edge]`
-	1. 	`rake fly:set_pipeline[cf-edge]`
+	1. `rake scheme:update_all[cf-current]`
+	1. 	`rake fly:set_pipeline[cf-current]`
 1. Commit and push changes to **concourse-scripts-docs**.
 1. Check that the current content for PCF publishes from a versioned number branch: 
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
