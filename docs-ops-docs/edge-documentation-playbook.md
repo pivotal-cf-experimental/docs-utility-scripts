@@ -56,6 +56,7 @@ Perform the following steps to publish edge content from master:
 1. Edit the redirects to increment version numbers throughout. For example, increment `1-9` to `1-10` where it appears.
 1. Commit and push changes to the core and services repos.
 1. Modify **concourse-scripts-docs/cf-edge/deployment-resources.yml**, line 6: `versioned_file: pcf-NEW-VERSION-NUMBER-final_app.tar.gz`
+1. Modify **concourse-scripts-docs/cf-edge/pcf-core/config.yml**, line 15: `path: pivotalcf/NEW-VERSION-NUMBER`
 1. Update concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-edge/pcf-core]`
