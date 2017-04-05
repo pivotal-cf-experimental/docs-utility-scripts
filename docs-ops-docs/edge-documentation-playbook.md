@@ -25,7 +25,7 @@ Perform the following steps to move current content from master to a versioned b
 1. At stand-up and with @here in Slack, tell #pcf-docs and #pcf-docs-team that you are completing this playbook. Specifically, 
 >From this point forward until release, contribute edge content to the master branch. Contribute current content to the versioned branch for that release number (ex. 1.9 content will live on the 1.9 branch). 
 1. Navigate to **concourse-scripts-docs/cf-current/pcf-CURRENT-VERSION-NUMBER** and open **config.yml**. Below the line that contains the `book:` key-value, add the following:
-`book-branch: ‘EDGE-VERSION-NUMBER’`
+`book_branch: ‘CURRENT-VERSION-NUMBER’`
 1. Update concourse changes with the `fly cli`, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update_all[cf-edge]`
