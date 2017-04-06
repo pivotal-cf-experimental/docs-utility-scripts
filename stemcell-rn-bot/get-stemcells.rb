@@ -92,9 +92,11 @@ end
 # write the new stemcell json and run the script that updates the stemcell releases notes
 
 new_stemcell_json = get_stemcells
-update_stemcells_json(new_stemcell_json)
-File.open(@path_to_stemcell_releases_json, 'w') {|f| f.write new_stemcell_json }
-@existing_stemcell_json = JSON.load(File.open(@path_to_stemcell_releases_json)).to_json
-build_new_rn
-update_rn
+if new_stemcell_json != @existing_stemcell_json 
+  update_stemcells_json(new_stemcell_json)
+  File.open(@path_to_stemcell_releases_json, 'w') {|f| f.write new_stemcell_json }
+  @existing_stemcell_json = JSON.load(File.open(@path_to_stemcell_releases_json)).to_json
+  build_new_rn
+  update_rn
+end
 
