@@ -28,7 +28,7 @@ def build_new_rn
 		end
 
 		# write the file
-		File.open('docs-utility-scripts/stemcell-rn-bot/tmp', 'a') do |f| 
+		File.open('tmp', 'a') do |f| 
 	      	f.puts("\n" + stemcell_number_header)
 	      	f.puts("\n" + dateline)
 	      	f.puts("\n" + body)
@@ -50,6 +50,6 @@ def update_rn
                  :branch => @current_pcf_version_number)
 
 	# clean up
-	File.delete('docs-utility-scripts/stemcell-rn-bot/tmp')
+	File.delete('tmp')
 
 end
