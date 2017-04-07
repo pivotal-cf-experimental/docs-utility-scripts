@@ -28,7 +28,7 @@ def build_new_rn
 		end
 
 		# write the file
-		File.open('tmp', 'a') do |f| 
+		File.open('./tmp', 'a') do |f| 
 	      	f.puts("\n" + stemcell_number_header)
 	      	f.puts("\n" + dateline)
 	      	f.puts("\n" + body)
@@ -46,7 +46,7 @@ def update_rn
                  "stemcell-rn.html.md.erb",
                  "Stemcell RN Bot automatically updating content from BOSH GitHub page",
                  stemcell_rn_file['sha'],
-                 File.open('tmp').read,
+                 File.open('./tmp').read,
                  :branch => @current_pcf_version_number)
 
 	# clean up
