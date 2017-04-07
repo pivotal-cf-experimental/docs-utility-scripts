@@ -1,13 +1,31 @@
 require 'json'
 require 'octokit'
 require 'open-uri'
+require 'base64'
 require_relative 'update-stemcell-rn'
 
 @starting_stemcell_version = ENV['STARTING_STEMCELL_VERSION']
 @current_pcf_version_number = 'testtesttest'
-@path_to_stemcell_releases_json = './stemcell-releases.json'
-@existing_stemcell_json = JSON.load(File.open(@path_to_stemcell_releases_json)).to_json
 @client = Octokit::Client.new :access_token => ENV['STEMCELL_RN_BOT_GIT_TOKEN']
+@stemcell_json_file = @client.contents('pivotal-cf-experimental/docs-utility-scripts', {:path => 'stemcell-rn-bot/stemcell-releases.json'})
+
+def get_stemcells_json
+
+  # grab current stemcell json file
+  stemcell_json_contents = @stemcell_json_file['content']
+  return Base64.decode64(stemcell_json_contents)
+
+end
+
+def put_stemcells_json(content)
+
+  # update the stemcell release notes
+  @client.update_contents('pivotal-cf-experimental/docs-utility-scripts',
+                 "stemcell-rn-bot/stemcell-releases.json",
+                 "Stemcell RN Bot automatically updating stemcell-releases.json",
+                 @stemcell_json_file['sha'],
+                 content)
+end
 
 def get_stemcells_pivnet
 
@@ -31,7 +49,7 @@ def get_stemcells_pivnet
 
 end
 
-def get_stemcells
+def get_stemcells_github
 
   # instantiate the bosh repo as a repository object
   bosh_repo = Octokit::Repository.from_url('https://github.com/cloudfoundry/bosh')
@@ -75,26 +93,15 @@ def get_stemcells
 
 end
 
-def update_stemcells_json(content)
-
-  utility_repo = Octokit::Repository.from_url('https://github.com/pivotal-cf-experimental/docs-utility-scripts')
-  stemcell_releases_file = @client.contents(utility_repo, {:path => 'stemcell-rn-bot/stemcell-releases.json'})
-
-  # update the stemcell release notes
-  @client.update_contents(utility_repo,
-                 "stemcell-rn-bot/stemcell-releases.json",
-                 "Stemcell RN Bot automatically updating stemcell-releases.json",
-                 stemcell_releases_file['sha'],
-                 content)
-end
 
 # if diffs between new stemcell info and existing stemcell info, then
 # write the new stemcell json and run the script that updates the stemcell releases notes
 
-new_stemcell_json = get_stemcells
-  update_stemcells_json(new_stemcell_json)
-  File.open(@path_to_stemcell_releases_json, 'w') {|f| f.write new_stemcell_json }
-  @existing_stemcell_json = JSON.load(File.open(@path_to_stemcell_releases_json)).to_json
-  build_new_rn
-  update_rn
+old_stemcell_json = get_stemcells_json
+new_stemcell_json = get_stemcells_github
 
+if new_stemcell_json != old_stemcell_json
+  put_stemcells_json(new_stemcell_json)
+  file = build_new_rn(new_stemcell_json)
+  update_rn(file)
+end

@@ -1,15 +1,17 @@
 
-def build_new_rn
+def build_new_rn(content)
 	#build new release notes file
 
-	header = ["---", "title: Stemcell Release Notes", "Owner: BOSH", "---", " ", "This topic includes release notes for stemcells used with Pivotal Cloud Foundry (PCF) versions 1.10.x."]
-	
-	#add the header to the file
-	File.open('tmp', 'w') do |f| 
-      f.puts(header)
-	  end
+	file = <<-HEADER
+---
+title: Stemcell Release Notes
+Owner: BOSH
+---
 
-	JSON.parse(@existing_stemcell_json).each do |f|
+This topic includes release notes for stemcells used with Pivotal Cloud Foundry (PCF) versions 1.10.x.
+HEADER
+	
+	JSON.parse(content).each do |f|
 
 		#create stemcell number header
 		stemcell_number = f[0][1].split(" ").last
@@ -27,16 +29,15 @@ def build_new_rn
 			body = body.gsub("\n", "\n" * 2)
 		end
 
-		# write the file
-		File.open('./tmp', 'a') do |f| 
-	      	f.puts("\n" + stemcell_number_header)
-	      	f.puts("\n" + dateline)
-	      	f.puts("\n" + body)
-	  	end
-	  end
+	 	file.concat("\n" + stemcell_number_header + "\n")
+	 	file.concat("\n" + dateline + "\n")
+	 	file.concat("\n" + body + "\n")
+
+	  end  
+	  return file
 end
 
-def update_rn
+def update_rn(file)
 
 	rn_repo = Octokit::Repository.from_url('https://github.com/pivotal-cf/pcf-release-notes')
 	stemcell_rn_file = @client.contents(rn_repo, {:path => 'stemcell-rn.html.md.erb', :ref => @current_pcf_version_number})
@@ -46,10 +47,7 @@ def update_rn
                  "stemcell-rn.html.md.erb",
                  "Stemcell RN Bot automatically updating content from BOSH GitHub page",
                  stemcell_rn_file['sha'],
-                 File.open('./tmp').read,
+                 file,
                  :branch => @current_pcf_version_number)
-
-	# clean up
-	File.delete('tmp')
 
 end
