@@ -37,17 +37,16 @@ HEADER
 	  return file
 end
 
-def update_rn(file)
+def update_rn(content)
 
-	rn_repo = Octokit::Repository.from_url('https://github.com/pivotal-cf/pcf-release-notes')
-	stemcell_rn_file = @client.contents(rn_repo, {:path => 'stemcell-rn.html.md.erb', :ref => @current_pcf_version_number})
+	stemcell_rn_file = @client.contents('pivotal-cf/pcf-release-notes', {:path => 'stemcell-rn.html.md.erb', :ref => @current_pcf_version_number})
 
 	# update the stemcell release notes
-	@client.update_contents(rn_repo,
+	@client.update_contents('pivotal-cf/pcf-release-notes',
                  "stemcell-rn.html.md.erb",
                  "Stemcell RN Bot automatically updating content from BOSH GitHub page",
                  stemcell_rn_file['sha'],
-                 file,
+                 content,
                  :branch => @current_pcf_version_number)
 
 end

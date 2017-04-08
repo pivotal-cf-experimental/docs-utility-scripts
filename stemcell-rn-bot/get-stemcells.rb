@@ -102,6 +102,6 @@ new_stemcell_json = get_stemcells_github
 
 if new_stemcell_json != old_stemcell_json
   put_stemcells_json(new_stemcell_json)
-  file = build_new_rn(new_stemcell_json)
-  update_rn(file)
+  contentcontent = build_new_rn(new_stemcell_json)
+  update_rn(contentcontent)
 end
