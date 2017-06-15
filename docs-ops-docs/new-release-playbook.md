@@ -15,8 +15,6 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 1. Add a new group for **pcf-\<NEW-VERSION-NUMBER>** to **cf-current** pipeline by copying the directory from the **cf-edge** pipeline. The examples below assume that `1.10` is the new release, and that it is currently published by `cf-edge/pcf-core`.
 	1. `cd concourse-scripts-docs/cf-current`
 	1. `cp -r ../cf-edge/pcf-core ./pcf-1-10`
-	1. Delete the `pcf-1-9-production` directory.
-	1. Rename the remaining `pcf-1-9*` directories within `concourse-scripts-docs/cf-current/pcf-1-10` to `pcf-1-10*`.
 	1. Open config.yml in pcf-1-10 and edit the following fields:
 		1. Line 4: `app_name: docs-pcf-edge` => `docs-pcf-1-10`
 	1. Rename the `pcf-core-bind` and `pcf-core-staging` directories to `pcf-1-10-bind` and `pcf-1-10-staging`.
