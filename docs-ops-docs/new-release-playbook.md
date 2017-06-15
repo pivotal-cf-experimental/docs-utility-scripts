@@ -11,7 +11,6 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 	* **pws**
 	* **pcfservices**
 	* **pcf-\<CURRENT-VERSION-NUMBER>**
-1. Pause the **cf-edge** pipeline in Concourse.
 1. Add a new group for **pcf-\<NEW-VERSION-NUMBER>** to **cf-current** pipeline by copying the directory from the **cf-edge** pipeline. The examples below assume that `1.10` is the new release, and that it is currently published by `cf-edge/pcf-core`.
 	1. `cd concourse-scripts-docs/cf-current`
 	1. `cp -r ../cf-edge/pcf-core ./pcf-1-10`
