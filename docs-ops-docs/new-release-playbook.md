@@ -69,10 +69,22 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 	cf map-route docs-pcf-1-10-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/1-10
 	```
 1. Navigate to the route and ensure the content looks good.
+1. Bind the new app to the Elastic.co service instance:
+	```
+	cf bind-service APP_NAME elastic.co
+	```
 1. Stop the running `docs-pcf-edge` app.
 1. Kick off a new build of the `pcf-NEW-VERSION-NUMBER-bind` under the `pcf-NEW-VERSION-NUMBER` group in `cf-current`. For instance, `pcf-1-10-bind` under `pcf-1-10` in `cf-current`.
-1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` are bound to Elastico service instances.
-1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` have basic auth enabled. To enable auth, set the following environment variables: `SITE_AUTH_USERNAME` to YOUR-USERNAME and `SITE_AUTH_PASSWORD` to YOUR-PASWORD.
+1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` are bound to Elastico service instances. 
+	1. List the service instances bound to apps with `cf services`.
+	1. If one or both of the apps aren't bound to `elastic.co`, run `cf bind-service APP_NAME elastic.co`.
+1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` have basic auth enabled. To enable auth, set the following environment variables: `SITE_AUTH_USERNAME` to `pivotalcf` and `SITE_AUTH_PASSWORD` to `wilderror16`:
+	```
+	cf set-env docs-pcf-1-10-blue SITE_AUTH_USERNAME pivotalcf
+	cf set env docs-pcf-1-10-blue SITE_AUTH_PASSWORD wilderror16
+	cf set-env docs-pcf-1-10-green SITE_AUTH_USERNAME pivotalcf
+	cf set-env docs-pcf-1-10-green SITE_AUTH_PASSWORD wilderror16
+	```
 1. Wait until the new release goes GA, then complete the rest of this playbook.
 
 ## Step Three: Push the Production App
