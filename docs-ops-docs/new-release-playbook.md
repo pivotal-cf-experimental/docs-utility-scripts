@@ -57,7 +57,7 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 	```
 1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue`. For example:
 	```
-	cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28
+	cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 -i 3
 	```
 1. When the command completes, navigate to the app's route and ensure the content looks good. The route should be provided in the output. For example:
 	```
