@@ -46,6 +46,7 @@ Perform the following steps to add a new group to the **cf-current** pipeline (w
 ## Step Two: Push a New Staging App
 
 1. Change into the `docs-book-pivotalcf` directory and switch to the `master` branch.
+1. Open the `config.yml` and ensure that the value for `search_placeholder` references the correct version of PCF, and that the PDF link under `local_header_links` points to the correct version of the PDF.
 1. Run `bookbinder bind remote`.
 1. When the bind completes, change into the `final_app` directory.
 1. Log in to PWS:
@@ -110,6 +111,10 @@ Perform the following steps to publish the new release docs on the day the new r
 	```
 1. Retrieve the random route from the command's output and navigate to it. Ensure the content looks good. Make sure that it references the right version, that it does not contain the red banner, and that the redirects are pointing to the 1.10 docs.
 1. Change the redirects in `docs-book-pcfservices` but do not commit and push the changes.
+1. Bind the new app to the Elastic.co service instance:
+	```
+	cf bind-service docs-pcf-1-10-blue elastic.co
+	```
 1. Add the correct route. For example:
 	```
 	cf map-route docs-pcf-1-10-blue docs.pivotal.io --path pivotalcf/1-10
