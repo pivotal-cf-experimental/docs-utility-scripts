@@ -154,7 +154,16 @@ Perform the following steps to publish the new release docs on the day the new r
 1. Pray.
 1. When the production job finishes, you should have a search-enabled site. Now Concourse manages everything, so no more manual app pushes.
 
-## Step Five: Move PCF-Not-So-Current to cf-previous-versions pipeline
+## Step Five: Update Dropdown Menus in Older PCF Versions
+
+Update the previous versions of the PCF Core book to display the new version in their dropdown menus: 
+
+1. Navigate to `docs-book-pivotalcf` and check out the branch with the immediately preceding version, such as `1-9`.
+1. Open the `config.yml` and make the following changes:
+	1. Update `latest_stable_version`.
+	1. Add the `url_prefix` and `display_name` for the new version under `local_header_version_list`.
+
+## Step Six: Move PCF-Not-So-Current to cf-previous-versions pipeline
 
 1. Change into `concourse-scripts-docs`.
 1. Move the directory that contains the not-so-current group from `cf-current` to `cf-previous-versions`. For example:
