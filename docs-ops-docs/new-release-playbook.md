@@ -106,7 +106,7 @@ Perform the following steps to publish the new release docs on the day the new r
 	```
 1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue` with a random route. For example:
 	```
-	cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 --random-route
+	cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 --random-route -i 3
 	```
 1. Retrieve the random route from the command's output and navigate to it. Ensure the content looks good. Make sure that it references the right version, that it does not contain the red banner, and that the redirects are pointing to the 1.10 docs.
 1. Change the redirects in `docs-book-pcfservices` but do not commit and push the changes.
