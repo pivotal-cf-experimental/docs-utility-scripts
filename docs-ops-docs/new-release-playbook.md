@@ -158,10 +158,12 @@ Perform the following steps to publish the new release docs on the day the new r
 
 Update the previous versions of the PCF Core book to display the new version in their dropdown menus: 
 
-1. Navigate to `docs-book-pivotalcf` and check out the branch with the immediately preceding version, such as `1-9`.
+1. Navigate to `docs-book-pivotalcf` and check out the branch with the immediately preceding version, such as `1.9`.
 1. Open the `config.yml` and make the following changes:
 	1. Update `latest_stable_version`.
 	1. Add the `url_prefix` and `display_name` for the new version under `local_header_version_list`.
+1. Add, commit, and push the changes.
+1. Check out the branch with the next version, and continue until all of the versions back to 1.6 are updated.
 
 ## Step Six: Move PCF-Not-So-Current to cf-previous-versions pipeline
 
