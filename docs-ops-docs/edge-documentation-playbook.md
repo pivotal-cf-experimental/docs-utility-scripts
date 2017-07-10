@@ -15,7 +15,7 @@ Perform the following steps to move current content from master to a versioned b
 1. Determine what the OSS branch will be called, based on what version of CF is included in PCF. For example, PCF 1.11 shipped with CF 259, so the OSS branch is called `259`. Consult the Elastic Runtime Release Notes for more information about which CF version shipped in a particular PCF.
 1. Change into your `docs-book-pivotalcf` repo.
 1. Check out a new branch called `CURRENT-PCF-VERSION-NUMBER` branch. For example, if the upcoming version of PCF is 1.12, and the current version of PCF is 1.11, the branch should be `1.11`.
-	`$ git checkout -b CURRENT-PCF-VERSION-NUMBER`
+	* `$ git checkout -b CURRENT-PCF-VERSION-NUMBER`
 1. Open the `config.yml`.
 1. Work your way through all the repos listed in the `config.yml` to create new branches from `master`:
 	1. `$ git checkout master`
@@ -26,9 +26,9 @@ Perform the following steps to move current content from master to a versioned b
 	* Current content will publish off of the latest version branch instead of master.
 	* Content for the upcoming release will publish off master.
 1. Push your changes to `docs-book-pivotalcf` to your new branch:
-	`$ git push -u origin CURRENT-PCF-VERSION-NUMBER`
+	* `$ git push -u origin CURRENT-PCF-VERSION-NUMBER`
 1. Navigate to **concourse-scripts-docs/cf-current/pcf-CURRENT-VERSION-NUMBER** and open **config.yml**. Below the line that contains the `book:` key-value, add the following:
-`book_branch: ‘CURRENT-VERSION-NUMBER’`
+	* `book_branch: ‘CURRENT-VERSION-NUMBER’`
 1. Update concourse changes with the `fly cli`, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update_all[cf-current]`
@@ -37,7 +37,7 @@ Perform the following steps to move current content from master to a versioned b
 1. Check that the current content for PCF publishes from a versioned number branch: 
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
 	1. Click the group for the current version, `pcf-CURRENT-VERSION`.
-	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.		1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/1-11) to ensure the site displays properly and the content is correct for the version number.
+	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.	1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/1-11) to ensure the site displays properly and the content is correct for the version number.
 
 ## Step Two: Publish Edge Content From the Master Branch
 
