@@ -19,6 +19,7 @@ Perform the following steps to move current content from master to a versioned b
 1. Open the `config.yml`.
 1. Work your way through all the repos listed in the `config.yml` to create new branches from `master`:
 	1. `$ git checkout master`
+	1. `$ git pull`
 	1. `$ git checkout -b NEW-BRANCH`
 		<br><br>`NEW-BRANCH` will either be `CURRENT-PCF-VERSION-NUMBER` in a PCF repo, or the OSS branch in a OSS repo. For example, `1.11` or `259`.
 	1. `$ git push -u origin NEW-BRANCH`
