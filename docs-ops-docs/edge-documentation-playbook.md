@@ -44,8 +44,10 @@ Perform the following steps to move current content from master to a versioned b
 
 Perform the following steps to publish edge content from master:
 
+1. Make a `1.12` branch in the `pcf-release-notes` repo. 
 1. Change into `docs-book-pivotalcf/config.yml`.
 1. Check out the `master` branch.
+1. Under `layout_repo: pivotal-cf/docs-layout-repo`, add the following: `layout_repo_ref: 'edge'`. 
 1. Edit the relevant values in the following fields to increment version numbers throughout the config. For example, increment `1.9` to `1.10`, and `1-9` to `1-10` in the following sections:
 	1. `products: subnav_root:`
 	1. `pcf_header:` 
@@ -61,10 +63,3 @@ Perform the following steps to publish edge content from master:
 	1. `rake scheme:update[cf-edge/pcf-core]`
 	1. 	`rake fly:set_pipeline[cf-edge]`
 1. Commit and push changes to **concourse-scripts-docs**.
-1. The **cf-edge** and **cf-current** pipelines push each of the services apps to the same namespace, `docs-pcfservices`, and publish it to the `docs-pcf-staging.cfapps.io` route. So, these two pipelines will each write over the same **docs-pcfservices-blue** and **docs-pcfservices-green** apps in **staging**. To manage this namespacing overload, we only push the **docs-pcfservices** app from the **cf-edge** pipeline for a brief period, during which we follow these steps:
-	1. Inform the docs team that you will be pausing the **cf-current** pipelines for a maintenance check.
-	1. Pause **cf-current** pipeline, so that the cf-edge pipeline can publish the services and core docs apps.
-	1. Kick off the **pcf-core-bind** and the **pcfservices-bind** in the **cf-edge** pipeline.
-	1. When both binds complete, navigate to the staging site and check to make sure the correct content displays and that redirects work properly.
-	1. When finished, unpause the **cf-current** pipeline and kick off the **pcfservices-bind** in the **cf-current** pipeline to restore the current redirects.
-	1. Inform the docs team that cf-current now publishes the latest released version, and that **cf-edge** is set up properly for reviewing edge content.
