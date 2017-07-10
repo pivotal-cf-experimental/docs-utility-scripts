@@ -70,14 +70,3 @@ Perform the following steps to publish edge content from master:
 	1. When both binds complete, navigate to the staging site and check to make sure the correct content displays and that redirects work properly.
 	1. When finished, unpause the **cf-current** pipeline and kick off the **pcfservices-bind** in the **cf-current** pipeline to restore the current redirects.
 	1. Inform the docs team that cf-current now publishes the latest released version, and that **cf-edge** is set up properly for reviewing edge content.
-
-## Step Three: Update the Utility Configs
-
-1. Update the **scribe** config:
-	1. Open **docs-utility-scripts/rollback_release/rr_config.yml**
-	1. Add a new product section for the next version product, including its new key/values. 
-1. Populate **scribe** with new map numbers (**docs-utility-scripts/scribe/scribe#map**)
-1. Update **docs-utility-scripts/rollback_release/rr_config.yml** `PCF-Alpha-Edge` values:
-	1. `branch: EDGE-VERSION-NUMBER`
-	1. `route_path: '--path /pivotalcf/NEW-VERSION-NUMBER`
-
