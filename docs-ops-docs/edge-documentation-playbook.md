@@ -36,12 +36,8 @@ Perform the following steps to move current content from master to a versioned b
 1. Commit and push changes to **concourse-scripts-docs**.
 1. Check that the current content for PCF publishes from a versioned number branch: 
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
-	1. Click the group for the current version, pcf-CURRENT-VERSION
-	1. Visually verify that the concourse resource for docs-book-pivotalcf points to the correct versioned branch, 1.9 in the example below: 
-
-	image missing
-	
-	1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/1-9) to ensure the site displays properly and the content is correct for the version number.
+	1. Click the group for the current version, `pcf-CURRENT-VERSION`.
+	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.		1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/1-11) to ensure the site displays properly and the content is correct for the version number.
 
 ## Step Two: Publish Edge Content From the Master Branch
 
