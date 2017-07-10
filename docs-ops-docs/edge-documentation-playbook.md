@@ -10,26 +10,29 @@ We start using the **cf-edge** pipeline 30-60 days prior to the release going GA
 
 Perform the following steps to move current content from master to a versioned branch:
 
-1. Create and checkout CURRENT-VERSION-NUMBER branch in the docs-book-pivotalcf repo.
-1. Populate config.yml refs with appropriate commercial and OSS branch numbers (1.6/225, 1.7/235, 1.8/239, 1.9/246) for content repos to specify the current version
-	1. Current content will publish off of the latest version branch instead of master.
-	1. Content for the upcoming release will publish off master.
-1. Create new branches in content repos that publish the PCF core book.
-	1. (Option 1) Use rr switcheroo to create new branches in all corresponding content repos. `Switcheroo` will parse **docs-book-pivotalcf/config.yml** and ask interactively to populate new branches based on the following naming scheme:
-		1. New PCF release number for commercial content repos
-		1. Corresponding OSS release number for OSS content repos
-	1. (Option 2) Manually create new branches in all corresponding content repos manually depending on the following naming scheme:
-		1. New PCF release number for commercial content repos
-		1. Corresponding OSS release number for OSS content repos
-		1. Commit and push changes to **docs-book-pivotalcf** and new content repo branches. 
 1. At stand-up and with @here in Slack, tell #pcf-docs and #pcf-docs-team that you are completing this playbook. Specifically, 
->From this point forward until release, contribute edge content to the master branch. Contribute current content to the versioned branch for that release number (ex. 1.9 content will live on the 1.9 branch). 
+	>From this point forward until release, contribute edge content to the master branch. Contribute current content to the versioned branch for that release number (ex. 1.9 content will live on the 1.9 branch). 
+1. Determine what the OSS branch will be called, based on what version of CF is included in PCF. For example, PCF 1.11 shipped with CF 259, so the OSS branch is called `259`. Consult the Elastic Runtime Release Notes for more information about which CF version shipped in a particular PCF.
+1. Change into your `docs-book-pivotalcf` repo.
+1. Check out a new branch called `CURRENT-PCF-VERSION-NUMBER` branch. For example, if the upcoming version of PCF is 1.12, and the current version of PCF is 1.11, the branch should be `1.11`.
+	`$ git checkout -b CURRENT-PCF-VERSION-NUMBER`
+1. Open the `config.yml`.
+1. Work your way through all the repos listed in the `config.yml` to create new branches from `master`:
+	1. `$ git checkout master`
+	1. `$ git checkout -b NEW-BRANCH`
+		<br><br>`NEW-BRANCH` will either be `CURRENT-PCF-VERSION-NUMBER` in a PCF repo, or the OSS branch in a OSS repo. For example, `1.11` or `259`.
+	1. `$ git push -u origin NEW-BRANCH`
+1. After making all the branches, update the `docs-book-pivotalcf/config.yml` refs with appropriate PCF and OSS branch numbers (1.6/225, 1.7/235, 1.8/239, 1.9/246, etc) for content repos to specify the current version.
+	* Current content will publish off of the latest version branch instead of master.
+	* Content for the upcoming release will publish off master.
+1. Push your changes to `docs-book-pivotalcf` to your new branch:
+	`$ git push -u origin CURRENT-PCF-VERSION-NUMBER`
 1. Navigate to **concourse-scripts-docs/cf-current/pcf-CURRENT-VERSION-NUMBER** and open **config.yml**. Below the line that contains the `book:` key-value, add the following:
 `book_branch: ‘CURRENT-VERSION-NUMBER’`
 1. Update concourse changes with the `fly cli`, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update_all[cf-current]`
-	1. 	`rake fly:set_pipeline[cf-current]`
+	1. `rake fly:set_pipeline[cf-current]`
 1. Commit and push changes to **concourse-scripts-docs**.
 1. Check that the current content for PCF publishes from a versioned number branch: 
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
