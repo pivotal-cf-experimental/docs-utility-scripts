@@ -44,7 +44,7 @@ Perform the following steps to move current content from master to a versioned b
 
 Perform the following steps to publish edge content from master:
 
-1. Make a `1.12` branch in the `pcf-release-notes` repo. 
+1. Make a branch for the new version in the `pcf-release-notes` repo. 
 1. Change into `docs-book-pivotalcf/config.yml`.
 1. Check out the `master` branch.
 1. Under `layout_repo: pivotal-cf/docs-layout-repo`, add the following: `layout_repo_ref: 'edge'`. 
@@ -55,6 +55,7 @@ Perform the following steps to publish edge content from master:
 	1. Add a new header to the `local_header_version_list:`
 1. Open `docs-book-pivotalcf/redirects.rb`. 
 1. Edit the redirects to increment version numbers throughout. For example, increment `1-9` to `1-10` where it appears.
+1. Change all the links in the subnav file to the new version. 
 1. Commit and push changes.
 1. Modify **concourse-scripts-docs/cf-edge/deployment-resources.yml**, line 6: `versioned_file: pcf-NEW-VERSION-NUMBER-final_app.tar.gz`
 1. Modify **concourse-scripts-docs/cf-edge/pcf-core/config.yml**, line 15: `path: pivotalcf/NEW-VERSION-NUMBER`
