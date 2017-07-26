@@ -33,7 +33,7 @@ def gather_repos(books)
 end
 
 def get_wiki
-	File.directory?(Dir.home + '/workspace/docs-wiki-internal.wiki') ? `cd ~/workspace/docs-wiki-internal.wiki; git checkout master; git pull` : `cd ~/workspace; git clone git@github.com:pivotal-cf-experimental/docs-wiki-internal.wiki.git`
+	File.directory?(Dir.home + '/workspace/docs-wiki-internal') ? `cd ~/workspace/docs-wiki-internal; git checkout master; git pull` : `cd ~/workspace; git clone git@github.com:pivotal-cf-experimental/docs-wiki-internal.git`
 end
 
 # Removes repos with changes from @repo_list 
