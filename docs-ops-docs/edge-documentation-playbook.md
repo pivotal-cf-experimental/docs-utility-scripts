@@ -2,10 +2,6 @@
 
 Refer to the [Release Operations Overview](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/docs-ops-docs/release-operations-overview.md) before you start this playbook.
 
-We publish edge docs using the **cf-edge** pipeline in our concourse CI/CD. 
-
-We start using the **cf-edge** pipeline 30-60 days prior to the release going GA. The **cf-edge** pipeline publishes content for the upcoming release to a staging site. After the release goes GA, we pause the **cf-edge** pipeline until 30-60 days prior to the next release going GA.
-
 ## Step One: Publish Current Content From a Versioned Branch
 
 Perform the following steps to move current content from master to a versioned branch:
