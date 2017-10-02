@@ -57,10 +57,15 @@ Perform the following steps to publish edge content from master:
 1. Edit the redirects to increment version numbers throughout. For example, increment `1-9` to `1-10` where it appears.
 1. Change all the links in the subnav file to the new version. 
 1. Commit and push changes.
-1. Modify **concourse-scripts-docs/cf-edge/deployment-resources.yml**, line 6: `versioned_file: pcf-NEW-VERSION-NUMBER-final_app.tar.gz`
-1. Modify **concourse-scripts-docs/cf-edge/pcf-core/config.yml**, line 15: `path: pivotalcf/NEW-VERSION-NUMBER`
+1. Run `bundle exec bookbinder bind remote` from the `master` branch of `docs-book-pivotalcf` to create a new app. 
+1. Change into the `final_app` directory and push both a blue and green version of the app. 
+1. Add basic auth to both apps. 
+1. Add search to both apps. 
+1. Add a new entry to **concourse-scripts-docs/cf-current/deployment-resources.yml** for the new version. 
+1. In the `cf-current` directory of `concourse-scripts-docs`, make copy the current version directory and rename it to the new version. For instance, copy `pcf-1-12` and rename it `pcf-2-0` using `cp -rf pcf-1-12/ pcf-2-0`. You also must changed the names of the subdirectories using `mv`. 
+1. Modify **concourse-scripts-docs/cf-current/NEW-VERSION/config.yml**, line: `path: pivotalcf/NEW-VERSION-NUMBER`
 1. Update concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
-	1. `rake scheme:update[cf-edge/pcf-core]`
-	1. 	`rake fly:set_pipeline[cf-edge]`
+	1. `rake scheme:update[cf-current/NEW-VERSION]`
+	1. 	`rake fly:set_pipeline[cf-current]`
 1. Commit and push changes to **concourse-scripts-docs**.
