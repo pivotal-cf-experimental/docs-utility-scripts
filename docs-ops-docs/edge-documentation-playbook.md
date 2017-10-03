@@ -38,8 +38,6 @@ Perform the following steps to move current content from master to a versioned b
 
 ## Step Two: Create New Branch in PCF Book
 
-<!-- Perform the following steps to publish edge content from master: -->
-
 1. Make a branch for the new version in the `pcf-release-notes` repo. 
 1. Change into `docs-book-pivotalcf/config.yml`.
 1. Check out the `master` branch.
@@ -85,16 +83,53 @@ Perform the following steps to move current content from master to a versioned b
 	    secret_access_key: "{{aws-secret-key}}"
 ```
 ## Step Four: Push New CF App
-1. Run `bundle exec bookbinder bind remote` from the `master` branch of `docs-book-pivotalcf` to create a new app. 
-1. Change into the `final_app` directory and push both a blue and green version of the app. 
-1. Add basic auth to both apps. 
-1. Add search to both apps.
+1. Run `bundle exec bookbinder bind remote` from the `master` branch of `docs-book-pivotalcf` to create a new app.
+1. Change into the `final_app` directory: `cd ~/workspace/docs-book-pivotalcf/final_app`
+1. Log in to PWS:
+	1. `cf api api.run.pivotal.io`
+	1. `cf login`
+1. Make sure you are targeting the `pivotalcf-staging` space in the `pivotal-pubtools` org:
+	```
+	cf target -o pivotal-pubtools -s pivotalcf-staging
+	```
+1. Push the app as `docs-pcf-NEW-VERSION-NUMBER-blue`. For example:
+	```
+	cf push docs-pcf-1-10-blue -b https://github.com/cloudfoundry/ruby-buildpack#v1.6.28 -i 3
+	```
+1. When the command completes, navigate to the app's route and ensure the content looks good. The route should be provided in the output. For example:
+	```
+	urls: docs-pcf-1-10-blue.cfapps.io
+	```
+1. Navigate to the Concourse UI and pause the `cf-edge` pipeline.
+1. Map the newly deployed app to the route currently mapped to `docs-pcf-edge-blue` and `docs-pcf-edge-green`. For instance:
+	```
+	cf map-route docs-pcf-1-10-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/1-10
+	```
+1. Navigate to the route and ensure the content looks good.
+1. Bind the new app to the Elastic.co service instance:
+	```
+	cf bind-service APP_NAME elastic.co
+	```
+1. Stop the running `docs-pcf-edge` app.
+1. Kick off a new build of the `pcf-NEW-VERSION-NUMBER-bind` under the `pcf-NEW-VERSION-NUMBER` group in `cf-current`. For instance, `pcf-1-10-bind` under `pcf-1-10` in `cf-current`.
+1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` are bound to Elastico service instances. 
+	1. List the service instances bound to apps with `cf services`.
+	1. If one or both of the apps aren't bound to `elastic.co`, run `cf bind-service APP_NAME elastic.co`.
+1. Ensure that both `pcf-NEW-VERSION-NUMBER-blue` and `pcf-NEW-VERSION-NUMBER-green` have basic auth enabled. To enable auth, set the following environment variables: `SITE_AUTH_USERNAME` to `pivotalcf` and `SITE_AUTH_PASSWORD` to `wilderror16`:
+	```
+	cf set-env docs-pcf-1-10-blue SITE_AUTH_USERNAME pivotalcf
+	cf set env docs-pcf-1-10-blue SITE_AUTH_PASSWORD wilderror16
+	cf set-env docs-pcf-1-10-green SITE_AUTH_USERNAME pivotalcf
+	cf set-env docs-pcf-1-10-green SITE_AUTH_PASSWORD wilderror16
+	```
+1. Wait until the new release goes GA, then complete the rest of this playbook.
+
 
 ## Step Five: Update Pipelines
 1. Update concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-current/NEW-VERSION]`
-	1. `rake scheme:update[cf-previous-versions]`
+	1. `rake scheme:update_all[cf-previous-versions]`
 	1. `rake fly:set_pipeline[cf-current]`
 	1. `rake fly:set_pipeline[cf-previous-versions]`
 1. Commit and push changes to **concourse-scripts-docs**.
