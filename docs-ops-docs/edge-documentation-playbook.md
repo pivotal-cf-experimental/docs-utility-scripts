@@ -90,7 +90,7 @@ Perform the following steps to move current content from master to a versioned b
 1. Add basic auth to both apps. 
 1. Add search to both apps.
 
-##Step Five: Go Live
+## Step Five: Update Pipelines
 1. Update concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-current/NEW-VERSION]`
