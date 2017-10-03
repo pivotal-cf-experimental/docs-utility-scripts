@@ -36,9 +36,9 @@ Perform the following steps to move current content from master to a versioned b
 	1. Click the group for the current version, `pcf-CURRENT-VERSION`.
 	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.	1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/1-11) to ensure the site displays properly and the content is correct for the version number.
 
-## Step Two: Publish Edge Content From the Master Branch
+## Step Two: Create New Branch in PCF Book
 
-Perform the following steps to publish edge content from master:
+<!-- Perform the following steps to publish edge content from master: -->
 
 1. Make a branch for the new version in the `pcf-release-notes` repo. 
 1. Change into `docs-book-pivotalcf/config.yml`.
@@ -53,6 +53,9 @@ Perform the following steps to publish edge content from master:
 1. Edit the redirects to increment version numbers throughout. For example, increment `1-9` to `1-10` where it appears.
 1. Change all the links in the subnav file to the new version. 
 1. Commit and push changes.
+
+## Step Three: Configure Pipelines for **cf-current** and **cf-previous-versions**
+
 1. Navigate to **concourse-scripts-docs/scripts-docs/cf-current**: `cd ~/workspace/concourse-scripts-docs/scripts-docs/cf-current`
 1. Rename the folder's oldest versioned pipeline directory and all subdirectories with the newest version number:
 	1. `mv pcf-OLD-VERSION pcf-NEW-VERSION`
@@ -81,12 +84,13 @@ Perform the following steps to publish edge content from master:
 	    access_key_id: "{{aws-access-key}}"
 	    secret_access_key: "{{aws-secret-key}}"
 ```
+## Step Four: Push New CF App
 1. Run `bundle exec bookbinder bind remote` from the `master` branch of `docs-book-pivotalcf` to create a new app. 
 1. Change into the `final_app` directory and push both a blue and green version of the app. 
 1. Add basic auth to both apps. 
-1. Add search to both apps. 
-1. Add a new entry to **concourse-scripts-docs/cf-current/deployment-resources.yml** for the new version. 
-1. Modify **concourse-scripts-docs/cf-current/NEW-VERSION/config.yml**, line: `path: pivotalcf/NEW-VERSION-NUMBER`
+1. Add search to both apps.
+
+##Step Five: Go Live
 1. Update concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-current/NEW-VERSION]`
