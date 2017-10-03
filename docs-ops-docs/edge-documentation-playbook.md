@@ -62,7 +62,7 @@ Perform the following steps to move current content from master to a versioned b
 	1. `mv pcf-OLD-VERSION/pcf-OLD-VERSION-bind pcf-NEW-VERSION/pcf-NEW-VERSION-bind`
 	1. `mv pcf-OLD-VERSION/pcf-OLD-VERSION-staging pcf-NEW-VERSION/pcf-NEW-VERSION-staging`
 	1. `mv pcf-OLD-VERSION/pcf-OLD-VERSION-production pcf-NEW-VERSION/pcf-NEW-VERSION-production`
-1. Copy the script of the oldest version from **cf-current/deployment-resources.yml** to **cf-previous-versions/deployment-resources.yml**. The copied script should resemble something like this:
+1. Copy the script of the oldest version from **cf-current/deployment-resources.yml** to **cf-previous-versions/deployment-resources.yml**. The copied script should resemble this:
 ```
 	- name: cf-current-pcf-OLD-VERSION-s3
 	  type: s3
