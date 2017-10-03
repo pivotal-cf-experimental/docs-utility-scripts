@@ -48,7 +48,7 @@ TOTALLY-FINE-PRINT DETAILS:
  
 • your workspace is located at ~/workspace
 
-• the docs group only has the four books: pcf, pws, cf and services
+• all_book.yml lists all the docs-books
 
 • you have a .bash_profile file
 
