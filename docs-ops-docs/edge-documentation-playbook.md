@@ -95,6 +95,6 @@ Perform the following steps to move current content from master to a versioned b
 	1. `rake fly:login`
 	1. `rake scheme:update[cf-current/NEW-VERSION]`
 	1. `rake scheme:update[cf-previous-versions]`
-	1. `rake fly:set_pipeline[cf-edge]`
+	1. `rake fly:set_pipeline[cf-current]`
 	1. `rake fly:set_pipeline[cf-previous-versions]`
 1. Commit and push changes to **concourse-scripts-docs**.
