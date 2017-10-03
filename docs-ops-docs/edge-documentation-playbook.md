@@ -2,10 +2,6 @@
 
 Refer to the [Release Operations Overview](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/docs-ops-docs/release-operations-overview.md) before you start this playbook.
 
-We publish edge docs using the **cf-edge** pipeline in our concourse CI/CD. 
-
-We start using the **cf-edge** pipeline 30-60 days prior to the release going GA. The **cf-edge** pipeline publishes content for the upcoming release to a staging site. After the release goes GA, we pause the **cf-edge** pipeline until 30-60 days prior to the next release going GA.
-
 ## Step One: Publish Current Content From a Versioned Branch
 
 Perform the following steps to move current content from master to a versioned branch:
@@ -85,9 +81,15 @@ Perform the following steps to publish edge content from master:
 	    access_key_id: "{{aws-access-key}}"
 	    secret_access_key: "{{aws-secret-key}}"
 ```
-1. Update concourse changes with the `fly` cli, using the following **rake** commands to set the updated pipelines:
+1. Run `bundle exec bookbinder bind remote` from the `master` branch of `docs-book-pivotalcf` to create a new app. 
+1. Change into the `final_app` directory and push both a blue and green version of the app. 
+1. Add basic auth to both apps. 
+1. Add search to both apps. 
+1. Add a new entry to **concourse-scripts-docs/cf-current/deployment-resources.yml** for the new version. 
+1. Modify **concourse-scripts-docs/cf-current/NEW-VERSION/config.yml**, line: `path: pivotalcf/NEW-VERSION-NUMBER`
+1. Update concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
-	1. `rake scheme:update[cf-current]`
+	1. `rake scheme:update[cf-current/NEW-VERSION]`
 	1. `rake scheme:update[cf-previous-versions]`
 	1. `rake fly:set_pipeline[cf-edge]`
 	1. `rake fly:set_pipeline[cf-previous-versions]`
