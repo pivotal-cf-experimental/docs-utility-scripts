@@ -57,10 +57,38 @@ Perform the following steps to publish edge content from master:
 1. Edit the redirects to increment version numbers throughout. For example, increment `1-9` to `1-10` where it appears.
 1. Change all the links in the subnav file to the new version. 
 1. Commit and push changes.
-1. Modify **concourse-scripts-docs/cf-edge/deployment-resources.yml**, line 6: `versioned_file: pcf-NEW-VERSION-NUMBER-final_app.tar.gz`
-1. Modify **concourse-scripts-docs/cf-edge/pcf-core/config.yml**, line 15: `path: pivotalcf/NEW-VERSION-NUMBER`
-1. Update concourse changes with the `fly` cli, using the following **rake** commands:
+1. Navigate to **concourse-scripts-docs/scripts-docs/cf-current**: `cd ~/workspace/concourse-scripts-docs/scripts-docs/cf-current`
+1. Rename the folder's oldest versioned pipeline directory and all subdirectories with the newest version number:
+	1. `mv pcf-OLD-VERSION pcf-NEW-VERSION`
+	1. `mv pcf-OLD-VERSION/pcf-OLD-VERSION-bind pcf-NEW-VERSION/pcf-NEW-VERSION-bind`
+	1. `mv pcf-OLD-VERSION/pcf-OLD-VERSION-staging pcf-NEW-VERSION/pcf-NEW-VERSION-staging`
+	1. `mv pcf-OLD-VERSION/pcf-OLD-VERSION-production pcf-NEW-VERSION/pcf-NEW-VERSION-production`
+1. Copy the script of the oldest version from **cf-current/deployment-resources.yml** to **cf-previous-versions/deployment-resources.yml**. The copied script should resemble something like this:
+```
+	- name: cf-current-pcf-OLD-VERSION-s3
+	  type: s3
+	  source:
+	    bucket: concourse-interim-steps
+	    versioned_file: pcf-OLD-VERSION-final_app.tar.gz
+	    private: true
+	    access_key_id: "{{aws-access-key}}"
+	    secret_access_key: "{{aws-secret-key}}"
+```
+1. Edit **current-cf/deployment-resources.yml** to replace the oldest version number with the newest version number:
+```
+	- name: cf-current-pcf-NEW-VERSION-s3
+	  type: s3
+	  source:
+	    bucket: concourse-interim-steps
+	    versioned_file: pcf-NEW-VERSION-final_app.tar.gz
+	    private: true
+	    access_key_id: "{{aws-access-key}}"
+	    secret_access_key: "{{aws-secret-key}}"
+```
+1. Update concourse changes with the `fly` cli, using the following **rake** commands to set the updated pipelines:
 	1. `rake fly:login`
-	1. `rake scheme:update[cf-edge/pcf-core]`
-	1. 	`rake fly:set_pipeline[cf-edge]`
+	1. `rake scheme:update[cf-current]`
+	1. `rake scheme:update[cf-previous-versions]`
+	1. `rake fly:set_pipeline[cf-edge]`
+	1. `rake fly:set_pipeline[cf-previous-versions]`
 1. Commit and push changes to **concourse-scripts-docs**.
