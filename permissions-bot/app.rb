@@ -4,7 +4,7 @@ require 'net/http'
 client = Octokit::Client.new :access_token => ENV["git_token"]
 
 
-old_file = File.read('required_vcenter_privileges.md').gsub(/\s+/, "")
+old_file = File.read('docs-utility-scripts-master/permissions-bot/required_vcenter_privileges.md').gsub(/\s+/, "")
 
 new_file_url = URI.parse('https://raw.githubusercontent.com/cloudfoundry-incubator/bosh-vsphere-cpi-release/master/docs/required_vcenter_privileges.md')
 
