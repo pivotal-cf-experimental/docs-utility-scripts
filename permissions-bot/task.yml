@@ -1,0 +1,12 @@
+---
+platform: linux
+image_resource:
+  type: docker-image
+  source:
+    repository: pubtools/bookbinder-8.1
+
+inputs:
+- name: docs-utility-scripts-master
+
+run:
+  path: docs-utility-scripts-master/permissions-bot/run.sh
