@@ -14,14 +14,13 @@ pivotal-cf/docs-book-pivotalcf
 pivotal-cf/docs-book-rabbitmq
 pivotal-cf/docs-book-rabbitmq-replicator
 pivotal-cf/docs-book-redis
-pivotal-cf/docs-book-release-notes
 pivotal-cf/docs-book-runpivotal
 pivotal-cf/docs-book-scdf
 pivotal-cf/docs-book-scs
 pivotal-cf/docs-book-services-sdk
 pivotal-cf/docs-book-wiki
 cloudfoundry/docs-book-cloudfoundry
-cloudfoundry/docs-book-uaa-api
+
 
 
 
