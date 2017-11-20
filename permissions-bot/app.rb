@@ -14,4 +14,7 @@ if old_file != new_file
   client.create_issue("pivotal-cf/docs-pcf-install", 
           "Change to vSphere Permissions", 
           "The vSphere privileges [topic](https://github.com/cloudfoundry-incubator/bosh-vsphere-cpi-release/blob/master/docs/required_vcenter_privileges.md) in the `bosh-vsphere-cpi-release` GitHub repo has been modified. Please update the relevant versions of the [vSphere Service Account Requirements](https://docs.pivotal.io/pivotalcf/customizing/vsphere-service-account.html) topic in the PCF Core Docs.")
+  File.open('docs-utility-scripts-master/permissions-bot/required_vcenter_privileges.md', 'w') {
+    |file| file.write(new_file)
+  }
 end
