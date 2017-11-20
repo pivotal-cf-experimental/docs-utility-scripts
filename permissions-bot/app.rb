@@ -17,10 +17,12 @@ if old_file != new_file
 
   markdown_file = client.contents('pivotal-cf-experimental/docs-utility-scripts', {:path => 'permissions-bot/required_vcenter_privileges.md'})
 
-  client.update_contents('pivotal-cf-experimental/docs-utility-scripts',
+  client.update_contents("pivotal-cf-experimental/docs-utility-scripts",
                  "permissions-bot/required_vcenter_privileges.md",
                  "vSphere Permissions Bot Updating File",
-                 markdown_file['sha'],
-                 new_file)
+                 markdown_file["sha"],
+                 new_file,
+                 :branch => "master")
 
 end
+
