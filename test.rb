@@ -16,10 +16,11 @@ right_stemcells = sorted_stemcells_list.select do |d|
 d['release_date']
 end
 
-stemcells_numbers_list = right_stemcells.map do |r|  
-  if r['release_date'] == today
-    curl -X POST -H 'Content-type: application/json' --data '{"text":"@docteam A new stemcell released today."}' https://hooks.slack.com/services/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
-  else
-    curl -X POST -H 'Content-type: application/json' --data '{"text":"No new stemcell releases today."}' https://hooks.slack.com/services/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
-  end
+stemcells_numbers_list = right_stemcells.map do |r| 
+puts r['release_date'] 
+	if r['release_date'] == today
+		curl -X POST -H 'Content-type: application/json' --data '{"text":"@docteam A new stemcell released today."}' https://hooks.slack.com/services/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
+	else
+		curl -X POST -H 'Content-type: application/json' --data '{"text":"No new stemcell releases today."}' https://hooks.slack.com/services/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
+	end
 end
