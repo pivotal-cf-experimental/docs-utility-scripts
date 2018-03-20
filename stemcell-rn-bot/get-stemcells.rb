@@ -25,6 +25,9 @@ end
 
 if release then
 	puts `curl -X POST -H 'Content-type: application/json' --data '{"text":"@docteam A new stemcell released today."}' https://hooks.slack.com/services/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`
+
+	puts `curl -X POST -H "X-TrackerToken: TRACKERTOKEN" -H "Content-Type: application/json" -d '{"current_state":"unstarted","estimate":1,"name":"New Stemcell"}' "https://www.pivotaltracker.com/services/v5/projects/923920/stories"`
 else 
 	puts `curl -X POST -H 'Content-type: application/json' --data '{"text":"No new stemcells today."}' https://hooks.slack.com/services/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`
+	puts `curl -X POST -H "X-TrackerToken: TRACKERTOKEN" -H "Content-Type: application/json" -d '{"current_state":"unstarted","estimate":1,"name":"(Just a test) New Stemcell"}' "https://www.pivotaltracker.com/services/v5/projects/923920/stories"`
 end
