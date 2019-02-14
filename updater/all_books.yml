@@ -1,4 +1,5 @@
 pivotal-cf/docs-book-antivirus
+pivotal-cf/docs-book-app-automator
 pivotal-cf/docs-book-aws-service-broker
 pivotal-cf/docs-book-cloud-cache
 pivotal-cf/docs-book-compliance-tools
@@ -12,8 +13,8 @@ pivotal-cf/docs-book-metrics
 pivotal-cf/docs-book-metricsforwarder
 pivotal-cf/docs-book-mysql
 pivotal-cf/docs-book-odb
+pivotal-cf/docs-book-om
 pivotal-cf/docs-book-partners
-pivotal-cf/docs-book-pas-windows
 pivotal-cf/docs-book-pcfservices
 pivotal-cf/docs-book-pivotalcf
 pivotal-cf/docs-book-platform-automation
@@ -33,5 +34,5 @@ pivotal-cf/docs-book-services-sdk
 pivotal-cf/docs-book-telemetry
 pivotal-cf/docs-book-tiledev
 pivotal-cf/docs-book-wiki
-pivotal-cf/docs-book-om
+pivotal-cf/docs-book-windows2012r2
 cloudfoundry/docs-book-cloudfoundry
