@@ -1,6 +1,6 @@
 # Style Checker
 
-Style Checker is a re-purposed package for the text editor Atom. It is used for flagging style errors in documents as prescribed in the [Word and Phrase List](https://docs.google.com/spreadsheets/d/1hkadtxR1hY57kK7h5HN4ITHLJleZixCDH_RJPUpNq_A/edit#gid=0).
+Style Checker is a re-purposed package for the text editor Atom. It is used for flagging style errors described in the [Word and Phrase List](https://docs.google.com/spreadsheets/d/1hkadtxR1hY57kK7h5HN4ITHLJleZixCDH_RJPUpNq_A/edit#gid=0).
 
 ## Prerequisite
 
