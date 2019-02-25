@@ -13,7 +13,7 @@ Style Checker is a re-purposed package for the text editor Atom. It is used for 
   1. In the Atom toolbar go to **Atom > Preferences**.
   1. Click **Open Config Folder** in the side tab.
   1. In the **Project** folder tree go to **packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
-  1. Replace all the code between `function doreplacement(text) {` and `return text;` with the [style comment commands](https://docs.google.com/document/d/18uGgQdkapGHqkel7GQkwxWbpbla8lwQqOFgBkpyPFYw).
+  1. Replace all the code between `function doreplacement(text) {` and `return text;` with the [style comment commands](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/style-checker/style-comment-commands.txt).
   1. Save your changes to `html-special-character-replacer.js`.
   1. Restart Atom.
 
