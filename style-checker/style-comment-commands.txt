@@ -547,4 +547,4 @@
 	text = text.replace(/(\byoutube\b)/g,'$1<%# The brand name is "YouTube". %>');
 	text = text.replace(/(\bYoutube\b)/g,'$1<%# The brand name is "YouTube". %>');
 
-// End of commands
+	// End of commands
