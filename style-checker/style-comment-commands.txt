@@ -1,6 +1,6 @@
 	// Last Updated: 8 March, 2019
 
-	text = text.replace(/(\^(?!.*li).*\<a href="#..*\>(?!.*(above|below)).*)/g,'$1<%# After giving the anchor, state whether it is "above" or "below". %>');
+	text = text.replace(/(.*(?!.*li).*\<a href="#..*\>(?!.*(above|below)).*)/g,'$1<%# After giving the anchor, state whether it is "above" or "below". %>');
 	text = text.replace(/(\<a href="https:..bosh.io.docs.*\>(?!.*in the BOSH documentation).*)/g,'$1<%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
 	text = text.replace(/(\<a href="https:..pvtl.force.com.*\>(?!.*in the Pivotal Support knowledge base).*)/g,'$1<%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
 	text = text.replace(/(\<a href="https:..community.pivotal.io.*\>(?!.*in the Pivotal Support knowledge base).*)/g,'$1<%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
