@@ -1,4 +1,4 @@
-	// Last Updated: 8 March, 2019
+	// Last Updated: 29 March, 2019
 
 	text = text.replace(/(^(?!.*li\>).*\<a href="#..*\>(?!.*(above|below)).*)/gm,'$1<%# After giving the anchor, state whether it is "above" or "below". %>');
 	text = text.replace(/(\<a href="https:..bosh.io.docs.*\>(?!.*\n?.*in the BOSH documentation).*)/g,'$1<%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
