@@ -22,6 +22,7 @@ pivotal-cf/docs-book-pivotalcf
 pivotal-cf/docs-book-platform-automation
 pivotal-cf/docs-book-pfs
 pivotal-cf/docs-book-pks
+pivotal-cf/docs-book-metric-store
 pivotal-cf/docs-book-nist
 pivotal-cf/docs-book-rabbitmq
 pivotal-cf/docs-book-rabbitmq-replicator
