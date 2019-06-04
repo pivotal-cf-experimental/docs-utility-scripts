@@ -1,15 +1,16 @@
-	// Last Updated: 03 June, 2019
+	// Last Updated: 04 June, 2019
 
 text = text.replace(/(```(?!\n$|\n\s*Where|\n\s*\<br\>))/gm,'$1 <%# £SCS %>');
 text = text.replace(/(```(?! \<%# £SCS %\>))/gm,'$1 <%# ECS %>');
 text = text.replace(/(\<code\>)/gm,'$1 <%# £SCS %>');
 text = text.replace(/(\<\/code\>)/gm,'$1 <%# ECS %>');
+text = text.replace(/(\<pre\>)/gm,'$1 <%# £SCS %>');
 text = text.replace(/(\<pre class=.terminal.\>)/gm,'$1 <%# £SCS %>');
 text = text.replace(/(\<\/pre\>)/gm,'$1 <%# ECS %>');
 text = text.replace(/(^`(?!`)|\s`(?!`))/gm,'$1 <%# £SCS %>');
 text = text.replace(/([^`\s]`)/gm,'$1 <%# ECS %>');
-text = text.replace(/(\[(?=[^\]]*\]\()(?![^£]*\<%# EC %\>))/gm,'$1 <%# £SCS %>');
-text = text.replace(/(\[[^\]]*\]\(.*\)(?![^£]*\<%# EC %\>))/gm,'$1 <%# ECS %>');
+text = text.replace(/(\[(?=[^\]]*\]\())/gm,'$1 <%# £SCS %>');
+text = text.replace(/(\[[^\]]*\]\([^\)]*\))/gm,'$1 <%# ECS %>');
 text = text.replace(/(\<a id=)/gm,'$1 <%# £SCS %>');
 text = text.replace(/(\<a href=)/gm,'$1 <%# £SCS %>');
 text = text.replace(/(\<\/a\>)/gm,'$1 <%# ECS %>');
@@ -401,6 +402,7 @@ text = text.replace(/(\bOpsMan\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Ops Manager" 
 text = text.replace(/(\bOpsManager\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Ops Manager" is preferred. %>');
 text = text.replace(/(\bOrg\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "org" is preferred. %>');
 text = text.replace(/(\borganization\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "org" is preferred. %>');
+text = text.replace(/(\borganizations\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "orgs" is preferred. %>');
 text = text.replace(/(\bOrgs\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "orgs" is preferred. %>');
 text = text.replace(/(\bout of memory error\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "out-of-memory error" is preferred. %>');
 text = text.replace(/(\bOut Of Memory error\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "out-of-memory error" is preferred. %>');
@@ -592,33 +594,33 @@ text = text.replace(/(\byoutube\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand nam
 text = text.replace(/(\bYoutube\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "YouTube". %>');
 text = text.replace(/( \<%# £SCS %\>)/gm,'');
 text = text.replace(/( \<%# ECS %\>)/gm,'');
-text = text.replace(/(\<a href="https:..bosh.io.docs.*\>(?!.*\n?.*BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
-text = text.replace(/(\<a href="https:..pvtl.force.com.*\>(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
+text = text.replace(/(\(https:..bosh.io.*\)(?!.*\n?.*in the BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
+text = text.replace(/(\(https:..cloud.google.com.docs.*\)(?!.*\n?.*Google Cloud documentation).*$)/gm,'$1 <%# The link name must be "Google Cloud documentation". %>');
+text = text.replace(/(\(https:..community.pivotal.io.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
+text = text.replace(/(\(https:..github.com.*\)(?!.*\n?.*GitHub).*$)/gm,'$1 <%# Type "in GitHub" somewhere in the cross-reference sentence. %>');
+text = text.replace(/(\(https:..pvtl.force.com.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
+text = text.replace(/(\[(?!.*\n?.*Cloud Foundry documentation).*\]\(https:..docs.cloudfoundry.org.*\))/gm,'$1 <%# The link name must be "Cloud Foundry documentation". %>');
+text = text.replace(/(\[(?!.*\n?.*Percona documentation).*\]\(https:..www.percona.com.doc.*\).*$)/gm,'$1 <%# The link name must be "Percona documentation". %>');
+text = text.replace(/(\<a href="https:..bosh.io.*\>(?!.*\n?.*BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
+text = text.replace(/(\<a href="https:..cloud.google.com.docs.*\>(?!.*\n?.*Google Cloud documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Google Cloud documentation". %>');
 text = text.replace(/(\<a href="https:..community.pivotal.io.*\>(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
-text = text.replace(/(\<a href="https:..en.wikipedia.*\>(?!.*\n?.*Wikipedia).*$)/gm,'$1 <%# Type "in Wikipedia" somewhere in the cross-reference sentence. %>');
-text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
-text = text.replace(/(example\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
-text = text.replace(/(here\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
 text = text.replace(/(\<a href="https:..docs.aws.amazon.com.*\>(?!.*\n?.*AWS documentation).*\<.a\>)/gm,'$1 <%# The link name must be "in the AWS documentation". %>');
 text = text.replace(/(\<a href="https:..docs.cloudfoundry.org.*\>(?!.*\n?.*Cloud Foundry documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Cloud Foundry documentation". %>');
+text = text.replace(/(\<a href="https:..docs.spring.io.*\>(?!.*\n?.*Spring AMQP documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Spring AMQP documentation". %>');
+text = text.replace(/(\<a href="https:..en.wikipedia.*\>(?!.*\n?.*Wikipedia).*$)/gm,'$1 <%# Type "in Wikipedia" somewhere in the cross-reference sentence. %>');
 text = text.replace(/(\<a href="https:..github.com.*\>(?!.*\n?.*GitHub).*$)/gm,'$1 <%# Type "in GitHub" somewhere in the cross-reference sentence. %>');
-text = text.replace(/(\<a href="https:..cloud.google.com.docs.*\>(?!.*\n?.*Google Cloud documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Google Cloud documentation". %>');
+text = text.replace(/(\<a href="https:..pvtl.force.com.*\>(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
 text = text.replace(/(\<a href="https:..www.percona.com.doc.*\>(?!.*\n?.*Percona documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 text = text.replace(/(\<a href="https:..www.rabbitmq.com.*\>(?!.*\n?.*RabbitMQ documentation).*\<.a\>)/gm,'$1 <%# The link name must be "RabbitMQ documentation". %>');
-text = text.replace(/(\<a href="https:..docs.spring.io.*\>(?!.*\n?.*Spring AMQP documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Spring AMQP documentation". %>');
+text = text.replace(/(^(?!.*li\>).*\<a href="#..*\>(?!.*(above|below)).*)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 text = text.replace(/(^(?!\s*(\*\s*|\d\.\s*)).*\]\(#..*\)(?!.*(above|below)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
-text = text.replace(/(\(https:..bosh.io.docs.*\)(?!.*\n?.*in the BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
-text = text.replace(/(\(https:..pvtl.force.com.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
-text = text.replace(/(\(https:..community.pivotal.io.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
 text = text.replace(/(^\s*[#]+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
+text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 text = text.replace(/(example\])/gm,'$1 <%# Make the link name descriptive. %>');
+text = text.replace(/(example\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
 text = text.replace(/(here\])/gm,'$1 <%# Make the link name descriptive. %>');
-text = text.replace(/(\[(?!.*\n?.*Cloud Foundry documentation).*\]\(https:..docs.cloudfoundry.org.*\))/gm,'$1 <%# The link name must be "Cloud Foundry documentation". %>');
-text = text.replace(/(\(https:..github.com.*\)(?!.*\n?.*GitHub).*$)/gm,'$1 <%# Type "in GitHub" somewhere in the cross-reference sentence. %>');
-text = text.replace(/(\(https:..cloud.google.com.docs.*\)(?!.*\n?.*Google Cloud documentation).*$)/gm,'$1 <%# The link name must be "Google Cloud documentation". %>');
-text = text.replace(/(\[(?!.*\n?.*Percona documentation).*\]\(https:..www.percona.com.doc.*\).*$)/gm,'$1 <%# The link name must be "Percona documentation". %>');
+text = text.replace(/(here\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
 text = text.replace(/(version [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 text = text.replace(/(versions \>\= [\d\.]+)/gm,'$1 <%# "version # or earlier" is the preferred style. %>');
-text = text.replace(/(^(?!.*li\>).*\<a href="#..*\>(?!.*(above|below)).*)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 
 	// End of commands
