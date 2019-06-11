@@ -1,4 +1,4 @@
-	// Last Updated: 04 June, 2019
+	// Last Updated: 11 June, 2019
 
 text = text.replace(/(```(?!\n$|\n\s*Where|\n\s*\<br\>))/gm,'$1 <%# £SCS %>');
 text = text.replace(/(```(?! \<%# £SCS %\>))/gm,'$1 <%# ECS %>');
@@ -173,6 +173,7 @@ text = text.replace(/(\badministrator\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "admin"
 text = text.replace(/(\bAI\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "application instance" is preferred. %>');
 text = text.replace(/(\bair gapped\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "air-gapped" is preferred. %>');
 text = text.replace(/(\bAir gapped\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Air-gapped" is preferred. %>');
+text = text.replace(/(\bair-gap\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The noun is "air gap". %>');
 text = text.replace(/(\balpha-numeric\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "alphanumeric" is preferred. %>');
 text = text.replace(/(\banti-virus\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "antivirus" is preferred. %>');
 text = text.replace(/(\bapp container\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "application container" is preferred. %>');
@@ -213,6 +214,7 @@ text = text.replace(/(\bBOSH Lite\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "BOSH-Lite"
 text = text.replace(/(\bBOSH metrics\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "BOSH health metrics" is preferred. %>');
 text = text.replace(/(\bBOSH System Metrics\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "BOSH health metrics" is preferred. %>');
 text = text.replace(/(\bBOSH-init\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "bosh-init" is preferred. %>');
+text = text.replace(/(\bBPM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "bpm" is preferred as this is the BOSH docs style. %>');
 text = text.replace(/(\bbug\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "issue" is preferred. %>');
 text = text.replace(/(\bbutton\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not include the word button. Write "click Save", not "Click the Save button". %>');
 text = text.replace(/(\bCell VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "host VM" is preferred. %>');
@@ -484,6 +486,8 @@ text = text.replace(/(\bsmoketest\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "
 text = text.replace(/(\bSmoketest\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "smoke tests" (n.) or "smoke-tests" (adj.) %>');
 text = text.replace(/(\bsmoketests\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "smoke tests" (n.) or "smoke-tests" (adj.) %>');
 text = text.replace(/(\bSmoketests\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "smoke tests" (n.) or "smoke-tests" (adj.) %>');
+text = text.replace(/(\bsocks\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "SOCKS" is preferred. Do not spell it out, even on first use. %>');
+text = text.replace(/(\bSocks\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "SOCKS" is preferred. Do not spell it out, even on first use. %>');
 text = text.replace(/(\bSpace\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Only capitalize "space" when it is part of a title %>');
 text = text.replace(/(\bspec\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "specifications" is preferred. %>');
 text = text.replace(/(\bspecs\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "specifications" is preferred. %>');
@@ -582,13 +586,12 @@ text = text.replace(/(\bWebDav\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "WebDAV" is pr
 text = text.replace(/(\bWebSocket\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should not be plural as it refers to the WebSocket protocol.  %>');
 text = text.replace(/(\bwhitelist\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "whitelist" is fine for now while it is baked into the product. But where it makes sense, write "allow list" instead. %>');
 text = text.replace(/(\bwill\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid "will" as we prefer the present tense. %>');
-text = text.replace(/(\bWindows 20\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Per Kartik, it is "Windows Server, version 1709" NOT "Windows 2016, version 1709" %>');
 text = text.replace(/(\bwish\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "want" is preferred. %>');
-text = text.replace(/(\bworker\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follower" is preferred. %>');
 text = text.replace(/(\bwould\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Re-phrase for present tense if possible. %>');
 text = text.replace(/(\bwrite down\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "record" is preferred. %>');
 text = text.replace(/(\bYaml\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "YAML" is preferred. %>');
 text = text.replace(/(\bYML file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "YAML file" is preferred. %>');
+text = text.replace(/(\byou might want\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# If possible, replace with "Pivotal recommends" or re-phrase as a mandate. %>');
 text = text.replace(/(\byour machine\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "your local machine" is preferred. %>');
 text = text.replace(/(\byoutube\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "YouTube". %>');
 text = text.replace(/(\bYoutube\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "YouTube". %>');
@@ -600,10 +603,12 @@ text = text.replace(/(\(https:..community.pivotal.io.*\)(?!.*\n?.*Pivotal Suppor
 text = text.replace(/(\(https:..github.com.*\)(?!.*\n?.*GitHub).*$)/gm,'$1 <%# Type "in GitHub" somewhere in the cross-reference sentence. %>');
 text = text.replace(/(\(https:..pvtl.force.com.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
 text = text.replace(/(\[(?!.*\n?.*Cloud Foundry documentation).*\]\(https:..docs.cloudfoundry.org.*\))/gm,'$1 <%# The link name must be "Cloud Foundry documentation". %>');
+text = text.replace(/(\[(?!.*\n?.*Concourse documentation).*\]\(https:..concourse-ci.org.*\))/gm,'$1 <%# The link name must be "Concourse documentation". %>');
 text = text.replace(/(\[(?!.*\n?.*Percona documentation).*\]\(https:..www.percona.com.doc.*\).*$)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 text = text.replace(/(\<a href="https:..bosh.io.*\>(?!.*\n?.*BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
 text = text.replace(/(\<a href="https:..cloud.google.com.docs.*\>(?!.*\n?.*Google Cloud documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Google Cloud documentation". %>');
 text = text.replace(/(\<a href="https:..community.pivotal.io.*\>(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
+text = text.replace(/(\<a href="https:..concourse-ci.org.*\>(?!.*\n?.*Concourse documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Concourse documentation". %>');
 text = text.replace(/(\<a href="https:..docs.aws.amazon.com.*\>(?!.*\n?.*AWS documentation).*\<.a\>)/gm,'$1 <%# The link name must be "in the AWS documentation". %>');
 text = text.replace(/(\<a href="https:..docs.cloudfoundry.org.*\>(?!.*\n?.*Cloud Foundry documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Cloud Foundry documentation". %>');
 text = text.replace(/(\<a href="https:..docs.spring.io.*\>(?!.*\n?.*Spring AMQP documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Spring AMQP documentation". %>');
@@ -612,7 +617,7 @@ text = text.replace(/(\<a href="https:..github.com.*\>(?!.*\n?.*GitHub).*$)/gm,'
 text = text.replace(/(\<a href="https:..pvtl.force.com.*\>(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
 text = text.replace(/(\<a href="https:..www.percona.com.doc.*\>(?!.*\n?.*Percona documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 text = text.replace(/(\<a href="https:..www.rabbitmq.com.*\>(?!.*\n?.*RabbitMQ documentation).*\<.a\>)/gm,'$1 <%# The link name must be "RabbitMQ documentation". %>');
-text = text.replace(/(^(?!.*li\>).*\<a href="#..*\>(?!.*(above|below)).*)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
+text = text.replace(/(^(?!.*li\>).*\<a href="#..*\>(?!.*(above|below)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 text = text.replace(/(^(?!\s*(\*\s*|\d\.\s*)).*\]\(#..*\)(?!.*(above|below)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 text = text.replace(/(^\s*[#]+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
