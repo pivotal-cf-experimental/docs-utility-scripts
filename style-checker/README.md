@@ -26,5 +26,5 @@ Style Checker is a re-purposed package for the text editor Atom. It is used for 
 ## How to Use
 
   1. Open a document you want to edit in Atom.
-  1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors.
+  1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. Comments typically follow the pattern "<%# "....." is preferred. %>".
   1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the Pivotal writing style.
