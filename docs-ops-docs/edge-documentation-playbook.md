@@ -9,7 +9,7 @@ To move current content from `master` to a versioned branch, do the following:
 1. At stand-up and with @here in Slack, tell #pcf-docs and #pcf-docs-team that you are completing this playbook. Specifically, 
 	>From this point forward until release, contribute edge content to the master branch. Contribute current content to the versioned branch for that release number (ex. 2.5 content will live on the 2.5 branch). 
 
-1. Determine what the OSS branch will be called, based on what version of CF is included in PCF. For example, PCF 2.5 shipped with CF 7.9, so the OSS branch is called `7.9`. Consult the PAS Release Notes for more information about which CF version shipped in a particular PCF.
+1. Determine what the OSS branch will be called, based on what version of Cloud Foundry shipped closest to the current version of PCF. For example, PCF 2.5 shipped around the same time as CF 7.9, so the OSS branch is called `7.9`. To determine which CF version shipped closest to the release date of the current version of PCF, see the [cf-deployment release page](https://github.com/cloudfoundry/cf-deployment/releases) on GitHub.
 
 1. Change into your `docs-book-pivotalcf` repo.
 
@@ -25,7 +25,7 @@ To move current content from `master` to a versioned branch, do the following:
 		<br><br>`NEW-BRANCH` will either be `CURRENT-PCF-VERSION-NUMBER` in a PCF repo, or the OSS branch in a OSS repo. For example, `2.6` or `9.3`.
 	1. `$ git push -u origin NEW-BRANCH`
 
-1. After making all the branches, update the `docs-book-pivotalcf/config.yml` refs with appropriate PCF and OSS branch numbers (2.4/6.7, 2.5/7.9, 2.6/9.3, etc) for content repos to specify the current version.
+1. After making all the branches, update the `docs-book-pivotalcf/config.yml` refs with appropriate PCF and OSS branch numbers (2.4/6.7, 2.5/7.9, 2.6/9.3, etc.) for content repos to specify the current version.
 	* Current content will publish off of the latest version branch instead of master.
 	* Content for the upcoming release will publish off master.
 
@@ -46,6 +46,8 @@ To move current content from `master` to a versioned branch, do the following:
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
 	1. Click the group for the current version, `pcf-CURRENT-VERSION`.
 	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.	1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/2-6) to ensure the site displays properly and the content is correct for the version number.
+	
+1. Update the branch names in the [Git Branch Map](https://docs-wiki.cfapps.io/wiki/git/git-branch-map.html) in the Docs Wiki by adding the current PCF version number and its corresponding OSS branch number to the bottom of the list before `master`.
 
 ## Step Two: Create New Branch in PCF Book
 
@@ -69,13 +71,21 @@ To create a new versioned branch in `docs-book-pivotalcf`, do the following:
 
 1. Edit the redirects to increment version numbers throughout. For example, increment `2-6` to `2-7` where it appears.
 
-1. Change all the links in the subnav file to the new version. 
+1. Open `docs-book-pivotalcf/config/template_variables.yml`.
+
+1. Change `current_major_version` and `v_major_version` to the new version.
+
+1. Open `docs-book-pivotalcf/master_middleman/source/subnavs/pcf-subnav.erb`.
+
+1. Change the link titles in the subnav file that reference a PCF version to the new version. 
 
 1. Commit and push changes.
 
 ## Step Three: Push New CF Apps
 
 To build and push the staging and production sites for the new `master` branch, do the following:
+
+1. Make sure you have the latest Fly binary pack in `concourse-scripts-docs/bin/fly`.
 
 1. Run `bundle exec bookbinder bind remote` from the `master` branch of `docs-book-pivotalcf` to create a new app.
 
