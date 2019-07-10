@@ -22,7 +22,7 @@ To move current content from `master` to a versioned branch, do the following:
 	1. `$ git checkout master`
 	1. `$ git pull`
 	1. `$ git checkout -b NEW-BRANCH`
-		<br><br>`NEW-BRANCH` will either be `CURRENT-PCF-VERSION-NUMBER` in a PCF repo, or the OSS branch in a OSS repo. For example, `2.5` or `7.9`.
+		<br><br>`NEW-BRANCH` will either be `CURRENT-PCF-VERSION-NUMBER` in a PCF repo, or the OSS branch in a OSS repo. For example, `2.6` or `9.3`.
 	1. `$ git push -u origin NEW-BRANCH`
 
 1. After making all the branches, update the `docs-book-pivotalcf/config.yml` refs with appropriate PCF and OSS branch numbers (2.4/6.7, 2.5/7.9, 2.6/9.3, etc) for content repos to specify the current version.
@@ -45,7 +45,7 @@ To move current content from `master` to a versioned branch, do the following:
 1. Check that the current content for PCF publishes from a versioned number branch: 
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
 	1. Click the group for the current version, `pcf-CURRENT-VERSION`.
-	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.	1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/2-5) to ensure the site displays properly and the content is correct for the version number.
+	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.	1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/2-6) to ensure the site displays properly and the content is correct for the version number.
 
 ## Step Two: Create New Branch in PCF Book
 
@@ -59,7 +59,7 @@ To create a new versioned branch in `docs-book-pivotalcf`, do the following:
 
 1. Under `layout_repo: pivotal-cf/docs-layout-repo`, add the following: `layout_repo_ref: 'edge'`. 
 
-1. Edit the relevant values in the following fields to increment version numbers throughout the config. For example, increment `2.5` to `2.6`, and `2-5` to `2-6` in the following sections:
+1. Edit the relevant values in the following fields to increment version numbers throughout the config. For example, increment `2.6` to `2.7`, and `2-6` to `2-7` in the following sections:
 	1. `products: subnav_root:`
 	1. `pcf_header:` 
 	1. `sections: `
@@ -67,7 +67,7 @@ To create a new versioned branch in `docs-book-pivotalcf`, do the following:
 
 1. Open `docs-book-pivotalcf/redirects.rb`. 
 
-1. Edit the redirects to increment version numbers throughout. For example, increment `2-5` to `2-6` where it appears.
+1. Edit the redirects to increment version numbers throughout. For example, increment `2-6` to `2-7` where it appears.
 
 1. Change all the links in the subnav file to the new version. 
 
@@ -92,26 +92,26 @@ To build and push the staging and production sites for the new `master` branch, 
 
 1. Push the app twice, as `docs-pcf-NEW-VERSION-NUMBER-blue` and `docs-pcf-NEW-VERSION-NUMBER-green`. For example:
 	```
-	cf push docs-pcf-2-6-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d cfapps.io -n docs-pcf-staging --no-route
+	cf push docs-pcf-2-7-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d cfapps.io -n docs-pcf-staging --no-route
 	```
 	```
-	cf push docs-pcf-2-6-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d cfapps.io -n docs-pcf-staging --no-route
+	cf push docs-pcf-2-7-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d cfapps.io -n docs-pcf-staging --no-route
 	```
 
 1. When the `cf push` commands complete, navigate to the app's routes and ensure the content looks good. The route should be provided in the output. For example:
 	```
-	urls: docs-pcf-2-6-blue.cfapps.io
+	urls: docs-pcf-2-7-blue.cfapps.io
 	```
 	```
-	urls: docs-pcf-2-6-green.cfapps.io
+	urls: docs-pcf-2-7-green.cfapps.io
 	```
 
 1. Map each newly deployed app, blue and green, to the destination route.
 	```
-	cf map-route docs-pcf-2-6-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/2-6
+	cf map-route docs-pcf-2-7-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/2-7
 	```
 	```
-	cf map-route docs-pcf-2-6-green cfapps.io --hostname docs-pcf-staging --path pivotalcf/2-6
+	cf map-route docs-pcf-2-7-green cfapps.io --hostname docs-pcf-staging --path pivotalcf/2-7
 	```
 
 1. Browse to the route and ensure the content looks good.
@@ -119,12 +119,12 @@ To build and push the staging and production sites for the new `master` branch, 
 1. Run `cf target -s pivotalcf-production` to move to the production space, where you will continue "priming the pump" by pushing apps to the production space. 
 
 1. As above, push a green and a blue app -- but  this time, map routes to docs.pivotal.io rather than the staging URL.
-	- `cf push docs-pcf-2-6-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d docs.pivotal.io --no-route`
-	- `cf push docs-pcf-2-6-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d docs.pivotal.io --no-route`
-	- `cf map-route docs-pcf-2-6-blue docs.pivotal.io --path pivotalcf/2-6`
-	- `cf map-route docs-pcf-2-6-green docs.pivotal.io --path pivotalcf/2-6`
+	- `cf push docs-pcf-2-7-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d docs.pivotal.io --no-route`
+	- `cf push docs-pcf-2-7-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d docs.pivotal.io --no-route`
+	- `cf map-route docs-pcf-2-7-blue docs.pivotal.io --path pivotalcf/2-7`
+	- `cf map-route docs-pcf-2-7-green docs.pivotal.io --path pivotalcf/2-7`
 
-1. Browse to the route, e.g. `docs.pivotal.io/pivotalcf/2-6`, and ensure the content looks good.
+1. Browse to the route, e.g. `docs.pivotal.io/pivotalcf/2-7`, and ensure the content looks good.
 
 ## Step Four: Configure Pipelines for **cf-current** and **cf-previous-versions**
 
@@ -132,9 +132,9 @@ To configure the Concourse pipelines to accommodate the new version, do the foll
 
 1. Navigate to **concourse-scripts-docs/scripts-docs/cf-current**: `cd ~/workspace/concourse-scripts-docs/scripts-docs/cf-current`
 
-1. Make a new subfolder, e.g. `mkdir pcf-2-5`.
+1. Make a new subfolder, e.g. `mkdir pcf-2-7`.
 
-1. Copy content from last version folder into new folder, e.g. `cp -rf pcf-2-5/* pcf-2-6`.
+1. Copy content from last version folder into new folder, e.g. `cp -rf pcf-2-6/* pcf-2-7`.
 
 1. In `deployment-resources.yml`, add a new S3 bucket definition code chunk, just like the last version one -- copy, paste, and change version numbers.
 ```
@@ -150,15 +150,29 @@ To configure the Concourse pipelines to accommodate the new version, do the foll
 
 1. In new subfolder `config.yml`, change `book_branch` def to `book_branch : "master"` and change version numbers.
 
-1. In new subfolder, run `mv` to rename the three autogenerated folders so their name have new version number, e.g. `mv pcf-2-5-bind pcf-2-6-bind`.
+1. In new subfolder, run `mv` to rename the three autogenerated folders so their name have new version number, e.g. `mv pcf-2-6-bind pcf-2-7-bind`.
 
-1. In each of the three folders (e.g. `pcf-2-6-bind`, `pcf-2-6-staging`, and `pcf-2-6-production`) open `plan.yml` and change version numbers.
+1. In each of the three folders (e.g. `pcf-2-7-bind`, `pcf-2-7-staging`, and `pcf-2-7-production`) open `plan.yml` and change version numbers.
 
 Only two pipelines should be in `cf-current`: the current release version, ane the new edge version. When a new edge version is created, the oldest version is moved to `cf-previous-versions`. For example, when PCF 2.6 is released and the edge version goes from PCF 2.6 to PCF 2.7, PCF 2.5 must be moved to `cf-previous-versions`.
 
 To move a pipeline to `cf-previous-versions`, do the following:
 
-1. 
+1. Navigate to **concourse-scripts-docs/scripts-docs/cf-previous-versions**: `cd ~/workspace/concourse-scripts-docs/scripts-docs/cf-previous-versions` (or `cd ../cf-previous-versions` if already in `cf-current`)
+
+1. Make a new subfolder, e.g. `mkdir pcf-2-5`.
+
+1. Navigate back to **cf-current**: `cd ../cf-current`
+
+1. Copy the contents of the subfolder with the same name in `cf-current` to the new subfolder in `cf-previous-versions`, e.g. `cp -rf pcf-2-5/* ../cf-previous-versions/pcf-2-5`
+
+1. Delete the subfolder in `cf-current`, e.g. `rm -f pcf-2-5`
+
+1. Delete the S3 bucket definition code chunk for the removed pipeline from `deployment-resources.yml`.
+
+1. Navigate back to **cf-previous-versions**: `cd ../cf-previous-versions`
+
+1. Add the S3 bucket definition code chunk you removed from `cf-current` to the `deployment-resources.yml` file in `cf-previous-versions`.
 
 ## Step Five: Update Pipelines
 
