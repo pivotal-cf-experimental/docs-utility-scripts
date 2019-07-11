@@ -85,9 +85,9 @@ To create a new versioned branch in `docs-book-pivotalcf`, do the following:
 
 To build and push the staging and production sites for the new `master` branch, do the following:
 
-1. `cd` into `docs-book-pivotalcf` and go to the `master` branch.
+1. `cd` into `concourse-scripts-docs/bin/fly` and download the latest `fly` binary pack from the [concourse](https://github.com/concourse/concourse/releases) repository on GitHub.
 
-1. Make sure you have the latest Fly binary pack in `concourse-scripts-docs/bin/fly`.
+1. `cd` into `docs-book-pivotalcf` and go to the `master` branch.
 
 1. Make sure you have the correct Bookbinder Ruby gem installed by running `gem install ./bookbindery-10.1.15.gem`.
 
