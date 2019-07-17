@@ -112,14 +112,6 @@ To build and push the staging and production sites for the new `master` branch, 
 	cf push docs-pcf-2-7-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d cfapps.io -n docs-pcf-staging --no-route
 	```
 
-1. When the `cf push` commands complete, navigate to the app's routes and ensure the content looks good. The route should be provided in the output. For example:
-	```
-	urls: docs-pcf-2-7-blue.cfapps.io
-	```
-	```
-	urls: docs-pcf-2-7-green.cfapps.io
-	```
-
 1. Map each newly deployed app, blue and green, to the destination route.
 	```
 	cf map-route docs-pcf-2-7-blue cfapps.io --hostname docs-pcf-staging --path pivotalcf/2-7
@@ -128,9 +120,7 @@ To build and push the staging and production sites for the new `master` branch, 
 	cf map-route docs-pcf-2-7-green cfapps.io --hostname docs-pcf-staging --path pivotalcf/2-7
 	```
 
-1. Browse to the route and ensure the content looks good.
-
-1. Run `cf target -s pivotalcf-production` to move to the production space, where you will continue "priming the pump" by pushing apps to the production space. 
+1. Run `cf target -s pivotalcf-prod` to move to the production space, where you will continue "priming the pump" by pushing apps to the production space. 
 
 1. As above, push a green and a blue app -- but  this time, map routes to docs.pivotal.io rather than the staging URL.
 	- `cf push docs-pcf-2-7-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d docs.pivotal.io --no-route`
