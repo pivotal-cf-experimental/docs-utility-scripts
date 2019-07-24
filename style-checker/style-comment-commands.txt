@@ -57,7 +57,6 @@ text = text.replace(/(\<\/strong\>)/gm,'$1 <%# ECS %>');
 text = text.replace(/(\<b\>)/gm,'$1 <%# £SCS %>');
 text = text.replace(/(\<\/b\>)/gm,'$1 <%# ECS %>');
 text = text.replace(/(\b\d\-\d\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use &ndash; for a range, not a regular dash. %>');
-text = text.replace(/(\b\d\d\d\d+\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Per Chicago Style we write 4- and 5-digit numbers with commas. %>');
 text = text.replace(/(\b0 and above\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "0 and later" is preferred. %>');
 text = text.replace(/(\b0 and below\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "0 and earlier" is preferred. %>');
 text = text.replace(/(\b0 and greater\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "0 and later" is preferred. %>');
