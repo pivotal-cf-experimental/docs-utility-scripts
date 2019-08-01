@@ -829,5 +829,3 @@
 	text = text.replace(/( \<%# ECS %\>)/gm,'');
 
 	// End of commands
-
-	// End of commands
