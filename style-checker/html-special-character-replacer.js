@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last Updated: 12 August, 2019
+	// Last Updated: 16 August, 2019
 	
 	// Start of commands
 
@@ -60,11 +60,14 @@ function doreplacement(text)
 	text = text.replace(/(\<a href="https:..www.percona.com.doc.*\">(?!.*\n?.*Percona documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 	text = text.replace(/(\<a href="https:..www.rabbitmq.com.*\">(?!.*\n?.*RabbitMQ documentation).*\<.a\>)/gm,'$1 <%# The link name must be "RabbitMQ documentation". %>');
 	text = text.replace(/(\<img src=(?!.*alt=").*$)/gm,'$1 <%# Images require alt text. %>');
+	text = text.replace(/(#{2,3}(?!.*\<a id).*$)/gm,'$1 <%# H2 and H3 headers have anchor links except when in release notes. %>');
 	text = text.replace(/(^(?!.*li\>).*\<a href="#..*\">(?!.*\n?.*(above|below)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 	text = text.replace(/(^(?!\s*(\*\s*|-|\+|\d\.\s*)).*\]\(#..*\)(?!.*\n?.*(above|below)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 	text = text.replace(/(^\s*[#]+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
-	text = text.replace(/(CVE–\d{4}(?!.*\n?([^\[]*\]|[^\>]*\<\/a\>)).*$)/gm,'$1 <%# Link to the CVE page at pivotal.io/security. %>');
+	text = text.replace(/(^\s*\<h1\>\s*\d\.)/gm,'$1 <%# H1 headers are not allowed within topics. %>');
+	text = text.replace(/(^\s*#(?!#))/gm,'$1 <%# H1 headers are not allowed within topics. %>');
+	text = text.replace(/(CVE–\d{4}(?!.*\n?([^\[]*\]|[^\>]*\<\/a\>)).*$)/gm,'$1 <%# Link to the CVE page at pivotal.io/security or cve.mitre.org. %>');
 	text = text.replace(/(example\])/gm,'$1 <%# Make the link name descriptive. %>');
 	text = text.replace(/(example\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
 	text = text.replace(/(here\])/gm,'$1 <%# Make the link name descriptive. %>');
@@ -117,6 +120,7 @@ function doreplacement(text)
 	text = text.replace(/(\<%= \<%# £SCS %\>[^%]*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(``` <%# ECS %>[^\n])/gm,'$1 <%# Remove the trailing whitespace here. %>');
 	text = text.replace(/(\<\/p\>[^\n])/gm,'$1 <%# Remove the trailing whitespace here. %>');
+	text = text.replace(/(^.*[^\s]\<\/p\>)/gm,'$1 <%# Put the closing paragraph tag on its own line to avoid Bookbinder problems. %>');
 	text = text.replace(/(\d bit)/gm,'$1 <%# Missing the hyphen: 128-bit is gramatically correct; 128 bit is not. %>');
 	text = text.replace(/(\d\-\d)/gm,'$1 <%# Use &ndash; for a range, not a regular dash. %>');
 	text = text.replace(/(\d&nbsp;bit)/gm,'$1 <%# Missing the hyphen: 128-bit is gramatically correct; 128 bit is not. %>');
@@ -333,6 +337,9 @@ function doreplacement(text)
 	text = text.replace(/(\bBOSH-init\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "bosh-init" is preferred. %>');
 	text = text.replace(/(\bBPM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "bpm" is preferred as this is the BOSH docs style. %>');
 	text = text.replace(/(\bbug\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "issue" is preferred. %>');
+	text = text.replace(/(\bBug\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Issue" is preferred. %>');
+	text = text.replace(/(\bbugs\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "issue" is preferred. %>');
+	text = text.replace(/(\bBugs\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Issue" is preferred. %>');
 	text = text.replace(/(\bbump\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "update" is preferred. %>');
 	text = text.replace(/(\bBump\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "update" is preferred. %>');
 	text = text.replace(/(\bbumps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "update" is preferred. %>');
@@ -366,8 +373,6 @@ function doreplacement(text)
 	text = text.replace(/(\bcommand line interface\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CLI" is preferred. %>');
 	text = text.replace(/(\bcommand shell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "shell" is preferred. %>');
 	text = text.replace(/(\bcompiletime\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "compile time" is preferred. %>');
-	text = text.replace(/(\bcomplete[\s\n]*the[\s\n]*following\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
-	text = text.replace(/(\bComplete[\s\n]*the[\s\n]*following\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
 	text = text.replace(/(\bcomponent VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# All VMs are component VMs except for the host VMs. %>');
 	text = text.replace(/(\bConfig\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "config" is preferred. %>');
 	text = text.replace(/(\bcontainer networking\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CF Networking" is preferred. %>');
@@ -401,8 +406,6 @@ function doreplacement(text)
 	text = text.replace(/(\bDigital Transformation\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "digital transformation" is preferred. %>');
 	text = text.replace(/(\bdisk IO\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "disk I/O" is preferred. %>');
 	text = text.replace(/(\bdistro\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "distribution" is preferred. %>');
-	text = text.replace(/(\bdo[\s\n]*the[\s\n]*following\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
-	text = text.replace(/(\bDo[\s\n]*the[\s\n]*following\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
 	text = text.replace(/(\bdocker image\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Docker image" is preferred. %>');
 	text = text.replace(/(\bDocker trusted registry\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Docker Registry" is preferred. %>');
 	text = text.replace(/(\bdoesn't\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# We do not use contractions. %>');
@@ -438,10 +441,7 @@ function doreplacement(text)
 	text = text.replace(/(\bfirehose\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Firehose" is capitalized. %>');
 	text = text.replace(/(\bfolder\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "directory" is preferred. %>');
 	text = text.replace(/(\bfolders\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "directories" is preferred. %>');
-	text = text.replace(/(\bFollow the\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
-	text = text.replace(/(\bfollow the\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
-	text = text.replace(/(\bFollow these\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
-	text = text.replace(/(\bfollow these\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
+	text = text.replace(/(\bfollowing:(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
 	text = text.replace(/(\bfor instance\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "for example" is preferred. %>');
 	text = text.replace(/(\bfor more information\.(?![^£]*\<%# ECS %\>))/gm,'$1<%# The x-ref format is "For more information, see..." %>');
 	text = text.replace(/(\bFrequently Asked Questions\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use FAQs unless absolutely necessary. Fold into other appropriate locations in the doc. %>');
@@ -467,7 +467,6 @@ function doreplacement(text)
 	text = text.replace(/(\bguarantee\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Maybe replace with "ensure" to avoid the sense of legalese. %>');
 	text = text.replace(/(\bGuarantee\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Maybe replace with "Ensure" to avoid the sense of legalese. %>');
 	text = text.replace(/(\bGUI\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "UI" is preferred. %>');
-	text = text.replace(/(\bGUID\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "UUID" might be better here; it is the more popular industry term and is preferred for CredHub and BOSH. %>');
 	text = text.replace(/(\bHAC\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "HA cluster" is preferred. %>');
 	text = text.replace(/(\bhadn't\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# We do not use contractions. %>');
 	text = text.replace(/(\bhankering\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "want" is preferred. %>');
@@ -625,8 +624,6 @@ function doreplacement(text)
 	text = text.replace(/(\bPCF Ops Manager\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Ops Manager" is preferred. %>');
 	text = text.replace(/(\bPCF Small Footprint\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Small Footprint PAS" or "Small Footprint Runtime for v1.12 and earlier" are preferred. %>');
 	text = text.replace(/(\bPCFdev\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PCF Dev" is preferred. %>');
-	text = text.replace(/(\bperform[\s\n]*the[\s\n]*following\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
-	text = text.replace(/(\bPerform[\s\n]*the[\s\n]*following\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
 	text = text.replace(/(\bPID file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpid file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpidfile\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
@@ -662,6 +659,7 @@ function doreplacement(text)
 	text = text.replace(/(\bPreprovisioned\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pre-provisioned" is preferred. %>');
 	text = text.replace(/(\bprerequisite\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Prerequisites are things that you have to do before carrying out procedures in a topic, such as installing software or carrying out other procedures. Requirements are things that you need before, after or during. %>');
 	text = text.replace(/(\bprior to\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "before" is preferred. %>');
+	text = text.replace(/(\bprocedure[\s\n]*\w*:(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
 	text = text.replace(/(\bprocfile\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Procfile" is preferred. %>');
 	text = text.replace(/(\bprod\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "production" is preferred. %>');
 	text = text.replace(/(\bProduct Version Matrix\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Product Compatibility Matrix" is preferred. %>');
@@ -695,7 +693,6 @@ function doreplacement(text)
 	text = text.replace(/(\bSecurity Assertion Markup Language\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# We never spell out SAML. %>');
 	text = text.replace(/(\bsecurity assertion markup language\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# We never spell out SAML. %>');
 	text = text.replace(/(\bservice broker API\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Service Broker API" is preferred. %>');
-	text = text.replace(/(\bService Instance\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Only capitalize "service instance" when it is part of a title %>');
 	text = text.replace(/(\bservice instance credentials\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "binding credentials" is preferred. %>');
 	text = text.replace(/(\bService Key\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Only capitalize "service key" when it is part of a title %>');
 	text = text.replace(/(\bServices Marketplace\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Marketplace" is preferred. %>');
@@ -763,6 +760,7 @@ function doreplacement(text)
 	text = text.replace(/(\bstem-cell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "stemcell" is preferred. %>');
 	text = text.replace(/(\bStemCell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "stemcell" is preferred. %>');
 	text = text.replace(/(\bStemcell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Lowercase is preferred unless "stemcell" starts a sentence or is in a title. %>');
+	text = text.replace(/(\bsteps[\s\n]*\w*:(?![^£]*\<%# ECS %\>))/gm,'$1<%# To introduce steps we now just write "To do x:" %>');
 	text = text.replace(/(\bstrongly\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# This should probably be cut, especially if it precedes "recommend". %>');
 	text = text.replace(/(\bsub-directory\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "subdirectory" is preferred. %>');
 	text = text.replace(/(\bsub-property\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "subproperty" is preferred. %>');
