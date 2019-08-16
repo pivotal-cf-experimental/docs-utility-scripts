@@ -66,7 +66,6 @@ function doreplacement(text)
 	text = text.replace(/(^\s*[#]+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(^\s*\<h1\>\s*\d\.)/gm,'$1 <%# H1 headers are not allowed within topics. %>');
-	text = text.replace(/(^\s*#(?!#))/gm,'$1 <%# H1 headers are not allowed within topics. %>');
 	text = text.replace(/(CVE–\d{4}(?!.*\n?([^\[]*\]|[^\>]*\<\/a\>)).*$)/gm,'$1 <%# Link to the CVE page at pivotal.io/security or cve.mitre.org. %>');
 	text = text.replace(/(example\])/gm,'$1 <%# Make the link name descriptive. %>');
 	text = text.replace(/(example\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
