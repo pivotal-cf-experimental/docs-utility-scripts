@@ -309,6 +309,8 @@ function doreplacement(text)
 	text = text.replace(/(\baren't\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# We do not use contractions. %>');
 	text = text.replace(/(\bartefact\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "artifact" is preferred. %>');
 	text = text.replace(/(\bassistance\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "help" is preferred. %>');
+	text = text.replace(/(\bapplication\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The standard is "app". Use application in certain contexts, such as "Application Security Groups (ASGs)", "application health check", and application container. %>');
+	text = text.replace(/(\bApplication\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The standard is "app". Use application in certain contexts, such as "Application Security Groups (ASGs)", "application health check", and application container. %>');
 	text = text.replace(/(\bat the moment\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid if you can: everything is subject to change, not just this thing. %>');
 	text = text.replace(/(\bAt the moment\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid if you can: everything is subject to change, not just this thing. %>');
 	text = text.replace(/(\bat the time of writing\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid if you can: everything is true at the time of writing. %>');
