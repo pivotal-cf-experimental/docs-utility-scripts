@@ -60,7 +60,7 @@ function doreplacement(text)
 	text = text.replace(/(\<a href="https:..www.percona.com.doc.*\">(?!.*\n?.*Percona documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 	text = text.replace(/(\<a href="https:..www.rabbitmq.com.*\">(?!.*\n?.*RabbitMQ documentation).*\<.a\>)/gm,'$1 <%# The link name must be "RabbitMQ documentation". %>');
 	text = text.replace(/(\<img src=(?!.*alt=").*$)/gm,'$1 <%# Images require alt text. %>');
-	text = text.replace(/(#{2,3}(?!.*\<a id).*$)/gm,'$1 <%# H2 and H3 headers have anchor links except when in release notes. %>');
+	text = text.replace(/(^\s*#{2,3}[\s\w](?!.*\<a id).*$)/gm,'$1 <%# H2 and H3 headers have anchor links except when in release notes. %>');
 	text = text.replace(/(^(?!.*li\>).*\<a href="#..*\">(?!.*\n?.*(above|below)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 	text = text.replace(/(^(?!\s*(\*\s*|-|\+|\d\.\s*)).*\]\(#..*\)(?!.*\n?.*(above|below)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 	text = text.replace(/(^\s*[#]+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
