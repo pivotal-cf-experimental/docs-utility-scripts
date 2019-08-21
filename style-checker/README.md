@@ -22,6 +22,25 @@ Style Checker is a re-purposed package for the text editor Atom. It is used for 
   1. Replace all the code between `function doreplacement(text) {` and `return text;` with the [style comment commands](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/style-checker/html-special-character-replacer.js).
   1. Save your changes to `html-special-character-replacer.js`.
   1. Restart Atom.
+  
+  OR
+
+1. Add the following to your bash profile:
+  
+    ```
+    update_style () {
+      cd ~/workspace/docs-utility-scripts/style-checker
+      git pull
+      cd ~/.atom/packages/html-special-character-replacer/lib
+      cp ~/workspace/docs-utility-scripts/style-checker/html-special-character-replacer.js .
+      echo "Style Checker updated."
+    }
+    ```
+ 
+1. Save and restart your terminal windows.
+
+1. When you want to update style checker, run ```update_style```.
+
 
 ## How to Use
 
