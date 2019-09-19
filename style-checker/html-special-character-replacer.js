@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last Updated: 12 September, 2019
+	// Last Updated: 19 September, 2019
 	
 	// Start of commands
 
@@ -379,10 +379,12 @@ function doreplacement(text)
 	text = text.replace(/(\bBumps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Updates" is preferred. %>');
 	text = text.replace(/(\bbutton\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Delete "button" if redundant. For example, write "click Save" instead of "Click the Save button". %>');
 	text = text.replace(/(\bcan't\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
+	text = text.replace(/(\bCC API\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CAPI" is preferred. %>');
 	text = text.replace(/(\bCell VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "host VM" is preferred. %>');
 	text = text.replace(/(\bcert\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate" is preferred. %>');
-	text = text.replace(/(\bcertificate authority certificate\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate authority (CA) certificate" is preferred. %>');
-	text = text.replace(/(\bCertificate Authority certificate\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate authority (CA) certificate" is preferred. %>');
+	text = text.replace(/(\bcertificate authority certificate(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CA" after first use. %>');
+	text = text.replace(/(\bCertificate Authority certificate(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CA" after first use. %>');
+	text = text.replace(/(\bcertificate signing request(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CSR" after first use. %>');
 	text = text.replace(/(\bcerts\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificates" is preferred. %>');
 	text = text.replace(/(\bcf cli\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is shortened as "cf CLI". %>');
 	text = text.replace(/(\bCF CLI\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is shortened as "cf CLI". %>');
@@ -391,7 +393,9 @@ function doreplacement(text)
 	text = text.replace(/(\bclean-up\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The verb is "clean up". The noun and adjective are both "cleanup". %>');
 	text = text.replace(/(\bclick on\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "click" is preferred. %>');
 	text = text.replace(/(\bcloud controller\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Controller" is preferred. %>');
+	text = text.replace(/(\bCloud Controller API\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# 1st use: "Cloud Foundry API (CAPI)". Subsequent uses: "CAPI" %>');
 	text = text.replace(/(\bCloud Controller Database\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Controller database" is preferred. %>');
+	text = text.replace(/(\bCloud Foundry API(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CAPI" after the first use. %>');
 	text = text.replace(/(\bcloud native\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "cloud-native" is preferred. %>');
 	text = text.replace(/(\bCloudController\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Controller" is preferred. %>');
 	text = text.replace(/(\bCloudformation\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CloudFormation" is preferred. %>');
@@ -417,7 +421,6 @@ function doreplacement(text)
 	text = text.replace(/(\bcpu\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CPU" is preferred. %>');
 	text = text.replace(/(\bcredhub\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The CF component is named "CredHub" %>');
 	text = text.replace(/(\bCredhub\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The CF component is named "CredHub" %>');
-	text = text.replace(/(\bCSR\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate signing request (CSR)" is preferred. %>');
 	text = text.replace(/(\bdata set\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "dataset" is preferred. %>');
 	text = text.replace(/(\bdata store\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "datastore" is preferred. %>');
 	text = text.replace(/(\bdatacenter\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "data center" is preferred. %>');
@@ -613,6 +616,7 @@ function doreplacement(text)
 	text = text.replace(/(\bMin\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Minimum" is preferred. %>');
 	text = text.replace(/(\bmin\.\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "minimum" is preferred. %>');
 	text = text.replace(/(\bMin\.\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Minimum" is preferred. %>');
+	text = text.replace(/(\bMinIO\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Minio" is preferred. %>');
 	text = text.replace(/(\bmodal\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "dialog box" is preferred. %>');
 	text = text.replace(/(\bmustn't\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bnameserver\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "name server" is preferred. %>');
@@ -670,20 +674,22 @@ function doreplacement(text)
 	text = text.replace(/(\bPCF DEV\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PCF Dev" is preferred. %>');
 	text = text.replace(/(\bPCF Ops Manager\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Ops Manager" is preferred. %>');
 	text = text.replace(/(\bPCF Small Footprint\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Small Footprint PAS" or "Small Footprint Runtime for v1.12 and earlier" are preferred. %>');
+	text = text.replace(/(\bPCF v2.0 and later\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pivotal Platform (formerly PCF) v2.0 and later" is preferred. %>');
 	text = text.replace(/(\bPCFdev\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PCF Dev" is preferred. %>');
 	text = text.replace(/(\bPID file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpid file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpidfile\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bPIDfile\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bPivNet\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pivotal Network" is preferred. %>');
-	text = text.replace(/(\bPivotal App Service\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
-	text = text.replace(/(\bPivotal app service\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
-	text = text.replace(/(\bPivotal Application Service\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
-	text = text.replace(/(\bPivotal application service\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
+	text = text.replace(/(\bPivotal App Service(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
+	text = text.replace(/(\bPivotal app service(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
+	text = text.replace(/(\bPivotal Application Service(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
+	text = text.replace(/(\bPivotal application service(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PAS" is preferred, unless spelling it out for the first use. %>');
 	text = text.replace(/(\bPivotal Cloud Foundry 3\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "Pivotal Platform 3". %>');
 	text = text.replace(/(\bPivotal Cloud Foundry Dev\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PCF Dev" is preferred. %>');
 	text = text.replace(/(\bPivotal Container Service\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Enterprise PKS" is preferred. %>');
 	text = text.replace(/(\bPivotal Ops Manager\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Ops Manager" is preferred. %>');
+	text = text.replace(/(\bPivotal Platform v2.0 and later\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pivotal Platform (formerly PCF) v2.0 and later" is preferred. %>');
 	text = text.replace(/(\bPivotal Platform[^\.]*platform\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use "platform" in within a sentence or two of the brand name. %>');
 	text = text.replace(/(\bPivotal Software\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pivotal" is preferred. %>');
 	text = text.replace(/(\bPivotal, Inc\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pivotal" is preferred. %>');
@@ -802,7 +808,6 @@ function doreplacement(text)
 	text = text.replace(/(\bSpring framework 9\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Spring Framework 9" is preferred. %>');
 	text = text.replace(/(\bspringboot\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Spring Boot" is preferred. %>');
 	text = text.replace(/(\bSpringBoot\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Spring Boot" is preferred. %>');
-	text = text.replace(/(\bSSL\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Secure Socket Layer has been deprecated. Write "TLS" instead. %>');
 	text = text.replace(/(\bstandard error\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "stderr" is preferred. %>');
 	text = text.replace(/(\bstandard input\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "stdin" is preferred. %>');
 	text = text.replace(/(\bstandard output\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "stdout" is preferred. %>');
