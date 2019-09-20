@@ -2,6 +2,7 @@ pivotal-cf/docs-book-antivirus
 pivotal-cf/docs-book-app-automator
 pivotal-cf/docs-book-aws-service-broker
 pivotal-cf/docs-book-bazaar
+pivotal-cf/docs-book-buildservice
 pivotal-cf/docs-book-cloud-cache
 pivotal-cf/docs-book-compliance-tools
 pivotal-cf/docs-book-concourse-olm
@@ -17,6 +18,7 @@ pivotal-cf/docs-book-observability-data-store
 pivotal-cf/docs-book-odb
 pivotal-cf/docs-book-om
 pivotal-cf/docs-book-partners
+pivotal-cf/docs-book-pas-kubernetes
 pivotal-cf/docs-book-pcfservices
 pivotal-cf/docs-book-pivotalcf
 pivotal-cf/docs-book-platform-automation
