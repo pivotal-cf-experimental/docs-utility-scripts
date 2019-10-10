@@ -106,10 +106,10 @@ To build and push the staging and production sites for the new `master` branch, 
 
 1. Push the app twice, as `docs-pcf-NEW-VERSION-NUMBER-blue` and `docs-pcf-NEW-VERSION-NUMBER-green`. For example:
 	```
-	cf push docs-pcf-2-7-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d cfapps.io -n docs-pcf-staging --no-route
+	cf push docs-pcf-2-7-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null --no-route
 	```
 	```
-	cf push docs-pcf-2-7-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null -d cfapps.io -n docs-pcf-staging --no-route
+	cf push docs-pcf-2-7-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null --no-route
 	```
 
 1. Map each newly deployed app, blue and green, to the destination route.
