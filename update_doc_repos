@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# script to git pull and be update
+# script to git pull and update
 # all book-level and local doc level repos
 
 # Add the following to your .bash_profile
@@ -47,5 +47,3 @@ bundle exec bookbinder update_local_doc_repos
 echo
 echo Done: git pull executed on all PWS repos
 echo
-
-
