@@ -154,10 +154,10 @@
     1. `export BOOKBINDER_EDGE=true`
     1. `rake scheme:update[PIPELINE-GROUP/CURRENT-VERSION]`
     1. `rake scheme:update[PIPELINE-GROUP/EDGE-VERSION]`
-    1 `rake fly:set_pipeline[PIPELINE-GROUP]`
+    1. `rake fly:set_pipeline[PIPELINE-GROUP]`
 
 1. Commit and push your changes.
 
 1. Go to Concourse and check the pipelines to make sure they are present and building properly. Once the staging site is green for each, click the + icon on each pipeline to ensure that the production sites are running.
 
-**Note**: If you see the error `RuntimeError: Too many apps mapped to route! Apps: docs-pas-kubernetes-blue, docs-pas-kubernetes-green`, log in to Apps Manager and ensure that one of the apps is stopped.
+**Note**: If you see the error `RuntimeError: Too many apps mapped to route! Apps: docs-pas-kubernetes-blue, docs-pas-kubernetes-green` in the staging build in Concourse, log in to Apps Manager and ensure that one of the apps is stopped.
