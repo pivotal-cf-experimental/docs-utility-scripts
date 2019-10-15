@@ -101,7 +101,7 @@
 1. Rename the last version’s folder to specify its version. For example, `mv windows windows-2-7`.
 
 1. In `deployment-resources.yml`, add a new S3 bucket definition code chunk beneath the previous pipeline’s code chunk by copying and pasting it, then adding version numbers to both.
-  ```
+  	```
 	- name: cf-current-PIPELINE-CURRENT-VERSION-s3
 	  type: s3
 	  source:
