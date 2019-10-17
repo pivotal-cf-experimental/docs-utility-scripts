@@ -1,6 +1,6 @@
 # Splitting an Unversioned Pipeline into Two Versioned Pipelines
 
-**Note to services writers:** Don't follow the procedures on this page. They have too much core-specific content.
+**Note to services writers:** Don't follow the procedures on this page. This is core-specific content.
 
 ## Step One: Creating New Version Branches of the Content and Book Repositories
 
