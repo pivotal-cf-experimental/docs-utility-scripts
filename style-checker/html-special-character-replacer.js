@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last Updated: 17 October, 2019
+	// Last Updated: 22 October, 2019
 	
 	// Start of commands
 
@@ -40,12 +40,12 @@ function doreplacement(text)
 	text = text.replace(/(\(https:..cloud.google.com.*\)(?!.*\n?.*GCP documentation).*$)/gm,'$1 <%# The link name must be "GCP documentation". %>');
 	text = text.replace(/(\(https:..community.pivotal.io.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
 	text = text.replace(/(\(https:..discuss.pivotal.io.*\).*$)/gm,'$1 <%# Discuss Pivotal is a deprecated URL. Contact Knowledge Base staff for its replacement. %>');
-	text = text.replace(/(\(https:..docs.docker.com.*\)(?!.*\n?.*Docker documentation).*$)/gm,'$1 <%# The link name must be "Docker documentation". %>');
 	text = text.replace(/(\(https:..github.com.*\)(?!.*\n?.*GitHub).*$)/gm,'$1 <%# Type "in GitHub" somewhere in the cross-reference sentence. %>');
-	text = text.replace(/(\(https:..kubernetes.io.docs.*\)(?!.*\n?.*Kubernetes documentation).*$)/gm,'$1 <%# The link name must be "Kubernetes documentation". %>');
 	text = text.replace(/(\(https:..pvtl.force.com.*\).*$)/gm,'$1 <%# Pivotal Force is a deprecated URL. Contact Knowledge Base staff for its replacement. %>');
 	text = text.replace(/(\[(?!.*\n?.*Cloud Foundry documentation).*\]\(https:..docs.cloudfoundry.org.*\))/gm,'$1 <%# The link name must be "Cloud Foundry documentation". %>');
 	text = text.replace(/(\[(?!.*\n?.*Concourse documentation).*\]\(https:..concourse-ci.org.*\))/gm,'$1 <%# The link name must be "Concourse documentation". %>');
+	text = text.replace(/(\[(?!.*\n?.*Docker documentation).*\]\(https:..docs.docker.com.*\))/gm,'$1 <%# The link name must be "Docker documentation". %>');
+	text = text.replace(/(\[(?!.*\n?.*Kubernetes documentation).*\]\(https:..kubernetes.io.docs.*\))/gm,'$1 <%# The link name must be "Kubernetes documentation". %>');
 	text = text.replace(/(\[(?!.*\n?.*Percona documentation).*\]\(https:..www.percona.com.doc.*\).*$)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 	text = text.replace(/(\<%= image_tag(?!.*:alt).*$)/gm,'$1 <%# Images require alt text. %>');
 	text = text.replace(/(\<a href="https:..bosh.io.*\">(?!.*\n?.*BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
@@ -186,9 +186,10 @@ function doreplacement(text)
 	text = text.replace(/(\se\.g\.:\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
 	text = text.replace(/(\seg\.:\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
 	text = text.replace(/(\seg\.\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
-	text = text.replace(/(^(?!title:|.*for).*PCF\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.platform_old %>');
+	text = text.replace(/(\b^(?!.*Pivotal).*Postgres\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PostgreSQL" is preferred. %>');
 	text = text.replace(/(\b^(?!title:).*2012R2\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The short product name is "<%= vars.windows_runtime_abbr %> 2012 R2". %>');
 	text = text.replace(/(\b^(?!title:).*app runtime\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(\b^(?!title:).*Beta\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "beta" is preferred. %>');
 	text = text.replace(/(\b^(?!title:).*Elastic Runtime\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
 	text = text.replace(/(\b^(?!title:).*ERT\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
 	text = text.replace(/(\b^(?!title:).*IPSec for PCF\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_name %>');
@@ -237,6 +238,7 @@ function doreplacement(text)
 	text = text.replace(/(\b^(?!title:).*RabbitMQ for Pivotal Platform\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_name %>');
 	text = text.replace(/(\b^(?!title:).*Redis for Pivotal Platform\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_name %>');
 	text = text.replace(/(\b^(?!title:).*single sign-on\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_name %>');
+	text = text.replace(/(^(?!title:|.*for).*PCF\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.platform_old %>');
 	text = text.replace(/(\ba SQL\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "an SQL" is preferred. %>');
 	text = text.replace(/(\baddon\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "add-on" is preferred. %>');
 	text = text.replace(/(\bADFS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "AD FS" per the Microsoft preference. %>');
@@ -296,7 +298,6 @@ function doreplacement(text)
 	text = text.replace(/(\bbe sure to\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Redundant? %>');
 	text = text.replace(/(\bBest Practices\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Best Practice sections are not forbidden but nor are they recommended. Check if the material could be placed somewhere else. %>');
 	text = text.replace(/(\bBETA\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "beta" is preferred. %>');
-	text = text.replace(/(\bBeta\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "beta" is preferred. %>');
 	text = text.replace(/(\bBig Data\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "big data" is preferred. %>');
 	text = text.replace(/(\bblob store\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "blobstore" is preferred. %>');
 	text = text.replace(/(\bBlue-Green deployment\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "blue-green deployment" is preferred. %>');
@@ -642,7 +643,6 @@ function doreplacement(text)
 	text = text.replace(/(\bpop-up\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# If referring to a menu that pops up, just write "pop-up" without "menu". If referring to a dialog box, write "dialog box". %>');
 	text = text.replace(/(\bpopup\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# If referring to a menu that pops up, just write "pop-up" without "menu". If referring to a dialog box, write "dialog box". %>');
 	text = text.replace(/(\bpost deploy script\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "post-deploy script" is preferred. %>');
-	text = text.replace(/(\b^(?!.*Pivotal).*Postgres\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PostgreSQL" is preferred. %>');
 	text = text.replace(/(\bpostgres\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PostgreSQL" is preferred. %>');
 	text = text.replace(/(\bPP\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use this acronym for the brand name. %>');
 	text = text.replace(/(\bpp\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use this acronym for the brand name. %>');
@@ -885,6 +885,10 @@ function doreplacement(text)
 	text = text.replace(/(\bYoutube\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "YouTube". %>');
 	text = text.replace(/( \<%# £SCS %\>)/gm,'');
 	text = text.replace(/( \<%# ECS %\>)/gm,'');
+	text = text.replace(/(\<%#[^\%]*%\>(?=[^%]*%>))/gm,'');
+	text = text.replace(/(\<%#[^\%]*%\>(?=[^%]*%>))/gm,'');
+	text = text.replace(/(\<%#[^\%]*%\>(?=[^%]*%>))/gm,'');
+	text = text.replace(/(\<%#[^\%]*%\>(?=[^%]*%>))/gm,'');
 
 	// End of commands
 
