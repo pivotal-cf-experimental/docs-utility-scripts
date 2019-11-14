@@ -82,8 +82,8 @@
     * `cf rename docs-windows-green docs-windows-2-7-green`
 
 1. As above, push a new versioned blue and green app -- but this time, map routes to docs.pivotal.io rather than the staging URL.
-    * `cf push cf push docs-windows-2-8-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null --no-route`
-    * `cf push cf push docs-windows-2-8-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null --no-route`
+    * `cf push docs-windows-2-8-blue -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null --no-route`
+    * `cf push docs-windows-2-8-green -i 3 -m 256M -k 1024M -s cflinuxfs3 -b null --no-route`
     * `cf map-route cf push docs-windows-2-7-blue docs.pivotal.io --path windows/2-8`
     * `cf map-route cf push docs-windows-2-7-green docs.pivotal.io --path windows/2-8`
 
