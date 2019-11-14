@@ -94,7 +94,7 @@
 
 ## Step Three: Configure the Concourse Pipelines
 
-1. Navigate to `concourse-scripts-docs/scripts-docs/cf-current`.
+1. Navigate to `concourse-scripts-docs/cf-current`.
 
 1. Make a new subfolder. For example, `mkdir windows-2-8`.
 
