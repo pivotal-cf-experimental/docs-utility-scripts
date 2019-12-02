@@ -126,15 +126,14 @@ function doreplacement(text)
 	text = text.replace(/(\<\/pre\>)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(^`(?!`)|\s`(?!`))/gm,'$1 <%# £SCS %>');
 	text = text.replace(/([^`\s]`)/gm,'$1 <%# ECS %>');
-	text = text.replace(/(\[(?=[^\]]*\]\())/gm,'$1 <%# £SCS %>');
+	text = text.replace(/(\]\()/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\[[^\]]*\]\([^\)]*\))/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<a id=)/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\<a href=)/gm,'$1 <%# £SCS %>');
-	text = text.replace(/(\<\/a\>)/gm,'$1 <%# ECS %>');
+	text = text.replace(/(\<a id= \<%# £SCS %\>[^>]*)/gm,'$1 <%# ECS %>');
+	text = text.replace(/(\<a href= \<%# £SCS %\>[^>]*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<img src=)/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\<img src= \<%# £SCS %\>[^>]*)/gm,'$1 <%# ECS %>');
-	text = text.replace(/(^##+)/gm,'$1 <%# £SCS %>');
-	text = text.replace(/(^##+ \<%# £SCS %\>.*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\*\*(?!\.|-|:|,|\*|\s))/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\*\*(?! \<%# £SCS %\>))/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<strong\>)/gm,'$1 <%# £SCS %>');
