@@ -31,8 +31,6 @@ function replace(editor)
 
 function doreplacement(text)
 {
-
-	// Last Updated: 2 December, 2019
 	
 	// Start of commands
 
