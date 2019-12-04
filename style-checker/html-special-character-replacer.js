@@ -764,7 +764,6 @@ function doreplacement(text)
 	text = text.replace(/(\brun time\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "runtime" is preferred. %>');
 	text = text.replace(/(\bRunner VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "host VM" is preferred. %>');
 	text = text.replace(/(\bRuntime CredHub\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "runtime CredHub" is preferred. %>');
-	text = text.replace(/(\bruntimes\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "runtime durations" or "runtime environments", depending on meaning. %>');
 	text = text.replace(/(\bSecure Shell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "SSH" is preferred. %>');
 	text = text.replace(/(\bSecurity Assertion Markup Language\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Never spell out SAML. %>');
 	text = text.replace(/(\bsecurity assertion markup language\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Never spell out SAML. %>');
