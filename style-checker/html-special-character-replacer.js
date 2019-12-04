@@ -63,8 +63,6 @@ function doreplacement(text)
 	text = text.replace(/(\<a href="https:..pvtl.force.com.*\">.*$)/gm,'$1 <%# Pivotal Force is a deprecated URL. Contact Knowledge Base staff for its replacement. %>');
 	text = text.replace(/(\<a href="https:..www.percona.com.doc.*\">(?!.*\n?.*Percona documentation).*\<.a\>)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 	text = text.replace(/(\<a href="https:..www.rabbitmq.com.*\">(?!.*\n?.*RabbitMQ documentation).*\<.a\>)/gm,'$1 <%# The link name must be "RabbitMQ documentation". %>');
-	text = text.replace(/(\<a id="\d+"\>)/gm,'$1 <%# Place dashes between digits in release notes anchor IDs. %>');
-	text = text.replace(/(\<a id="\d+\.[^\<]*"\>)/gm,'$1 <%# Place dashes between digits in release notes anchor IDs. %>');
 	text = text.replace(/(\<code\>kubectl\<\/code\>)/gm,'$1 <%# Do not format "kubectl" as code. %>');
 	text = text.replace(/(\<img src=(?!.*alt=").*$)/gm,'$1 <%# Images require alt text. %>');
 	text = text.replace(/(\sCVE-\d{4}(?!.*\n?([^\[]*\]|[^\>]*\<\/a\>)).*$)/gm,'$1 <%# Link to the CVE page at pivotal.io/security or cve.mitre.org. %>');
