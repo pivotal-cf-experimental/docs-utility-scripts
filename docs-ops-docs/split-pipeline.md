@@ -154,8 +154,7 @@
 1. Update Concourse changes with the fly CLI, using the following rake commands:
     1. `rake fly:login`
     1. `export BOOKBINDER_EDGE=true`
-    1. `rake scheme:update[PIPELINE-GROUP/CURRENT-VERSION]`
-    1. `rake scheme:update[PIPELINE-GROUP/EDGE-VERSION]`
+    1. `rake scheme:update_all[PIPELINE-GROUP]`
     1. `rake fly:set_pipeline[PIPELINE-GROUP]`
 
 1. Commit and push your changes.
