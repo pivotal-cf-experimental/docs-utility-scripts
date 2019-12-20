@@ -187,7 +187,7 @@ To update the pipelines you just reconfigured in Concourse:
 1. Update Concourse changes with the `fly` cli, using the following **rake** commands:
 	1. `rake fly:login`
 	1. `export BOOKBINDER_EDGE=true`
-	1. `rake scheme:update[cf-current/NEW-VERSION]`
+	1. `rake scheme:update_all[cf-current]`
 	1. `rake scheme:update_all[cf-previous-versions]`
 	1. `rake fly:set_pipeline[cf-current]`
 	1. `rake fly:set_pipeline[cf-previous-versions]`
