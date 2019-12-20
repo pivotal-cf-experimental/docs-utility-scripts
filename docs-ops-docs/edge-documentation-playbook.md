@@ -13,8 +13,8 @@ To move current content from `master` to a versioned branch:
 
 1. Change into your `docs-book-pivotalcf` repo.
 
-1. Check out a new branch called `CURRENT-PCF-VERSION-NUMBER` branch. For example, if the upcoming version of Pivotal Platform is 2.7, and the current version of Pivotal Platform is 2.6, the branch should be `2.6`.
-	* `$ git checkout -b CURRENT-PCF-VERSION-NUMBER`
+1. Check out a new branch called `CURRENT-PLATFORM-VERSION-NUMBER` branch. For example, if the upcoming version of Pivotal Platform is 2.7, and the current version of Pivotal Platform is 2.6, the branch should be `2.6`.<br>Make sure you run `git checkout -b CURRENT-PLATFORM-VERSION-NUMBER` from the `master` branch. Whichever branch you run this command from, that is the branch that gets copied into the new branch. For example, if you were to run the command from the `2.5` branch, the contents of the new branch would be copied from `2.5`, not `master`.
+	* `$ git checkout -b CURRENT-PLATFORM-VERSION-NUMBER`
 
 1. Open the `config.yml`.
 
@@ -22,7 +22,7 @@ To move current content from `master` to a versioned branch:
 	1. `$ git checkout master`
 	1. `$ git pull`
 	1. `$ git checkout -b NEW-BRANCH`
-		<br><br>`NEW-BRANCH` will either be `CURRENT-PCF-VERSION-NUMBER` in a Pivotal Platform repo, or the OSS branch in a OSS repo. For example, `2.6` or `9.3`.
+		<br><br>`NEW-BRANCH` will either be `CURRENT-PLATFORM-VERSION-NUMBER` in a Pivotal Platform repo, or the OSS branch in a OSS repo. For example, `2.6` or `9.3`.
 	1. `$ git push -u origin NEW-BRANCH`
 
 1. After making all the branches, update the `docs-book-pivotalcf/config.yml` refs with appropriate Pivotal Platform and OSS branch numbers (2.4/6.7, 2.5/7.9, 2.6/9.3, etc.) for content repos to specify the current version.
@@ -30,10 +30,10 @@ To move current content from `master` to a versioned branch:
 	* Content for the upcoming release will publish off master.
 
 1. Push your changes to `docs-book-pivotalcf` to your new branch:
-	* `$ git push -u origin CURRENT-PCF-VERSION-NUMBER`
+	* `$ git push -u origin CURRENT-PLATFORM-VERSION-NUMBER`
 
-1. Navigate to **concourse-scripts-docs/cf-current/pcf-CURRENT-VERSION-NUMBER** and open **config.yml**. Below the line that contains the `book:` key-value, add the following:
-	* `book_branch: ‘CURRENT-VERSION-NUMBER’`
+1. Navigate to **concourse-scripts-docs/cf-current/pcf-CURRENT-PLATFORM-VERSION-NUMBER** and open **config.yml**. Below the line that contains the `book:` key-value, add the following:
+	* `book_branch: ‘CURRENT-PLATFORM-VERSION-NUMBER’`
 
 1. Update Concourse changes with the `fly cli`, using the following **rake** commands:
 	1. `rake fly:login`
@@ -44,7 +44,7 @@ To move current content from `master` to a versioned branch:
 
 1. Check that the current content for Pivotal Platform publishes from a versioned number branch: 
 	1. Navigate to the [cf-current pipeline](https://p-concourse.wings.cf-app.com/teams/system-team-docs-docs-1-88aa/pipelines/cf-current)
-	1. Click the group for the current version, `pcf-CURRENT-VERSION`.
+	1. Click the group for the current version, `pcf-CURRENT-PLATFORM-VERSION`.
 	1. Visually verify that the Concourse resource for `docs-book-pivotalcf` points to the correct versioned branch.	1. After the bind job and staging build complete, navigate to the staging site of the current content (ex. https://docs-pcf-staging.cfapps.io/pivotalcf/2-6) to ensure the site displays properly and the content is correct for the version number.
 	
 1. Update the branch names in the [Git Branch Map](https://docs-wiki.cfapps.io/wiki/git/git-branch-map.html) in the Docs Wiki by adding the current Pivotal Platform version number and its corresponding OSS branch number to the bottom of the list before `master`.
