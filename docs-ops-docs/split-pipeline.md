@@ -12,6 +12,7 @@
     * `git checkout -b CURRENT-VERSION-NUMBER`
     * `git push -u origin CURRENT-VERSION-NUMBER`
     <br>
+    <br>
     **Note:** Make sure you run `git checkout -b CURRENT-VERSION-NUMBER` from the `master` branch. Whichever branch you run this command from, that is the branch that gets copied into the new branch. For example, if you were to run the command from the `2.5` branch, the contents of the new branch would be copied from `2.5`, not `master`.
 
 1. `cd` into the book repository for the pipeline you want to split.
@@ -163,4 +164,4 @@
 
 1. Go to Concourse and check the pipelines to make sure they are present and building properly. Once the staging site is green for each, click the + icon on each pipeline to ensure that the production sites are running.
 
-**Note**: If you see the error `RuntimeError: Too many apps mapped to route! Apps: docs-pas-kubernetes-blue, docs-pas-kubernetes-green` in the staging build in Concourse, log in to Apps Manager and ensure that one of the apps is stopped.
+**Note:** If you see the error `RuntimeError: Too many apps mapped to route! Apps: docs-pas-kubernetes-blue, docs-pas-kubernetes-green` in the staging build in Concourse, log in to Apps Manager and ensure that one of the apps is stopped.
