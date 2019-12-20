@@ -8,12 +8,9 @@
 
 1. Run `git pull`.
 
-1. Check out a new branch called CURRENT-VERSION-NUMBER branch. For example, if the upcoming version of PAS for Windows (PASW) is v2.8, and the current version of PASW is v2.7, the branch should be 2.7.
+1. Check out a new branch called CURRENT-VERSION-NUMBER branch. For example, if the upcoming version of PAS for Windows (PASW) is v2.8, and the current version of PASW is v2.7, the branch should be 2.7.<br>Make sure you run `git checkout -b CURRENT-VERSION-NUMBER` from the `master` branch. Whichever branch you run this command from, that is the branch that gets copied into the new branch. For example, if you were to run the command from the `2.5` branch, the contents of the new branch would be copied from `2.5`, not `master`.
     * `git checkout -b CURRENT-VERSION-NUMBER`
     * `git push -u origin CURRENT-VERSION-NUMBER`
-    <br>
-    <br>
-  **Note:** Make sure you run `git checkout -b CURRENT-VERSION-NUMBER` from the `master` branch. Whichever branch you run this command from, that is the branch that gets copied into the new branch. For example, if you were to run the command from the `2.5` branch, the contents of the new branch would be copied from `2.5`, not `master`.
 
 1. `cd` into the book repository for the pipeline you want to split.
 
