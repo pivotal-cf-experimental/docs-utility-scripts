@@ -266,7 +266,7 @@ function doreplacement(text)
 	text = text.replace(/(^(?!(title:|owner:)).*single sign-on\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!title:|.*for).*PCF\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.platform_old %>');
 	text = text.replace(/(^(?!title:|.*for\s).*Pivotal Platform\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.platform_name %>');
-	text = text.replace(/(^\s*\*\s*[a-z](?![^£]*\<%# ECS %\>))/gm,'$1<%# Bullet points start with lowercase letters. %>');
+	text = text.replace(/(^\s*\*\s*[a-z](?![^£]*\<%# ECS %\>))/gm,'$1<%# Bullet points start with uppercase letters. %>');
 	text = text.replace(/(^Note\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Put notes in Note box formatting per the wiki. %>');
 	text = text.replace(/(^title:.*\([A-Z]+\)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not put abbreviations in page titles. %>');
 	text = text.replace(/(^title:.*PAS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "Pivotal Application Service" in full in topic titles. %>');
