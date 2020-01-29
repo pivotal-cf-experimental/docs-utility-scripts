@@ -32,6 +32,8 @@ function replace(editor)
 function doreplacement(text)
 {
 	
+	// Last updated: 29 January, 2020
+	
 	// Start of commands
 
 	text = text.replace(/(\(https:..bosh.io.*\)(?!.*\n?.*in the BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
@@ -102,7 +104,6 @@ function doreplacement(text)
 	text = text.replace(/(\bRunning:[\n\s]*\<code\>[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
 	text = text.replace(/(\brunning:[\n\s]*`+[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
 	text = text.replace(/(\bRunning:[\n\s]*`+[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(terminal"\>[\n\s]*(?!(\$|\s)).)/gm,'$1 <%# Put a dollar sign at the start of the terminal snippet example. %>');
 	text = text.replace(/(version [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(Version [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(versions [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
@@ -176,7 +177,7 @@ function doreplacement(text)
 	text = text.replace(/(\(s\)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not combine a singular and a plural. Maybe write "one or more" instead. %>');
 	text = text.replace(/(and\/or(?![^£]*\<%# ECS %\>))/gm,'$1<%# "or" is preferred. %>');
 	text = text.replace(/('\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should this be a backtick? %>');
-	text = text.replace(/([^.]*,[^.]*,[^.]*,[^.]*,[^.]*,(?![^£]*\<%# ECS %\>))/gm,'$1<%# If this sentence contains a list, reformat the list as bullets. If the sentence is just rambling, break it up into small sentences. %>');
+	text = text.replace(/([^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,(?![^£]*\<%# ECS %\>))/gm,'$1<%# If this sentence contains a list, reformat the list as bullets. If the sentence is just rambling, break it up into small sentences. %>');
 	text = text.replace(/([^a][^l][\n\s]Compliance Scanner\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/([^a][^l][\n\s]Concourse\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/([^a][^l][\n\s]CredHub Service Broker\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
