@@ -31,7 +31,7 @@ function replace(editor)
 
 function doreplacement(text)
 {
-	
+
 	// Last updated: 31 January, 2020
 
 	// Start of commands
@@ -232,11 +232,11 @@ function doreplacement(text)
 	text = text.replace(/(\se\.g\.:\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
 	text = text.replace(/(\seg\.:\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
 	text = text.replace(/(\seg\.\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
-	text = text.replace(/(^(?!(title:|owner:)).*\bERT\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(^(?!(title:|owner:)).*\bERT\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*2012R2\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# The short product name is "<%= vars.windows_runtime_abbr %> 2012 R2". %>');
-	text = text.replace(/(^(?!(title:|owner:)).*app runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(^(?!(title:|owner:)).*app runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Beta\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# "beta" is preferred. %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Elastic Runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Elastic Runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*IPSec for PCF\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*MySQL for Pivotal Platform\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Operations Manager\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
@@ -248,10 +248,10 @@ function doreplacement(text)
 	text = text.replace(/(^(?!(title:|owner:)).*PBS\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/(^(?!(title:|owner:)).*PFS\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Anti-Virus\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal App Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal app service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Application Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal application service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal App Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal app service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Application Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal application service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Backup and Restore\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Cloud Foundry\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= platform_old %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Cloud Foundry 3\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# "<%= platform_name %> 3" is preferred. %>');
