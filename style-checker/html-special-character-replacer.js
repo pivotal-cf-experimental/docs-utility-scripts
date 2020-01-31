@@ -32,10 +32,13 @@ function replace(editor)
 function doreplacement(text)
 {
 	
-	// Last updated: 29 January, 2020
-	
+	// Last updated: 31 January, 2020
+
 	// Start of commands
 
+	text = text.replace(/(\b[^-]CLIENT-SECRET\b)/gm,'$1 <%# Specify the server, as in "BOSH-CLIENT-SECRET" or "CREDHUB-CLIENT-SECRET". %>');
+	text = text.replace(/(\b[^-]DEPLOYMENT\b)/gm,'$1 <%# "BOSH-DEPLOYMENT" is preferred. %>');
+	text = text.replace(/(\b[^-]ENVIRONMENT\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
 	text = text.replace(/(\(https:..bosh.io.*\)(?!.*\n?.*in the BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
 	text = text.replace(/(\(https:..cloud.google.com.*\)(?!.*\n?.*GCP documentation).*$)/gm,'$1 <%# The link name must be "GCP documentation". %>');
 	text = text.replace(/(\(https:..community.pivotal.io.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
@@ -82,12 +85,9 @@ function doreplacement(text)
 	text = text.replace(/(^\s*[#]+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(^\s*\<h1\>)/gm,'$1 <%# H1 headers are not allowed within topics. %>');
-	text = text.replace(/(^\s*#{2,3}[\s\w](?!.*\<a id)\s*(?!(Features|Security Fix|Resolved Issue|Known Issue|Compatibility|Packages)).*$)/gm,'$1 <%# Make H2 and H3 headers anchors unless the ToC is already over-sized. %>');
-	text = text.replace(/(\b[^-]CLIENT-SECRET\b)/gm,'$1 <%# Specify the server, as in "BOSH-CLIENT-SECRET" or "CREDHUB-CLIENT-SECRET". %>');
-	text = text.replace(/(\b[^-]DEPLOYMENT\b)/gm,'$1 <%# "BOSH-DEPLOYMENT" is preferred. %>');
+	text = text.replace(/(^\s*#{2,3}[\s\w](?!.*\<a)\s*(?!(Features|Security Fix|Resolved Issue|Known Issue|Compatibility|Packages)).*$)/gm,'$1 <%# Make H2 and H3 headers anchors. Use "a id" to include the anchor in the subnav. Use "a name" to leave it out. %>');
 	text = text.replace(/(docs-pcf-staging.cfapps.io.*$)/gm,'$1 <%# Do not link to staging versions of the docs. %>');
 	text = text.replace(/(\bENV\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
-	text = text.replace(/(\b[^-]ENVIRONMENT\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
 	text = text.replace(/(example\])/gm,'$1 <%# Make the link name descriptive. %>');
 	text = text.replace(/(example\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
 	text = text.replace(/(here\])/gm,'$1 <%# Make the link name descriptive. %>');
@@ -96,14 +96,14 @@ function doreplacement(text)
 	text = text.replace(/(\bPATH-TO-MANIFEST[^\.]\b)/gm,'$1 <%# Include the file extension, as in "PATH-TO-MANIFEST.yml". %>');
 	text = text.replace(/(\bPATH-TO-VARIABLES[^\.]\b)/gm,'$1 <%# Include the file extension, as in "PATH-TO-VARIABLES.yml". %>');
 	text = text.replace(/(\bPRIVATE-KEY-FILE\b)/gm,'$1 <%# "PATH-TO-PRIVATE-KEY" is preferred. %>');
-	text = text.replace(/(\brun:[\n\s]*\<code\>[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(\bRun:[\n\s]*\<code\>[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(\brun:[\n\s]*`+[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(\bRun:[\n\s]*`+[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(\brunning:[\n\s]*\<code\>[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(\bRunning:[\n\s]*\<code\>[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(\brunning:[\n\s]*`+[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
-	text = text.replace(/(\bRunning:[\n\s]*`+[\s\n]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\brun:[\n\s]*\<code\>[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\bRun:[\n\s]*\<code\>[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\brun:[\n\s]*`+[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\bRun:[\n\s]*`+[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\brunning:[\n\s]*\<code\>[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\bRunning:[\n\s]*\<code\>[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\brunning:[\n\s]*`+[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\bRunning:[\n\s]*`+[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
 	text = text.replace(/(version [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(Version [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(versions [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
@@ -113,7 +113,7 @@ function doreplacement(text)
 	text = text.replace(/(versions \>\= [\d\.]+)/gm,'$1 <%# "v# or earlier" is the preferred style. %>');
 	text = text.replace(/(Versions \>\= [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(\bYOUR-PRIVATE-KEY\b)/gm,'$1 <%# "PATH-TO-PRIVATE-KEY" is preferred. %>');
-	text = text.replace(/(\bYOUR-SERVICE-INSTANCE\b)/gm,'$1 <%# "SERVICE-INSTANCE-NAME" is preferred. %>');
+	text = text.replace(/(\bSERVICE-INSTANCE[^\-]\b)/gm,'$1 <%# "SERVICE-INSTANCE-NAME" is preferred. %>');
 	text = text.replace(/(\bYOUR-VM\b)/gm,'$1 <%# Specify the VM, as in "OPS-MANAGER-VM" or "STEMCELL-BASE-VM". %>');
 	text = text.replace(/(\<\/div\>)/gm,'$1 <%# EHS %>');
 	text = text.replace(/(\<\/li\>)/gm,'$1 <%# EHS %>');
@@ -533,6 +533,22 @@ function doreplacement(text)
 	text = text.replace(/(\bget in touch\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use a specific communication verb instead, such as "email". %>');
 	text = text.replace(/(\bGet in touch\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use a specific communication verb instead, such as "email". %>');
 	text = text.replace(/(\bgif\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "GIF" is preferred. %>');
+	text = text.replace(/(\bperform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bdo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bcomplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bexecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bPerform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bDo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bComplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bExecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bperform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bdo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bcomplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bexecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bPerform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
+	text = text.replace(/(\bDo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
+	text = text.replace(/(\bComplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
+	text = text.replace(/(\bExecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
 	text = text.replace(/(\bGithub\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "GitHub". %>');
 	text = text.replace(/(\bGlobal Support Services\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pivotal Support" is preferred. %>');
 	text = text.replace(/(\bgo router\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Gorouter" is preferred. %>');
@@ -1022,8 +1038,6 @@ function doreplacement(text)
 	text = text.replace(/(\<%#[^\%]*%\>(?=[^%]*%>))/gm,'');
 	text = text.replace(/(\<%#[^\%]*%\>(?=[^%]*%>))/gm,'');
 	text = text.replace(/(\<%#[^\%]*%\>(?=[^%]*%>))/gm,'');
-
-	// End of commands
 
 
 		return text;
