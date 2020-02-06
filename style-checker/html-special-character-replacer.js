@@ -32,10 +32,12 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last updated: 31 January, 2020
+	// Last updated: 6 February, 2020
 
 	// Start of commands
 
+	text = text.replace(/(\b-APP-NAME\b)/gm,'$1 <%# "APP-NAME" is preferred. %>');
+	text = text.replace(/(\b-SERVICE-INSTANCE-NAME\b)/gm,'$1 <%# "SERVICE-INSTANCE-NAME" is preferred. %>');
 	text = text.replace(/(\b[^-]CLIENT-SECRET\b)/gm,'$1 <%# Specify the server, as in "BOSH-CLIENT-SECRET" or "CREDHUB-CLIENT-SECRET". %>');
 	text = text.replace(/(\b[^-]DEPLOYMENT\b)/gm,'$1 <%# "BOSH-DEPLOYMENT" is preferred. %>');
 	text = text.replace(/(\b[^-]ENVIRONMENT\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
@@ -86,6 +88,7 @@ function doreplacement(text)
 	text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(^\s*\<h1\>)/gm,'$1 <%# H1 headers are not allowed within topics. %>');
 	text = text.replace(/(^\s*#{2,3}[\s\w](?!.*\<a)\s*(?!(Features|Security Fix|Resolved Issue|Known Issue|Compatibility|Packages)).*$)/gm,'$1 <%# Make H2 and H3 headers anchors. Use "a id" to include the anchor in the subnav. Use "a name" to leave it out. %>');
+	text = text.replace(/(\bAPP(?!-NAME)\b)/gm,'$1 <%# "APP-NAME" is preferred. %>');
 	text = text.replace(/(docs-pcf-staging.cfapps.io.*$)/gm,'$1 <%# Do not link to staging versions of the docs. %>');
 	text = text.replace(/(\bENV\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
 	text = text.replace(/(example\])/gm,'$1 <%# Make the link name descriptive. %>');
@@ -93,8 +96,8 @@ function doreplacement(text)
 	text = text.replace(/(here\])/gm,'$1 <%# Make the link name descriptive. %>');
 	text = text.replace(/(here\<.a\>)/gm,'$1 <%# Make the link name descriptive. %>');
 	text = text.replace(/(\bHOST\b)/gm,'$1 <%# "BOSH-DIRECTOR-IP" is preferred. %>');
-	text = text.replace(/(\bPATH-TO-MANIFEST[^\.]\b)/gm,'$1 <%# Include the file extension, as in "PATH-TO-MANIFEST.yml". %>');
-	text = text.replace(/(\bPATH-TO-VARIABLES[^\.]\b)/gm,'$1 <%# Include the file extension, as in "PATH-TO-VARIABLES.yml". %>');
+	text = text.replace(/(\bPATH-TO-MANIFEST[^\.])/gm,'$1 <%# Include the file extension, as in "PATH-TO-MANIFEST.yml". %>');
+	text = text.replace(/(\bPATH-TO-VARIABLES[^\.])/gm,'$1 <%# Include the file extension, as in "PATH-TO-VARIABLES.yml". %>');
 	text = text.replace(/(\bPRIVATE-KEY-FILE\b)/gm,'$1 <%# "PATH-TO-PRIVATE-KEY" is preferred. %>');
 	text = text.replace(/(\brun:[\n\s]*\<code\>[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
 	text = text.replace(/(\bRun:[\n\s]*\<code\>[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
@@ -104,6 +107,7 @@ function doreplacement(text)
 	text = text.replace(/(\bRunning:[\n\s]*\<code\>[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
 	text = text.replace(/(\brunning:[\n\s]*`+[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
 	text = text.replace(/(\bRunning:[\n\s]*`+[\s\n\~]*\$)/gm,'$1<%# We only include dollar signs in terminal snippet examples. %>');
+	text = text.replace(/(\bSERVICE-INSTANCE(?!-NAME)\b)/gm,'$1 <%# "SERVICE-INSTANCE-NAME" is preferred. %>');
 	text = text.replace(/(version [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(Version [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(versions [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
@@ -113,7 +117,6 @@ function doreplacement(text)
 	text = text.replace(/(versions \>\= [\d\.]+)/gm,'$1 <%# "v# or earlier" is the preferred style. %>');
 	text = text.replace(/(Versions \>\= [\d\.]+)/gm,'$1 <%# "v#" is the preferred style. %>');
 	text = text.replace(/(\bYOUR-PRIVATE-KEY\b)/gm,'$1 <%# "PATH-TO-PRIVATE-KEY" is preferred. %>');
-	text = text.replace(/(\bSERVICE-INSTANCE[^\-]\b)/gm,'$1 <%# "SERVICE-INSTANCE-NAME" is preferred. %>');
 	text = text.replace(/(\bYOUR-VM\b)/gm,'$1 <%# Specify the VM, as in "OPS-MANAGER-VM" or "STEMCELL-BASE-VM". %>');
 	text = text.replace(/(\<\/div\>)/gm,'$1 <%# EHS %>');
 	text = text.replace(/(\<\/li\>)/gm,'$1 <%# EHS %>');
@@ -178,6 +181,8 @@ function doreplacement(text)
 	text = text.replace(/(and\/or(?![^£]*\<%# ECS %\>))/gm,'$1<%# "or" is preferred. %>');
 	text = text.replace(/('\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should this be a backtick? %>');
 	text = text.replace(/([^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,(?![^£]*\<%# ECS %\>))/gm,'$1<%# If this sentence contains a list, reformat the list as bullets. If the sentence is just rambling, break it up into small sentences. %>');
+	text = text.replace(/([^\>] Installation Dashboard\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "<%= vars.ops_manager %> Installation Dashboard" is preferred. %>');
+	text = text.replace(/([^\>] installation dashboard\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "<%= vars.ops_manager %> Installation Dashboard" is preferred. %>');
 	text = text.replace(/([^a][^l][\n\s]Compliance Scanner\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/([^a][^l][\n\s]Concourse\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/([^a][^l][\n\s]CredHub Service Broker\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
@@ -232,11 +237,11 @@ function doreplacement(text)
 	text = text.replace(/(\se\.g\.:\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
 	text = text.replace(/(\seg\.:\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
 	text = text.replace(/(\seg\.\s(?![^£]*\<%# ECS %\>))/gm,'$1<%# "For example" is preferred. %>');
-	text = text.replace(/(^(?!(title:|owner:)).*\bERT\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*\bERT\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
 	text = text.replace(/(^(?!(title:|owner:)).*2012R2\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# The short product name is "<%= vars.windows_runtime_abbr %> 2012 R2". %>');
-	text = text.replace(/(^(?!(title:|owner:)).*app runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*app runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Beta\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# "beta" is preferred. %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Elastic Runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Elastic Runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
 	text = text.replace(/(^(?!(title:|owner:)).*IPSec for PCF\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*MySQL for Pivotal Platform\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Operations Manager\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
@@ -248,10 +253,10 @@ function doreplacement(text)
 	text = text.replace(/(^(?!(title:|owner:)).*PBS\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/(^(?!(title:|owner:)).*PFS\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Anti-Virus\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal App Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal app service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Application Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Pivotal application service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal App Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal app service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Application Service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Pivotal application service\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Backup and Restore\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Cloud Foundry\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= platform_old %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Cloud Foundry 3\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# "<%= platform_name %> 3" is preferred. %>');
@@ -403,6 +408,8 @@ function doreplacement(text)
 	text = text.replace(/(\bcheckmark\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "check mark" is preferred. %>');
 	text = text.replace(/(\bchoose to\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Redundant? %>');
 	text = text.replace(/(\bclean-up\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The verb is "clean up". The noun and adjective are both "cleanup". %>');
+	text = text.replace(/(\bclick [A-Z](?![^£]*\<%# ECS %\>))/gm,'$1<%# Embolden the names of UI elements that you instruct the reader to interact with. %>');
+	text = text.replace(/(\bClick [A-Z](?![^£]*\<%# ECS %\>))/gm,'$1<%# Embolden the names of UI elements that you instruct the reader to interact with. %>');
 	text = text.replace(/(\bclick on\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "click" is preferred. %>');
 	text = text.replace(/(\bcloud controller\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Controller" is preferred. %>');
 	text = text.replace(/(\bCloud Controller API\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# 1st use: "Cloud Foundry API (CAPI)". Subsequent uses: "CAPI". %>');
@@ -435,6 +442,10 @@ function doreplacement(text)
 	text = text.replace(/(\bcommand line interface\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CLI" after first use. %>');
 	text = text.replace(/(\bcommand shell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "shell" is preferred. %>');
 	text = text.replace(/(\bcompiletime\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "compile time" is preferred. %>');
+	text = text.replace(/(\bcomplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bComplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bcomplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bComplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
 	text = text.replace(/(\bcomponent VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# All VMs are component VMs except for the host VMs. %>');
 	text = text.replace(/(\bConfig\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "config" is preferred. %>');
 	text = text.replace(/(\bConfirm if\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Confirm that" is better. %>');
@@ -477,6 +488,10 @@ function doreplacement(text)
 	text = text.replace(/(\bdisc\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "disk" is preferred. %>');
 	text = text.replace(/(\bdisk IO\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "disk I/O" is preferred. %>');
 	text = text.replace(/(\bdistro\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "distribution" is preferred. %>');
+	text = text.replace(/(\bdo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bDo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bdo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bDo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
 	text = text.replace(/(\bdoc\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "documentation" is preferred. %>');
 	text = text.replace(/(\bdocker image\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Docker image" is preferred. %>');
 	text = text.replace(/(\bDocker trusted registry\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Docker Registry" is preferred. %>');
@@ -507,6 +522,10 @@ function doreplacement(text)
 	text = text.replace(/(\bephemeral disk\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# There are two kinds of disk: ephemeral and persistent. You do not need to modify "disk" with "ephemeral" unless there is discussion of persistent disks in the same topic. Always define persistent disks as persistent. %>');
 	text = text.replace(/(\beveryone's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bEveryone's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
+	text = text.replace(/(\bexecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bExecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bexecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bExecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
 	text = text.replace(/(\bexpected\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Consider replacing with "in most cases" to sound more confident. %>');
 	text = text.replace(/(\bexperimental\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The terms "experimental" and "beta" have different meanings only in VMware. Otherwise, use "beta" and never "experimental". %>');
 	text = text.replace(/(\bFAQ\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use FAQs unless absolutely necessary. Fold into other appropriate locations in the doc. %>');
@@ -533,22 +552,6 @@ function doreplacement(text)
 	text = text.replace(/(\bget in touch\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use a specific communication verb instead, such as "email". %>');
 	text = text.replace(/(\bGet in touch\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use a specific communication verb instead, such as "email". %>');
 	text = text.replace(/(\bgif\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "GIF" is preferred. %>');
-	text = text.replace(/(\bperform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bdo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bcomplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bexecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bPerform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bDo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bComplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bExecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bperform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bdo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bcomplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bexecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bPerform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
-	text = text.replace(/(\bDo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
-	text = text.replace(/(\bComplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
-	text = text.replace(/(\bExecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
 	text = text.replace(/(\bGithub\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "GitHub". %>');
 	text = text.replace(/(\bGlobal Support Services\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Pivotal Support" is preferred. %>');
 	text = text.replace(/(\bgo router\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Gorouter" is preferred. %>');
@@ -674,6 +677,14 @@ function doreplacement(text)
 	text = text.replace(/(\bLet's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bLightweight Directory Access Protocol\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "LDAP" is preferred. %>');
 	text = text.replace(/(\blog into\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "log in to" is preferred. %>');
+	text = text.replace(/(\blog line\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "log entry" is preferred. %>');
+	text = text.replace(/(\bLog line\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Log entry" is preferred. %>');
+	text = text.replace(/(\blog lines\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "log entries" is preferred. %>');
+	text = text.replace(/(\bLog lines\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Log entries" is preferred. %>');
+	text = text.replace(/(\blog message\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "log entry" is preferred. %>');
+	text = text.replace(/(\bLog message\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Log entry" is preferred. %>');
+	text = text.replace(/(\blog messages\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "log entries" is preferred. %>');
+	text = text.replace(/(\bLog messages\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Log entries" is preferred. %>');
 	text = text.replace(/(\blog on to\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "log in to" is preferred. %>');
 	text = text.replace(/(\blog-in\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use "login" (n) or "log in" (v) %>');
 	text = text.replace(/(\bloggregator\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Call it "Loggregator" -- capitalized and without a preceding "the". %>');
@@ -712,6 +723,7 @@ function doreplacement(text)
 	text = text.replace(/(\bNote that\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Notes must be in Note boxes and start with "Note: ". %>');
 	text = text.replace(/(\bnote that\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Notes must be in Note boxes and start with "Note: ". %>');
 	text = text.replace(/(\bNov\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "November" is preferred. %>');
+	text = text.replace(/(\bnow should\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Favour certainty and agency: "the app now works" over "the app should now work", and "Pivotal recommends" over "you should".  %>');
 	text = text.replace(/(\bNozzle\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Only capitalize "nozzle" when it is part of a title %>');
 	text = text.replace(/(\bNSX Edge\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "NSX Edge Services Gateway (ESG)" is preferred. %>');
 	text = text.replace(/(\boAuth\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "OAuth" is preferred. %>');
@@ -753,6 +765,10 @@ function doreplacement(text)
 	text = text.replace(/(\bPCFdev\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PCF Dev" is preferred. %>');
 	text = text.replace(/(\bPCFS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "Platform Ops". %>');
 	text = text.replace(/(\bPDC\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_abbr %>');
+	text = text.replace(/(\bperform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
+	text = text.replace(/(\bPerform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
+	text = text.replace(/(\bperform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
+	text = text.replace(/(\bPerform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
 	text = text.replace(/(\bPID file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpid file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpidfile\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
@@ -829,13 +845,16 @@ function doreplacement(text)
 	text = text.replace(/(\brun time\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "runtime" is preferred. %>');
 	text = text.replace(/(\bRunner VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "host VM" is preferred. %>');
 	text = text.replace(/(\bRuntime CredHub\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "runtime CredHub" is preferred. %>');
-	text = text.replace(/(\bruntimes\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "runtime durations" or "runtime environments", depending on meaning. %>');
+	text = text.replace(/(\bruntimes\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "runtime durations" or "runtime environments" is preferred, depending on meaning. %>');
 	text = text.replace(/(\bSecure Shell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "SSH" is preferred. %>');
 	text = text.replace(/(\bSecurity Assertion Markup Language\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Never spell out SAML. %>');
 	text = text.replace(/(\bsecurity assertion markup language\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Never spell out SAML. %>');
+	text = text.replace(/(\bselect [A-Z](?![^£]*\<%# ECS %\>))/gm,'$1<%# Embolden the names of UI elements that you instruct the reader to interact with. %>');
+	text = text.replace(/(\bSelect [A-Z](?![^£]*\<%# ECS %\>))/gm,'$1<%# Embolden the names of UI elements that you instruct the reader to interact with. %>');
 	text = text.replace(/(\bservice broker API\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Service Broker API" is preferred. %>');
 	text = text.replace(/(\bservice instance credentials\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "binding credentials" is preferred. %>');
 	text = text.replace(/(\bService Key\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Only capitalize "service key" when it is part of a title %>');
+	text = text.replace(/(\bService-Gateway\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "service-gateway" is preferred. %>');
 	text = text.replace(/(\bServices Marketplace\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Marketplace" is preferred. %>');
 	text = text.replace(/(\bsettings data\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "configuration data" is preferred. %>');
 	text = text.replace(/(\bseventy(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use numerals for numbers greater than nine. %>');
@@ -847,18 +866,19 @@ function doreplacement(text)
 	text = text.replace(/(\bShe'll\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bshe's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bShe's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
+	text = text.replace(/(\bshould now\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Favour certainty and agency: "the app now works" over "the app should now work", and "Pivotal recommends" over "you should".  %>');
 	text = text.replace(/(\bshould've\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bshouldn't\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bsimple\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid suggesting an instruction is "simple" or "easy". %>');
 	text = text.replace(/(\bsimply\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid suggesting an instruction is "simple" or "easy". %>');
-	text = text.replace(/(\bsince\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use "since" when you can use "because". %>');
-	text = text.replace(/(\bSince\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use "Since" when you can use "Because". %>');
+	text = text.replace(/(\bsince\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use "since" where you can use "because". %>');
+	text = text.replace(/(\bSince\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use "Since" where you can use "Because". %>');
 	text = text.replace(/(\bsixty(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use numerals for numbers greater than nine. %>');
 	text = text.replace(/(\bslave\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follower" is preferred. %>');
-	text = text.replace(/(\bsmoketest\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "smoke test" (n.) or "smoke-test" (adj.) %>');
-	text = text.replace(/(\bSmoketest\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "smoke tests" (n.) or "smoke-tests" (adj.) %>');
-	text = text.replace(/(\bsmoketests\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "smoke tests" (n.) or "smoke-tests" (adj.) %>');
-	text = text.replace(/(\bSmoketests\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should be "smoke tests" (n.) or "smoke-tests" (adj.) %>');
+	text = text.replace(/(\bsmoketest\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "smoke test" (n.) or "smoke-test" (adj.) is preferred. %>');
+	text = text.replace(/(\bSmoketest\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "smoke tests" (n.) or "smoke-tests" (adj.) is preferred. %>');
+	text = text.replace(/(\bsmoketests\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "smoke tests" (n.) or "smoke-tests" (adj.) is preferred. %>');
+	text = text.replace(/(\bSmoketests\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "smoke tests" (n.) or "smoke-tests" (adj.) is preferred. %>');
 	text = text.replace(/(\bsocks\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "SOCKS" is preferred. Do not spell it out, even on first use. %>');
 	text = text.replace(/(\bSocks\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "SOCKS" is preferred. Do not spell it out, even on first use. %>');
 	text = text.replace(/(\bsomebody's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
@@ -894,8 +914,11 @@ function doreplacement(text)
 	text = text.replace(/(\bsub-directory\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "subdirectory" is preferred. %>');
 	text = text.replace(/(\bsub-property\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "subproperty" is preferred. %>');
 	text = text.replace(/(\bsuite\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Only use "suite" when describing a bundle of products sold together under a single SKU. %>');
+	text = text.replace(/(\bsuper user\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "superuser" is preferred. %>');
+	text = text.replace(/(\bSuper user\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Superuser" is preferred. %>');
 	text = text.replace(/(\bsynch\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "sync" is preferred. %>');
 	text = text.replace(/(\bsynchronize\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "sync" is preferred. %>');
+	text = text.replace(/(\bsynchronized\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "synced" is preferred. %>');
 	text = text.replace(/(\bSyslog\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Lowercase is preferred unless "syslog" starts a sentence or is in a title. %>');
 	text = text.replace(/(\btab\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just declare the UI element in bold: do not tell the reader where it sits on the screen. %>');
 	text = text.replace(/(\btar\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "TAR" is preferred. %>');
@@ -929,6 +952,9 @@ function doreplacement(text)
 	text = text.replace(/(\bThey've\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bthirty(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use numerals for numbers greater than nine. %>');
 	text = text.replace(/(\bthrice\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "three times" is preferred. %>');
+	text = text.replace(/(\bthus\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Re-write the sentence to drop "thus" or, if that is not possible, replace with "therefore". %>');
+	text = text.replace(/(\bThus\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Re-write the sentence to drop "Thus" or, if that is not possible, replace with "therefore". %>');
+	text = text.replace(/(\btime to live\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "TTL" after first use. %>');
 	text = text.replace(/(\bto login\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use "login" (n) and "log in" (v). %>');
 	text = text.replace(/(\bTraffic-controller\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Traffic Controller" is preferred. %>');
 	text = text.replace(/(\bTraffic-Controller\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Traffic Controller" is preferred. %>');
@@ -1001,7 +1027,7 @@ function doreplacement(text)
 	text = text.replace(/(\bweb site\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "website" is preferred. %>');
 	text = text.replace(/(\bwebdav\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "WebDAV" is preferred. %>');
 	text = text.replace(/(\bWebDav\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "WebDAV" is preferred. %>');
-	text = text.replace(/(\bWebSockets\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Should not be plural as it refers to the WebSocket protocol.  %>');
+	text = text.replace(/(\bWebSockets\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "WebSocket" is preferred: there is a WebSocket protocol, not multiple WebSockets. %>');
 	text = text.replace(/(\bweren't\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bwhat's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bWhat's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
