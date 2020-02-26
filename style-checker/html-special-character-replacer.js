@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last updated: 6 February, 2020
+	// Last updated: 26 February, 2020
 
 	// Start of commands
 
@@ -151,12 +151,12 @@ function doreplacement(text)
 	text = text.replace(/(\<a href= \<%# £SCS %\>[^>]*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<img src=)/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\<img src= \<%# £SCS %\>[^>]*)/gm,'$1 <%# ECS %>');
-	text = text.replace(/(\*\*(?!\.|-|:|,|\*|\s))/gm,'$1 <%# £SCS %>');
-	text = text.replace(/(\*\*(?! \<%# £SCS %\>))/gm,'$1 <%# ECS %>');
-	text = text.replace(/(\<strong\>)/gm,'$1 <%# £SCS %>');
-	text = text.replace(/(\<\/strong\>)/gm,'$1 <%# ECS %>');
-	text = text.replace(/(\<b\>)/gm,'$1 <%# £SCS %>');
-	text = text.replace(/(\<\/b\>)/gm,'$1 <%# ECS %>');
+	text = text.replace(/(\*\*[^\.|\-|:|,|\*|\s](?![^:\n\*]*:[^:\n\*]*\*\*))/gm,'$1 <%# £SCS %>');
+	text = text.replace(/(\*\*[^:\*]*\*\*[\s\-:\n])/gm,'$1 <%# ECS %>');
+	text = text.replace(/(\<strong\>(?![^:\n]*:[^:\n]*\<\/strong\>))/gm,'$1 <%# £SCS %>');
+	text = text.replace(/(\<strong\>[^:]*<\/strong\>)/gm,'$1 <%# ECS %>');
+	text = text.replace(/(\<b\>(?![^:\n]*:[^:\n]*\<\/b\>))/gm,'$1 <%# £SCS %>');
+	text = text.replace(/(\<b\>[^:]*<\/b\>)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<%=)/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\<%= \<%# £SCS %\>[^%]*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<\/p\>[^\n])/gm,'$1 <%# Remove the trailing whitespace here. %>');
@@ -442,10 +442,10 @@ function doreplacement(text)
 	text = text.replace(/(\bcommand line interface\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CLI" after first use. %>');
 	text = text.replace(/(\bcommand shell\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "shell" is preferred. %>');
 	text = text.replace(/(\bcompiletime\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "compile time" is preferred. %>');
-	text = text.replace(/(\bcomplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bComplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bcomplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bComplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
+	text = text.replace(/(\bcomplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "complete". %>');
+	text = text.replace(/(\bComplete the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Complete". %>');
+	text = text.replace(/(\bcomplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "complete". %>');
+	text = text.replace(/(\bComplete the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Complete". %>');
 	text = text.replace(/(\bcomponent VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# All VMs are component VMs except for the host VMs. %>');
 	text = text.replace(/(\bConfig\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "config" is preferred. %>');
 	text = text.replace(/(\bConfirm if\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Confirm that" is better. %>');
@@ -488,10 +488,10 @@ function doreplacement(text)
 	text = text.replace(/(\bdisc\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "disk" is preferred. %>');
 	text = text.replace(/(\bdisk IO\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "disk I/O" is preferred. %>');
 	text = text.replace(/(\bdistro\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "distribution" is preferred. %>');
-	text = text.replace(/(\bdo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bDo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bdo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bDo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
+	text = text.replace(/(\bdo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "do". %>');
+	text = text.replace(/(\bDo the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Do". %>');
+	text = text.replace(/(\bdo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "do". %>');
+	text = text.replace(/(\bDo the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Do". %>');
 	text = text.replace(/(\bdoc\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "documentation" is preferred. %>');
 	text = text.replace(/(\bdocker image\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Docker image" is preferred. %>');
 	text = text.replace(/(\bDocker trusted registry\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Docker Registry" is preferred. %>');
@@ -522,10 +522,10 @@ function doreplacement(text)
 	text = text.replace(/(\bephemeral disk\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# There are two kinds of disk: ephemeral and persistent. You do not need to modify "disk" with "ephemeral" unless there is discussion of persistent disks in the same topic. Always define persistent disks as persistent. %>');
 	text = text.replace(/(\beveryone's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bEveryone's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
-	text = text.replace(/(\bexecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bExecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bexecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bExecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
+	text = text.replace(/(\bexecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "execute". %>');
+	text = text.replace(/(\bExecute the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Execute". %>');
+	text = text.replace(/(\bexecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "execute". %>');
+	text = text.replace(/(\bExecute the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Execute". %>');
 	text = text.replace(/(\bexpected\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Consider replacing with "in most cases" to sound more confident. %>');
 	text = text.replace(/(\bexperimental\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The terms "experimental" and "beta" have different meanings only in VMware. Otherwise, use "beta" and never "experimental". %>');
 	text = text.replace(/(\bFAQ\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use FAQs unless absolutely necessary. Fold into other appropriate locations in the doc. %>');
@@ -755,7 +755,6 @@ function doreplacement(text)
 	text = text.replace(/(\bout of memory error\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "out-of-memory error" is preferred. %>');
 	text = text.replace(/(\bOut Of Memory error\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "out-of-memory error" is preferred. %>');
 	text = text.replace(/(\bPAAS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PaaS" is preferred. %>');
-	text = text.replace(/(\bpane\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just declare the UI element in bold: do not tell the reader where it sits on the screen. %>');
 	text = text.replace(/(\bparam\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "parameter" is preferred. %>');
 	text = text.replace(/(\bparams\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "parameters" is preferred. %>');
 	text = text.replace(/(\bParams\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Parameters" is preferred. %>');
@@ -765,10 +764,10 @@ function doreplacement(text)
 	text = text.replace(/(\bPCFdev\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "PCF Dev" is preferred. %>');
 	text = text.replace(/(\bPCFS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is "Platform Ops". %>');
 	text = text.replace(/(\bPDC\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_abbr %>');
-	text = text.replace(/(\bperform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the procedure" is preferred. %>');
-	text = text.replace(/(\bPerform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the procedure" is preferred. %>');
-	text = text.replace(/(\bperform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow the steps" is preferred. %>');
-	text = text.replace(/(\bPerform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow the steps" is preferred. %>');
+	text = text.replace(/(\bperform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "perform". %>');
+	text = text.replace(/(\bPerform the[\w ]* procedure\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Perform". %>');
+	text = text.replace(/(\bperform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "follow" is preferred over "perform". %>');
+	text = text.replace(/(\bPerform the[\w ]* steps\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Follow" is preferred over "Perform". %>');
 	text = text.replace(/(\bPID file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpid file\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
 	text = text.replace(/(\bpidfile\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just "PID" is preferred. %>');
@@ -838,8 +837,6 @@ function doreplacement(text)
 	text = text.replace(/(\brequirement\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Requirements are things needed to install and run the product. We list them on the product index page. Prerequisites are things needed for a given procedure beyond the product requirements. We list those on the procedure page. %>');
 	text = text.replace(/(\brestoration\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use "restore" as both a verb and a noun. %>');
 	text = text.replace(/(\bresurrector\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Resurrector" is preferred. %>');
-	text = text.replace(/(\bRoute Emitter\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "router-emitter component" is preferred. %>');
-	text = text.replace(/(\brouter_emitter\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "router-emitter component" is preferred. %>');
 	text = text.replace(/(\brun the following command\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Replace with just "run:" %>');
 	text = text.replace(/(\bRun the following command\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Replace with just "Run:" %>');
 	text = text.replace(/(\brun time\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "runtime" is preferred. %>');
@@ -920,7 +917,6 @@ function doreplacement(text)
 	text = text.replace(/(\bsynchronize\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "sync" is preferred. %>');
 	text = text.replace(/(\bsynchronized\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "synced" is preferred. %>');
 	text = text.replace(/(\bSyslog\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Lowercase is preferred unless "syslog" starts a sentence or is in a title. %>');
-	text = text.replace(/(\btab\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Just declare the UI element in bold: do not tell the reader where it sits on the screen. %>');
 	text = text.replace(/(\btar\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "TAR" is preferred. %>');
 	text = text.replace(/(\bTasks\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "tasks" is preferred. %>');
 	text = text.replace(/(teen\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use numerals for numbers greater than nine. %>');
@@ -1007,6 +1003,7 @@ function doreplacement(text)
 	text = text.replace(/(\bVIM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The text editor is called "Vim". %>');
 	text = text.replace(/(\bvirtual machine\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "VM" is preferred. %>');
 	text = text.replace(/(\bVirtual Machine Metrics\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "BOSH health metrics" is preferred. %>');
+	text = text.replace(/(\bvm\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "VM" is preferred. %>');
 	text = text.replace(/(\bVMWare\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "VMware" is preferred. %>');
 	text = text.replace(/(\bWARNING\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Warning" is preferred. %>');
 	text = text.replace(/(\bwarning box\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "dialog box" is preferred. %>');
