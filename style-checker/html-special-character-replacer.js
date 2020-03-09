@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last updated: 2 March, 2020
+	// Last updated: 9 March, 2020
 
 	// Start of commands
 
@@ -42,24 +42,22 @@ function doreplacement(text)
 	text = text.replace(/(\b[^-]DEPLOYMENT\b)/gm,'$1 <%# "BOSH-DEPLOYMENT" is preferred. %>');
 	text = text.replace(/(\b[^-]ENVIRONMENT\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
 	text = text.replace(/(\.\/[a-z-]*#[a-z-]*\.html)/gm,'$1 <%# Broken link -- the correct syntax is "page-name.html#anchor-name". %>');
-	text = text.replace(/(\"\>[^A-Z][^<]*\<.a\>)/gm,'$1 <%# See https://docs-wiki.cfapps.io/wiki/style/cross-ref-style.html. %>');
-	text = text.replace(/(\"\>Step[^<]*\<.a\>)/gm,'$1 <%# See https://docs-wiki.cfapps.io/wiki/style/cross-ref-style.html. %>');
 	text = text.replace(/(\(https:..bosh.io.*\)(?!.*\n?.*in the BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
 	text = text.replace(/(\(https:..cloud.google.com.*\)(?!.*\n?.*GCP documentation).*$)/gm,'$1 <%# The link name must be "GCP documentation". %>');
 	text = text.replace(/(\(https:..community.pivotal.io.*\)(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
 	text = text.replace(/(\(https:..discuss.pivotal.io.*\).*$)/gm,'$1 <%# Discuss Pivotal is a deprecated URL. Contact Knowledge Base staff for its replacement. %>');
 	text = text.replace(/(\(https:..github.com.*\)(?!.*\n?.*GitHub).*$)/gm,'$1 <%# Type "in GitHub" somewhere in the cross-reference sentence. %>');
 	text = text.replace(/(\(https:..pvtl.force.com.*\).*$)/gm,'$1 <%# Pivotal Force is a deprecated URL. Contact Knowledge Base staff for its replacement. %>');
-	text = text.replace(/(\[[^A-Z][^\]]*\]\()/gm,'$1 <%# See https://docs-wiki.cfapps.io/wiki/style/cross-ref-style.html. %>');
-	text = text.replace(/(\[Step[^\]]*\]\()/gm,'$1 <%# See https://docs-wiki.cfapps.io/wiki/style/cross-ref-style.html. %>');
 	text = text.replace(/(\[(?!.*\n?.*Cloud Foundry documentation).*\]\(https:..docs.cloudfoundry.org.*\))/gm,'$1 <%# The link name must be "Cloud Foundry documentation". %>');
 	text = text.replace(/(\[(?!.*\n?.*Concourse documentation).*\]\(https:..concourse-ci.org.*\))/gm,'$1 <%# The link name must be "Concourse documentation". %>');
 	text = text.replace(/(\[(?!.*\n?.*Docker documentation).*\]\(https:..docs.docker.com.*\))/gm,'$1 <%# The link name must be "Docker documentation". %>');
 	text = text.replace(/(\[(?!.*\n?.*Kubernetes documentation).*\]\(https:..kubernetes.io.docs.*\))/gm,'$1 <%# The link name must be "Kubernetes documentation". %>');
 	text = text.replace(/(\[(?!.*\n?.*Percona documentation).*\]\(https:..www.percona.com.doc.*\).*$)/gm,'$1 <%# The link name must be "Percona documentation". %>');
 	text = text.replace(/(\<%= image_tag(?!.*:alt).*$)/gm,'$1 <%# Images require alt text. %>');
+	text = text.replace(/(\<%= var.[\w]* %\>)/gm,'$1 <%# ERB variables start with "vars.", not "var". %>');
 	text = text.replace(/(\<%= vars.platform_name %\> v2.0 and later)/gm,'$1 <%# "<%= vars.platform_name %> (formerly <%= vars.platform_old %>)" is preferred. %>');
 	text = text.replace(/(\<%= vars.platform_old %\> v2.0 and later)/gm,'$1 <%# "<%= vars.platform_name %> (formerly <%= vars.platform_old %>)" is preferred. %>');
+	text = text.replace(/(\<%= vars.runtime_abbr %\>)/gm,'$1 <%# Use <%= vars.app_runtime_abbr %>');
 	text = text.replace(/(\<a href="https:..bosh.io.*\">(?!.*\n?.*BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
 	text = text.replace(/(\<a href="https:..cloud.google.com.*\">(?!.*\n?.*GCP documentation).*\<.a\>)/gm,'$1 <%# The link name must be "GCP documentation". %>');
 	text = text.replace(/(\<a href="https:..community.pivotal.io.*\">(?!.*\n?.*Pivotal Support knowledge base).*$)/gm,'$1 <%# Type "in the Pivotal Support knowledge base" somewhere in the cross-reference sentence. %>');
@@ -78,8 +76,13 @@ function doreplacement(text)
 	text = text.replace(/(\<a id=\"[^\.\"]*\.)/gm,'$1 <%# Do not use periods in anchors. %>');
 	text = text.replace(/(\<a id=\"\d\d)/gm,'$1 <%# Place dashes between digits in release notes anchor IDs. %>');
 	text = text.replace(/(\<code\>kubectl\<\/code\>)/gm,'$1 <%# Do not format "kubectl" as code. %>');
+	text = text.replace(/(\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
+	text = text.replace(/(\<h1\>)/gm,'$1 <%# H1 headers are not allowed within topics. %>');
 	text = text.replace(/(\<img src=(?!.*alt=").*$)/gm,'$1 <%# Images require alt text. %>');
 	text = text.replace(/(\sCVE-\d{4}(?!.*\n?([^\[]*\]|[^\>]*\<\/a\>)).*$)/gm,'$1 <%# Link to the CVE page at pivotal.io/security or cve.mitre.org. %>');
+	text = text.replace(/(#{2,3}[\s\w](?!.*\<a)\s*(?!(Features|Security Fix|Resolved Issue|Known Issue|Compatibility|Packages)).*$)/gm,'$1 <%# Make H2 and H3 headers anchors. Use "a id" to include the anchor in the subnav. Use "a name" to leave it out. %>');
+	text = text.replace(/(##+.*ing\s[^\n]*)/gm,'$1 <%# Procedure headers use imperatives, not gerunds. %>');
+	text = text.replace(/(##+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(`.*[_\A-Z].*` errand)/gm,'$1 <%# Errands tend to be lowercase and they use hyphens instead of underscores or spaces. %>');
 	text = text.replace(/(`.*[_\A-Z].*` errands)/gm,'$1 <%# Errands tend to be lowercase and they use hyphens instead of underscores or spaces. %>');
 	text = text.replace(/(`kubectl`)/gm,'$1 <%# Do not format "kubectl" as code. %>');
@@ -88,11 +91,7 @@ function doreplacement(text)
 	text = text.replace(/(`pdc` CLI Tool)/gm,'$1 <%# "<%= vars.product_abbr %> CLI tool" is preferred. %>');
 	text = text.replace(/(^(?!.*li\>).*\<a href="#..*\">(?![^\.]*\n?.*(above|below|earlier|previously|before|later)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
 	text = text.replace(/(^(?!\s*(\*\s*|-|\+|\d\.\s*)).*\]\(#..*\)(?![^\.]*\n?.*(above|below|earlier|previously|before|later)).*$)/gm,'$1 <%# After giving the anchor, state whether it is "above" or "below". %>');
-	text = text.replace(/(^[^\n#]+#{2,6})/gm,'$1 <%# Delete the spaces before this header. %>');
-	text = text.replace(/(^\s*[#]+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
-	text = text.replace(/(^\s*\<h\d\>\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
-	text = text.replace(/(^\s*\<h1\>)/gm,'$1 <%# H1 headers are not allowed within topics. %>');
-	text = text.replace(/(^\s*#{2,3}[\s\w](?!.*\<a)\s*(?!(Features|Security Fix|Resolved Issue|Known Issue|Compatibility|Packages)).*$)/gm,'$1 <%# Make H2 and H3 headers anchors. Use "a id" to include the anchor in the subnav. Use "a name" to leave it out. %>');
+	text = text.replace(/(^[^\n#]+#{2,6})/gm,'$1 <%# Delete the whitespace before this header. %>');
 	text = text.replace(/(\bAPP(?!-NAME)\b)/gm,'$1 <%# "APP-NAME" is preferred. %>');
 	text = text.replace(/(docs-pcf-staging.cfapps.io.*$)/gm,'$1 <%# Do not link to staging versions of the docs. %>');
 	text = text.replace(/(\bENV\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
@@ -152,8 +151,8 @@ function doreplacement(text)
 	text = text.replace(/(\<a href= \<%# £SCS %\>[^>]*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<img src=)/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\<img src= \<%# £SCS %\>[^>]*)/gm,'$1 <%# ECS %>');
-	text = text.replace(/(^##+[^\n]*\n\n+[^:\n]*\n\n+[\s\*]*[A-z])/gm,'$1 <%# £SCS %>');
-	text = text.replace(/(\*\*[^:\*]*\*\*[\s\-:\n])/gm,'$1 <%# ECS %>');
+	text = text.replace(/(\*\*(?=[^:\n]+\*\*))/gm,'$1 <%# £SCS %>');
+	text = text.replace(/(\*\*[^:\n]+\*\*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<strong\>(?![^:\n]*:[^:\n]*\<\/strong\>))/gm,'$1 <%# £SCS %>');
 	text = text.replace(/(\<strong\>[^:]*<\/strong\>)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<b\>(?![^:\n]*:[^:\n]*\<\/b\>))/gm,'$1 <%# £SCS %>');
@@ -162,8 +161,8 @@ function doreplacement(text)
 	text = text.replace(/(\<%= \<%# £SCS %\>[^%]*)/gm,'$1 <%# ECS %>');
 	text = text.replace(/(\<\/p\>[^\n])/gm,'$1 <%# Remove the trailing whitespace here. %>');
 	text = text.replace(/(``` <%# ECS %>[^\n])/gm,'$1 <%# Remove the trailing whitespace here. %>');
-	text = text.replace(/(^\n[^\d][^\.][^\n]*[^:]\n\n+(?=\d\.\s)(?![^€]*\<%# ELS %\>))/gm,'$1<%# A procedure requires a stem ending with a colon, as in "To do x:". %>');
 	text = text.replace(/(^\n(?!(\s*\<li\>))[^\n]*[^:]\n\n+(?=\s*\<ol\>)(?![^€]*\<%# ELS %\>))/gm,'$1<%# A procedure requires a stem ending with a colon, as in "To do x:". %>');
+	text = text.replace(/(^\n[^\d][^\.][^\n]*[^:]\n\n+(?=\d\.\s)(?![^€]*\<%# ELS %\>))/gm,'$1<%# A procedure requires a stem ending with a colon, as in "To do x:". %>');
 	text = text.replace(/(\s\.html)/gm,'$1 <%# "HTML" is preferred. %>');
 	text = text.replace(/(\s\.zip)/gm,'$1 <%# "ZIP" is preferred. %>');
 	text = text.replace(/(\(Go\) Router)/gm,'$1 <%# "Gorouter" is preferred. %>');
@@ -293,6 +292,9 @@ function doreplacement(text)
 	text = text.replace(/(^title:.*\([A-Z]+\)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not put abbreviations in page titles. %>');
 	text = text.replace(/(^title:.*PAS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "Pivotal Application Service" in full in topic titles. %>');
 	text = text.replace(/(\ba given\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Redundant? %>');
+	text = text.replace(/(\ba previous step\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "earlier in this procedure" or refer to the relevant procedure by name and link to it. %>');
+	text = text.replace(/(\ba RSU\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "an RSU" is preferred. %>');
+	text = text.replace(/(\bA RSU\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "an RSU" is preferred. %>');
 	text = text.replace(/(\ba SQL\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "an SQL" is preferred. %>');
 	text = text.replace(/(\baddon\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "add-on" is preferred. %>');
 	text = text.replace(/(\bADFS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "AD FS" per the Microsoft preference. %>');
@@ -323,6 +325,7 @@ function doreplacement(text)
 	text = text.replace(/(\bAll the necessary\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "All" might be redundant %>');
 	text = text.replace(/(\balpha-numeric\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "alphanumeric" is preferred. %>');
 	text = text.replace(/(\bAmazon Web Services(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "AWS" after the first use. %>');
+	text = text.replace(/(\ban earlier step\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "earlier in this procedure" or refer to the relevant procedure by name and link to it. %>');
 	text = text.replace(/(\ban UAA\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "a UAA" is preferred. %>');
 	text = text.replace(/(\bAn UAA\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "A UAA" is preferred. %>');
 	text = text.replace(/(\banti-virus\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "antivirus" is preferred. %>');
@@ -349,6 +352,7 @@ function doreplacement(text)
 	text = text.replace(/(\bAt the time of writing\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# 1st preference: delete. 2nd preference: replace these words with "Currently". %>');
 	text = text.replace(/(\bAug\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "August" is preferred. %>');
 	text = text.replace(/(\bauth\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "authentication" is preferred. %>');
+	text = text.replace(/(\bAvailability Zone\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "availability zone (AZ)" on first use and "AZ" thereafter. %>');
 	text = text.replace(/(\bavailability zone\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "AZ" after the first use. %>');
 	text = text.replace(/(\bAvailability zone\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "AZ" after the first use. %>');
 	text = text.replace(/(\bavailability zones\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "AZ" after the first use. %>');
@@ -393,10 +397,10 @@ function doreplacement(text)
 	text = text.replace(/(\bCC API\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CAPI" is preferred. %>');
 	text = text.replace(/(\bCell VM\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "host VM" is preferred. %>');
 	text = text.replace(/(\bcert\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate" is preferred. %>');
-	text = text.replace(/(\bcertificate authority certificate\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CA" after first use. %>');
-	text = text.replace(/(\bCertificate Authority certificate\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CA" after first use. %>');
-	text = text.replace(/(\bcertificate authority certificates\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CA" after first use. %>');
-	text = text.replace(/(\bCertificate Authority certificates\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CA" after first use. %>');
+	text = text.replace(/(\bcertificate authority certificate\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate authority (CA) certificate" on first use. "CA certificate" thereafter. %>');
+	text = text.replace(/(\bCertificate Authority certificate\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate authority (CA) certificate" on first use. "CA certificate" thereafter. %>');
+	text = text.replace(/(\bcertificate authority certificates\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate authority (CA) certificate" on first use. "CA certificate" thereafter. %>');
+	text = text.replace(/(\bCertificate Authority certificates\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# "certificate authority (CA) certificate" on first use. "CA certificate" thereafter. %>');
 	text = text.replace(/(\bcertificate signing request\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CSR" after first use. %>');
 	text = text.replace(/(\bCertificate signing request\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CSR" after first use. %>');
 	text = text.replace(/(\bCertificate Signing Request\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CSR" after first use. %>');
@@ -407,6 +411,7 @@ function doreplacement(text)
 	text = text.replace(/(\bcf cli\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is shortened as "cf CLI". %>');
 	text = text.replace(/(\bCF CLI\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand name is shortened as "cf CLI". %>');
 	text = text.replace(/(\bcf push\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# If code, add code tags and sandwich between "the" and "command". %>');
+	text = text.replace(/(\bCF-compatible CNB buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CF-compatible CNB" is preferred. %>');
 	text = text.replace(/(\bcheck box\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "checkbox" is preferred. %>');
 	text = text.replace(/(\bcheckmark\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "check mark" is preferred. %>');
 	text = text.replace(/(\bchoose to\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Redundant? %>');
@@ -418,11 +423,25 @@ function doreplacement(text)
 	text = text.replace(/(\bCloud Controller API\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# 1st use: "Cloud Foundry API (CAPI)". Subsequent uses: "CAPI". %>');
 	text = text.replace(/(\bCloud Controller Database\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Controller database" is preferred. %>');
 	text = text.replace(/(\bCloud Foundry API(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "CAPI" after the first use. %>');
+	text = text.replace(/(\bCloud Foundry Organisation\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Foundry org" or just "org" is preferred. %>');
+	text = text.replace(/(\bCloud Foundry Organization\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Foundry org" or just "org" is preferred. %>');
+	text = text.replace(/(\bCloud Foundry space\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Foundry space" or just "space" is preferred. %>');
 	text = text.replace(/(\bcloud native\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "cloud-native" is preferred. %>');
 	text = text.replace(/(\bCloud native application bundle\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Application Bundle" is capitalized. Shorten to "CNAB" after first use. %>');
 	text = text.replace(/(\bcloud native application bundle\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Application Bundle" is capitalized. Shorten to "CNAB" after first use. %>');
+	text = text.replace(/(\bcloud native buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud Native buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud Native-Buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud Native-buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud native-Buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
 	text = text.replace(/(\bcloud-native application bundle\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Application Bundle" has no hyphen and is capitalized. Shorten to "CNAB" after first use. %>');
 	text = text.replace(/(\bCloud-native application bundle\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Application Bundle" has no hyphen and is capitalized. Shorten to "CNAB" after first use. %>');
+	text = text.replace(/(\bCloud-native Buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud-Native Buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud-Native buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bcloud-native-buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud-Native-buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
+	text = text.replace(/(\bCloud-Native-Buildpack\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Native Buildpack" is preferred. %>');
 	text = text.replace(/(\bCloudController\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Controller" is preferred. %>');
 	text = text.replace(/(\bCloudformation\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "CloudFormation" is preferred. %>');
 	text = text.replace(/(\bCloudFoundry\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Cloud Foundry" is preferred %>');
@@ -630,6 +649,7 @@ function doreplacement(text)
 	text = text.replace(/(\bin CredHub\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# There are two CredHubs in PCF v2.0: BOSH CredHub and runtime CredHub. %>');
 	text = text.replace(/(\bin go\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "in Go" is preferred. %>');
 	text = text.replace(/(\bin order to\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "to" is preferred. %>');
+	text = text.replace(/(\bIn order to\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "To" is preferred. %>');
 	text = text.replace(/(\bin real-time\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Stuff happens in "real time". %>');
 	text = text.replace(/(\bin the terminal window\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "on the command line" is preferred. %>');
 	text = text.replace(/(\bindependent service vendor\b(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "ISV" after the first use. %>');
