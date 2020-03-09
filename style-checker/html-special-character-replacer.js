@@ -81,7 +81,7 @@ function doreplacement(text)
 	text = text.replace(/(\<img src=(?!.*alt=").*$)/gm,'$1 <%# Images require alt text. %>');
 	text = text.replace(/(\sCVE-\d{4}(?!.*\n?([^\[]*\]|[^\>]*\<\/a\>)).*$)/gm,'$1 <%# Link to the CVE page at pivotal.io/security or cve.mitre.org. %>');
 	text = text.replace(/(#{2,3}[\s\w](?!.*\<a)\s*(?!(Features|Security Fix|Resolved Issue|Known Issue|Compatibility|Packages)).*$)/gm,'$1 <%# Make H2 and H3 headers anchors. Use "a id" to include the anchor in the subnav. Use "a name" to leave it out. %>');
-	text = text.replace(/(##+.*ing\s[^\n]*)/gm,'$1 <%# Procedure headers use imperatives, not gerunds. %>');
+	text = text.replace(/(##+[^\n]*\>\s*[A-Z][a-z-]+ing\s)/gm,'$1 <%# Procedure headers use imperatives, not gerunds. %>');
 	text = text.replace(/(##+\s*\d\.)/gm,'$1 <%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(`.*[_\A-Z].*` errand)/gm,'$1 <%# Errands tend to be lowercase and they use hyphens instead of underscores or spaces. %>');
 	text = text.replace(/(`.*[_\A-Z].*` errands)/gm,'$1 <%# Errands tend to be lowercase and they use hyphens instead of underscores or spaces. %>');
