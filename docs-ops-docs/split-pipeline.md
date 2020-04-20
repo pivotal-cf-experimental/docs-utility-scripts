@@ -1,5 +1,7 @@
 # Splitting an Unversioned Pipeline into Two Versioned Pipelines
 
+**Note:** These playbooks are out of date. For current practices, see [Splitting an Unversioned Pipeline into Two Versioned Pipelines](https://docs-wiki.cfapps.io/wiki/pipelines/split-pipeline.html) in the docs wiki.
+
 **Note to services writers:** Don't follow the procedures on this page. This is core-specific content.
 
 ## Step One: Creating New Version Branches of the Content and Book Repositories
