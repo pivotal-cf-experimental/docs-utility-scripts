@@ -289,13 +289,13 @@ function doreplacement(text)
 	text = text.replace(/(^(?!(title:|owner:)).*Pivotal Single Sign-On\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*RabbitMQ for Kubernetes\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/(^(?!(title:|owner:)).*RabbitMQ for Pivotal Platform\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*RabbitMQ for VMware Tanzu &#91;Kubernetes&#93;\W(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*RabbitMQ for VMware Tanzu \[Kubernetes\]\W(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
+	text = text.replace(/(^(?!(title:|owner:)).*RabbitMQ for VMware Tanzu &#91;Kubernetes&#93;\W(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Redis for Pivotal Platform\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*single sign-on\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_abbr %>');
-	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs &#91;Windows&#93;\W(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= windows_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs \[Windows\]\W(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= windows_runtime_abbr %>');
+	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs &#91;Windows&#93;\W(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= windows_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*TAS(?! for)(?![^€]*\<%# ELS %\>))/gm,'$1<%# Depending on the product, use <%= vars.app_runtime_abbr %> or <%= windows_runtime_abbr %>');
 	text = text.replace(/(^(?!title:|.*for).*PCF\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.platform_old %>');
 	text = text.replace(/(^(?!title:|.*for\s).*Pivotal Platform\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.platform_name %>');
@@ -1025,9 +1025,9 @@ function doreplacement(text)
 	text = text.replace(/(\btype the following\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "To X, run:" and "X by running:" are preferred. %>');
 	text = text.replace(/(\btype:(?![^£]*\<%# ECS %\>))/gm,'$1<%# "run:" is preferred. %>');
 	text = text.replace(/(\buaac\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "UAAC" is preferred. %>');
-	text = text.replace(/(\bun-check\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Not secure" is preferred. %>');
+	text = text.replace(/(\bun-check\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Disable the LABEL-NAME checkbox" is preferred. Likewise for "Enable the LABEL-NAME checkbox". %>');
 	text = text.replace(/(\bun-register\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# deregister %>');
-	text = text.replace(/(\bun-tick\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Not secure" is preferred. %>');
+	text = text.replace(/(\bun-tick\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Disable the LABEL-NAME checkbox" is preferred. Likewise for "Enable the LABEL-NAME checkbox". %>');
 	text = text.replace(/(\buncheck\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Disable the LABEL-NAME checkbox" is preferred. Likewise for "Enable the LABEL-NAME checkbox". %>');
 	text = text.replace(/(\bUnderstanding\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# If a procedural topic title, go with "How to...". If a conceptual title, go with "About..." or "Overview of..." or nothing at all. %>');
 	text = text.replace(/(\bUniform Resource Locator\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "URL" is preferred. %>');
