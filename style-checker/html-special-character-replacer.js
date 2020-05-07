@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last updated: 6 May, 2020
+	// Last updated: 7 May, 2020
 
 	// Start of commands
 
@@ -42,7 +42,8 @@ function doreplacement(text)
 	text = text.replace(/(\b[^-]CLIENT-SECRET\b)/gm,'$1 <%# Specify the server, as in "BOSH-CLIENT-SECRET" or "CREDHUB-CLIENT-SECRET". %>');
 	text = text.replace(/(\b[^-]DEPLOYMENT\b)/gm,'$1 <%# "BOSH-DEPLOYMENT" is preferred. %>');
 	text = text.replace(/(\b[^-]ENVIRONMENT\b)/gm,'$1 <%# "BOSH-ENVIRONMENT" is preferred. %>');
-	text = text.replace(/(\b[Rr]un[\w-\s]*:\n*\s*\<pre class\b)/gm,'$1 <%# Commands are formatted in ``` blocks, not terminal snippets. %>');
+	text = text.replace(/(\bRun[\w-\s]*:\n*\s*\<pre class\b)/gm,'$1 <%# Commands are formatted in ``` blocks, not terminal snippets. %>');
+	text = text.replace(/(\brun[\w-\s]*:\n*\s*\<pre class\b)/gm,'$1 <%# Commands are formatted in ``` blocks, not terminal snippets. %>');
 	text = text.replace(/(\.\/[a-z-]*#[a-z-]*\.html)/gm,'$1 <%# Broken link -- the correct syntax is "page-name.html#anchor-name". %>');
 	text = text.replace(/(\(https:..bosh.io.*\)(?!.*\n?.*in the BOSH documentation).*$)/gm,'$1 <%# The BOSH cross-referencing format is: "For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation." %>');
 	text = text.replace(/(\(https:..cloud.google.com.*\)(?!.*\n?.*GCP documentation).*$)/gm,'$1 <%# The link name must be "GCP documentation". %>');
@@ -253,11 +254,11 @@ function doreplacement(text)
 	text = text.replace(/(^(?!(title:|owner:)).*Elastic Runtime\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*IPSec for PCF\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*MySQL for Pivotal Platform\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Operations Manager\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*Ops Man\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Operations Manager\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.ops_manager %>');
+	text = text.replace(/(^(?!(title:|owner:)).*Ops Man\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.ops_manager %>');
 	text = text.replace(/(^(?!(title:|owner:)).*ops manager\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.ops_manager %>');
-	text = text.replace(/(^(?!(title:|owner:)).*OpsMan\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
-	text = text.replace(/(^(?!(title:|owner:)).*OpsManager\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
+	text = text.replace(/(^(?!(title:|owner:)).*OpsMan\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.ops_manager %>');
+	text = text.replace(/(^(?!(title:|owner:)).*OpsManager\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.ops_manager %>');
 	text = text.replace(/(^(?!(title:|owner:)).*PAS\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.app_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*PBS\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/(^(?!(title:|owner:)).*PFS\b(?![^€]*\<%# ELS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
