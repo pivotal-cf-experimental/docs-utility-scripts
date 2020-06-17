@@ -352,6 +352,7 @@ function doreplacement(text)
 	text = text.replace(/(\balert window\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "dialog box" is preferred. %>');
 	text = text.replace(/(\ball the necessary\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "all" might be redundant %>');
 	text = text.replace(/(\bAll the necessary\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "All" might be redundant %>');
+	text = text.replace(/(\ballow list\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "allowlist" is preferred. No space. %>');
 	text = text.replace(/(\balpha-numeric\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "alphanumeric" is preferred. %>');
 	text = text.replace(/(\bAmazon Web Services(?!\s\()(?![^£]*\<%# ECS %\>))/gm,'$1<%# Shorten to "AWS" after the first use. %>');
 	text = text.replace(/(\ban earlier step\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "earlier in this procedure" or, if referring to a separate procedure, link to it. %>');
@@ -541,6 +542,7 @@ function doreplacement(text)
 	text = text.replace(/(\bDec\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "December" is preferred. %>');
 	text = text.replace(/(\bdelimited\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "separated" is preferred. %>');
 	text = text.replace(/(\bDelimited\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Separated" is preferred. %>');
+	text = text.replace(/(\bdeny list\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "denylist" is preferred. No space. %>');
 	text = text.replace(/(\bdesire\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "want" is preferred. %>');
 	text = text.replace(/(\bdetails on\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "details about" is preferred. %>');
 	text = text.replace(/(\bDetails on\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "Details about" is preferred. %>');
