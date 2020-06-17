@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last updated: 2 June, 2020
+	// Last updated: 17 June, 2020
 
 	// Comment on code errors and style errors that are detected from checking code
 
@@ -174,7 +174,7 @@ function doreplacement(text)
 	// Comment on style errors that have nothing to do with code
 
 	text = text.replace(/('[\s](?![^£]*\<%# ECS %\>))/gm,'$1<%# Should this be a backtick? %>');
-	text = text.replace(/([^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,(?![^£]*\<%# ECS %\>))/gm,'$1<%# If this sentence contains a list, reformat the list as bullets. If the sentence is just rambling, break it up into small sentences. %>');
+	text = text.replace(/([^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,(?![^£]*\<%# ECS %\>))/gm,'$1<%# If a list, reformat it as bullets. If this is just a rambling sentence, break it up into smaller sentences. %>');
 	text = text.replace(/([^\>] Installation Dashboard\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "<%= vars.ops_manager %> Installation Dashboard" is preferred. %>');
 	text = text.replace(/([^\>] installation dashboard\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "<%= vars.ops_manager %> Installation Dashboard" is preferred. %>');
 	text = text.replace(/([^a][^l][\n\s]Compliance Scanner\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_short %>');
@@ -217,6 +217,7 @@ function doreplacement(text)
 	text = text.replace(/(\d or greater\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "# or later" is preferred. %>');
 	text = text.replace(/(\d or higher\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "# or later" is preferred. %>');
 	text = text.replace(/(\d or lower\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "# or earlier" is preferred. %>');
+	text = text.replace(/(\d\.\*(?![^£]*\<%# ECS %\>))/gm,'$1<%# "v1.2.x" is preferred for describing multiple patches for a given minor. %>');
 	text = text.replace(/(\d&nbsp;bit\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Missing the dash: 128-bit is grammatically correct; 128 bit is not. %>');
 	text = text.replace(/(\d+(st|nd|rd|th|) April\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The date format is "MONTH DD, YYYY" %>');
 	text = text.replace(/(\d+(st|nd|rd|th|) August\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The date format is "MONTH DD, YYYY" %>');
@@ -297,7 +298,7 @@ function doreplacement(text)
 	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.app_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs \[Windows\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= windows_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs &#91;Windows&#93;(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= windows_runtime_abbr %>');
-	text = text.replace(/(^(?!(title:|owner:)).*TAS(?! for)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Depending on the product, use <%= vars.app_runtime_abbr %> or <%= windows_runtime_abbr %>');
+	text = text.replace(/(^(?!(title:|owner:)).*TAS(?! for)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Depending on the product, use vars.app_runtime_abbr or windows_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*VMware Tanzu RabbitMQ \[K8s\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*VMware Tanzu RabbitMQ \[VMs\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*VMware Tanzu SQL \[MySQL\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
@@ -306,9 +307,9 @@ function doreplacement(text)
 	text = text.replace(/(^(?!title:|.*for\s).*Pivotal Platform\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.platform_name %>');
 	text = text.replace(/(^\s*\*\s*[a-z](?![^£]*\<%# ECS %\>))/gm,'$1<%# Bullet points start with uppercase letters. %>');
 	text = text.replace(/(^Note\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Put notes in Note box formatting per the wiki. %>');
-	text = text.replace(/(^title:.*\([A-Z]+\)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not put abbreviations in page titles. %>');
-	text = text.replace(/(^title:.*PAS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "VMware Tanzu Application Service" in full in topic titles. %>');
-	text = text.replace(/(^title:.*TAS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "VMware Tanzu Application Service" in full in topic titles. %>');
+	text = text.replace(/(^title:[^\n]*\([A-Z]+\)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not put abbreviations in page titles. %>');
+	text = text.replace(/(^title:[^\n]*PAS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "VMware Tanzu Application Service" in full in topic titles. %>');
+	text = text.replace(/(^title:[^\n]*TAS\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Write "VMware Tanzu Application Service" in full in topic titles. %>');
 	text = text.replace(/(<td[^\>]*>\s*-\s*\<\/td\>(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
 	text = text.replace(/(<td[^\>]*>\s*–\s*\<\/td\>(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
 	text = text.replace(/(<td[^\>]*>\s*—\s*\<\/td\>(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
@@ -395,6 +396,8 @@ function doreplacement(text)
 	text = text.replace(/(\bBest Practices\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Best Practice sections are not forbidden but nor are they recommended. Check if the material could be placed somewhere else. %>');
 	text = text.replace(/(\bBETA\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "beta" is preferred. %>');
 	text = text.replace(/(\bBig Data\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "big data" is preferred. %>');
+	text = text.replace(/(\bblack list\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Vmware insists on "denylist". No space. %>');
+	text = text.replace(/(\bblacklist\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Vmware insists on "denylist". No space. %>');
 	text = text.replace(/(\bblob store\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "blobstore" is preferred. %>');
 	text = text.replace(/(\bBlue-Green deployment\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "blue-green deployment" is preferred. %>');
 	text = text.replace(/(\bboot the\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "start up the" is preferred. %>');
@@ -999,8 +1002,11 @@ function doreplacement(text)
 	text = text.replace(/(\bsynchronize\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "sync" is preferred. %>');
 	text = text.replace(/(\bsynchronized\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "synced" is preferred. %>');
 	text = text.replace(/(\bSyslog\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Lowercase is preferred unless "syslog" starts a sentence or is in a title. %>');
+	text = text.replace(/(\btable\>[\n\s]*\*(?![^£]*\<%# ECS %\>))/gm,'$1<%# Put the asterisk in superscript tags. %>');
 	text = text.replace(/(\btanzu\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand is "Tanzu". %>');
+	text = text.replace(/(\bTanzu Application Service\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use vars.app_runtime_full or, if this is for Windows, vars.windows_runtime_full %>');
 	text = text.replace(/(\btar\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "TAR" is preferred. %>');
+	text = text.replace(/(\bTAS for Kubernetes\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.app_runtime_k8s_abbr %>');
 	text = text.replace(/(\bTasks\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "tasks" is preferred. %>');
 	text = text.replace(/(\bterminal emulator\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "shell" is preferred. %>');
 	text = text.replace(/(\btext box\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "field" is preferred. %>');
@@ -1132,6 +1138,8 @@ function doreplacement(text)
 	text = text.replace(/(\bWhat's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bWhere [A-Z\-\_]+ is\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Place ` around the placeholder. %>');
 	text = text.replace(/(\bwhether or not\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# "whether" is more succinct. %>');
+	text = text.replace(/(\bwhite list\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Vmware insists on "allowlist". No space. %>');
+	text = text.replace(/(\bwhitelist\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Vmware insists on "allowlist". No space. %>');
 	text = text.replace(/(\bwho'll\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bwho's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bwill\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid "will": present tense is preferred. %>');
