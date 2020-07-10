@@ -2,11 +2,16 @@
 
 Style Checker comments on style errors described in the [Word and Phrase List](https://docs.google.com/spreadsheets/d/1hkadtxR1hY57kK7h5HN4ITHLJleZixCDH_RJPUpNq_A/edit#gid=0).
 
+
 ## Prerequisite
 
 [Atom text editor](https://atom.io/) or [Sublime](https://www.sublimetext.com/3)
 
+
 ## Atom Instructions
+
+To install, update, and use Style Checker in Atom, follow the procedures below.
+
 
 ### How to Install in Atom
 
@@ -18,6 +23,7 @@ Style Checker comments on style errors described in the [Word and Phrase List](h
   1. Replace all the code between `function doreplacement(text) {` and `return text;` with the [style comment commands](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/style-checker/html-special-character-replacer.js).
   1. Save your changes to `html-special-character-replacer.js`.
   1. Restart Atom.
+
 
 ### How to Update in Atom
 
@@ -43,11 +49,14 @@ To update to the latest Style Checker version, perform step 2 onwards from the i
 ### How to Use in Atom
 
   1. Open a document you want to edit in Atom.
-  1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. Comments typically follow the pattern "<%# "....." is preferred. %>".
-  1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the Pivotal writing style.
+  1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. Comments typically follow the pattern "<%# |.....| is preferred. %>".
+  1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the house writing style.
   
   
 ## Sublime Instructions
+
+To install, update, and use Style Checker in Sublime, follow the procedures below.
+
 
 ### How to Install in Sublime
 
@@ -60,26 +69,11 @@ To update to the latest Style Checker version, perform step 2 onwards from the i
 1. Replace the contents of the file with the [Style Checker commands](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/style-checker/Default.sublime-commands).
 1. Save your changes and close the file.
 
+
 ### How to Update in Sublime
 
-To update to the latest Style Checker version, perform step 2 onwards from the installation steps above or:
+1. To update to the latest Style Checker version, perform step 2 onwards from the installation steps above.
 
-1. Add the following to your bash profile:
-  
-    ```
-    update_style () {
-      cd ~/workspace/docs-utility-scripts/style-checker
-      git pull
-      cd ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/RegReplace.sublime-package ## add the rest here and remember that Sublime 2 differs
-      cp ~/workspace/docs-utility-scripts/style-checker/Default.sublime-commands
-      cp ~/workspace/docs-utility-scripts/style-checker/reg_replace_rules.sublime_settings
-      echo "Style Checker updated."
-    }
-    ```
- 
-1. Save and restart your terminal windows.
-
-1. When you want to update Style Checker, run ```update_style```.
 
 ### How to Use in Sublime
 
