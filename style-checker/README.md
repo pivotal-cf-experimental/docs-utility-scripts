@@ -13,7 +13,7 @@ Style Checker comments on style errors described in the [Word and Phrase List](h
 To install, update, and use Style Checker in Atom, follow the procedures below.
 
 
-### How to Install in Atom
+### Install in Atom
 
   1. Install the Atom package [HTML Special Character Replacer](https://atom.io/packages/html-special-character-replacer).
   1. Launch Atom.
@@ -25,9 +25,9 @@ To install, update, and use Style Checker in Atom, follow the procedures below.
   1. Restart Atom.
 
 
-### How to Update in Atom
+### (Optional) Configure Your Bash Profile to Enable Fast Updates
 
-To update to the latest Style Checker version, perform step 2 onwards from the installation steps above or:
+To configure your bash profile so that you can update Style Checker with a single command:
 
 1. Add the following to your bash profile:
   
@@ -43,22 +43,28 @@ To update to the latest Style Checker version, perform step 2 onwards from the i
  
 1. Save and restart your terminal windows.
 
-1. When you want to update Style Checker, run ```update_style```.
+
+### Update Style Checker in Atom
+
+To update to the latest Style Checker version, do one of the following:
+
+* Run ```update_style``` from the terminal if you have followed the Configure Your Bash Profile to Enable Fast Updates procedure above.
+* Perform step 2 onwards from the Install in Atom procedure above.
 
 
-### How to Use in Atom
+### Use Style Checker in Atom
 
-  1. Open a document you want to edit in Atom.
-  1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. Comments typically follow the pattern "<%# |.....| is preferred. %>".
-  1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the house writing style.
+1. Open a document you want to edit in Atom.
+1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. Comments typically follow the pattern "<%# |.....| is preferred. %>".
+1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the house writing style.
   
   
 ## Sublime Instructions
 
-To install, update, and use Style Checker in Sublime, follow the procedures below.
+To install, update, and use Style Checker in Sublime, follow the procedures below:
 
 
-### How to Install in Sublime
+### Install in Sublime
 
 1. Install the Sublime package [RegReplace](https://facelessuser.github.io/RegReplace/installation/).
 1. Launch Sublime.
@@ -70,15 +76,40 @@ To install, update, and use Style Checker in Sublime, follow the procedures belo
 1. Save your changes and close the file.
 
 
-### How to Update in Sublime
+### (Optional) Configure Your Bash Profile to Enable Fast Updates
 
-1. To update to the latest Style Checker version, perform step 2 onwards from the installation steps above.
+Note: The procedure below is untested.
+
+To configure your Bash profile so that you can update Style Checker with a single command:
+
+1. Add the following snippet to your bash profile.
+
+    ```
+    update_style () {
+      cd ~/workspace/docs-utility-scripts/style-checker
+      git pull
+      cd ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/RegReplace.sublime-package
+      cp ~/workspace/docs-utility-scripts/style-checker/Default.sublime-commands
+      cp ~/workspace/docs-utility-scripts/style-checker/reg_replace_rules.sublime_settings
+      echo "Style Checker updated."
+    }
+    ```    
+
+1. Save and restart your terminal windows.
 
 
-### How to Use in Sublime
+### Update Style Checker in Sublime
 
-  1. Open a document you want to edit in Sublime.
-  1. Press **Shift+Command+P** or click **Tools > Command Palette...** to open Command Palette.
-  1. Type `style` and then click **Run Style Checker** when it appears in the Command Palette dropdown to add comments to possible style errors. 
-  Comments typically follow the pattern "<%# |...| is preferred. %>".
-  1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the house writing style.
+To update to the latest Style Checker version, do one of the following:
+
+* Run ```update_style``` from the terminal if you have followed the Configure Your Bash Profile to Enable Fast Updates procedure above.
+* Perform step 2 onwards from the Install in Sublime procedure above.
+
+
+### Use Style Checker in Sublime
+
+1. Open a document you want to edit in Sublime.
+1. Press **Shift+Command+P** or click **Tools > Command Palette...** to open Command Palette.
+1. Type `style` and then click **Run Style Checker** when it appears in the Command Palette dropdown to add comments to possible style errors. 
+Comments typically follow the pattern "<%# |...| is preferred. %>".
+1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the house writing style.
