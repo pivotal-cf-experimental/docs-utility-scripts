@@ -5,7 +5,7 @@ Style Checker comments on style errors described in the [Word and Phrase List](h
 
 ## Prerequisite
 
-[Atom text editor](https://atom.io/) or [Sublime](https://www.sublimetext.com/3)
+[Atom](https://atom.io/) or [Sublime](https://www.sublimetext.com/3)
 
 
 ## Atom Instructions
