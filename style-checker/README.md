@@ -88,7 +88,7 @@ To configure your Bash profile so that you can update Style Checker with a singl
     update_style () {
       cd ~/workspace/docs-utility-scripts/style-checker
       git pull
-      cd ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/RegReplace.sublime-package
+      cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
       cp ~/workspace/docs-utility-scripts/style-checker/Default.sublime-commands
       cp ~/workspace/docs-utility-scripts/style-checker/reg_replace_rules.sublime_settings
       echo "Style Checker updated."
