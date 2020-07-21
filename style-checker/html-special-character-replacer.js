@@ -32,19 +32,18 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last updated: 21 July, 2020
+	// Last updated: 17 July, 2020
 
 	// Comment on code errors and style errors that are detected from checking code
 
 	text = text.replace(/(---\ntitle[^#]*(?=(#[^#]|###)))/gm,'$1<%# The first header must be ## -- no smaller, no larger. %>');
 	text = text.replace(/(-APP-NAME\b)/gm,'$1<%# |APP-NAME| is preferred. %>');
 	text = text.replace(/(-SERVICE-INSTANCE-NAME\b)/gm,'$1<%# |SERVICE-INSTANCE-NAME| is preferred. %>');
-	text = text.replace(/(!\([^\s]*\.png\))/gm,'$1<%# Images require alt text. %>');
-	text = text.replace(/(!\[\]\([^\s]*\.png\))/gm,'$1<%# Images require alt text. %>');
 	text = text.replace(/(!\[\w+(\s\w+){0,5}\]\([^\.]*\.png\))/gm,'$1<%# Alt text must describe the image in detail. %>');
 	text = text.replace(/([^-]CLIENT-SECRET\b)/gm,'$1<%# Specify the server, as in |BOSH-CLIENT-SECRET| or |CREDHUB-CLIENT-SECRET|. %>');
 	text = text.replace(/([^-]DEPLOYMENT\b)/gm,'$1<%# |BOSH-DEPLOYMENT| is preferred. %>');
 	text = text.replace(/([^-]ENVIRONMENT\b)/gm,'$1<%# |BOSH-ENVIRONMENT| is preferred. %>');
+	text = text.replace(/([^\]]\([^\.]*\.png\))/gm,'$1<%# Images require alt text. %>');
 	text = text.replace(/(\.\/[a-z-]*#[a-z-]*\.html\b)/gm,'$1<%# Broken link -- the correct syntax is |page-name.html#anchor-name|. %>');
 	text = text.replace(/(\(https:..bosh.io.*\)(?!.*\n?.*in the BOSH documentation).*$)/gm,'$1<%# The BOSH cross-referencing format is: |For information about SUBJECT, see [EXACT-HEADING](LINK-TO-BOSH-DOCS) in the BOSH documentation.| %>');
 	text = text.replace(/(\(https:..cloud.google.com.*\)(?!.*\n?.*GCP documentation).*$)/gm,'$1<%# The link name must be |GCP documentation|. %>');
@@ -84,7 +83,7 @@ function doreplacement(text)
 	text = text.replace(/(\<code\>kubectl\<\/code\>)/gm,'$1<%# Do not format |kubectl| as code. %>');
 	text = text.replace(/(\<h\d\>\s*\d\.)/gm,'$1<%# Do not format a numbered step as a header. %>');
 	text = text.replace(/(\<h1\>)/gm,'$1<%# H1 headers are not allowed within topics. %>');
-	text = text.replace(/(\<img src=.[^\s]*\.png. alt=.\w+(\s\w+){0,5}.\>)/gm,'$1<%# Alt text must describe the image in detail. %>');
+	text = text.replace(/(\<img src=.[^\.]*\.png. alt=.\w+(\s\w+){0,5}.\>)/gm,'$1<%# Alt text must describe the image in detail. %>');
 	text = text.replace(/(\<img src=(?!.*alt=.).*$)/gm,'$1<%# Images require alt text. %>');
 	text = text.replace(/(\<strong\>Important\b)/gm,'$1<%# The only boxes we use are Note and Warning. %>');
 	text = text.replace(/(\sCVE-\d{4}(?!.*\n?([^\[]*\]|[^\>]*\<\/a\>)).*$)/gm,'$1<%# Link to the CVE page at tanzu.vmware.com/security or cve.mitre.org. %>');
@@ -131,10 +130,14 @@ function doreplacement(text)
 
 	// Add delimiters for HTML formatting tags other than code and bold
 
-	text = text.replace(/(\<div[^\<]*\>[^\<]*\<\/div\>)/gm,'<%# ¥SHS %>$1<%# EHS %>');
-	text = text.replace(/(\<li\>[^\<]*\<\/li\>)/gm,'<%# ¥SHS %>$1<%# EHS %>');
-	text = text.replace(/(\<p[^\<]*\>[^\<]*\<\/p\>)/gm,'<%# ¥SHS %>$1<%# EHS %>');
-	text = text.replace(/(\<table[^\>]*\>[^<]*\<\/table\>)/gm,'<%# ¥SHS %>$1<%# EHS %>');
+	text = text.replace(/(\<\/div\>)/gm,'$1<%# EHS %>');
+	text = text.replace(/(\<\/li\>)/gm,'$1<%# EHS %>');
+	text = text.replace(/(\<\/p\>)/gm,'$1<%# EHS %>');
+	text = text.replace(/(\<\/table\>)/gm,'$1<%# EHS %>');
+	text = text.replace(/(\<div[^\<]*\>)/gm,'<%# ¥SHS %>$1');
+	text = text.replace(/(\<li\>)/gm,'<%# ¥SHS %>$1');
+	text = text.replace(/(\<p[^\<]*\>)/gm,'<%# ¥SHS %>$1');
+	text = text.replace(/(\<table[^\>]*\>)/gm,'<%# ¥SHS %>$1');
 
 	// Comment on Markdown tags between HTML tags
 
@@ -150,18 +153,18 @@ function doreplacement(text)
 
 	// Add delimiters for code and bold formatting tags
 
-	text = text.replace(/(\<%=[^%]*%\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\]\([^\)]*\)(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\*\*[^\*]*\*\*(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<a href=[^\>]*\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<a id=[^\>]*\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<a name=[^\>]*\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<b\>[^\>]*\<\/b\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<code\>[^\>]*\<\/code\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<img src[^\>]*\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<pre[^\>]*\>[^\>]*\<\/pre\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(\<strong\>[^\>]*\<\/strong\>(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
-	text = text.replace(/(`+[^`]*`+(?![^£]*\<%# ECS %\>))/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\]\([^\)]*\))/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\*\*[^\*]*\*\*)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<%=[^%]*%\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<a href=[^\>]*\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<a id=[^\>]*\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<a name=[^\>]*\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<b\>[^\>]*\<\/b\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<code\>[^\>]*\<\/code\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<img src[^\>]*\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<pre class=.terminal.\>[^\>]*\<\/pre\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(\<strong\>[^\>]*\<\/strong\>)/gm,'<%# £SCS %>$1<%# ECS %>');
+	text = text.replace(/(`+[^`]*`+)/gm,'<%# £SCS %>$1<%# ECS %>');
 
 	// Comment on style errors that have nothing to do with code
 
@@ -288,10 +291,10 @@ function doreplacement(text)
 	text = text.replace(/(^(?!(title:|owner:)).*RabbitMQ for VMware Tanzu &#91;Kubernetes&#93;(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*Redis for Pivotal Platform\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*single sign-on\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
-	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs(?! \W)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.app_runtime_abbr %>');
+	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.app_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs \[Windows\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= windows_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*TAS for VMs &#91;Windows&#93;(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= windows_runtime_abbr %>');
-	text = text.replace(/(^(?!(title:|owner:)).*TAS(?! for VMs)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Depending on the product, use vars.app_runtime_abbr or windows_runtime_abbr %>');
+	text = text.replace(/(^(?!(title:|owner:)).*TAS(?! for)(?![^£]*\<%# ECS %\>))/gm,'$1<%# Depending on the product, use vars.app_runtime_abbr or windows_runtime_abbr %>');
 	text = text.replace(/(^(?!(title:|owner:)).*VMware Tanzu RabbitMQ \[K8s\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*VMware Tanzu RabbitMQ \[VMs\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
 	text = text.replace(/(^(?!(title:|owner:)).*VMware Tanzu SQL \[MySQL\](?![^£]*\<%# ECS %\>))/gm,'$1<%# Use <%= vars.product_full %>');
@@ -1008,6 +1011,7 @@ function doreplacement(text)
 	text = text.replace(/(\bsynchronize\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# |sync| is preferred. %>');
 	text = text.replace(/(\bsynchronized\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# |synced| is preferred. %>');
 	text = text.replace(/(\bSyslog\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Lowercase is preferred unless |syslog| starts a sentence or is in a title. %>');
+	text = text.replace(/(\btable\>[\n\s]*\*(?![^£]*\<%# ECS %\>))/gm,'$1<%# Put the asterisk in superscript tags. %>');
 	text = text.replace(/(\btanzu\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# The brand is |Tanzu|. %>');
 	text = text.replace(/(\bTanzu Application Service\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Use vars.app_runtime_full or, if this is for Windows, vars.windows_runtime_full %>');
 	text = text.replace(/(\btar\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# |TAR| is preferred. %>');
@@ -1146,8 +1150,8 @@ function doreplacement(text)
 	text = text.replace(/(\bWhat's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bWhere [A-Z\-\_]+ is\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Place ` around the placeholder. %>');
 	text = text.replace(/(\bwhether or not\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# |whether| is more succinct. %>');
-	text = text.replace(/(\bwhite list\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# VMware insists on |allowlist|. No space. %>');
-	text = text.replace(/(\bwhitelist\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# VMware insists on |allowlist|. No space. %>');
+	text = text.replace(/(\bwhite list\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Vmware insists on |allowlist|. No space. %>');
+	text = text.replace(/(\bwhitelist\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Vmware insists on |allowlist|. No space. %>');
 	text = text.replace(/(\bwho'll\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bwho's\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bwill\b(?![^£]*\<%# ECS %\>))/gm,'$1<%# Avoid |will|: present tense is preferred. %>');
@@ -1194,6 +1198,6 @@ function doreplacement(text)
 	text = text.replace(/(<%#[^\%]*%>(?=[^%]*%>))/gm,'');
 
 
-	return text;
+		return text;
 
-};
+	};
