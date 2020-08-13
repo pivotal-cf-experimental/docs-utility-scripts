@@ -38,6 +38,7 @@ To configure your bash profile so that you can update Style Checker with a singl
       cd ~/.atom/packages/html-special-character-replacer/lib
       cp ~/workspace/docs-utility-scripts/style-checker/html-special-character-replacer.js .
       echo "Style Checker updated."
+      cd ~/workspace
     }
     ```
  
@@ -92,6 +93,7 @@ To configure your Bash profile so that you can update Style Checker with a singl
       cp ~/workspace/docs-utility-scripts/style-checker/Default.sublime-commands
       cp ~/workspace/docs-utility-scripts/style-checker/reg_replace_rules.sublime_settings
       echo "Style Checker updated."
+      cd ~/workspace
     }
     ```    
 
