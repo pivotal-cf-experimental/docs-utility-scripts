@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-	// Last updated: 3 August, 2020
+	// Last updated: 13 August, 2020
 
 	// Comment on code errors and style errors that are detected from checking code
 
@@ -173,8 +173,9 @@ function doreplacement(text)
 
 	// Comment on style errors that have nothing to do with code
 
-	text = text.replace(/('\W(?=[^\>\]\)]*$)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Should this be a backtick? %>');
+	text = text.replace(/('[^\]\)\w](?![^\[\(]*[\]\)])(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Should this be a backtick? %>');
 	text = text.replace(/([\n\s]check (?!mark)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |verify|, |ensure|, and |confirm| are all preferred. %>');
+	text = text.replace(/([\w][\n\s]{0,1}On-demand\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |On-Demand| is preferred -- capitalize the |D| if you capitalized the |O|. %>');
 	text = text.replace(/([^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,[^\.\*\+-]*,(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# If a list, reformat it as bullets. If this is just a rambling sentence, break it up into smaller sentences. %>');
 	text = text.replace(/([^\>] Installation Dashboard(?![^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |<%= vars.ops_manager %> Installation Dashboard| is preferred. %>');
 	text = text.replace(/([^\>] installation dashboard(?![^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |<%= vars.ops_manager %> Installation Dashboard| is preferred. %>');
@@ -218,6 +219,7 @@ function doreplacement(text)
 	text = text.replace(/([^a][^l][\n\s]Service Instance Manager(?=[^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use #{vars.product_short} %>');
 	text = text.replace(/([^a][^l][\n\s]Single Sign-On(?![^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use <%= vars.product_short %>');
 	text = text.replace(/([^a][^l][\n\s]Single Sign-On(?=[^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use #{vars.product_short} %>');
+	text = text.replace(/([^bo] button(?![^\[\(]*[\]\)])(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Delete |button| if redundant. For example, write |click Save| instead of |Click the Save button|. %>');
 	text = text.replace(/([^f] the following:(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# To introduce steps just write |To do x:| %>');
 	text = text.replace(/([^u][^b][\n\s]Maestro\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not shorten |CredHub Maestro| to just |Maestro| %>');
 	text = text.replace(/([a-z]* or [a-z]* not\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
@@ -255,7 +257,7 @@ function doreplacement(text)
 	text = text.replace(/(\d+(st|nd|rd|th|) September\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The date format is |MONTH DD, YYYY| %>');
 	text = text.replace(/(\dGB\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |&nbsp;GB| is preferred. %>');
 	text = text.replace(/(\dKB\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |&nbsp;KB| is preferred. %>');
-	text = text.replace(/(\s'(?=[^\>\]\)]*$)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Should this be a backtick? %>');
+	text = text.replace(/(\s'(?![^\[\(]*[\]\)])(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Should this be a backtick? %>');
 	text = text.replace(/(\s\.html\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |HTML| is preferred. %>');
 	text = text.replace(/(\s\.zip\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |ZIP| is preferred. %>');
 	text = text.replace(/(\s\d{1,2}.\d{1,2}\.\d{1,2}(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Version numbers are written as |v1.11.11| %>');
@@ -392,8 +394,6 @@ function doreplacement(text)
 	text = text.replace(/(^##+[^\n]*\n+[^\n]*[^:]\n\n+(?=\s*(\<ol\>|\d\.\s))(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# A procedure requires a stem ending with a colon, as in |To do x:|. %>');
 	text = text.replace(/(^Note\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Put notes in Note box formatting per the wiki. %>');
 	text = text.replace(/(^title:[^\n]*\([A-Z]+\)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not put abbreviations in page titles. %>');
-	text = text.replace(/(^title:[^\n]*PAS\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Write |VMware Tanzu Application Service| in full in topic titles. %>');
-	text = text.replace(/(^title:[^\n]*TAS\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Write |VMware Tanzu Application Service| in full in topic titles. %>');
 	text = text.replace(/(<td[^\>]*>\s*-\s*\<\/td\>(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
 	text = text.replace(/(<td[^\>]*>\s*–\s*\<\/td\>(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
 	text = text.replace(/(<td[^\>]*>\s*—\s*\<\/td\>(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
@@ -404,6 +404,8 @@ function doreplacement(text)
 	text = text.replace(/(<td[^\>]*>\s*N\/A\s*\<\/td\>(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
 	text = text.replace(/(<td[^\>]*>\s*NA\s*\<\/td\>(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
 	text = text.replace(/(<td[^\>]*>\s*none\s*\<\/td\>(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use n/a, in italics, to mark an empty table cell. %>');
+	text = text.replace(/(\ba deploy\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |a deployment| is preferred. %>');
+	text = text.replace(/(\bA deploy\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |A deployment| is preferred. %>');
 	text = text.replace(/(\ba given\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
 	text = text.replace(/(\ba previous step\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Write |earlier in this procedure| or, if referring to a separate procedure, link to it. %>');
 	text = text.replace(/(\ba RSU\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |an RSU| is preferred. %>');
@@ -411,17 +413,19 @@ function doreplacement(text)
 	text = text.replace(/(\ba SQL\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |an SQL| is preferred. %>');
 	text = text.replace(/(\baddon\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |add-on| is preferred. %>');
 	text = text.replace(/(\bADFS\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Write |AD FS| per the Microsoft preference. %>');
-	text = text.replace(/(\badministrate\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administer| is preferred. %>');
-	text = text.replace(/(\bAdministrate\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Administer| is preferred. %>');
-	text = text.replace(/(\badministrated\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administered| is preferred. %>');
-	text = text.replace(/(\badministrates\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administers| is preferred. %>');
-	text = text.replace(/(\badministrating\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administering| is preferred. %>');
-	text = text.replace(/(\bAdministrating\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Administering| is preferred. %>');
+	text = text.replace(/(\badministrate\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administer| is preferred or, ideally, a plainer synonym such as |manage|. %>');
+	text = text.replace(/(\bAdministrate\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Administer| is preferred or, ideally, a plainer synonym such as |Manage|. %>');
+	text = text.replace(/(\badministrated\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administered| is preferred or, ideally, a plainer synonym such as |managed|. %>');
+	text = text.replace(/(\badministrates\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administers| is preferred or, ideally, a plainer synonym such as |manages|. %>');
+	text = text.replace(/(\badministrating\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |administering| is preferred or, ideally, a plainer synonym such as |managing|. %>');
+	text = text.replace(/(\bAdministrating\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Administering| is preferred or, ideally, a plainer synonym such as |Managing|. %>');
 	text = text.replace(/(\badministrator\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |admin| is preferred. %>');
 	text = text.replace(/(\bAdministrator\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Admin| is preferred. %>');
 	text = text.replace(/(\bAdministrators\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Admins| is preferred. %>');
 	text = text.replace(/(\badministrators\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |admins| is preferred. %>');
 	text = text.replace(/(\baffect\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Consider using a more precise verb. %>');
+	text = text.replace(/(\bafter you are satisfied\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
+	text = text.replace(/(\bAfter you are satisfied\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
 	text = text.replace(/(\bAI\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |application instance| is preferred. %>');
 	text = text.replace(/(\bair gapped\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |air-gapped| is preferred. %>');
 	text = text.replace(/(\bAir gapped\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Air-gapped| is preferred. %>');
@@ -507,7 +511,10 @@ function doreplacement(text)
 	text = text.replace(/(\bbumped\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |updated| is preferred. %>');
 	text = text.replace(/(\bbumps\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |updates| is preferred. %>');
 	text = text.replace(/(\bBumps\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Updates| is preferred. %>');
-	text = text.replace(/(\bbutton\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Delete |button| if redundant. For example, write |click Save| instead of |Click the Save button|. %>');
+	text = text.replace(/(\bcall:(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |run| is preferred. %>');
+	text = text.replace(/(\bcall[\n\s]*\<(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |run| is preferred. %>');
+	text = text.replace(/(\bcalling:(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |running| is preferred. %>');
+	text = text.replace(/(\bcalling[\n\s]*\<(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |running| is preferred. %>');
 	text = text.replace(/(\bcan be\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Consider switching to active voice. %>');
 	text = text.replace(/(\bcan't\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bcauses downtime of the\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |causes downtime for the| is preferred. %>');
@@ -527,6 +534,7 @@ function doreplacement(text)
 	text = text.replace(/(\bCertificate signing requests\b(?!\s\()(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Shorten to |CSR| after first use. %>');
 	text = text.replace(/(\bCertificate Signing Requests\b(?!\s\()(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Shorten to |CSR| after first use. %>');
 	text = text.replace(/(\bcerts\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |certificates| is preferred. %>');
+	text = text.replace(/(\bCF\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Cloud Foundry| is preferred. %>');
 	text = text.replace(/(\bcf cli\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The brand name is shortened as |cf CLI|. %>');
 	text = text.replace(/(\bCF CLI\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The brand name is shortened as |cf CLI|. %>');
 	text = text.replace(/(\bcf push\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# If code, add code tags and sandwich between |the| and |command|. %>');
@@ -702,6 +710,8 @@ function doreplacement(text)
 	text = text.replace(/(\bfollowing command\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Replace with just |run:| %>');
 	text = text.replace(/(\bfor instance\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |for example| is preferred. %>');
 	text = text.replace(/(\bfor more information\.(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The x-ref format is |For more information, see...| %>');
+	text = text.replace(/(\bfor the sake of\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |to| might be better here. %>');
+	text = text.replace(/(\bFor the sake of\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |To| might be better here. %>');
 	text = text.replace(/(\bforty\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use numerals for numbers greater than nine. %>');
 	text = text.replace(/(\bFrequently Asked Questions\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use FAQs unless absolutely necessary. Fold into other appropriate locations in the doc. %>');
 	text = text.replace(/(\bfully qualified domain name\b(?!\s\()(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Shorten to |FQDN| after the first use. %>');
@@ -782,6 +792,7 @@ function doreplacement(text)
 	text = text.replace(/(\bI've\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bIAAS\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |IaaS| is preferred. %>');
 	text = text.replace(/(\bIDP\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |IdP (identity provider)| is preferred. %>');
+	text = text.replace(/(\bIDPs\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |identity providers| is preferred. A single identity provider can be shortened to |IdP|. %>');
 	text = text.replace(/(\bIf you want to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Maybe replace with just |To|. %>');
 	text = text.replace(/(\bif you want to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Maybe replace with just |to|. %>');
 	text = text.replace(/(\bimage registry\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# If generic, |container image registry| on first use. If VMware-provided, |Tanzu Network Registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. %>');
@@ -789,6 +800,7 @@ function doreplacement(text)
 	text = text.replace(/(\bin go\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |in Go| is preferred. %>');
 	text = text.replace(/(\bin order to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |to| is preferred. %>');
 	text = text.replace(/(\bIn order to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |To| is preferred. %>');
+	text = text.replace(/(\bin preparation for\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |to prepare for| might be better. Verbs are punchier than abstract nouns. %>');
 	text = text.replace(/(\bin real-time\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Stuff happens in |real time|. %>');
 	text = text.replace(/(\bin the terminal window\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |on the command line| is preferred. %>');
 	text = text.replace(/(\bindependent service vendor\b(?!\s\()(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Shorten to |ISV| after the first use. %>');
@@ -810,6 +822,7 @@ function doreplacement(text)
 	text = text.replace(/(\bInternet\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Only capitalize |internet| when it is part of a title %>');
 	text = text.replace(/(\bInternet Protocol\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |IP address| is preferred. %>');
 	text = text.replace(/(\bIP[\s\n](?![Aa]ddress)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not omit |address| from |IP address|. %>');
+	text = text.replace(/(\bis [a-z-]*ed by\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Active voice is preferred. %>');
 	text = text.replace(/(\bis necessary to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Consider deleting this or replacing it with the shorter |you must|. %>');
 	text = text.replace(/(\bis possible to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |you can| might be better. %>');
 	text = text.replace(/(\bis used to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
@@ -824,6 +837,7 @@ function doreplacement(text)
 	text = text.replace(/(\bjar\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |JAR| is preferred. %>');
 	text = text.replace(/(\bjavascript\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |JavaScript| is preferred. %>');
 	text = text.replace(/(\bJavascript\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |JavaScript| is preferred. %>');
+	text = text.replace(/(\bjson\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |JSON| is preferred. %>');
 	text = text.replace(/(\bJumpbox\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |jumpbox| is preferred. %>');
 	text = text.replace(/(\bkeep in mind\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
 	text = text.replace(/(\bKeep in mind\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
@@ -856,7 +870,7 @@ function doreplacement(text)
 	text = text.replace(/(\bLog messages\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Log entries| is preferred. %>');
 	text = text.replace(/(\blog on to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |log in to| is preferred. %>');
 	text = text.replace(/(\blog-in\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use |login| (n) or |log in| (v) %>');
-	text = text.replace(/(\bloggregator\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Call it |Loggregator| -- capitalized and without a preceding |the|. %>');
+	text = text.replace(/(\bloggregator(?!\-)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Call it |Loggregator| -- capitalized and without a preceding |the|. %>');
 	text = text.replace(/(\blogin to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |log in to| is preferred. %>');
 	text = text.replace(/(\bLogin to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Log in to| is preferred. %>');
 	text = text.replace(/(\blower case\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |lowercase| is preferred. %>');
@@ -886,8 +900,8 @@ function doreplacement(text)
 	text = text.replace(/(\bNavigate to the [A-Z](?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Embolden the names of UI elements. %>');
 	text = text.replace(/(\bneedn't\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bnext release\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Never state something is coming in a future release. It could create a legal problem. %>');
-	text = text.replace(/(\bNGINX\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |nginx| is preferred. %>');
-	text = text.replace(/(\bNginx\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |nginx| is preferred. %>');
+	text = text.replace(/(\bNGINX\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |NGINX| for the brand. |nginx| for files and code. %>');
+	text = text.replace(/(\bNginx\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |NGINX| for the brand. |nginx| for files and code. %>');
 	text = text.replace(/(\bninety\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use numerals for numbers greater than nine. %>');
 	text = text.replace(/(\bnot recommend\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |VMware discourages| is preferred for closed source. |Cloud Foundry discourages| for open source. %>');
 	text = text.replace(/(\bnot recommended\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |VMware discourages| is preferred for closed source. |Cloud Foundry discourages| for open source. %>');
@@ -896,6 +910,7 @@ function doreplacement(text)
 	text = text.replace(/(\bNote that\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Notes must be in Note boxes and start with |Note: |. %>');
 	text = text.replace(/(\bnote that\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Notes must be in Note boxes and start with |Note: |. %>');
 	text = text.replace(/(\bNov\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |November| is preferred. %>');
+	text = text.replace(/(\bnow [a-z-]*ed by\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Active voice is preferred. %>');
 	text = text.replace(/(\bnow should\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Favour certainty and agency: |the app now works| over |the app should now work|, and |VMware recommends| over |you should|.  %>');
 	text = text.replace(/(\bNozzle\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Only capitalize |nozzle| when it is part of a title %>');
 	text = text.replace(/(\bNSX Edge\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |NSX Edge Services Gateway (ESG)| is preferred. %>');
@@ -914,7 +929,6 @@ function doreplacement(text)
 	text = text.replace(/(\bOn Demand broker(?=[^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The full product title is |on-demand service broker|, the short version is |on-demand broker| and the initialism is <%= vars.product_abbr %>');
 	text = text.replace(/(\bon-board\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |onboard| (v) is preferred. %>');
 	text = text.replace(/(\bOn-board\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Onboard| (v) is preferred. %>');
-	text = text.replace(/(\bOn-demand\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |On-Demand| is preferred -- capitalize the |D| if you capitalized the |O|. %>');
 	text = text.replace(/(\bOn-Demand Broker(?![^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The full product title is |on-demand service broker|, the short version is |on-demand broker| and the initialism is <%= vars.product_abbr %>');
 	text = text.replace(/(\bOn-demand Broker(?![^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The full product title is |on-demand service broker|, the short version is |on-demand broker| and the initialism is <%= vars.product_abbr %>');
 	text = text.replace(/(\bOn-Demand Broker(?=[^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The full product title is |on-demand service broker|, the short version is |on-demand broker| and the initialism is <%= vars.product_abbr %>');
@@ -992,8 +1006,8 @@ function doreplacement(text)
 	text = text.replace(/(\bpp\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use this acronym for the brand name. %>');
 	text = text.replace(/(\bpreprovision\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |pre-provision| is preferred. %>');
 	text = text.replace(/(\bPreprovision\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Pre-provision| is preferred. %>');
-	text = text.replace(/(\bpreprovisioned\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |pre-provisioned| is preferred. %>');
 	text = text.replace(/(\bPreprovisioned\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Pre-provisioned| is preferred. %>');
+	text = text.replace(/(\bpreprovisioned\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |pre-provisioned| is preferred. %>');
 	text = text.replace(/(\bprerequisite\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Requirements are things needed to install and run the product. We list them on the product index page. Prerequisites are things needed for a given procedure beyond the product requirements. We list those on the procedure page. %>');
 	text = text.replace(/(\bprior to\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |before| is preferred. %>');
 	text = text.replace(/(\bprocedure[\s\n]*\w*:(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# To introduce steps just write |To do x:| %>');
@@ -1114,7 +1128,7 @@ function doreplacement(text)
 	text = text.replace(/(\bSyslog\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Lowercase is preferred unless |syslog| starts a sentence or is in a title. %>');
 	text = text.replace(/(\btable\>[\n\s]*\*(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Put the asterisk in superscript tags. %>');
 	text = text.replace(/(\btanzu\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# The brand is |Tanzu|. %>');
-	text = text.replace(/(\bTanzu Application Service\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use vars.app_runtime_full or, if this is for Windows, vars.windows_runtime_full %>');
+	text = text.replace(/(\bTanzu Application Service\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use <%= vars.app_runtime_full or, if this is for Windows, vars.windows_runtime_full %>');
 	text = text.replace(/(\btar\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |TAR| is preferred. %>');
 	text = text.replace(/(\bTAS for Kubernetes(?![^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use <%= vars.app_runtime_k8s_abbr %>');
 	text = text.replace(/(\bTAS for Kubernetes(?=[^\(]*\) %\>)(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Use #{vars.app_runtime_k8s_abbr} %>');
@@ -1128,6 +1142,7 @@ function doreplacement(text)
 	text = text.replace(/(\bThat's\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bthe Apps Manager\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Call it just |Apps Manager| -- there is no preceding |the|. %>');
 	text = text.replace(/(\bthe deploy\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |the deployment| is preferred. %>');
+	text = text.replace(/(\bThe deploy\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |The deployment| is preferred. %>');
 	text = text.replace(/(\bthe following commands\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |these commands| is preferred %>');
 	text = text.replace(/(\bthe install\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |the installation| is preferred. %>');
 	text = text.replace(/(\bthe Loggregator\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Call it |Loggregator| -- capitalized and without a preceding |the|. %>');
@@ -1167,6 +1182,9 @@ function doreplacement(text)
 	text = text.replace(/(\btwo times\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |twice| is preferred. %>');
 	text = text.replace(/(\btype the following\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |To X, run:| and |X by running:| are preferred. %>');
 	text = text.replace(/(\btype:(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |run:| is preferred. %>');
+	text = text.replace(/(\bUAA Client\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |UAA Command Line Client (UAAC)| is preferred for use. |UAAC| thereafter. %>');
+	text = text.replace(/(\bUAA Command Client\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |UAA Command Line Client (UAAC)| is preferred for use. |UAAC| thereafter. %>');
+	text = text.replace(/(\bUAA command line\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |UAA Command Line Client (UAAC)| is preferred for use. |UAAC| thereafter. %>');
 	text = text.replace(/(\buaac\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |UAAC| is preferred. %>');
 	text = text.replace(/(\bun-check\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |Disable the LABEL-NAME checkbox| is preferred. Likewise for |Enable the LABEL-NAME checkbox|. %>');
 	text = text.replace(/(\bun-register\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# deregister %>');
@@ -1256,6 +1274,10 @@ function doreplacement(text)
 	text = text.replace(/(\bweren't\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bwhat's\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use contractions. %>');
 	text = text.replace(/(\bWhat's\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Do not use contractions. %>');
+	text = text.replace(/(\bwhen satisfied\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
+	text = text.replace(/(\bWhen satisfied\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
+	text = text.replace(/(\bwhen you are satisfied\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
+	text = text.replace(/(\bWhen you are satisfied\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Redundant? %>');
 	text = text.replace(/(\bWhere [A-Z\-\_]+ is\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Place ` around the placeholder. %>');
 	text = text.replace(/(\bwhether or not\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# |whether| is more succinct. %>');
 	text = text.replace(/(\bWhile\b(?![^£]*\<%# ECS %\>)(?![^\{]*\}))/gm,'$1<%# Replace with |Although| if it makes sense to do so. %>');
