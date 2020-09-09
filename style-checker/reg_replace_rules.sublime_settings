@@ -2,7 +2,7 @@
     "replacements": {
         // Last update: 9 September, 2020
 
-        // Substitute 2 spaces for each tab that doesn't precede a variable.
+        // Substitute 2 spaces for each tab that does not precede a variable.
 
 "4": {"find": "(\\t(?!<%= vars))", "replace": "  "},
 
