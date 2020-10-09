@@ -34,11 +34,11 @@ To push a Cloud Foundry app to PWS using Winston the App Pusher:
   - URL="PRODUCT-PATH/${VERSION}"
 
   Where:
-  - "VERSION-NUMBER" is the version number you want in the app name.
-  - "PRODUCT-NAME" is the app name you want to use.
-     Make sure you keep the hyphen and the variable after the app name!
-  - "PRODUCT-PATH" is the path where you want to publish the app.
-     Keep the variable that follows the slash!
+  - VERSION-NUMBER is the version number you want in the app name.
+  - PRODUCT-NAME is the app name you want to use.
+    Make sure you keep the hyphen and the variable after the app name!
+  - PRODUCT-PATH is the path where you want to publish the app.
+    Keep the variable that follows the slash!
 
   For example, these are the variables for the Ops Manager 2.8 app:
   - VERSION="2-8"
