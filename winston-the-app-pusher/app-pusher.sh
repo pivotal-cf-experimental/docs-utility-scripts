@@ -10,7 +10,7 @@ URL="PRODUCT-PATH/${VERSION}"
 GREEN="docs-${APP_NAME}-green"
 BLUE="docs-${APP_NAME}-blue"
 
-# These commands push blue and green apps to staging and prod
+# These are the cf commands that push blue and green apps to staging and prod
 target_stage="cf target -s pivotalcf-staging"
 push_blue="cf push ${BLUE} --no-route"
 push_green="cf push ${GREEN} --no-route"
@@ -27,6 +27,7 @@ target_prod="cf target -s pivotalcf-prod"
 map_prod_blue="cf map-route ${BLUE} docs.pivotal.io --path ${URL}"
 map_prod_green="cf map-route ${GREEN} docs.pivotal.io --path ${URL}"
 
+# Push staging apps
 eval "$target_stage"
 eval "$push_blue"
 eval "$push_green"
@@ -39,6 +40,8 @@ eval "$set_pass_green"
 eval "$restage_blue"
 eval "$restage_green"
 eval "$stop"
+
+# Push prod apps
 eval "$target_prod"
 eval "$push_blue"
 eval "$push_green"
