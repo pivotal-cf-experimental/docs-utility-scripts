@@ -20,9 +20,15 @@ Push an App to PWS
 ------------------
 To push a Cloud Foundry app to PWS using Winston the App Pusher:
 
-1. Open app-pusher.sh in a text editor.
+1. Bind a book and change to the final_app directory.
 
-2. Replace the following values:
+2. Run the following command to make a local, editable copy of the app pusher script:
+
+    cp ~/workspace/docs-utility-scripts/winston-the-app-pusher/app-pusher.sh .
+
+3. Open your copy of app-pusher.sh in a text editor.
+
+4. Replace the following values:
   - VERSION="VERSION-NUMBER"
   - APP_NAME="PRODUCT-NAME-${VERSION}"
   - URL="PRODUCT-PATH/${VERSION}"
@@ -39,13 +45,11 @@ To push a Cloud Foundry app to PWS using Winston the App Pusher:
   - APP_NAME="om-${VERSION}"
   - URL="ops-manager/${VERSION}"
 
-3. Save and close app-pusher.sh. (Please don't push your changes.)
+5. Save and close your copy of app-pusher.sh.
 
-4. Bind a book and change to the final_app directory.
+6. Log in to the cf CLI using your credentials.
 
-5. Log in to the cf CLI using your credentials.
-
-6. Run `bash ~/workspace/docs-utility-scripts/winston-the-app-pusher/app-pusher.sh`.
+7. Run `bash app-pusher.sh`.
 
 That's it! Now you're ready to create and run your pipelines!
 
