@@ -1,8 +1,9 @@
-pivotal/docs-book-tanzu-buildpacks
+pivotal-cf/docs-book-addon-fim
 pivotal-cf/docs-book-antivirus
 pivotal-cf/docs-book-app-automator
 pivotal-cf/docs-book-application-service
 pivotal-cf/docs-book-aws-service-broker
+pivotal-cf/docs-book-aws-services
 pivotal-cf/docs-book-bazaar
 pivotal-cf/docs-book-buildservice
 pivotal-cf/docs-book-cloud-cache
@@ -12,10 +13,10 @@ pivotal-cf/docs-book-csb
 pivotal-cf/docs-book-devconnect
 pivotal-cf/docs-book-developer-console
 pivotal-cf/docs-book-event-alerts
-pivotal-cf/docs-book-addon-fim
 pivotal-cf/docs-book-healthwatch
 pivotal-cf/docs-book-identity
 pivotal-cf/docs-book-ipsec
+pivotal-cf/docs-book-ksm
 pivotal-cf/docs-book-metrics
 pivotal-cf/docs-book-metricsforwarder
 pivotal-cf/docs-book-mysql
@@ -38,12 +39,14 @@ pivotal-cf/docs-book-releasenotes
 pivotal-cf/docs-book-rmq-k8s
 pivotal-cf/docs-book-runpivotal
 pivotal-cf/docs-book-scdf
+pivotal-cf/docs-book-scdf-k8s
 pivotal-cf/docs-book-scs
 pivotal-cf/docs-book-service-backup
 pivotal-cf/docs-book-service-metrics
 pivotal-cf/docs-book-services-sdk
 pivotal-cf/docs-book-sim
 pivotal-cf/docs-book-stemcell-rn
+pivotal-cf/docs-book-tas-kubernetes
 pivotal-cf/docs-book-telemetry
 pivotal-cf/docs-book-tiledev
 pivotal-cf/docs-book-wiki
