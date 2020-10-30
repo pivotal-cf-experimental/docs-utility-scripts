@@ -26,6 +26,7 @@ pivotal-cf/docs-book-ksm
 pivotal-cf/docs-book-metrics
 pivotal-cf/docs-book-metricsforwarder
 pivotal-cf/docs-book-mysql
+pivotal-cf/docs-book-mysql-k8s
 pivotal-cf/docs-book-observability-data-store
 pivotal-cf/docs-book-odb
 pivotal-cf/docs-book-om
