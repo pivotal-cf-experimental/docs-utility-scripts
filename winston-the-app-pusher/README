@@ -45,6 +45,12 @@ To push a Cloud Foundry app to PWS using Winston the App Pusher:
   - APP_NAME="om-${VERSION}"
   - URL="ops-manager/${VERSION}"
 
+1. (Optional) Make other adjustments to the apps that will be pushed by editing L33
+onwards of the app-pusher.sh file.
+For example, you can comment out the lines for apps you do not want to push, or
+you can copy the lines for basic auth from the staging apps section to the prod apps
+section if you also want basic auth for your production apps.
+
 5. Save and close your copy of app-pusher.sh.
 
 6. Log in to the cf CLI using your credentials.
