@@ -24,7 +24,7 @@ To push a Cloud Foundry app to PWS using Winston the App Pusher:
 
 2. Run the following command to make a local, editable copy of the app pusher script:
 
-    cp ~/workspace/docs-utility-scripts/winston-the-app-pusher/app-pusher.sh .
+    `cp ~/workspace/docs-utility-scripts/winston-the-app-pusher/app-pusher.sh .`
 
 3. Open your copy of app-pusher.sh in a text editor.
 
