@@ -1,0 +1,519 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.7), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "en", "undefined" ],
+    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://cookingbigdata.com/linkeddata/ccregions", "http://www.w3.org/2000/01/rdf-schema", "http://purl.org/goodrelations", "http://www.w3.org/2001/XMLSchema", "http://xmlns.com/foaf/0.1", "http://cookingbigdata.com/linkeddata/ccinstances", "http://cookingbigdata.com/linkeddata/ccpricing" ],
+    "prefixList" : {
+      "ccregion" : "http://cookingbigdata.com/linkeddata/ccregions#",
+      "owl" : "http://www.w3.org/2002/07/owl#",
+      "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "ccinstance" : "http://cookingbigdata.com/linkeddata/ccinstances#",
+      "xsd" : "http://www.w3.org/2001/XMLSchema#",
+      "" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+      "dc" : "http://purl.org/dc/terms/",
+      "xml" : "http://www.w3.org/XML/1998/namespace",
+      "schema" : "http://schema.org",
+      "foaf" : "http://xmlns.com/foaf/0.1/",
+      "gr" : "http://purl.org/goodrelations/v1",
+      "rdfs" : "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    "title" : {
+      "en" : "Vocabulary for prices options in Cloud Computing Services"
+    },
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+    "version" : "1.0",
+    "author" : [ "http://cookingbigdata.com/linkeddata/ccpricing#manuelparra" ],
+    "description" : {
+      "en" : "Simple and direct pricing ontology for Cloud Computing Services. This ontology allows to define model of prices used in large cloud computing providers such as Amazon, Azure, etc., including options for regions, type of instances, prices specification, etc. "
+    },
+    "labels" : {
+      "en" : "Pricing Plan for Cloud Computing Services"
+    },
+    "other" : {
+      "creator" : [ {
+        "identifier" : "creator",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#manuelparra",
+        "type" : "iri"
+      } ],
+      "created" : [ {
+        "identifier" : "created",
+        "language" : "undefined",
+        "value" : "2018-03-06",
+        "type" : "label"
+      } ],
+      "rights" : [ {
+        "identifier" : "rights",
+        "language" : "undefined",
+        "value" : "Copyright © 2018 Manuel Parra-Royón",
+        "type" : "label"
+      } ],
+      "modified" : [ {
+        "identifier" : "modified",
+        "language" : "undefined",
+        "value" : "2018-04-03",
+        "type" : "label"
+      } ],
+      "publisher" : [ {
+        "identifier" : "publisher",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#cookingbigdata",
+        "type" : "iri"
+      } ],
+      "versionInfo" : [ {
+        "identifier" : "versionInfo",
+        "language" : "undefined",
+        "value" : "1.0",
+        "type" : "label"
+      } ],
+      "issued" : [ {
+        "identifier" : "issued",
+        "language" : "undefined",
+        "value" : "2018-04-20",
+        "type" : "label"
+      } ],
+      "title" : [ {
+        "identifier" : "title",
+        "language" : "en",
+        "value" : "Vocabulary for prices options in Cloud Computing Services",
+        "type" : "label"
+      } ]
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "6",
+    "type" : "owl:Class"
+  }, {
+    "id" : "1",
+    "type" : "owl:Class"
+  }, {
+    "id" : "11",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "2",
+    "type" : "owl:Class"
+  }, {
+    "id" : "17",
+    "type" : "owl:Class"
+  }, {
+    "id" : "4",
+    "type" : "owl:Class"
+  }, {
+    "id" : "18",
+    "type" : "owl:Class"
+  }, {
+    "id" : "15",
+    "type" : "owl:Class"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#PricingPlan",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "instances" : 0,
+    "description" : {
+      "en" : "."
+    },
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "PricingPlan",
+      "en" : "Prcing Plan"
+    },
+    "comment" : {
+      "en" : "PricingPlan"
+    },
+    "id" : "7"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#ServicePricing",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "ServicePricing"
+    },
+    "id" : "6"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#PriceCompound",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "instances" : 0,
+    "description" : {
+      "en" : "."
+    },
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "PriceCompound",
+      "en" : "Compound"
+    },
+    "comment" : {
+      "en" : "Compound"
+    },
+    "id" : "1"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "11",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#instance",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "instance"
+    },
+    "attributes" : [ "external" ],
+    "id" : "2"
+  }, {
+    "iri" : "http://xmlns.com/foaf/0.1/Organization",
+    "baseIri" : "http://xmlns.com/foaf/0.1",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Organization"
+    },
+    "individuals" : [ {
+      "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#cookingbigdata",
+      "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+      "annotations" : {
+        "name" : [ {
+          "identifier" : "name",
+          "language" : "undefined",
+          "value" : "CookingBigData",
+          "type" : "label"
+        } ],
+        "seeAlso" : [ {
+          "identifier" : "seeAlso",
+          "language" : "undefined",
+          "value" : "http://cookingbigdata.com/about",
+          "type" : "iri"
+        } ],
+        "homepage" : [ {
+          "identifier" : "homepage",
+          "language" : "undefined",
+          "value" : "http://cookingbigdata.com",
+          "type" : "iri"
+        } ]
+      },
+      "labels" : {
+        "IRI-based" : "cookingbigdata"
+      }
+    } ],
+    "attributes" : [ "external" ],
+    "id" : "17"
+  }, {
+    "iri" : "http://purl.org/goodrelations/v1PriceSpecification",
+    "baseIri" : "http://purl.org/goodrelations",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "v1PriceSpecification"
+    },
+    "attributes" : [ "external" ],
+    "id" : "4"
+  }, {
+    "iri" : "http://xmlns.com/foaf/0.1/Person",
+    "baseIri" : "http://xmlns.com/foaf/0.1",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Person"
+    },
+    "individuals" : [ {
+      "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#manuelparra",
+      "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+      "annotations" : {
+        "name" : [ {
+          "identifier" : "name",
+          "language" : "undefined",
+          "value" : "Manuel Parra-Royon",
+          "type" : "label"
+        } ],
+        "mbox" : [ {
+          "identifier" : "mbox",
+          "language" : "undefined",
+          "value" : "manuparra@gmail.com",
+          "type" : "label"
+        } ],
+        "seeAlso" : [ {
+          "identifier" : "seeAlso",
+          "language" : "undefined",
+          "value" : "https://twitter.com/manugrapevine",
+          "type" : "iri"
+        } ],
+        "homepage" : [ {
+          "identifier" : "homepage",
+          "language" : "undefined",
+          "value" : "https://twitter.com/manugrapevine",
+          "type" : "iri"
+        } ]
+      },
+      "labels" : {
+        "IRI-based" : "manuelparra"
+      }
+    } ],
+    "attributes" : [ "external" ],
+    "id" : "18"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#region",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "region"
+    },
+    "attributes" : [ "external" ],
+    "id" : "15"
+  } ],
+  "property" : [ {
+    "id" : "0",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "3",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "5",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "8",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "9",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "10",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "12",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "13",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "14",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "16",
+    "type" : "owl:objectProperty"
+  } ],
+  "propertyAttribute" : [ {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#instance",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "2",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "instance",
+      "en" : "Instance"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "Instance"
+    },
+    "attributes" : [ "object" ],
+    "id" : "0"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#hasPrice",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "4",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasPrice",
+      "en" : "Component price"
+    },
+    "domain" : "1",
+    "comment" : { },
+    "attributes" : [ "object" ],
+    "id" : "3"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#hasPricingPlan",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "7",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasPricingPlan",
+      "en" : "Has pricing"
+    },
+    "domain" : "6",
+    "comment" : {
+      "en" : "Has pricing plans"
+    },
+    "attributes" : [ "object" ],
+    "id" : "5"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#withMinCompound",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "4",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "withMinCompound",
+      "en" : "Min compound"
+    },
+    "domain" : "1",
+    "comment" : { },
+    "attributes" : [ "object" ],
+    "id" : "8"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#withMaxPrice",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "4",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "withMaxPrice",
+      "en" : "Max price"
+    },
+    "domain" : "7",
+    "comment" : { },
+    "attributes" : [ "object" ],
+    "id" : "9"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#plan_name",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "11",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "plan_name",
+      "en" : "Plan Name"
+    },
+    "domain" : "7",
+    "comment" : {
+      "en" : "Example Free"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "10"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#hasPriceCompound",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "1",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasPriceCompound",
+      "en" : "has Component price"
+    },
+    "domain" : "7",
+    "comment" : { },
+    "attributes" : [ "object" ],
+    "id" : "12"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#withMinPrice",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "4",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "withMinPrice",
+      "en" : "Min price"
+    },
+    "domain" : "7",
+    "comment" : { },
+    "attributes" : [ "object" ],
+    "id" : "13"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#region",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "15",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "region",
+      "en" : "Region"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "Region"
+    },
+    "attributes" : [ "object" ],
+    "id" : "14"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccpricing#withMaxCompound",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccpricing",
+    "range" : "4",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccpricing#",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "withMaxCompound",
+      "en" : "Max compound"
+    },
+    "domain" : "1",
+    "comment" : { },
+    "attributes" : [ "object" ],
+    "id" : "16"
+  } ]
+}

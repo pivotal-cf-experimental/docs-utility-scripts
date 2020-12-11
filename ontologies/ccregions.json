@@ -1,0 +1,644 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.7), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "en", "undefined" ],
+    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://cookingbigdata.com/linkeddata/ccregions", "http://schema.org", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2001/XMLSchema", "http://xmlns.com/foaf/0.1" ],
+    "prefixList" : {
+      "owl" : "http://www.w3.org/2002/07/owl#",
+      "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "xsd" : "http://www.w3.org/2001/XMLSchema#",
+      "" : "http://cookingbigdata.com/linkeddata/ccregions#",
+      "dc" : "http://purl.org/dc/terms/",
+      "xml" : "http://www.w3.org/XML/1998/namespace",
+      "schema" : "http://schema.org/",
+      "foaf" : "http://xmlns.com/foaf/0.1/",
+      "rdfs" : "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    "title" : {
+      "en" : "Vocabulary for Regions and Zones on Cloud Computing"
+    },
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#",
+    "version" : "1.0",
+    "author" : [ "http://cookingbigdata.com/linkeddata/ccregions#manuelparra" ],
+    "description" : {
+      "en" : "Ontology for the definition of regions and zones of availability on CloudComputing platforms and services. This ontology allows to define model of regions used in large cloud computing providers such as Amazon, Azure, etc."
+    },
+    "labels" : {
+      "en" : "Cloud Computing regions and availability zones"
+    },
+    "other" : {
+      "creator" : [ {
+        "identifier" : "creator",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions#manuelparra",
+        "type" : "iri"
+      } ],
+      "created" : [ {
+        "identifier" : "created",
+        "language" : "undefined",
+        "value" : "2018-03-06",
+        "type" : "label"
+      } ],
+      "rights" : [ {
+        "identifier" : "rights",
+        "language" : "undefined",
+        "value" : "Copyright © 2018 Manuel Parra-Royón",
+        "type" : "label"
+      } ],
+      "modified" : [ {
+        "identifier" : "modified",
+        "language" : "undefined",
+        "value" : "2018-04-03",
+        "type" : "label"
+      } ],
+      "publisher" : [ {
+        "identifier" : "publisher",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions#cookingbigdata",
+        "type" : "iri"
+      } ],
+      "versionInfo" : [ {
+        "identifier" : "versionInfo",
+        "language" : "undefined",
+        "value" : "1.0",
+        "type" : "label"
+      } ],
+      "title" : [ {
+        "identifier" : "title",
+        "language" : "en",
+        "value" : "Vocabulary for Regions and Zones on Cloud Computing",
+        "type" : "label"
+      } ],
+      "issued" : [ {
+        "identifier" : "issued",
+        "language" : "undefined",
+        "value" : "2018-04-20",
+        "type" : "label"
+      } ]
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "0",
+    "type" : "owl:Class"
+  }, {
+    "id" : "1",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "2",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "6",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "14",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "15",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "17",
+    "type" : "owl:Class"
+  }, {
+    "id" : "5",
+    "type" : "owl:Class"
+  }, {
+    "id" : "12",
+    "type" : "owl:Class"
+  }, {
+    "id" : "20",
+    "type" : "owl:Class"
+  }, {
+    "id" : "4",
+    "type" : "owl:Class"
+  }, {
+    "id" : "9",
+    "type" : "owl:Class"
+  }, {
+    "id" : "25",
+    "type" : "owl:Class"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#AvailabilityZone",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "instances" : 0,
+    "description" : {
+      "en" : "Each region has multiple isolated locations known as Availability Zones."
+    },
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "AvailabilityZone",
+      "en" : "Availability Zone"
+    },
+    "comment" : {
+      "en" : "Availability Zone"
+    },
+    "id" : "0"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "1",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "2",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "6",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://schema.org/AdministrativeArea",
+    "baseIri" : "http://schema.org",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "AdministrativeArea"
+    },
+    "attributes" : [ "external" ],
+    "id" : "7"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "14",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#boolean",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "15",
+    "label" : {
+      "IRI-based" : "boolean"
+    }
+  }, {
+    "iri" : "http://xmlns.com/foaf/0.1/Organization",
+    "baseIri" : "http://xmlns.com/foaf/0.1",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Organization"
+    },
+    "individuals" : [ {
+      "iri" : "http://cookingbigdata.com/linkeddata/ccregions#cookingbigdata",
+      "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+      "annotations" : {
+        "name" : [ {
+          "identifier" : "name",
+          "language" : "undefined",
+          "value" : "CookingBigData",
+          "type" : "label"
+        } ],
+        "seeAlso" : [ {
+          "identifier" : "seeAlso",
+          "language" : "undefined",
+          "value" : "http://cookingbigdata.com/about",
+          "type" : "iri"
+        } ],
+        "homepage" : [ {
+          "identifier" : "homepage",
+          "language" : "undefined",
+          "value" : "http://cookingbigdata.com",
+          "type" : "iri"
+        } ]
+      },
+      "labels" : {
+        "IRI-based" : "cookingbigdata"
+      }
+    } ],
+    "attributes" : [ "external" ],
+    "id" : "17"
+  }, {
+    "iri" : "http://schema.org/EntryPoint",
+    "baseIri" : "http://schema.org",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "EntryPoint"
+    },
+    "attributes" : [ "external" ],
+    "id" : "5"
+  }, {
+    "iri" : "http://schema.org/Place",
+    "baseIri" : "http://schema.org",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Place"
+    },
+    "attributes" : [ "external" ],
+    "id" : "12"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#GeographicalZone",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "instances" : 0,
+    "description" : {
+      "en" : "Each Region is hosted in a Geographical Area or Division."
+    },
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "GeographicalZone",
+      "en" : "Geographical Zone"
+    },
+    "comment" : {
+      "en" : "Geographical Zone"
+    },
+    "id" : "20"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#Region",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "instances" : 0,
+    "description" : {
+      "en" : "A region is a physical location of a computer center where instances, servers, clusters, etc. are stored. A region is a separate geographic area"
+    },
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "Region",
+      "en" : "Region"
+    },
+    "subClasses" : [ "9" ],
+    "comment" : {
+      "en" : "Region"
+    },
+    "id" : "4"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#Location",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "instances" : 0,
+    "description" : {
+      "en" : "Physical location"
+    },
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "Location",
+      "en" : "Location"
+    },
+    "comment" : {
+      "en" : "Location"
+    },
+    "id" : "9",
+    "superClasses" : [ "4" ]
+  }, {
+    "iri" : "http://xmlns.com/foaf/0.1/Person",
+    "baseIri" : "http://xmlns.com/foaf/0.1",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Person"
+    },
+    "individuals" : [ {
+      "iri" : "http://cookingbigdata.com/linkeddata/ccregions#manuelparra",
+      "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+      "annotations" : {
+        "name" : [ {
+          "identifier" : "name",
+          "language" : "undefined",
+          "value" : "Manuel Parra-Royon",
+          "type" : "label"
+        } ],
+        "mbox" : [ {
+          "identifier" : "mbox",
+          "language" : "undefined",
+          "value" : "manuparra@gmail.com",
+          "type" : "label"
+        } ],
+        "seeAlso" : [ {
+          "identifier" : "seeAlso",
+          "language" : "undefined",
+          "value" : "https://twitter.com/manugrapevine",
+          "type" : "iri"
+        } ],
+        "homepage" : [ {
+          "identifier" : "homepage",
+          "language" : "undefined",
+          "value" : "https://twitter.com/manugrapevine",
+          "type" : "iri"
+        } ]
+      },
+      "labels" : {
+        "IRI-based" : "manuelparra"
+      }
+    } ],
+    "attributes" : [ "external" ],
+    "id" : "25"
+  } ],
+  "property" : [ {
+    "id" : "3",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "8",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "10",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "11",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "13",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "16",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "18",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "19",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "21",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "22",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "23",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "24",
+    "type" : "owl:datatypeProperty"
+  } ],
+  "propertyAttribute" : [ {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#region_endpoint",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "5",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "region_endpoint",
+      "en" : "Region Endpoint"
+    },
+    "domain" : "4",
+    "comment" : {
+      "en" : "Region Endpoint is the URI of the main resource at the region."
+    },
+    "attributes" : [ "object" ],
+    "id" : "3"
+  }, {
+    "range" : "4",
+    "domain" : "9",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "8"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#region_dataresidency",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "7",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "region_dataresidency",
+      "en" : "Sovereignty Location"
+    },
+    "domain" : "4",
+    "comment" : {
+      "en" : "Region Data residency / Sovereignty Location."
+    },
+    "attributes" : [ "object" ],
+    "id" : "10"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#region_location",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "12",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "region_location",
+      "en" : "Region Location"
+    },
+    "domain" : "9",
+    "comment" : {
+      "en" : "Physical Location for a region."
+    },
+    "attributes" : [ "object" ],
+    "id" : "11"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#region_name",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "6",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "region_name",
+      "en" : "Region name"
+    },
+    "domain" : "4",
+    "comment" : {
+      "en" : "Name of the region."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "13"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#region_compilance",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "1",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "region_compilance",
+      "en" : "Geo Compilance"
+    },
+    "domain" : "4",
+    "comment" : {
+      "en" : "Compilance with geographical boundaries."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "16"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#hasAvailabilityZone",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "0",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasAvailabilityZone",
+      "en" : "has Availability Zone"
+    },
+    "domain" : "4",
+    "comment" : {
+      "en" : "Each Zone has almost one Availability Zone"
+    },
+    "attributes" : [ "object" ],
+    "id" : "18"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#geographical_zone",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "7",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "geographical_zone",
+      "en" : "Geo Name"
+    },
+    "domain" : "20",
+    "comment" : {
+      "en" : "Administrative Geographical area."
+    },
+    "attributes" : [ "object" ],
+    "id" : "19"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#availabilityzone_status",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "15",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "availabilityzone_status",
+      "en" : "AZ Status"
+    },
+    "domain" : "0",
+    "comment" : {
+      "en" : "Status of the Availability Zone"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "21"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#hasGeographicalZone",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "20",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasGeographicalZone",
+      "en" : "has geographical zone"
+    },
+    "domain" : "4",
+    "comment" : {
+      "en" : "Each Region is hosted in a Geographical Area or Division"
+    },
+    "attributes" : [ "object" ],
+    "id" : "22"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#availabilityzone_name",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "2",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "availabilityzone_name",
+      "en" : "AZ Name"
+    },
+    "domain" : "0",
+    "comment" : {
+      "en" : "Name of the Availability Zone"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "23"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccregions#region_code",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccregions",
+    "range" : "14",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccregions",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "region_code",
+      "en" : "Region code"
+    },
+    "domain" : "4",
+    "comment" : {
+      "en" : "Short Code of the region."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "24"
+  } ]
+}
