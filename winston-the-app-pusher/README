@@ -14,6 +14,7 @@ Prerequisites
 Before you use this script, you must be able to:
 
 - Bind a book with Bookbinder.
+- Connect to the VMware VPN.
 - Log in to PWS using the cf CLI.
 
 Push an App to PWS
