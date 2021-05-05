@@ -17,6 +17,10 @@ class HTTPLinkValidator
 		@links_list_findings = []
 		@links_list_valid = []
 		@links_list_invalid = []
+		@links_reviewed_hash = Hash.new
+		@links_reviewed_hash.default = "unknown"
+		@redirection_destinations_hash = Hash.new
+		@redirection_destinations_hash.default = "unknown"
 	end
 
 	def ValidateAckListLinks(ack_list_file)
@@ -31,11 +35,27 @@ class HTTPLinkValidator
 	def ValidateLinks(link_list)
 
 		link_list.each {|link_item|
-			ValidateLinkInfo(link_item)
+
+			if !(AlreadyValidated(link_item)) then
+				ValidateLinkInfo(link_item)
+				@links_reviewed_hash[link_item]
+			end
 		}
 
 	end
 
+	def AlreadyValidated(link_item)
+
+		already_validated = false
+		if (@links_reviewed_hash[link_item] == "unknown") && (@redirection_destinations_hash[link_item] == "unknown") then
+			#already_validated = false
+		else
+			already_validated = true
+		end
+
+		return already_validated
+
+	end
 
 	def ValidateLinkInfo(link_item)
 
@@ -73,12 +93,44 @@ class HTTPLinkValidator
 		link_item_results = [link_item_url, link_item_source, ""]
 		link_item_validation_message = "status: bad link"
 
+		authenticate_conn = true
+
 		begin
-			test_uri = URI(link_item_url)
-			return_get = Net::HTTP.get(test_uri)
-			return_response = Net::HTTP.get_response(test_uri)
-			error_raised = false
-		
+			if (authenticate_conn) then
+				test_uri = URI(link_item_url)
+				http_obj = Net::HTTP.new(test_uri.host, test_uri.port)
+				http_obj.use_ssl = true
+				#http_obj.verify_mode = OpenSSL::SSL::VERIFY_PEER		#VERIFY_NONE # You should use VERIFY_PEER in production
+				return_get = Net::HTTP::Get.new(test_uri.request_uri)
+				return_get.basic_auth('pivotalcf', 'wilderror16')
+				return_response = http_obj.request(return_get)
+
+				#return_get = Net::HTTP::Get.new(test_uri)
+				#return_get.basic_auth('pivotalcf', 'wilderror16')
+
+				#puts "OK 1"
+				#return_response = Net::HTTP.start(test_uri.hostname, test_uri.port) {|http_obj|
+				#  puts "OK 2"
+				#  http_obj.request(return_get)
+				#  puts "OK 3"
+				#}
+				#test_uri = URI(link_item_url)
+				#return_get = Net::HTTP::Get.new(test_uri)
+				#return_get.basic_auth 'pivotalcf', 'wilderror16'
+				#return_response = Net::HTTP.get_response(return_get)
+				puts "not raised here"
+				#return_response = Net::HTTP.start(test_uri.hostname, test_uri.port) {|http_obj|
+				#	  http_obj.request(return_get)
+				#	}
+				#Net::HTTP.get_response(test_uri)
+				error_raised = false
+			else
+				test_uri = URI(link_item_url)
+				return_get = Net::HTTP.get(test_uri)
+				return_response = Net::HTTP.get_response(test_uri)
+				error_raised = false
+			end
+
 		rescue Net::HTTPServerError 
 			link_item_validation_message = "status HTTPServerError: "
 			#link_item_validation_message remains "status: bad link"
@@ -119,14 +171,25 @@ class HTTPLinkValidator
 					puts "response = #{return_response} \nredirection: #{redirection_location}"
 					if link_item_url == redirection_location then
 						#bad link
+						if !(AlreadyValidated(redirection_location)) then
+							@redirection_destinations_hash[redirection_location] = false
+						end
 
 					elsif link_item_url == redirection_location2 then
 						valid_result = true
+						if !(AlreadyValidated(redirection_location)) then
+							@redirection_destinations_hash[redirection_location] = true
+						end
 						link_item_validation_message = "status: valid - http/https"
+
 					else
 						#puts "response = redirection: #{redirection_location}"
 						valid_result = true
+						if !(AlreadyValidated(redirection_location)) then
+							@redirection_destinations_hash[redirection_location] = "untested"
+						end
 						link_item_validation_message = "status: valid"
+
 					end
 
 				when Net::HTTPServerError then

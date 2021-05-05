@@ -42,7 +42,7 @@ class TopicValidator
 
 		validation_tester = HTTPLinkValidator.new
 
-		puts "starting tests"
+		puts "starting tests: href links:#{links_array_href}  - markdown links: #{links_array_mkdown}"
 		validation_tester.ValidateLinks(@test_urls)
 		puts "test completed: #{validation_tester.links_list_findings.to_s}"
 

@@ -66,7 +66,7 @@ class HTTPLinkFinder
 		file_content = ""
 		file_link_list = []
 
-		file_content = ReadFileContentFromTopic(url_path)
+		file_content = ReadFileContentFromStagingTopic(url_path)		#ReadFileContentFromTopic(url_path)
 		if file_content.length > 0 then
 			FindAllLinks(file_content)
 			#if file_link_list.length > 0 then
@@ -81,6 +81,22 @@ class HTTPLinkFinder
 	def ReadFileContentFromTopic(url_path)
 		uri_to_read = URI(url_path) 
 		file_content = Net::HTTP.get(uri_to_read)
+
+		revised_content = CleanUpContent(file_content)
+
+		revised_content
+	end
+
+	def ReadFileContentFromStagingTopic(url_path)
+		test_uri = URI(url_path)
+		http_obj = Net::HTTP.new(test_uri.host, test_uri.port)
+		http_obj.use_ssl = true
+		#http_obj.verify_mode = OpenSSL::SSL::VERIFY_PEER		#VERIFY_NONE # You should use VERIFY_PEER in production
+		return_get = Net::HTTP::Get.new(test_uri.request_uri)
+		return_get.basic_auth('pivotalcf', 'wilderror16')
+		return_response = http_obj.request(return_get)
+
+		file_content = return_response.body
 
 		revised_content = CleanUpContent(file_content)
 
