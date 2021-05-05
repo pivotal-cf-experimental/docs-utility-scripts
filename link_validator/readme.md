@@ -48,4 +48,4 @@ We should avoid duplicating that. Ignore internal links and check external only?
 * Don't check twice
 
 
-![Competitive Analysis](/images/competitive-analysis.png)
+![Competitive Analysis](/link_validator/images/competitive-analysis.png)
