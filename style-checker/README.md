@@ -1,7 +1,7 @@
 # Style Checker
 
-Style Checker comments on deviations from house style as described in [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). 
-It also comments on formatting errors, passive voice constructions, redundancy, and accessibility problems.
+Style Checker adds comments within text that flag deviations from [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). 
+It also adds comments flagging formatting errors, passive voice constructions, redundancy, and accessibility problems.
 
 
 ## Prerequisite
