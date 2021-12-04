@@ -1,13 +1,12 @@
 # Style Checker
 
-Style Checker comments on deviations from house style as described in the [Word and Phrase List](https://docs.google.com/spreadsheets/d/1hkadtxR1hY57kK7h5HN4ITHLJleZixCDH_RJPUpNq_A/edit#gid=0) and the 
-[Docs Wiki](https://docs-wiki.cfapps.io/wiki/style/index.html). 
-It also comments on layout errors, passive voice constructions, redundancy, clashes between HTML and Markdown, and accessibility problems.
+Style Checker comments on deviations from house style as described in [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). 
+It also comments on formatting errors, passive voice constructions, redundancy, and accessibility problems.
 
 
 ## Prerequisite
 
-[Atom](https://atom.io/) or [Sublime](https://www.sublimetext.com/3)
+[Atom](https://atom.io/) (definitely works) or [Sublime](https://www.sublimetext.com/3) (might not work anymore)
 
 
 ## Atom Instructions
