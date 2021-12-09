@@ -21,7 +21,8 @@ To install, update, and use Style Checker in Atom, follow the procedures below.
   1. In the Atom toolbar go to **Atom > Preferences**.
   1. Click **Open Config Folder** in the side tab.
   1. In the **Project** folder tree go to **packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
-  1. Replace all the code between `function doreplacement(text) {` and `return text;` with the [style comment commands](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/style-checker/html-special-character-replacer.js).
+  1. Delete the content.
+  1. Paste in the contents of [this file](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/style-checker/html-special-character-replacer.js).
   1. Save your changes to `html-special-character-replacer.js`.
   1. Restart Atom.
 
