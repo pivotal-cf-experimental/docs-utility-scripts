@@ -51,12 +51,12 @@ To configure your bash profile so that you can update Style Checker with a singl
 
 To update to the latest Style Checker version, do one of the following:
 
-* Run ```update_style``` from the terminal if you have followed the Configure Your Bash Profile to Enable Fast Updates procedure above.
+* Run `update_style` from the terminal if you have followed the Configure Your Bash Profile to Enable Fast Updates procedure above.
 * Perform step 2 onwards from the **Install in Atom** procedure above.
 
 
 ### Use Style Checker in Atom
 
 1. Open a document you want to edit in Atom.
-1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. Comments typically follow the pattern "<%# |.....| is preferred. %>".
+1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. Comments typically follow the pattern `<!-- |.....| is preferred. -->`.
 1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to fit the house writing style.
