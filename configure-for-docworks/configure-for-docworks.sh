@@ -1,6 +1,7 @@
-# Run this script within the book repo for your target docs.
-
 configure_for_docworks_1 () {
+  
+  # Run this function within the book repo for your target docs.
+  
   git pull
   
   # Requesting a Taxonomy Entry Section
@@ -45,7 +46,7 @@ configure_for_docworks_1 () {
 
 configure_for_docworks_2 () {
 
-  # This script runs commands to make the migrated pages go "live" after you verify that the new pages on VMware look good.
+  # This function runs commands to make the migrated pages discoverable after you verify that the new pages on VMware look good.
   
   # Update Pivotal Landing Page Section
   # Change relevant values in https://github.com/pivotal-cf/docs-book-pcfservices/edit/master/master_middleman/source/index.html.erb.
@@ -53,5 +54,7 @@ configure_for_docworks_2 () {
   
   # Make New Redirects Live Section
   # Delete "redirects.md" and rename "new-redirects.md" as "redirects.md".
+  
+  echo "The redirects are live and the Pivotal landing page is updated."
 
 }
