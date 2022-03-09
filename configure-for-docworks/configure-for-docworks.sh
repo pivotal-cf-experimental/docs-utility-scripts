@@ -39,6 +39,11 @@ configure_for_docworks_1 () {
   # Updating some redirects is as simple as replacing "docs.pivotal.io" with "docs.vmware.com"
   # Some are unique and require tweaking this script a little for the needs of the repo.
   # You run finisher.sh after verifying the migration was successful. finisher.sh deletes "redirects.md" and renames "new-redirects.md" as "redirects.md".
+  
+  # Change Docs Formatting Section
+  
+  # cd into docs content repo and run sed commands to find and replace the easy formatting errors:
+  # Run sed or similar to find and replace some regex. Find: Where:[^\n]*\n([^\n]*\*)\s` Replace: Where:\n\n$1 `
  
   echo "The relevant docs are configured for a Markdown Project in DocWorks. Run configure_for_docworks_2.sh after verifying the migration was successful."
   
