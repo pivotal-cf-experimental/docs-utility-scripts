@@ -29,7 +29,7 @@ configure_for_docworks_1 () {
   
   cd master_middleman/source/subnavs
   find . -iregex ".*\.erb" -exec cp {} /../../../ \; # copy the subnav file to top directory
-  for file in *.erb; do mv "$file" "${file%%.erb}toc.md.erb"; done # rename subnav file as `toc.md.erb`
+  for file in *.erb; do mv "$file" "${file%%.erb}toc.md"; done # rename subnav file as `toc.md`
   cd ../../..
   # Convert ERB content in toc.md to Markdown. Call some tool, maybe, or just write several careful find & replace commands.
 
