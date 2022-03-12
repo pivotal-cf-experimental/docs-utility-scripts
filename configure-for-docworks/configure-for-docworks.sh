@@ -41,9 +41,13 @@ configure_for_docworks_1 () {
   # You run finisher.sh after verifying the migration was successful. finisher.sh deletes "redirects.md" and renames "new-redirects.md" as "redirects.md".
   
   # Change Docs Formatting Section
-  
   # cd into docs content repo and run sed commands to find and replace the easy formatting errors:
-  # Run sed or similar to find and replace some regex. Find: Where:[^\n]*\n([^\n]*\*)\s` Replace: Where:\n\n$1 `
+  
+  # Find: <pre class=.terminal.>([^<]*)</pre>         Replace: ```console$1```
+  # Find: ```console([^`\n]*)```                      Replace: ```console\n$1\n```
+  # Find ```console\n([^`]*)\n```\n([^\n])            Replace: ```console\n$1\n```\n\n$2
+  # Find: ```\s*\$                                    Replace: ```console\n$
+  # Find: Where:[^\n]*\n([^\n]*\*)\s`                 Replace: Where:\n\n$1 `
  
   echo "The relevant docs are configured for a Markdown Project in DocWorks. Run configure_for_docworks_2.sh after verifying the migration was successful."
   
