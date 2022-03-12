@@ -35,13 +35,20 @@ configure_for_docworks_1 () {
 
   # Update Redirects Section
   
-  # Copy the redirects file and rename the copy "new-redirects".
-  # Updating some redirects is as simple as replacing "docs.pivotal.io" with "docs.vmware.com"
-  # Some are unique and require tweaking this script a little for the needs of the repo.
-  # You run finisher.sh after verifying the migration was successful. finisher.sh deletes "redirects.md" and renames "new-redirects.md" as "redirects.md".
+  cd docs-book-PRODUCT-NAME
+  # Paste the following content into redirects.rb, but replace the "build-service" values as appropriate
+  
+  # Redirect from docs.pivotal.io/build-service/1-1 to docs.vmware.com build service docs
+
+  # r301  %r{/build-service/1-1/index.html}, "https://docs.vmware.com/en/Tanzu-Build-Service/1.1/vmware-tanzu-build-service-v11/GUID-docs-build-service-index.html"
+  # r301  %r{/build-service/1-1/}, "https://docs.vmware.com/en/Tanzu-Build-Service/1.1/vmware-tanzu-build-service-v11/GUID-docs-build-service-index.html"
+  # r301  %r{/build-service/1-1}, "https://docs.vmware.com/en/Tanzu-Build-Service/1.1/vmware-tanzu-build-service-v11/GUID-docs-build-service-index.html"
+  # r301  %r{/build-service/1-1/(.*)}, "https://docs.vmware.com/en/Tanzu-Build-Service/1.1/vmware-tanzu-build-service-v11/GUID-$1"
   
   # Change Docs Formatting Section
-  # cd into docs content repo and run regex-based sed commands to find and replace the easy formatting errors:
+  
+  cd ../docs-PRODUCT-NAME
+  # Run regex-based sed commands to find and replace the easy formatting errors:
   
   # Find: <pre class=.terminal.>([^<]*)</pre>         Replace: ```console$1```
   # Find: ```console([^`\n]*)```                      Replace: ```console\n$1\n```
@@ -63,7 +70,7 @@ configure_for_docworks_2 () {
   # You need to plug your own values in here (likely just the product name for the docs repo you're dealing with).
   
   # Make New Redirects Live Section
-  # Delete "redirects.md" and rename "new-redirects.md" as "redirects.md".
+  # Run production for the book repo from the CLI (see https://docs-wiki.tas.vmware.com/wiki/pipelines/pushing-to-production.html)
   
   echo "The redirects are live and the Pivotal landing page is updated."
 
