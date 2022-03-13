@@ -48,7 +48,7 @@ configure_for_docworks_1 () {
   # Change Docs Formatting Section
   
   cd ../docs-PRODUCT-NAME
-  # Run regex-based sed commands to find and replace the easy formatting errors:
+  # Run find and replace commands with regular expressions to fix the easy formatting errors:
   
   # Find: <pre class=.terminal.>([^<]*)</pre>         Replace: ```console$1```
   # Find: ```console([^`\n]*)```                      Replace: ```console\n$1\n```
