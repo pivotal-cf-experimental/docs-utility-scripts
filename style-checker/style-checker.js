@@ -32,7 +32,7 @@ function replace(editor)
 function doreplacement(text)
 {
 
-// Last updated: March 11, 2022
+// Last updated: March 15, 2022
 
 // Substitute 2 spaces for each tab that does not precede a variable.
 
