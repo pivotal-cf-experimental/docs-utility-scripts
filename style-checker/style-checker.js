@@ -34,6 +34,8 @@ function doreplacement(text)
 
 // Last updated: March 15, 2022
 
+// Test comment
+
 // Substitute 2 spaces for each tab that does not precede a variable.
 
 text = text.replace(/\t(?!<%= vars)/gm,'  ');
