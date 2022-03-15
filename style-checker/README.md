@@ -17,7 +17,7 @@ To install Style Checker:
 
 1. Install the Atom package
 [HTML Special Character Replacer](https://atom.io/packages/html-special-character-replacer).
-1. Copy the contents of [html-special-character-replacer.js](html-special-character-replacer.js).
+1. Copy the contents of [style-checker.js](style-checker.js).
 1. Launch Atom.
 1. In the Atom toolbar go to **Atom > Preferences**.
 1. Click **Open Config Folder** in the side tab.
@@ -25,7 +25,7 @@ To install Style Checker:
 **packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
 1. Delete the content.
 1. Paste in the content that you copied from
-[html-special-character-replacer.js](html-special-character-replacer.js) in this repository.
+[style-checker.js](style-checker.js) in this repository.
 1. Save your changes to `html-special-character-replacer.js`.
 1. Restart Atom.
 
@@ -41,8 +41,8 @@ To configure your bash profile so that you can update Style Checker with a singl
       cd ~/workspace/docs-utility-scripts/style-checker
       git pull
       cd ~/.atom/packages/html-special-character-replacer/lib
-      cp ~/workspace/docs-utility-scripts/style-checker/html-special-character-replacer.js .
-      echo "Style Checker updated."
+      cat ~/workspace/docs-utility-scripts/style-checker/style-checker.js > html-special-character-replacer.js
+      echo "Style Checker was updated."
       cd ~/workspace
     }
     ```
@@ -73,7 +73,7 @@ To update Style Checker from the CLI:
 To update Style Checker manually:
 
 1. Copy the contents of
-[html-special-character-replacer.js](html-special-character-replacer.js).
+[style-checker.js](style-checker.js).
 1. Launch Atom.
 1. In the Atom toolbar go to **Atom > Preferences**.
 1. Click **Open Config Folder** in the side tab.
@@ -81,7 +81,7 @@ To update Style Checker manually:
 **packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
 1. Delete the content.
 1. Paste in the content that you copied from
-[html-special-character-replacer.js](html-special-character-replacer.js) in this repository.
+[style-checker.js](style-checker.js). in this repository.
 1. Save your changes to `html-special-character-replacer.js`.
 1. Restart Atom.
 
@@ -93,6 +93,6 @@ To update Style Checker manually:
 to add comments to possible style errors.
 Comments typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
 1. Review any comments that have appeared within your text.
-These comments suggest changes that might be necessary to fit the house writing style.
+These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards).
 1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is
 important to delete them.
