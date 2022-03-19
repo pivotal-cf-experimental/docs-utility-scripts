@@ -40,6 +40,8 @@ function doreplacement(text)
   text = text.replace(/\<pre class=.terminal.\>([^\<]*)\<\/pre\>/gm,'```console$1```');
   text = text.replace(/```console([^`\n]*)```/gm,'```console\n$1\n```');
   text = text.replace(/```\s*\$/gm,'```console\n$');
+  // [Replace ``` with ```yaml if you can do so reliably]
+  // [Search for other common language identifiers you can maybe safely add]
 
   // [Replace asterisk and plus-sign bulletpoints with dashes because of a DocWorks bug]
 
