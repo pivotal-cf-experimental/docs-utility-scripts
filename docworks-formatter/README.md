@@ -1,8 +1,7 @@
 # DocWorks Formatter
 
-DocWorks Formatter changes the formatting within a document to meet the specifications of DocWorks.
-The changes are mostly proper indentation and spacing for GitHub Flavored Markdown (GFM), but also
-includes workarounds for DocWorks formatting bugs.
+DocWorks Formatter changes the formatting within a document to suit DocWorks, from GitHub Flavored Markdown (GFM) specifications to workarounds for known
+DocWorks bugs.
 
 ## Prerequisite
 
