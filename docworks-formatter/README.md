@@ -3,17 +3,15 @@
 DocWorks Formatter changes the formatting within a document to suit DocWorks, from GitHub Flavored Markdown (GFM) specifications to workarounds for known
 DocWorks bugs.
 
-## Prerequisite
+## Prerequisites
 
-[Atom](https://atom.io/)
-
+- Install [Atom](https://atom.io/)
+- Install the Atom package [HTML Special Character Replacer](https://atom.io/packages/html-special-character-replacer)
 
 ## <a id="install"></a> Install DocWorks Formatter
 
 To install DocWorks Formatter:
 
-1. Install the Atom package
-[HTML Special Character Replacer](https://atom.io/packages/html-special-character-replacer).
 1. Copy the contents of [docworks-formatter.js](docworks-formatter.js).
 1. Launch Atom.
 1. In the Atom toolbar go to **Atom > Preferences**.
