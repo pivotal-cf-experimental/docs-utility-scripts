@@ -18,7 +18,7 @@ To install Style Checker:
 
 1. Copy the contents of [style-checker.js](style-checker.js).
 1. Launch Atom.
-1. In the Atom toolbar go to **Atom > Preferences**.
+1. In the Atom toolbar go to **Atom > Preferences**. The path differs slightly from this if on Windows.
 1. Click **Open Config Folder** in the side tab.
 1. In the **Project** directory tree go to
 **packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
@@ -74,7 +74,7 @@ To update Style Checker manually:
 1. Copy the contents of
 [style-checker.js](style-checker.js).
 1. Launch Atom.
-1. In the Atom toolbar go to **Atom > Preferences**.
+1. In the Atom toolbar go to **Atom > Preferences**. The path differs slightly from this if on Windows.
 1. Click **Open Config Folder** in the side tab.
 1. In the **Project** directory tree go to
 **packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
