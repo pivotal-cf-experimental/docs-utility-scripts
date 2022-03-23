@@ -32,6 +32,8 @@ function replace(editor)
 function doreplacement(text)
 {
 
+  // Replace tags for single-line ERB comments with Markdown comment tags
+	
   // Fix code snippet formats
 
   text = text.replace(/```bash\b/gm,'```console');
