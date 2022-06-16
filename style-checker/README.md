@@ -5,33 +5,82 @@ Style Checker adds comments within text that flag deviations from
 It also adds comments that flag formatting errors, passive voice constructions, redundancy, and
 accessibility problems.
 
+## Prerequisites
 
-## Prerequisite
-
-- Install [Atom](https://atom.io/)
-- Install the Atom package [HTML Special Character Replacer](https://atom.io/packages/html-special-character-replacer)
+- Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
+- Install the VS Code extension [Replace Rules](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules)
 
 
 ## <a id="install"></a> Install Style Checker
 
 To install Style Checker:
 
-1. Copy the contents of [style-checker.js](style-checker.js).
-1. Launch Atom.
-1. In the Atom toolbar go to **Atom > Preferences**. The path differs slightly from this if on Windows.
-1. Click **Open Config Folder** in the side tab.
-1. In the **Project** directory tree go to
-**packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
-1. Delete the content.
-1. Paste in the content that you copied from
-[style-checker.js](style-checker.js) in this repository.
-1. Save your changes to `html-special-character-replacer.js`.
-1. Restart Atom.
+1. Copy the contents of [style-checker.json](style-checker.json).
+1. Launch VS Code.
+1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
+1. Run `Open Settings (JSON)`.
+1. Delete the content in `settings.json`.
+1. Paste in the content that you copied from [style-checker.json](style-checker.json) in this repository.
+1. Save your changes.
+1. Restart VS Code.
 
 
-## <a id="configure-bash"></a> (Optional) Configure your bash profile to enable fast updates
+## <a id="configure-bash-vscode"></a> (Optional) Configure your bash profile to enable fast updates
 
 To configure your bash profile so that you can update Style Checker with a single command:
+
+[To-do]
+
+
+## Update Style Checker
+
+To update to the latest version, follow one of these procedures:
+
+
+### Update Style Checker from the CLI
+
+To update Style Checker from the CLI:
+
+1. If you have not already done so, [Configure your bash profile to enable fast updates](#configure-bash-vscode).
+1. From the CLI, run:
+
+    ```
+    update_style
+    ```
+
+
+### Update Style Checker manually
+
+To update manually:
+
+1. Copy the contents of [style-checker.json](style-checker.json).
+1. Launch VS Code.
+1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
+1. Run `Open Settings (JSON)`.
+1. Delete the content in `settings.json`.
+1. Paste in the content that you copied from [style-checker.json](style-checker.json) in this repository.
+1. Save your changes.
+1. Restart VS Code.
+
+
+## Use Style Checker
+
+1. Open a document you want to edit in VS Code.
+1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
+1. Run `Replace Rules: Run Ruleset...` and then `Ruleset: Style Checker` to add comments to possible errors. 
+1. Review any comments that have appeared within your text.
+These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
+1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is important to delete them.
+
+
+# Style Checker for Atom
+
+GitHub will [sunset Atom in December 15, 2022]. Style Checker for Atom installation steps have been removed.
+
+
+## <a id="configure-bash-atom"></a> (Optional) Configure your bash profile to enable fast updates
+
+To configure your bash profile so that you can update Style Checker for Atom with a single command:
 
 1. Add the following to your bash profile:
 
@@ -50,16 +99,16 @@ To configure your bash profile so that you can update Style Checker with a singl
 1. Restart the terminal.
 
 
-## Update Style Checker
+## Update Style Checker for Atom
 
 To update to the latest Style Checker version, follow one of these procedures:
 
 
-### Update Style Checker from the CLI
+### Update Style Checker for Atom from the CLI
 
 To update Style Checker from the CLI:
 
-1. If you have not already done so, [Configure your bash profile to enable fast updates](#configure-bash).
+1. If you have not already done so, [Configure your bash profile to enable fast updates](#configure-bash-atom).
 1. From the CLI, run:
 
     ```
@@ -67,9 +116,9 @@ To update Style Checker from the CLI:
     ```
 
 
-### Update Style Checker manually
+### Update Style Checker for Atom manually
 
-To update Style Checker manually:
+To update manually:
 
 1. Copy the contents of
 [style-checker.js](style-checker.js).
@@ -85,7 +134,7 @@ To update Style Checker manually:
 1. Restart Atom.
 
 
-## Use Style Checker
+## Use Style Checker for Atom
 
 1. Open a document you want to edit in Atom.
 1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars**
