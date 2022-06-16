@@ -32,6 +32,16 @@ To configure your bash profile so that you can update Style Checker with a singl
 [To-do]
 
 
+## Use Style Checker
+
+1. Open a document you want to edit in VS Code.
+1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
+1. Run `Replace Rules: Run Ruleset...` and then `Ruleset: Style Checker` to add comments to possible errors. 
+1. Review any comments that have appeared within your text.
+These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
+1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is important to delete them.
+
+
 ## Update Style Checker
 
 To update to the latest version, follow one of these procedures:
@@ -62,17 +72,6 @@ To update manually:
 1. Save your changes.
 1. Restart VS Code.
 
-
-## Use Style Checker
-
-1. Open a document you want to edit in VS Code.
-1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
-1. Run `Replace Rules: Run Ruleset...` and then `Ruleset: Style Checker` to add comments to possible errors. 
-1. Review any comments that have appeared within your text.
-These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
-1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is important to delete them.
-
-
 # Style Checker for Atom
 
 GitHub will [sunset Atom in December 15, 2022](https://github.blog/2022-06-08-sunsetting-atom/). Style Checker for Atom installation steps have been removed.
@@ -97,6 +96,18 @@ To configure your bash profile so that you can update Style Checker for Atom wit
 
 1. Save your profile.
 1. Restart the terminal.
+
+
+## Use Style Checker for Atom
+
+1. Open a document you want to edit in Atom.
+1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars**
+to add comments to possible style errors.
+Comments typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
+1. Review any comments that have appeared within your text.
+These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards).
+1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is
+important to delete them.
 
 
 ## Update Style Checker for Atom
@@ -132,15 +143,3 @@ To update manually:
 [style-checker.js](style-checker.js). in this repository.
 1. Save your changes to `html-special-character-replacer.js`.
 1. Restart Atom.
-
-
-## Use Style Checker for Atom
-
-1. Open a document you want to edit in Atom.
-1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars**
-to add comments to possible style errors.
-Comments typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
-1. Review any comments that have appeared within your text.
-These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards).
-1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is
-important to delete them.
