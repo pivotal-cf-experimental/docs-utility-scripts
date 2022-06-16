@@ -75,7 +75,7 @@ These comments suggest changes that might be necessary to meet [IX Standards](ht
 
 # Style Checker for Atom
 
-GitHub will [sunset Atom in December 15, 2022]. Style Checker for Atom installation steps have been removed.
+GitHub will [sunset Atom in December 15, 2022](https://github.blog/2022-06-08-sunsetting-atom/). Style Checker for Atom installation steps have been removed.
 
 
 ## <a id="configure-bash-atom"></a> (Optional) Configure your bash profile to enable fast updates
