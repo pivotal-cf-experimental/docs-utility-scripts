@@ -19,15 +19,14 @@ To install Style Checker:
 1. Launch VS Code.
 1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
 1. Run `Open Settings (JSON)`.
-1. Delete the content in `settings.json`.
-1. Paste in the content that you copied from [style-checker.json](style-checker.json) in this repository.
+1. Paste the content outside the other JSON functions and before the final `}` in this file. If unsure, see the example file.
 1. Save your changes.
 1. Restart VS Code.
 
 
-## <a id="configure-bash-vscode"></a> (Optional) Configure your bash profile to enable fast updates
+## <a id="configure-zsh-vscode"></a> (Optional) Configure your zsh profile to enable fast updates
 
-To configure your bash profile so that you can update Style Checker with a single command:
+To configure your zsh profile so that you can update Style Checker with a single command:
 
 [To-do]
 
@@ -53,7 +52,7 @@ To update to the latest version, follow one of these procedures:
 
 To update Style Checker from the CLI:
 
-1. If you have not already done so, [Configure your bash profile to enable fast updates](#configure-bash-vscode).
+1. If you have not already done so, [Configure your zsh profile to enable fast updates](#configure-zsh-vscode).
 1. From the CLI, run:
 
     ```
@@ -69,8 +68,7 @@ To update manually:
 1. Launch VS Code.
 1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
 1. Run `Open Settings (JSON)`.
-1. Delete the content in `settings.json`.
-1. Paste in the content that you copied from [style-checker.json](style-checker.json) in this repository.
+1. Paste the content over your existing Style Checker functions. 
 1. Save your changes.
 1. Restart VS Code.
 
