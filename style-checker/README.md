@@ -19,7 +19,7 @@ To install Style Checker:
 1. Launch VS Code.
 1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
 1. Run `Open Settings (JSON)`.
-1. Paste the content outside the other JSON functions and before the final `}` in this file. If unsure, see the example file.
+1. Paste the content outside the other JSON functions and before the final `}` in this file. For an example of the placement, see [example-settings.json](example-settings.json).
 1. Save your changes.
 1. Restart VS Code.
 
