@@ -40,7 +40,8 @@ To configure your bash profile so that you can update Style Checker with a singl
 1. Wait a few seconds for Style Checker to finish running. Under default VS Code settings, comments turn green when the script has finished running.
 1. Review any comments that have appeared within your text.
 These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
-1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is important to delete them.
+1. Make your changes.
+1. Delete any leftover Style Checker comments by opening Find and Replace, enabling regex for Find, and searching for `<!-- .* -->`. This targets all HTML comments in the topic.
 
 
 ## Update Style Checker
@@ -105,7 +106,8 @@ To configure your bash profile so that you can update Style Checker for Atom wit
 1. Press F10 or, in the Atom toolbar, click **Packages > HTML Special Character Replacer > Replace Chars** to add comments to possible style errors. If you select a passage of text first, Style Checker runs only on your selected text.
 Comments typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
 1. Review any comments that have appeared within your text. These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards).
-1. Make your changes and delete the comments. DocWorks sometimes publishes HTML comments so it is important to delete them.
+1. Make your changes.
+1. Delete any leftover Style Checker comments by opening Find and Replace, enabling regex for Find, and searching for `<!-- .* -->`. This targets all HTML comments in the topic.
 
 
 ## Update Style Checker for Atom
