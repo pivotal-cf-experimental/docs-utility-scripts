@@ -40,7 +40,11 @@ To configure your zsh profile so that you can update Style Checker with a single
 1. Review any comments that have appeared within your text.
 These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
 1. Make your changes.
-1. Delete any leftover Style Checker comments by opening Find and Replace, enabling regex for Find, and searching for `<!-- .* -->`. This targets all HTML comments in the topic.
+
+### Tips
+
+1. To delete all instances of a particular Style Checker comment, select one, press Cmd+Shift+L to select all identical comments, and then press Delete.
+1. To delete all comments in the topic (Style Checker and otherwise), open Find and Replace, enable regex for Find, search for `<!-- .* -->`, and replace with nothing.
 
 
 ## Update Style Checker
