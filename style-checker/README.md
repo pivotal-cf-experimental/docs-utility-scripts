@@ -44,7 +44,7 @@ These comments suggest changes that might be necessary to meet [IX Standards](ht
 ### Tips
 
 1. To delete all instances of a particular Style Checker comment, select one, press Cmd+Shift+L to select all identical comments, and then press Delete.
-1. To delete all comments in the topic (Style Checker and otherwise), open Find and Replace, enable regex for Find, search for `<!-- .* -->`, and replace with nothing.
+1. To delete all comments in the topic (Style Checker and otherwise), open Find and Replace, enable regex for Find, search for `<!-- [^>]* --> `, and replace with nothing. Play it safe: go one by one instead of using Replace All.
 
 
 ## Update Style Checker
