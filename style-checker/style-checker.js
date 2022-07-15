@@ -2402,5 +2402,7 @@ text = text.replace(/(<td[^\>]*>\s*none\s*\<\/td\>(?![^`]*`[\s\.,:]|[^`]*```\s|[
 // Delete duplicate comments.
 
 text = text.replace(/(<!-- .* -->)\1/gm,'$1');
+	
+return text;
 
 };
