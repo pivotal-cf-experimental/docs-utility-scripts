@@ -5,6 +5,9 @@ Style Checker adds comments within text that flag deviations from
 It also adds comments that flag formatting errors, passive voice constructions, redundancy, and
 accessibility problems.
 
+> **Note:** Style Checker no longer uses the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules) or
+> [`deprecated-style-checker.json`](deprecated-style-checker.json).
+
 ## Prerequisites
 
 1. Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
@@ -81,11 +84,12 @@ To update Style Checker from the CLI:
 
 To update manually:
 
-1. Copy the contents of [style-checker.json](style-checker.json).
+1. Copy the content of [style-checker.json](style-checker.json).
 1. Launch VS Code.
 1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
 1. Run `Open Settings (JSON)`.
-1. Paste the content over your existing Style Checker functions. 
+1. Delete your existing Style Checker content.
+1. Paste in the new Style Checker content. 
 1. Save your changes.
 1. Restart VS Code.
 
