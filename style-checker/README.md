@@ -7,9 +7,23 @@ accessibility problems.
 
 ## Prerequisites
 
-- Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
-- Install the VS Code extension [Replace Rules](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules)
+1. Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
+1. Install the VS Code extension [regreplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace)
+1. On your MacBook, go to `~/.vscode/extensions/domir.regreplace-1.3.1/out/src`.
+1. Open `regreplace.js`.
+1. Change the line
 
+    ```js
+    const reg = command.global === false ? new RegExp(regexQuery) : new RegExp(regexQuery, 'g’);
+    ```
+
+    to 
+
+    ```js
+    const reg = command.global === false ? new RegExp(regexQuery, 'm') : new RegExp(regexQuery, 'gm’);
+    ```
+    
+1. Save your change.
 
 ## <a id="install"></a> Install Style Checker
 
@@ -35,17 +49,15 @@ To configure your zsh profile so that you can update Style Checker with a single
 
 1. Open a document you want to edit in VS Code.
 1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
-1. Run `Replace Rules: Run Ruleset...` and then `Ruleset: Style Checker` to add comments to possible errors. If you select a passage of text first, Style Checker runs only on your selected text.
-1. Wait a few seconds for Style Checker to finish running. Under default VS Code settings, comments turn green when the script has finished running.
+1. Run `RegReplace: Run all` to add comments to possible errors.
 1. Review any comments that have appeared within your text.
 These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
 1. Make your changes.
 
 ### Tips
 
-1. You don't need to run Style Checker on an entire document, although that's usually best practice. You can simply select the text you want to check and then run Style Checker on that text alone.
 1. To delete all instances of a particular Style Checker comment, select one, press Cmd+Shift+L to select all identical comments, and then press Delete.
-1. To delete all comments in the topic (Style Checker and otherwise), open Find and Replace, enable regex for Find, search for `<!-- .* -->`, and replace with nothing. Play it safe: go one by one instead of using Replace All.
+1. To delete all comments in the topic (Style Checker and otherwise), open Find and Replace, enable regex for Find, search for `<!--฿[^฿]*฿-->`, and replace with nothing. Play it safe: go one by one instead of using Replace All.
 
 
 ## Update Style Checker
@@ -79,7 +91,7 @@ To update manually:
 
 # Style Checker for Atom
 
-GitHub will [sunset Atom in December 15, 2022](https://github.blog/2022-06-08-sunsetting-atom/). Style Checker for Atom installation steps have been removed.
+GitHub will [sunset Atom on December 15, 2022](https://github.blog/2022-06-08-sunsetting-atom/). Style Checker for Atom installation steps have been removed.
 
 
 ## <a id="configure-bash-atom"></a> (Optional) Configure your bash profile to enable fast updates
