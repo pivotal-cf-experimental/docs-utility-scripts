@@ -54,7 +54,7 @@ To configure your zsh profile so that you can update Style Checker with a single
 1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
 1. Run `RegReplace: Run all` to add comments to possible errors.
 1. Review any comments that have appeared within your text.
-These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
+These comments suggest changes that might be necessary to meet [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards). They typically follow the pattern `<!--฿ |CORRECT-WORD| is preferred. ฿-->`.
 1. Make your changes.
 
 ### Tips
