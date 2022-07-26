@@ -8,7 +8,7 @@ accessibility problems.
 ## Prerequisites
 
 1. Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
-1. Install the VS Code extension [regreplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace)
+1. Install the VS Code extension [RegReplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace)
 1. On your MacBook, go to `~/.vscode/extensions/domir.regreplace-1.3.1/out/src`.
 1. Open `regreplace.js`.
 1. Change the line
