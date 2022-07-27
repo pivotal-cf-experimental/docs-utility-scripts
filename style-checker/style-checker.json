@@ -2342,4 +2342,3 @@
 {"name": "2342",  "regexp": "((<!--฿[^฿]*฿-->)\\1)", "replace": "$1"}
   ],
   "regreplace.on-save": false
-}
