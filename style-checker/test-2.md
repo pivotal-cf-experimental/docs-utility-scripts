@@ -31,10 +31,10 @@ This is [PCF Stuff](some-adaptor-link.html).
   See adaptor [Broker and Service Management](./management.html).
 
 1. (Optional) Under **Authentication Policy** select one of the following:
-	- **Disable Internal Authentication**: This option prevents authentication against the internal user store. You must have at least one external identity provider configured.
-	<p class="note"><strong>Note:</strong> The login page does not **include** the <strong>Email</strong> and <strong>Password</strong> fields if you select this option.</p>
-	- **Disable User Management**: This option prevents all users, including admins, from performing actions on internal users.
-	<p class="note"><strong>Note:</strong> The login page does not include <strong>Create Account</strong> and <strong>Reset Password</strong> links if you select this option.</p>
+  - **Disable Internal Authentication**: This option prevents authentication against the internal user store. You must have at least one external identity provider configured.
+  <p class="note"><strong>Note:</strong> The login page does not **include** the <strong>Email</strong> and <strong>Password</strong> fields if you select this option.</p>
+  - **Disable User Management**: This option prevents all users, including admins, from performing actions on internal users.
+  <p class="note"><strong>Note:</strong> The login page does not include <strong>Create Account</strong> and <strong>Reset Password</strong> links if you select this option.</p>
 
 Operators adaptor are responsible for the following:
 
