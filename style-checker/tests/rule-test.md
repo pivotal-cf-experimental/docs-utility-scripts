@@ -1,4 +1,4 @@
-There are 2327 tests. Use ^[^\n][^>]*$ to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+There are 2337 tests. Use ^[^\n][^>]*$ to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
 
 SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
 ```test -v 1.0.1 case```
@@ -28,6 +28,9 @@ test `tap-values.yml` case
 [Wrong Link Name](https://www.terraform.io/docs/import/index.html) start test
 [Wrong Link Name](https://community.pivotal.io./some-doc) start test
 [Link Name] (https://docs.broken-link.com/some-doc) start test
+[database](database.test.html)
+[database](database.test.md)
+[database](database.test.md.hbs)
 ![test](images/new-accelerator-deployed-v1.1.png)
 **Important**
 ## <a id='test-lorem-ipsum-lorem-ipsum'></a> Add
@@ -42,7 +45,6 @@ Start test <code>kubectl</code>.
 |n/a|
 See test-2
 | ... |
-See test-2
 SOMETHING -n APP ELSE```
 choose **button**
 Choose **button**
@@ -69,8 +71,8 @@ Read more at <a href="#anchor">Link Name</a> start test.
 **Caution:**
 See test-2
 See test-2
-See test-2
 # <a id='test'></a> Add
+See test-2
 ## test Case
 See test-2
 See test-2
@@ -888,6 +890,7 @@ test go router case
 test Go Router case
 test Go routine case
 test goes down case
+test going to be case
 test Golang case
 test gonna case
 test there is a good chance case
@@ -1939,6 +1942,8 @@ test this document case
 This document case
 test this manual case
 This manual case
+This page case
+test this page case
 test thrice case
 test Through case
 test thus case
@@ -2253,10 +2258,14 @@ test you'll case
 test You'll case
 test you're through case
 You're through case
+test you've configured case
+You've configured case
 test you are through case
 You are through case
 test you can run case
 test you choose to case
+test you have configured case
+You have configured case
 test you might want case
 test you need to case
 test You need to case
@@ -2329,3 +2338,7 @@ test <p class="warning> case
 <td style="text-align:center">N/A</td>
 <td style="text-align:center">NA</td>
 <td style="text-align:center">none</td>
+
+// Delete duplicate comments.
+
+text = text.replace(/(<!--฿[^฿]*฿-->)\1/gm,'$1');
