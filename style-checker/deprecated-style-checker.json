@@ -1,4 +1,4 @@
-    // This script is deprecated. It is left here as guidance for what you can delete before or after installing the new faster style-checker.json content used with the regreplace extension.
+    // This script is deprecated. It is left here as guidance for what you can delete after installing the new faster style-checker.json content used with the regreplace extension.
 
     "replacerules.rules": {
     // Last updated: June 27, 2022
