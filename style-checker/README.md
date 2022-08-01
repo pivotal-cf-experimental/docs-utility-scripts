@@ -5,8 +5,8 @@ Style Checker adds comments within text that flag deviations from
 It also adds comments that flag formatting errors, passive voice constructions, redundancy, and
 accessibility problems.
 
-> **Note:** Style Checker no longer uses the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules) or
-> [`deprecated-style-checker.json`](deprecated-style-checker.json).
+> **Note:** Style Checker no longer uses the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules).
+> The script for use in this extension is [`deprecated-style-checker.json`](deprecated-style-checker.json).
 
 ## Prerequisites
 
