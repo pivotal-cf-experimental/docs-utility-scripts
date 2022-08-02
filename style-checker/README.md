@@ -5,8 +5,10 @@ Style Checker adds comments within text that flag deviations from
 It also adds comments that flag formatting errors, passive voice constructions, redundancy, and
 accessibility problems.
 
-> **Note:** Style Checker no longer uses the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules).
-> The script for use in this extension is [`deprecated-style-checker.json`](deprecated-style-checker.json).
+> **Note:** If you're using Style Checker with the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules),
+> I recommend you switch to the much faster
+> [RegReplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace) extension as
+> described in the current installation steps.
 
 ## Prerequisites
 
@@ -17,36 +19,30 @@ accessibility problems.
 1. Change the line
 
     ```js
-    const reg = command.global === false ? new RegExp(regexQuery) : new RegExp(regexQuery, 'g’);
+    const reg = command.global === false ? new RegExp(regexQuery) : new RegExp(regexQuery, 'g');
     ```
 
-    to 
+    to
 
     ```js
-    const reg = command.global === false ? new RegExp(regexQuery, 'm') : new RegExp(regexQuery, 'gm’);
+    const reg = command.global === false ? new RegExp(regexQuery, 'm') : new RegExp(regexQuery, 'gm');
     ```
-    
+
 1. Save your change.
 
 ## <a id="install"></a> Install Style Checker
 
 To install Style Checker:
 
-1. Copy the contents of [style-checker.json](style-checker.json).
-1. Launch VS Code.
-1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
-1. Run `Open Settings (JSON)`.
-1. Paste the content outside the other JSON functions and before the final `}` in this file. For an example of the placement, see [example-settings.json](example-settings.json).
-1. Save your changes.
-1. Restart VS Code.
-
-
-## <a id="configure-zsh-vscode"></a> (Optional) Configure your zsh profile to enable fast updates
-
-To configure your zsh profile so that you can update Style Checker with a single command:
-
-[To-do]
-
+1. Copy the contents of [style-checker-for-reg-replace.json](style-checker-for-reg-replace.json).
+2. Start VS Code.
+3. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
+4. Run `Open Settings (JSON)`.
+5. Paste the content outside the other JSON functions and before the final `}` in this file.
+   I recommend placing the content beneath the other functions because of how long it is.
+   For an example of the placement, see [example-settings.json](example-settings.json).
+6. Save your changes.
+7. Restart VS Code.
 
 ## Use Style Checker
 
@@ -62,62 +58,27 @@ These comments suggest changes that might be necessary to meet [IX Standards](ht
 1. To delete all instances of a particular Style Checker comment, select one, press Cmd+Shift+L to select all identical comments, and then press Delete.
 1. To delete all comments in the topic (Style Checker and otherwise), open Find and Replace, enable regex for Find, search for `<!--฿[^฿]*฿-->`, and replace with nothing. Play it safe: go one by one instead of using Replace All.
 
-
 ## Update Style Checker
 
 To update to the latest version, follow one of these procedures:
 
-
-### Update Style Checker from the CLI
-
-To update Style Checker from the CLI:
-
-1. If you have not already done so, [Configure your zsh profile to enable fast updates](#configure-zsh-vscode).
-1. From the CLI, run:
-
-    ```
-    update_style
-    ```
-
-
-### Update Style Checker manually
+### Update Style Checker
 
 To update manually:
 
-1. Copy the content of [style-checker.json](style-checker.json).
-1. Launch VS Code.
-1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
-1. Run `Open Settings (JSON)`.
-1. Delete your existing Style Checker content.
-1. Paste in the new Style Checker content. 
-1. Save your changes.
-1. Restart VS Code.
+1. Copy the content of [style-checker-for-reg-replace.json](style-checker.json).
+2. Start VS Code.
+3. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
+4. Run `Open Settings (JSON)`.
+5. Delete your existing Style Checker content.
+6. Paste in the new Style Checker content.
+7. Save your changes.
+8. Restart VS Code.
 
 # Style Checker for Atom
 
-GitHub will [sunset Atom on December 15, 2022](https://github.blog/2022-06-08-sunsetting-atom/). Style Checker for Atom installation steps have been removed.
-
-
-## <a id="configure-bash-atom"></a> (Optional) Configure your bash profile to enable fast updates
-
-To configure your bash profile so that you can update Style Checker for Atom with a single command:
-
-1. Add the following to your bash profile:
-
-    ```
-    update_style () {
-      cd ~/workspace/docs-utility-scripts/style-checker
-      git pull
-      cd ~/.atom/packages/html-special-character-replacer/lib
-      cat ~/workspace/docs-utility-scripts/style-checker/style-checker.js > html-special-character-replacer.js
-      echo "Style Checker was updated."
-      cd ~/workspace
-    }
-    ```
-
-1. Save your profile.
-1. Restart the terminal.
-
+GitHub plans to [sunset Atom on December 15, 2022](https://github.blog/2022-06-08-sunsetting-atom/).
+I removed the Style Checker for Atom installation steps.
 
 ## Use Style Checker for Atom
 
@@ -128,31 +89,17 @@ Comments typically follow the pattern `<!-- |CORRECT-WORD| is preferred. -->`.
 1. Make your changes.
 1. Delete any leftover Style Checker comments by opening Find and Replace, enabling regex for Find, and searching for `<!-- .* -->`. This targets all HTML comments in the topic. Play it safe: go one by one instead of using Replace All.
 
-
 ## Update Style Checker for Atom
 
 To update to the latest Style Checker version, follow one of these procedures:
 
-
-### Update Style Checker for Atom from the CLI
-
-To update Style Checker from the CLI:
-
-1. If you have not already done so, [Configure your bash profile to enable fast updates](#configure-bash-atom).
-1. From the CLI, run:
-
-    ```
-    update_style
-    ```
-
-
-### Update Style Checker for Atom manually
+### Update Style Checker for Atom
 
 To update manually:
 
 1. Copy the contents of
 [style-checker.js](style-checker.js).
-1. Launch Atom.
+1. Start Atom.
 1. In the Atom toolbar go to **Atom > Preferences**. The path differs slightly from this if on Windows.
 1. Click **Open Config Folder** in the side tab.
 1. In the **Project** directory tree go to

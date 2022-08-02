@@ -1,9 +1,9 @@
-# Test 2
+# TAP Test
 
 <!--
-Test 1: There are 596 comments.
+Test 1: There are NUM comments.
 Test 2: There are no instances of `determine.*฿`.
-Test 3: There are 62036 chars without SC comments.
+Test 3: There are 62034 chars without SC comments.
 Test 4: There are 92276 chars with SC comments.
 Test 5: There are no instances of `<!--฿[^฿]*<!--฿`.
 Test 6: `<!--฿[^฿]*฿-\->` deletes all SC comments and nothing else.

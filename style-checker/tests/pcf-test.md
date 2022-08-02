@@ -1,9 +1,9 @@
-# Test 2
+# PCF Test
 
 <!--
-Test 1: There are NUMBER comments.
+Test 1: There are NUM comments.
 Test 2: No line containing `determine` has a comment.
-Test 3: There are 67353 chars sans SC comments.
+Test 3: There are 67361 chars sans SC comments.
 Test 4: There are 99375 chars with SC comments.
 Test 5: There are no instances of `<!--฿[^฿]*<!--฿`
 -->

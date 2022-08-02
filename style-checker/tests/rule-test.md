@@ -1,4 +1,6 @@
-There are 2337 tests. Use ^[^\n][^>]*$ to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+# Rule Test
+
+There are 2355 tests. Use ^[^\n][^>]*$ to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
 
 SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
 ```test -v 1.0.1 case```
@@ -208,8 +210,12 @@ test A deploy case
 test a given case
 test a HA cluster case
 test A HA cluster case
+test a logged in case
+A logged in case
 test a RSU case
 test A RSU case
+test a signed in case
+A signed in case
 test a single time case
 test a SQL case
 test able to case
@@ -343,6 +349,7 @@ test be sure case
 test Be sure case
 And before you do the thing, first start test
 Before you do the thing, first start test
+test belonging to it case
 Below case
 test below case
 test Best Practice case
@@ -1058,6 +1065,7 @@ test illegal case
 test Illegal case
 test import into case
 test import to case
+test it's important to case
 test imported into case
 test imported to case
 In a convenient way case
@@ -1273,6 +1281,10 @@ test menu lists case
 test Menu lists case
 test merge to case
 test merged to case
+test meta-thing case
+Meta-thing case
+test meta thing case
+Meta thing case
 test micro-services case
 test micro kernel case
 test Microsoft Corporation &trade;
@@ -1920,9 +1932,13 @@ test the following commands case
 test the GUI case
 The GUI case
 test the install case
+test the logged in case
+The logged in case
 test the machine case
 test the manual case
 The manual case
+test the signed in case
+The signed in case
 test the Tanzu Application Platform GUI.
 test the toggle case
 test there's case
@@ -1940,10 +1956,14 @@ test They've case
 test thirty case
 test this document case
 This document case
+test this logged in case
+test a logged in case
 test this manual case
 This manual case
 This page case
 test this page case
+test this signed in case
+test a signed in case
 test thrice case
 test Through case
 test thus case
