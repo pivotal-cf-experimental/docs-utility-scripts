@@ -66,7 +66,7 @@ To update to the latest version, follow one of these procedures:
 
 To update manually:
 
-1. Copy the content of [style-checker-for-reg-replace.json](style-checker.json).
+1. Copy the content of [style-checker-for-reg-replace.json](style-checker-for-reg-replace.json).
 2. Start VS Code.
 3. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
 4. Run `Open Settings (JSON)`.
@@ -98,7 +98,7 @@ To update to the latest Style Checker version, follow one of these procedures:
 To update manually:
 
 1. Copy the contents of
-[style-checker.js](style-checker.js).
+[style-checker-for-atom.js](style-checker-for-atom.js).
 1. Start Atom.
 1. In the Atom toolbar go to **Atom > Preferences**. The path differs slightly from this if on Windows.
 1. Click **Open Config Folder** in the side tab.
@@ -106,6 +106,6 @@ To update manually:
 **packages > html-special-character-replacer > lib > html-special-character-replacer.js**.
 1. Delete the content.
 1. Paste in the content that you copied from
-[style-checker.js](style-checker.js). in this repository.
+[style-checker-for-atom.js](style-checker-for-atom.js). in this repository.
 1. Save your changes to `html-special-character-replacer.js`.
 1. Restart Atom.
