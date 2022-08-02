@@ -56,7 +56,12 @@ These comments suggest changes that might be necessary to meet [IX Standards](ht
 ### Tips
 
 1. To delete all instances of a particular Style Checker comment, select one, press Cmd+Shift+L to select all identical comments, and then press Delete.
-1. To delete all comments in the topic (Style Checker and otherwise), open Find and Replace, enable regex for Find, search for `<!--฿[^฿]*฿-->`, and replace with nothing. Play it safe: go one by one instead of using Replace All.
+2. To delete all Style Checker comments in the topic:
+   1. Press Cmd+F.
+   2. Press Cmd+Option+R to enable regex.
+   3. Find `<!--฿[^฿]*฿-->`.
+   4. Replace it with nothing.
+   5. Repeat for every Style Checker comment. To be safe, go one by one instead of using Replace All.
 
 ## Update Style Checker
 
