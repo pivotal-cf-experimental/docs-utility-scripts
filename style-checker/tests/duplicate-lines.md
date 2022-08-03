@@ -110,10 +110,4 @@ This is a duplicate sentence. This is a duplicate sentence.
 This is a duplicate sentence. This is a duplicate sentence.
 This is a duplicate sentence. This is a duplicate sentence.
 This is a duplicate sentence. This is a duplicate sentence.
-This is a duplicate sentence. This is a duplicate sentence.
-This is a duplicate sentence. This is a duplicate sentence.
-This is a duplicate sentence. This is a duplicate sentence.
-This is a duplicate sentence. This is a duplicate sentence.
-This is a duplicate sentence. This is a duplicate sentence.
-This is a duplicate sentence. This is a duplicate sentence.
-This is a duplicate sentence. This is a duplicate sentence.
+
