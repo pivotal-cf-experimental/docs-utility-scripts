@@ -23,12 +23,19 @@ Follow these procedures to add Style Checker to VS Code.
   [Replace Rules](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules).
   RegReplace is recommended, but some have failed to make it work on their machines.
 
-### Configure RegReplace to run multiline searches
+### <a id="multiline"></a> Configure RegReplace to run multiline searches
 
 Some Style Checker commands depend on searching across multiple lines.
 To configure RegReplace to run multiline searches:
 
-1. On your MacBook, go to `~/.vscode/extensions/domir.regreplace-1.3.1/out/src`.
+1. On your MacBook, go to 
+
+  ```console
+  ~/.vscode/extensions/domir.regreplace-VERSION/out/src
+  ```
+  
+  Where `VERSION` is your RegReplace version. For example, `1.3.1` or `1.3.0`.
+   
 1. Open `regreplace.js`.
 1. Change the line
 
@@ -69,6 +76,20 @@ To install Style Checker:
 1. Review any comments that have appeared within your text.
    They typically follow the pattern `<!--฿ |CORRECT-WORD| is preferred. ฿-->`.
 1. Make your changes.
+
+### Troubleshooting RegReplace
+
+If you encounter the following error:
+
+  ```text
+  Command 'RegReplace: Run all' resulted in an error (command 'regreplace.regreplace' not found)
+  ```
+
+1. Install the previous version of RegReplace (v1.3.0). Do so by clicking the down arrow next to the 
+   **Uninstall** button on the extension and then clicking **Install Another Version...**.
+1. Click the **Reload Required** button.
+1. Repeat the steps in [Configure RegReplace to run multiline searches](#multiline) to edit the new config 
+   file for your RegReplace version.
 
 ### Delete Style Checker comments
 
