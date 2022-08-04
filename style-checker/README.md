@@ -81,15 +81,17 @@ To install Style Checker:
 
 If you encounter the following error:
 
-  ```text
-  Command 'RegReplace: Run all' resulted in an error (command 'regreplace.regreplace' not found)
-  ```
+```text
+Command 'RegReplace: Run all' resulted in an error (command 'regreplace.regreplace' not found)
+```
 
-1. Install RegReplace v1.3.0. Do so by clicking the down arrow next to the **Uninstall** button on the 
-   extension and then clicking **Install Another Version...**.
-1. Click the **Reload Required** button.
-1. Repeat the steps in [Configure RegReplace to run multiline searches](#multiline) to edit the new config 
-   file for your RegReplace version.
+Follow these steps to install RegReplace v1.3.0:
+
+1. Click the extensions button on the VS Code side bar.
+1. Click the RegReplace extension.
+1. Click the down arrow next to the **Uninstall** button, click **Install Another Version...**, and then click **1.3.0** in the drop-down menu.
+1. Click the **Reload Required** button that appears on the extension page.
+1. Repeat the steps in [Configure RegReplace to run multiline searches](#multiline) to edit `regreplace.js` in the new `regreplace-1.3.0` directory.
 
 ### Delete Style Checker comments
 
