@@ -85,8 +85,8 @@ If you encounter the following error:
   Command 'RegReplace: Run all' resulted in an error (command 'regreplace.regreplace' not found)
   ```
 
-1. Install the previous version of RegReplace (v1.3.0). Do so by clicking the down arrow next to the 
-   **Uninstall** button on the extension and then clicking **Install Another Version...**.
+1. Install RegReplace v1.3.0. Do so by clicking the down arrow next to the **Uninstall** button on the 
+   extension and then clicking **Install Another Version...**.
 1. Click the **Reload Required** button.
 1. Repeat the steps in [Configure RegReplace to run multiline searches](#multiline) to edit the new config 
    file for your RegReplace version.
