@@ -1075,7 +1075,7 @@ For a more adaptor detailed manifest snippet, see
 The credentials adaptor for a given service binding are stored with the following format:
 
 ```bash
-/C/:SERVICE-GUID/:SERVICE-INSTANCE-GUID/:BINDING-GUID/CREDENTIALS
+/C/:SERVICE-GUID/:SERVICE-INSTANCE GUID/:BINDING-GUID/CREDENTIALS
 ```
 
 The plaintext adaptor credentials are stored in runtime CredHub under this key, and the
