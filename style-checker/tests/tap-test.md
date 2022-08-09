@@ -205,7 +205,6 @@ The adaptor **default** port is not configurable.
 </table>
 
 ## <a id="configure-bosh"></a>Configure Your BOSH Director
-
 See adaptor the following topics for how to set up your BOSH Director:
 
 - [Software determine Requirements](#software-reqs)
@@ -390,7 +389,7 @@ below.
 > **Note :** The client adaptor or [user](must-have-the-following) permissions.
 
 - **If determine using client credentials** then, as of Cloud Foundry v238, the UAA client must have
-  the authority `cloud_controller.admin`.
+  the authority `cloud_controller.admin`;
 - **If determine using user credentials** then the user must be a member of the `scim.read` and
   `cloud_controller.admin` groups.
 

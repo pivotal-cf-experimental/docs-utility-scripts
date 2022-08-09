@@ -1,10 +1,10 @@
 # Rule Test
 
-There are 2355 tests. Use ^[^\n][^>]*$ to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+There are 2526 tests. Use ^(?!See tap-test)[^\s\\/][^>]*$ to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
 
 SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
 ```test -v 1.0.1 case```
-See test-2
+See tap-test
 ![test test test test](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test](images/test-test.png)
 **NOTE:**
@@ -35,6 +35,7 @@ test `tap-values.yml` case
 [database](database.test.md.hbs)
 ![test](images/new-accelerator-deployed-v1.1.png)
 **Important**
+**Start** is inactive
 ## <a id='test-lorem-ipsum-lorem-ipsum'></a> Add
 ## <a id='test.contains-a-period'></a> Add
 ## <a id='test contains-a-space'></a> Add
@@ -45,11 +46,13 @@ Start test <code>kubectl</code>.
 >NOTE:
 ||
 |n/a|
-See test-2
-| ... |
+See tap-test
+See tap-test
 SOMETHING -n APP ELSE```
 choose **button**
 Choose **button**
+navigate to [some site](some-link)
+Navigate to [some site](some-link)
 SOMETHING -n PRIVATE-KEY-FILE ELSE```
 run: <code>$ start test
 run: ```$ start test```
@@ -57,6 +60,8 @@ run: <pre class="terminal"> start test</pre>
 running: <code>$ start test
 running: ```$ start test```
 SOMETHING -n SERVICE-INSTANCE ELSE```
+type `case`
+Type `case`
 SOMETHING -n YOUR-PRIVATE-KEY ELSE```
 SOMETHING -n YOUR-VM ELSE```
 ```This is a PLACE-HOLDER```
@@ -65,19 +70,20 @@ Start test CVE-2016-1234
 ## 1. test 1
 `errand_name` errand is wrong.
 `errand_name` errands are wrong.
+`this is an unescaped {{ vars.tap_version }}`
 ```<strong>test</strong>```
 Start test `kubectl`.
 test `tanzu` CLI
 Read more at <a href="#anchor">Link Name</a> start test.
 [Link Name](#anchor) start test.
 **Caution:**
-See test-2
-See test-2
+See tap-test
+See tap-test
 # <a id='test'></a> Add
-See test-2
+See tap-test
+See tap-test
+See tap-test
 ## test Case
-See test-2
-See test-2
 # test case
 ### test case Case
 ## <a id='test'></a> header
@@ -96,19 +102,23 @@ Where `PLACEHOLDER_TEXT` means something
 
 
 
-See test-2
+See tap-test
 Do this, then do that start test.
 Percona 45.6-9. start test
 test 'case' case
 test -- case
 test for shutdown case
 test emulator case
+test Architect case
 test Backend case
 test Beta start test
+Channel Partners case
+Channel partners case
 test Component case
 test Components case
 test Desktop case
 test Jumpbox case
+test Knowledge base case
 test Pod case
 test Pods case
 test Professional Beta case
@@ -147,7 +157,6 @@ test he case
 test He case
 test http://www.vmware.com case
 test https://www.vmware.com case
-test like case
 test mail case
 test Mail case
 test she case
@@ -219,8 +228,6 @@ A signed in case
 test a single time case
 test a SQL case
 test able to case
-abort start test
-Abort start test
 Above test
 test above case
 test actively case
@@ -267,10 +274,14 @@ test alpha-numeric case
 test also possible to case
 test Amazon Web Service case
 test an earlier step case
+test an end user case
+An end user case
 test an UAA case
 test An UAA case
 test and/or case
 test anti-virus case
+test any end-users case
+Any end-users case
 test Anytime case
 test anytime case
 test API Portal case
@@ -301,7 +312,9 @@ test Application VM case
 test Application Workload case
 test Application Workloads case
 test AppTX case
+Apr 1st  start test
 test Apr case
+April 1st  start test
 test are going to case
 test artefact case
 test Artefact case
@@ -321,10 +334,14 @@ test at the time of writing case
 test At the time of writing case
 test at this point case
 test At this point case
+Aug 1st  start test
 test Aug case
+August 1st  start test
 test auth case
 test auto-run case
 test Auto-run case
+test auto run case
+test Auto run case
 test auto TLS case
 availability zone start test
 Availability zone start test
@@ -341,6 +358,7 @@ test Back-up case
 Back slash case
 test back slash case
 test backend case
+test bandwidth case
 test basically case
 test Basically case
 be duplicated by you start test
@@ -362,20 +380,43 @@ test bit-map case
 test Bit-map case
 test bit-maps case
 test Bit-maps case
+test black-hat case
+Black-Hat case
+Black-hat case
 test black-list case
-test Black-list case
+Black-list case
+test black-listed case
+Black-listed case
+test black-lists case
+Black-lists case
 Black-out start test
 Start black-out test
+Black-out start test
+Start black-out test
+Black-outs start test
+Start black-outs test
 test black hat case
 test Black hat case
 test Black Hat case
 test black list case
+Black list case
+test black listed case
+Black listed case
+test black lists case
+Black lists case
 test black screen of death case
 test Black screen of death case
 test Black Screen of Death case
 test blacklist case
+Blacklist case
+test blacklisted case
+Blacklisted case
+test blacklists case
+Blacklists case
 Blackout start test
 Start blackout test
+Blackouts start test
+Start blackouts test
 test blob store case
 test Blue-Green deployment case
 test blue screen of death case
@@ -401,8 +442,20 @@ test bring down case
 test Bring down case
 test bring up case
 test Bring up case
+test brings down case
+test Brings down case
+test brings up case
+test Brings up case
 test Brokerpak case
 test Brokerpaks case
+Brown-out start test
+Start brown-out test
+Brown-outs start test
+Start brown-outs test
+Brownout start test
+Start brownout test
+Brownouts start test
+Start brownouts test
 test browse case
 test Browse case
 test BSOD case
@@ -416,16 +469,22 @@ test Bumped case
 test bumped case
 test bumps case
 test Bumps case
+Bus-Logic case
+Bus-logic case
+test bus-Logic case
+test bus-logic case
 test Bus Logic case
+Bus logic case
+test bus Logic case
+test bus logic case
+test buslogic case
+test button is inactive case
+test buttons are inactive case
 test by means of case
 test cakewalk case
 test Cakewalk case
 test can be case
 test can get created case
-test canceled case
-test Canceled case
-test canceling case
-test Canceling case
 test case sensitive case
 test Case sensitive case
 test catalogue case
@@ -476,6 +535,8 @@ test chip set case
 test Chip set case
 test chip sets case
 test Chip sets case
+test choose which case
+Choose which case
 test chooses to case
 Clam AV start test
 Clam av start test
@@ -491,12 +552,18 @@ test CLi text case
 test Cli text case
 click Save start test
 Click Save start test
+test click in case
+Click in case
 test Click OK and OK case
 test click OK and OK case
 test click on case
-test Click on case
+Click on case
 click the Save start test
 Click the Save start test
+test click the drop-down menu case
+Click the drop-down menu case
+test click the spin box case
+Click the spin box case
 test client/server case
 test cloud-native-buildpack case
 test Cloud-Native-buildpack case
@@ -582,6 +649,8 @@ test concerned with case
 test Config case
 test Confirm if case
 test confirm if case
+test conformant case
+Conformant case
 test cons case
 test Cons case
 test console OS case
@@ -610,6 +679,8 @@ test CSB on AWS case
 test CSB on Azure case
 test CSB on GCP case
 test cURL case
+test currently case
+Currently case
 test cursor case
 Custom resource definition start test
 Custom Resource Definition start test
@@ -655,7 +726,9 @@ test Date: x case
 test date: X case
 test DB case
 test DBs case
+Dec 1st start test
 test Dec case
+December 1st start test
 test dedicated VM plan case
 test Dedicated VM plan case
 test Dedicated VM Plan case
@@ -670,6 +743,8 @@ Deselect the box case
 test deselect the box case
 test designed to case
 test desire case
+test desired case
+Desired case
 test details on case
 test Details on case
 test determine case
@@ -725,8 +800,12 @@ test Doppler server case
 test Doppler VM case
 test doppler case
 test double-parens expression case
+test double check case
+test Double check case
 test double click case
 test Double click case
+test double tap case
+Double tap case
 test down-time case
 test Down-time case
 test down load case
@@ -738,8 +817,12 @@ test Down time case
 test downscale case
 test drag and drop case
 test Drag and drop case
+test drill-down case
+test Drill-down case
 test drill down case
 test Drill down case
+test drilldown case
+test Drilldown case
 test drop-down case
 test drop-down list case
 test Drop-down list case
@@ -778,8 +861,13 @@ test eighty case
 test either of the following: * * *
 test either of the following: <ul><li><li><li>
 test eligible case
+test ellipsis icon case
+test ellipsis menu case
+End-users case
 test end up being case
 test ends up being case
+test ensure case
+Ensure case
 test enter in case
 test enter the following case
 test env case
@@ -814,7 +902,6 @@ Exercise case
 test exercise case
 test expand arrow case
 test expected case
-test experimental case
 test export from case
 test export out of case
 test exported from case
@@ -823,13 +910,18 @@ test fail-over case
 test failover case
 test FAQ case
 test FASTT case
+test FASTT case
 test Fault Tolerance case
+Feb 1st start test
 test Feb case
+February 1st start test
 test female case
 test Female case
 test Fiber Channel adapter case
 test fiber channel adapter case
 test fibre channel adapter case
+test text field case
+test text fields case
 test fifty case
 test file-system case
 test File-system case
@@ -848,6 +940,10 @@ test Filesystem case
 test filesystems case
 test Filesystems case
 test fingerd case
+test fire-wall case
+test Fire-wall case
+test fire-walls case
+test Fire-walls case
 test fire wall case
 test Fire wall case
 test fire walls case
@@ -934,6 +1030,8 @@ test Guests case
 test guid case
 test HAC case
 had been test case
+test hamburger case
+Hamburger case
 test hand held case
 test Hand held case
 test handicap case
@@ -992,6 +1090,8 @@ Test high [CVE-2022-1664]
 test high availability cluster case
 test High availability cluster case
 test High Availability case
+test higher speed case
+Higher speed case
 test highlevel case
 test Highlevel case
 test highly recommend case
@@ -1026,6 +1126,7 @@ test hotkey case
 test Hotkey case
 test hotkeys case
 test Hotkeys case
+Hover case
 test hover case
 test HTTP Router case
 test Http case
@@ -1057,9 +1158,9 @@ test Id case
 test iD case
 test IDP case
 test IDPs case
-test if desired case
-test If desired case
-test If you want to case
+If you like case
+test if you like case
+If you want to case
 test if you want to case
 test illegal case
 test Illegal case
@@ -1084,6 +1185,10 @@ In the case that
 test in the case that
 test in the terminal window case
 test in unexpected ways case
+test inactive button case
+test inactive buttons case
+test inactive text box case
+test inactive text boxes case
 test included in case
 independent service vendor start test
 Independent service vendor start test
@@ -1127,10 +1232,14 @@ test is necessary to case
 test is possible to case
 test is used to case
 test Isolation Segments case
+test issue case
+Issue case
 test issue the case
 test Issue the case
 test issues the case
 test Issues the case
+test issues case
+Issues case
 test it'll case
 it doesn't know
 it doesn't need
@@ -1153,7 +1262,9 @@ it remembers
 it sees
 it understands
 it wants
+Jan 1st start test
 test Jan case
+January 1st start test
 test jar case
 test java case
 test javascript case
@@ -1162,6 +1273,10 @@ test jaz drive case
 test json case
 test jsonpath case
 test JSONpath case
+Jul 1st start test
+July 1st start test
+Jun 1st start test
+June 1st start test
 test just so happened case
 test just so happens case
 test just case
@@ -1169,6 +1284,8 @@ test Just case
 test K8s case
 test k8s case
 test K8S case
+test kebab case
+Kebab case
 test keep-alive case
 test keep in mind case
 test Keep in mind case
@@ -1179,7 +1296,6 @@ test key/value pairs case
 test Key/value pairs case
 Kill start case
 test kill case
-test Knowledge base case
 test kubectl CLI case
 test kubectl command line tool case
 test kubectl tool case
@@ -1201,7 +1317,10 @@ test launch case
 test Launch case
 test launches case
 test Launches case
+test left-hand case
+Left-hand case
 left hand start test
+Left hand case
 test legal case
 test Legal case
 test let's case
@@ -1265,12 +1384,16 @@ test make sure case
 test male case
 test Male case
 test manuals case
+Mar 1st start test
 test Mar case
+March 1st start test
 Master test case
 test master case
 test Material data case
 test max case
 test Max case
+May 1st start test
+May 1st start test
 test may case
 test Medium term case
 test medium term case
@@ -1279,6 +1402,8 @@ test menu list case
 test Menu list case
 test menu lists case
 test Menu lists case
+test menu option case
+test menu options case
 test merge to case
 test merged to case
 test meta-thing case
@@ -1300,6 +1425,8 @@ test modify case
 test Modify case
 test More information can case
 test more information is case
+test most end-users case
+Most end-users case
 test mouse over case
 test Mouse over case
 test mouse pointer case
@@ -1332,8 +1459,17 @@ test mustn't case
 test nameserver case
 navigate to the Save start test
 Navigate to the Save start test
+test navigation bar case
+Navigation bar case
+test navigation panel case
+Navigation panel case
+test navigation section case
+Navigation section case
+test need to case
 test needn't case
 test needs to case
+test newer case
+Newer case
 test next release case
 test NGINX case
 test Nginx case
@@ -1356,14 +1492,18 @@ test note that case
 test Notice that case
 test notice that case
 test noting that case
+Nov 1st start test
 test Nov case
 test Novell Netware case
+November 1st start test
 now duplicated by you start test
 test Nozzle case
 test NSX Edge case
 test oAuth case
 test Oauth case
+Oct 1st start test
 test Oct case
+October 1st start test
 test of your choosing case
 Offering case
 test offering case
@@ -1474,6 +1614,8 @@ test PID file case
 test pid file case
 test pidfile case
 test PIDfile case
+test pinch case
+Pinch case
 test pinniped case
 test Pivotal, Inc case
 test Pivotal Cloud Foundry Dev case
@@ -1561,6 +1703,7 @@ test Prior to case
 test procfile case
 test prod case
 test Product Version Matrix case
+test program case
 test prompt case
 test pros case
 test Pros case
@@ -1615,6 +1758,8 @@ test recommend against case
 test recommendation on case
 test recommendations on case
 test recommends against case
+test redo log-file case
+test redo log file case
 test refarch case
 test refer to case
 test Refer to case
@@ -1634,6 +1779,9 @@ test results in case
 test resurrector case
 Right-click menu case
 test right-click menu case
+test right-hand case
+Right-hand case
+Right hand case
 right hand start test
 test RMQ dashboard case
 test RMQ Dashboard case
@@ -1695,6 +1843,8 @@ test selector case
 test Selector case
 Self signed case
 test self signed case
+Sep 1st start test
+September 1st start test
 test Service-Gateway access case
 test Service-gateway Access case
 test Service-Gateway Access case
@@ -1756,13 +1906,20 @@ Slave test case
 test slave case
 test slice and dice case
 test Slice and dice case
+test slider case
+Slider case
+test sliders case
+Sliders case
 test smoketest case
 test Smoketest case
 test smoketests case
 test Smoketests case
 test socks case
 test Socks case
+test software application case
 test Software Catalog case
+test some end-users case
+Some end-users case
 test some time case
 test Some time case
 test somebody's case
@@ -1784,6 +1941,8 @@ test SpaceBar case
 test Spacebar case
 test spec case
 test specs case
+speed higher case
+Speed higher case
 test spread sheet case
 test Spread sheet case
 test spread sheets case
@@ -1794,8 +1953,8 @@ test Spring framework 0 case
 test springboot case
 test SpringBoot case
 test ssh case
-test standalone-
-test Standalone-
+test stand-alone
+test Stand-alone
 test standard error case
 test standard input case
 test standard output case
@@ -1827,6 +1986,8 @@ test sub-directory case
 test sub-property case
 test subpar case
 test Subpar case
+test successfully case
+Successfully case
 test suffer case
 test Suffer case
 test suite case
@@ -1846,6 +2007,8 @@ test synch case
 test Synch case
 test synchronize case
 test synchronized case
+test tab to case
+Tab to case
 <table></table> *
 test take one of the following actions case
 test Tanzu App Network case
@@ -1890,8 +2053,8 @@ test Terminate case
 test terminates case
 test Terminates case
 test text area case
-test text field case
-test text fields case
+test text box is inactive case
+test text boxes are inactive case
 test textbox case
 test that'll case
 test That'll case
@@ -1927,6 +2090,10 @@ The act of case
 test the Apps Manager case
 test the deploy case
 test The deploy case
+test the end-users case
+The end-users case
+test the end user case
+The end user case
 test due to the fact that case
 test the following commands case
 test the GUI case
@@ -1937,6 +2104,10 @@ The logged in case
 test the machine case
 test the manual case
 The manual case
+test the net case
+test the Net case
+The net case
+The Net case
 test the signed in case
 The signed in case
 test the Tanzu Application Platform GUI.
@@ -1962,8 +2133,12 @@ test this manual case
 This manual case
 This page case
 test this page case
+test this particular case
+This particular case
 test this signed in case
 test a signed in case
+test this specific case
+This specific case
 test thrice case
 test Through case
 test thus case
@@ -2025,8 +2200,8 @@ test TriggerMesh Sources for Amazon Web Services case
 test triple-parens expression case
 test try running case
 Try running case
+test Turbo linux case
 test turbolinux case
-test Turbolinux case
 test Turn off case
 test turn off case
 test Turn on case
@@ -2044,18 +2219,18 @@ Un-check case
 test un-register case
 test un-tick case
 test uncheck case
-test Uncheck case
+Uncheck case
 test Understanding case
 test unfortunately case
 test Unfortunately case
 test Uniform Resource Locator case
 test unix case
-test UNIX case
 test Unix case
-test unix case
 test unregister case
 test unsecure case
 test Unsecure case
+test unselect case
+Unselect case
 test untick case
 test upgradeable case
 test upper case case
@@ -2126,8 +2301,12 @@ test Vice versa case
 test vim case
 test VIM case
 test Virtual Infrastructure case
-test Virtual Machine Metrics case
 test virtual machine case
+Virtual Machine case
+test Virtual Machine Metrics case
+test virtual machines case
+Virtual machines case
+Virtual Machines case
 test virtue case
 test vm case
 test Vm case
@@ -2158,6 +2337,9 @@ test VScode case
 test war room case
 test War room case
 test War Room case
+test war rooms case
+test War rooms case
+test War Rooms case
 test warning box case
 test Warning box case
 test Warning window case
@@ -2211,8 +2393,13 @@ test while there case
 test While there case
 test while concurrently case
 test while simultaneously case
+test white-hat case
+White-Hat case
+White-hat case
 test white-list case
 White-list test case
+test white-lists case
+White-lists test case
 test white-paper case
 test White-paper case
 test white hat case
@@ -2222,10 +2409,10 @@ test white list case
 White list test case
 test white listed case
 White listed test case
+test white lists case
+White lists test case
 test whitelist case
 Whitelist test case
-test whitelisted case
-Whitelisted test case
 test whitepaper case
 test Whitepaper case
 test who'll case
@@ -2287,15 +2474,11 @@ test you choose to case
 test you have configured case
 You have configured case
 test you might want case
-test you need to case
-test You need to case
 test your machine case
 test youtube case
 test Youtube case
 test zip drive case
-test Zip drive case
 test zip drives case
-test Zip drives case
 1. Finally
 1. First
 1. Next
@@ -2314,18 +2497,6 @@ test Zip drives case
 0 or lower start test
 v1.2.*
 128&nbsp;bit start test
-1st April start test
-1st August start test
-1st December start test
-1st February start test
-1st January start test
-1st July start test
-1st June start test
-1st March start test
-1st May start test
-1st November start test
-1st October start test
-1st September start test
 0GB start test
 0KB start test
 test psod case
@@ -2335,12 +2506,12 @@ test psod case
 * START-test is the name of your test.
 * This is a test case:
 test Cloud Controller Database case
-- This ends with a semi-colon;
+See tap-test
 `/subscriptions/899bf076-632b-4143-b015-43da8179e53f/resourceGroups/broker-cf-test/providers/Microsoft.Sql/servers`.
 # test\case topic title
-## This is a test case
-See test-2
-See test-2
+See tap-test
+See tap-test
+See tap-test
 Note - start test
 Release Date: case
 Release date: case
@@ -2361,4 +2532,4 @@ test <p class="warning> case
 
 // Delete duplicate comments.
 
-text = text.replace(/(<!--฿[^฿]*฿-->)\1/gm,'$1');
+<!--฿ |twice| is preferred. ฿--><!--฿ |twice| is preferred. ฿-->
