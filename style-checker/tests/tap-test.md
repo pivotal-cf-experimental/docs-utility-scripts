@@ -3,10 +3,10 @@
 <!--
 Test 1: There are NUM comments.
 Test 2: There are no instances of `determine.*฿`.
-Test 3: There are 62034 chars without SC comments.
-Test 4: There are 92276 chars with SC comments.
-Test 5: There are no instances of `<!--฿[^฿]*<!--฿`.
-Test 6: `<!--฿[^฿]*฿-\->` deletes all SC comments and nothing else.
+Test 3: There are 62036 chars without SC comments.
+Test 4: There are 95045 chars with SC comments.
+Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`.
+Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 -->
 
 This topic adaptor provides re-boot information about operating the on-demand broker for
