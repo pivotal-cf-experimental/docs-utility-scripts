@@ -5,23 +5,19 @@ The comments flag deviations from
 [IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards),
 passive voice constructions, redundancy, awkward phrasing, and accessibility problems.
 
-You can run Style Checker in one of several text editor extensions.
-
-## <a id="style-checker"></a> Style Checker for VS Code
-
-Follow these procedures to add Style Checker to VS Code.
+Follow these procedures to install Style Checker.
 
 > **Note:** If you use Style Checker with the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules),
 > I recommend you try the much faster
 > [RegReplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace) extension as
 > described in the installation steps.
 
-### <a id="prereqs"></a> Style Checker for VS Code Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 - Install [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
 - Install [RegReplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace)
 
-### <a id="add"></a> Add Style Checker to settings.json
+## <a id="add"></a> Add Style Checker to settings.json
 
 To add Style Checker to `settings.json`:
 
@@ -35,7 +31,7 @@ To add Style Checker to `settings.json`:
 6. Save your changes.
 7. Restart VS Code.
 
-### <a id="run"></a> Run Style Checker for VS Code
+## <a id="run"></a> Run Style Checker
 
 1. Open a document you want to edit in VS Code.
 1. If on macOS, press Cmd+Shift+P to open the Command Palette. If on Windows, press Ctrl+Shift+P.
@@ -44,7 +40,7 @@ To add Style Checker to `settings.json`:
    They typically follow the pattern `<!--฿ |CORRECT-WORD| is preferred. ฿-->`.
 1. Make your changes and [delete the Style Checker comments](#delete).
 
-### <a id="tshoot"></a> Troubleshooting RegReplace
+## <a id="tshoot"></a> Troubleshooting RegReplace
 
 If you encounter the following error, the extension did not install properly:
 
@@ -63,7 +59,7 @@ Command 'RegReplace: Run all' resulted in an error (command 'regreplace.regrepla
 4. If installing RegReplace v1.3.0 didn't work, switch back to v1.3.1.
 5. If switching back to v1.3.1. didn't work, tell Richard Johnson on Slack.
 
-### <a id="multiline"></a> Configure RegReplace to run multiline searches
+## <a id="multiline"></a> Configure RegReplace to run multiline searches
 
 Some Style Checker commands search across multiple lines.
 To configure RegReplace to run multiline searches:
@@ -91,7 +87,7 @@ To configure RegReplace to run multiline searches:
 
 4. Save your change.
 
-### <a id="delete"></a> Delete Style Checker comments
+## <a id="delete"></a> Delete Style Checker comments
 
 You can undo Style Checker changes by pressing Cmd+Z.
 To quickly delete Style Checker comments after making other changes in your topic that you don't want
@@ -106,7 +102,7 @@ to lose, follow these steps:
    4. Replace it with nothing.
    5. Repeat for every Style Checker comment. To be safe, go one by one instead of using Replace All.
 
-### <a id="update"></a> Update Style Checker for VS Code
+## <a id="update"></a> Update Style Checker
 
 To update:
 
