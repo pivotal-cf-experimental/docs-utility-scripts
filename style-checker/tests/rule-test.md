@@ -1,13 +1,13 @@
 # Rule Test
 
-There are 2526 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+There are 2520 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
 
 SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
 ```test -v 1.0.1 case```
 See tap-test
 ![test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test.](images/test-test.png)
-![test test test test](images/test-test.png)
+![test test test test test test test test test test test test test test test test test test test test test test test](images/test-test.png)
 **NOTE:**
 * `PLACEHOLDER_TEXT` means something
 **This is a fantastically long unwieldy run-in heading that needs to be shortened to fewer than seventy-three characters.**
@@ -51,8 +51,8 @@ Start test <code>kubectl</code>.
 See tap-test
 See tap-test
 SOMETHING -n APP ELSE```
-choose **button**
-Choose **button**
+choose **save**
+Choose **save**
 navigate to [some site](some-link)
 Navigate to [some site](some-link)
 SOMETHING -n PRIVATE-KEY-FILE ELSE```
@@ -174,7 +174,6 @@ test<strong>case</strong> case
 test `_` character case
 test "_" characters
 test third party case
-test button case
 test Tanzu Network case
 To x, do the following:
 test SAWS case
@@ -194,7 +193,6 @@ seventeen start test
 this & that case
 (Go) Router start test
 Container(s) start test
-(link.md) doc case
 (link.md) page case
 (link.md) topic case
 <sup>*</sup>
@@ -390,8 +388,6 @@ test black-listed case
 Black-listed case
 test black-lists case
 Black-lists case
-Black-out start test
-Start black-out test
 Black-out start test
 Start black-out test
 Black-outs start test
@@ -801,8 +797,6 @@ test Doppler server case
 test Doppler VM case
 test doppler case
 test double-parens expression case
-test double check case
-test Double check case
 test double click case
 test Double click case
 test double tap case
