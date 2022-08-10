@@ -1,12 +1,13 @@
 # Rule Test
 
-There are 2526 tests. Use ^(?!See tap-test)[^\s\\/][^>]*$ to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+There are 2526 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
 
 SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
 ```test -v 1.0.1 case```
 See tap-test
+![test test test test.](images/test-test.png)
+![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test.](images/test-test.png)
 ![test test test test](images/test-test.png)
-![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test](images/test-test.png)
 **NOTE:**
 * `PLACEHOLDER_TEXT` means something
 **This is a fantastically long unwieldy run-in heading that needs to be shortened to fewer than seventy-three characters.**
@@ -36,6 +37,7 @@ test `tap-values.yml` case
 ![test](images/new-accelerator-deployed-v1.1.png)
 **Important**
 **Start** is inactive
+> **Warning:**
 ## <a id='test-lorem-ipsum-lorem-ipsum'></a> Add
 ## <a id='test.contains-a-period'></a> Add
 ## <a id='test contains-a-space'></a> Add
@@ -108,7 +110,6 @@ Percona 45.6-9. start test
 test 'case' case
 test -- case
 test for shutdown case
-test emulator case
 test Architect case
 test Backend case
 test Beta start test
@@ -162,6 +163,7 @@ test Mail case
 test she case
 test She case
 test On-demand case
+start check test
 Red, orange, yellow, green, blue, indigo, and violet start test.
 test Chart test case
 test yaml case
@@ -199,8 +201,7 @@ Container(s) start test
 | test | *
 | Options are good. |
 test the Kafka backed case
-start check test
-[^d] Web case
+Web case
 test single-sign-on case
 test Single-sign-on case
 test Single-Sign-on case
@@ -1804,8 +1805,8 @@ test run-time case
 test Run-time case
 test run-times case
 test run time case
-test run times case
 test Run time case
+test run times case
 test Runner VM case
 test Runtime CredHub case
 test runtimes case
@@ -2344,7 +2345,6 @@ test warning box case
 test Warning box case
 test Warning window case
 test warning window case
-test WARNING case
 test we'd case
 test We'd case
 test we'll case
@@ -2501,6 +2501,7 @@ v1.2.*
 0KB start test
 test psod case
 # Header
+test for emulator case
 # Prerequisites -
 # Requirements -
 * START-test is the name of your test.
@@ -2530,6 +2531,6 @@ test <p class="warning> case
 <td style="text-align:center">NA</td>
 <td style="text-align:center">none</td>
 
-// Delete duplicate comments.
+
 
 <!--฿ |twice| is preferred. ฿--><!--฿ |twice| is preferred. ฿-->
