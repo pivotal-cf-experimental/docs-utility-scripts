@@ -3,9 +3,9 @@
 <!--
 Test 1: There are NUM comments.
 Test 2: No line containing `determine` has a comment.
-Test 3: There are 67361 chars sans SC comments.
-Test 4: There are 99375 chars with SC comments.
-Test 5: There are no instances of `<!--฿[^฿]*<!--฿`
+Test 3: There are 67364 chars sans SC comments.
+Test 4: There are 102096 chars with SC comments.
+Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`
 -->
 
 This topic adaptor provides re-boot information about operating the on-demand broker for
