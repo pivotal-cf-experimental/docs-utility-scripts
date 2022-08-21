@@ -1,10 +1,13 @@
 # Rule Test
 
-There are 2520 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+There are 2615 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
 
 SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
 ```test -v 1.0.1 case```
 See tap-test
+![This alt text might be an acceptable length, but it has a %, and that's a no-go.](images/test-test.png)
+![test test test test test graphic of test test test test test test test test test test test test test test test test test.](images/test-test.png)
+![test test test test test image of test test test test test test test test test test test test test test test test test.](images/test-test.png)
 ![test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test](images/test-test.png)
@@ -31,9 +34,9 @@ test `tap-values.yml` case
 [Wrong Link Name](https://www.terraform.io/docs/import/index.html) start test
 [Wrong Link Name](https://community.pivotal.io./some-doc) start test
 [Link Name] (https://docs.broken-link.com/some-doc) start test
+[database](database.test.hbs.md)
 [database](database.test.html)
 [database](database.test.md)
-[database](database.test.md.hbs)
 ![test](images/new-accelerator-deployed-v1.1.png)
 **Important**
 **Start** is inactive
@@ -69,7 +72,7 @@ SOMETHING -n YOUR-VM ELSE```
 ```This is a PLACE-HOLDER```
 Start test CVE-2016-1234
 ## testing Start
-## 1. test 1
+## <a id="anchor"></a>1. test 1
 `errand_name` errand is wrong.
 `errand_name` errands are wrong.
 `this is an unescaped {{ vars.tap_version }}`
@@ -106,10 +109,65 @@ Where `PLACEHOLDER_TEXT` means something
 
 See tap-test
 Do this, then do that start test.
+test real time case
+test image registry case
+This is Maestro start test
+test for emulator case
+test SAWS case
+test Tanzu Network case
+Web case
 Percona 45.6-9. start test
 test 'case' case
 test -- case
 test for shutdown case
+In .html format start test
+in a .zip file start test
+/test-case
+Before 1.22.33 start test
+start check test
+e.g: start test
+E.g: start test
+e.g start test
+E.g start test
+e.g., start test
+E.g., start test
+e.g.: start test
+E.g.: start test
+e.g. start test
+E.g. start test
+eg.: start test
+eg. start test
+test http://www.vmware.com case
+test https://www.vmware.com case
+test mail case
+test Mail case
+test On-demand case
+Red, orange, yellow, green, blue, indigo, and violet start test.
+test Chart test case
+test yaml case
+test <em>case</em>case
+test <strong>case</strong>case
+test<em>case</em> case
+test<strong>case</strong> case
+test `_` character case
+test "_" characters
+To x, do the following:
+test VM's case
+might or might not start test
+Test style case
+start, test and test
+start, test or test
+test semi-colon; case sentence.
+seventeen start test
+this & that case
+(Go) Router start test
+Container(s) start test
+(link.md) page case
+(link.md) topic case
+<sup>*</sup>
+| test | *
+| Options are good. |
+test the Kafka backed case
 test Architect case
 test Backend case
 test Beta start test
@@ -128,6 +186,13 @@ test Regional cluster case
 test Regional clusters case
 test Secret case
 test Secrets case
+test single-sign-on case
+test Single-sign-on case
+test Single-Sign-on case
+test Single-Sign-On case
+test Single sign-on case
+test Single Sign-on case
+test Single Sign-On case
 test Stemcell case
 test Stemcells case
 test Syslog case
@@ -138,75 +203,6 @@ test Technical Support case
 test Zonal cluster case
 test Zonal clusters case
 test Zonal mode case
-In .html format start test
-in a .zip file start test
-/test-case
-Before 1.22.33 start test
-e.g: start test
-E.g: start test
-e.g start test
-E.g start test
-e.g., start test
-E.g., start test
-e.g.: start test
-E.g.: start test
-e.g. start test
-E.g. start test
-eg.: start test
-eg. start test
-test he case
-test He case
-test http://www.vmware.com case
-test https://www.vmware.com case
-test mail case
-test Mail case
-test she case
-test She case
-test On-demand case
-start check test
-Red, orange, yellow, green, blue, indigo, and violet start test.
-test Chart test case
-test yaml case
-test <em>case</em>case
-test <strong>case</strong>case
-test<em>case</em> case
-test<strong>case</strong> case
-test `_` character case
-test "_" characters
-test third party case
-test Tanzu Network case
-To x, do the following:
-test SAWS case
-test real time case
-Amazon Web Services start test
-test image registry case
-test executable case
-test marketplace case
-This is Maestro start test
-test VM's case
-might or might not start test
-Test style case
-start, test and test
-start, test or test
-test semi-colon; case sentence.
-seventeen start test
-this & that case
-(Go) Router start test
-Container(s) start test
-(link.md) page case
-(link.md) topic case
-<sup>*</sup>
-| test | *
-| Options are good. |
-test the Kafka backed case
-Web case
-test single-sign-on case
-test Single-sign-on case
-test Single-Sign-on case
-test Single-Sign-On case
-test Single sign-on case
-test Single Sign-on case
-test Single Sign-On case
 test Kubernetes native case
 Test Wizard case
 a. Test
@@ -272,6 +268,7 @@ test Along with case
 test alpha-numeric case
 test also possible to case
 test Amazon Web Service case
+Amazon Web Services start test
 test an earlier step case
 test an end user case
 An end user case
@@ -382,10 +379,15 @@ test Bit-maps case
 test black-hat case
 Black-Hat case
 Black-hat case
+test black-hats case
+Black-Hats case
+Black-hats case
 test black-list case
 Black-list case
 test black-listed case
 Black-listed case
+test black-listing case
+Black-listing case
 test black-lists case
 Black-lists case
 Black-out start test
@@ -395,10 +397,15 @@ Start black-outs test
 test black hat case
 test Black hat case
 test Black Hat case
+test black hats case
+test Black hats case
+test Black Hats case
 test black list case
 Black list case
 test black listed case
 Black listed case
+Test black listing case
+Black listing case
 test black lists case
 Black lists case
 test black screen of death case
@@ -408,6 +415,8 @@ test blacklist case
 Blacklist case
 test blacklisted case
 Blacklisted case
+test blacklisting case
+Blacklisting case
 test blacklists case
 Blacklists case
 Blackout start test
@@ -449,6 +458,10 @@ Brown-out start test
 Start brown-out test
 Brown-outs start test
 Start brown-outs test
+Brown out start test
+Start brown out test
+Brown outs start test
+Start brown outs test
 Brownout start test
 Start brownout test
 Brownouts start test
@@ -478,6 +491,10 @@ test buslogic case
 test button is inactive case
 test buttons are inactive case
 test by means of case
+test cake-walk case
+test Cake-walk case
+test cake walk case
+test Cake walk case
 test cakewalk case
 test Cakewalk case
 test can be case
@@ -762,9 +779,13 @@ test Diego cell case
 test Diego cells case
 test Digital Transformation case
 test disable case
-test Disable case
+Disable case
 test disabled case
-test Disabled case
+Disabled case
+test disables case
+Disables case
+test disabling case
+Disabling case
 test disc case
 Start discussed test
 test Discussed case
@@ -883,6 +904,7 @@ test evict case
 test Evict case
 test eviction case
 test Eviction case
+test executable case
 test Executable case
 test execute:
 execute the below procedure start test
@@ -911,7 +933,9 @@ Feb 1st start test
 test Feb case
 February 1st start test
 test female case
-test Female case
+Female case
+test females case
+Females case
 test Fiber Channel adapter case
 test fiber channel adapter case
 test fibre channel adapter case
@@ -1002,6 +1026,10 @@ test grandfather case
 test Grandfather case
 test grandfathered case
 test Grandfathered case
+test grandfathering case
+Grandfathering case
+test grandfathers case
+Grandfathers case
 test granular case
 test Granular case
 test graphical interface case
@@ -1033,6 +1061,10 @@ test handicap case
 test Handicap case
 test handicapped case
 test Handicapped case
+test handicapping case
+Handicapping case
+test handicaps case
+Handicaps case
 test hang case
 test hangs case
 test hankering case
@@ -1227,8 +1259,6 @@ test is necessary to case
 test is possible to case
 test is used to case
 test Isolation Segments case
-test issue case
-Issue case
 test issue the case
 test Issue the case
 test issues the case
@@ -1291,6 +1321,12 @@ test key/value pairs case
 test Key/value pairs case
 Kill start case
 test kill case
+Killed start case
+test killed case
+Killing start case
+test killing case
+Kills start case
+test kills case
 test kubectl CLI case
 test kubectl command line tool case
 test kubectl tool case
@@ -1377,13 +1413,18 @@ MacOS start test
 Make sure case
 test make sure case
 test male case
-test Male case
+Male case
+test males case
+Males case
 test manuals case
 Mar 1st start test
 test Mar case
 March 1st start test
+test marketplace case
 Master test case
 test master case
+Masters test case
+test masters case
 test Material data case
 test max case
 test Max case
@@ -1788,13 +1829,26 @@ test Role Binding case
 test Rolebinding case
 test roll-out case
 test Roll-out case
+test rule-of-thumb case
+Rule-of-thumb case
+Rule-of-Thumb case
 test rule-set case
 test Rule-set case
+test rule-sets case
+test Rule-sets case
 test rule of thumb case
-test Rule of thumb case
-test Rule of Thumb case
+Rule of thumb case
+Rule of Thumb case
+test rules-of-thumb case
+Rules-of-thumb case
+Rules-of-Thumb case
+test rules of thumb case
+Rules of thumb case
+Rules of Thumb case
 test ruleset case
 test Ruleset case
+test rulesets case
+test Rulesets case
 test run-time case
 test Run-time case
 test run-times case
@@ -1828,8 +1882,16 @@ test Security Assertion Markup Language case
 test security assertion markup language case
 Segregate test case
 test segregate case
+Segregated test case
+test segregated case
+Segregates test case
+test segregates case
+Segregating test case
+test segregating case
 Segregation test case
 test segregation case
+Segregations test case
+test segregations case
 select Save start test
 Select Save start test
 Select the box case
@@ -1899,6 +1961,10 @@ test Since case
 test sixty case
 Slave test case
 test slave case
+Slavery test case
+test slavery case
+Slaves test case
+test slaves case
 test slice and dice case
 test Slice and dice case
 test slider case
@@ -1985,6 +2051,12 @@ test successfully case
 Successfully case
 test suffer case
 test Suffer case
+test suffered case
+test Suffered case
+test suffering case
+test Suffering case
+test suffers case
+test Suffers case
 test suite case
 test super user case
 test Super user case
@@ -2119,6 +2191,7 @@ test they've case
 test They've case
 test they've case
 test They've case
+test third party case
 test thirty case
 test this document case
 This document case
@@ -2329,6 +2402,12 @@ test vs case
 test Vs case
 test Vscode case
 test VScode case
+test war-room case
+test War-room case
+test War-Room case
+test war-rooms case
+test War-rooms case
+test War-Rooms case
 test war room case
 test War room case
 test War Room case
@@ -2337,6 +2416,7 @@ test War rooms case
 test War Rooms case
 test warning box case
 test Warning box case
+test warning is displayed case
 test Warning window case
 test warning window case
 test we'd case
@@ -2390,8 +2470,13 @@ test while simultaneously case
 test white-hat case
 White-Hat case
 White-hat case
+test white-hats case
+White-Hats case
+White-hats case
 test white-list case
 White-list test case
+test white-listing case
+White-listing test case
 test white-lists case
 White-lists test case
 test white-paper case
@@ -2399,14 +2484,21 @@ test White-paper case
 test white hat case
 test White hat case
 test White Hat case
+test white hats case
+test White hats case
+test White Hats case
 test white list case
 White list test case
 test white listed case
 White listed test case
+test white listing case
+White listing test case
 test white lists case
 White lists test case
 test whitelist case
 Whitelist test case
+test whitelisting case
+Whitelisting test case
 test whitepaper case
 test Whitepaper case
 test who'll case
@@ -2494,8 +2586,11 @@ v1.2.*
 0GB start test
 0KB start test
 test psod case
+test he case
+test He case
+test she case
+test She case
 # Header
-test for emulator case
 # Prerequisites -
 # Requirements -
 * START-test is the name of your test.
