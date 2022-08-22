@@ -2,7 +2,7 @@
 
 <!--
 Test 1: There are NUM comments.
-Test 2: No line containing `determine` has a comment.
+Test 2: There are no instances of `determine.*฿`.
 Test 3: There are 67364 chars sans SC comments.
 Test 4: There are 102096 chars with SC comments.
 Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`
@@ -625,7 +625,7 @@ When adaptor composing plans, supply the following:
 
 * **(Optional) Maintenance Information**
     * Maintenance information adaptor is used to uniquely describe the deployed version of
-    a service instance. It is adaptor used by the platform to determine when an upgrade is
+    a service instance. It is adaptor used by the platform to detect when an upgrade is
     available for that adaptor instance, allowing app developers to trigger the upgrade.
     * In the broker manifest, it is adaptor defined in the `service_catalog`, at global and plan level:
 
@@ -750,7 +750,7 @@ service_catalog:
   global_quotas: # optional
     # the maximum number of service adaptor instances across all plans:
     service_instance_limit: INSTANCE-LIMIT
-    # optional - resource usage limits, determined by the 'cost' of each service instance plan:
+    # optional - resource usage limits, determine by the 'cost' of each service instance plan:
     resource_limits:
       ips: RESOURCE-LIMIT
       memory: RESOURCE-LIMIT
@@ -1416,7 +1416,7 @@ The broker adaptor tries to wait for any incomplete HTTPS requests to complete b
 This reduces adaptor the risk of leaving orphan deployments in the event that
 the BOSH Director does not adaptor respond to the initial `bosh deploy` request.
 
-You can adaptor determine how long the broker waits before being forced to shut down by
+You can adaptor detect how long the broker waits before being forced to shut down by
 using the adaptor `broker.shutdown_timeout` property in the manifest.
 The default adaptor is 60 seconds.
 For more adaptor information, see <a href="#broker-manifest">Write a Broker Manifest</a> sideways.
