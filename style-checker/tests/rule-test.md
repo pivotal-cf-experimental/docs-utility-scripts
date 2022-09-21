@@ -1,6 +1,6 @@
 # Rule Test
 
-There are 2634 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+There are 2637 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
 
 SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
 ```test -v 1.0.1 case```
@@ -36,7 +36,6 @@ test `tap-values.yml` case
 [Link Name] (https://docs.broken-link.com/some-doc) start test
 [database](database.test.hbs.md)
 [database](database.test.html)
-[database](database.test.md)
 ![test](images/new-accelerator-deployed-v1.1.png)
 **Important**
 **Start** is inactive
@@ -166,7 +165,6 @@ Container(s) start test
 (link.md) page case
 (link.md) topic case
 <sup>*</sup>
-| test | *
 | Options are good. |
 test the Kafka backed case
 test Architect case
@@ -2638,6 +2636,10 @@ test <p class="warning> case
 <td style="text-align:center">n/a</td>
 <td style="text-align:center">NA</td>
 <td style="text-align:center">none</td>
+Test press **button** case
+Press **button** case
+Test select **button** case
+Select **button** case
 
 
 
