@@ -1,10 +1,10 @@
-# TAP Test
+# <a id='test'></a> Tanzu Application Platform Test
 
 <!--
 Test 1: There are NUM comments.
 Test 2: There are no instances of `determine.*฿`.
-Test 3: There are 62036 chars without SC comments.
-Test 4: There are 95183 chars with SC comments.
+Test 3: There are ##### chars without SC comments.
+Test 4: There are ##### chars with SC comments.
 Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`.
 Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 -->
@@ -17,7 +17,71 @@ This is [PCF Stuff](some-determine-link.html).
 - [Header 2](#header-2)
 - [Header 3](#header-3)
 
+run:
+
+```console
+$ This is a command
+```
+
+running:
+
+```console
+$ This is a command
+```
+
+```console
+test -v 1.0.1 case
+```
+
 `test determine test`
+
+```console
+SOME-SERVICE-INSTANCE-NAME
+```
+
+```console
+SOMETHING -n APP ELSE
+```
+
+```console
+SOMETHING -n PRIVATE-KEY-FILE ELSE
+```
+
+```console
+SOMETHING -n YOUR-VM ELSE
+```
+
+```html
+<strong>test</strong>
+```
+
+```console
+This is a PLACE-HOLDER
+```
+
+```console
+<PLACEHOLDER_TEXT>
+```
+
+```console
+<PLACEHOLDER-TEXT>
+```
+
+```console
+<PLACEHOLDER\ TEXT>
+```
+
+```console
+<PLACEHOLDER TEXT>
+```
+
+```console
+<PLACEHOLDER_TEXT>
+```
+
+```console
+SOMETHING -n PATH-TO-MANIFEST ELSE
+```
 
 Some text isn't a comment.
 

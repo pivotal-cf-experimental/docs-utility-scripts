@@ -1,9 +1,9 @@
 # Rule Test
 
-There are 2637 tests. Use ^(?!See tap-test)[^<\n]+\n[^<] to find tests sans comments. Use -->[.\s]?<!-- to find overlapping comments.
+There are 2646 tests. Use ^(?!\n)(?!See tap-test)[^฿]+\n to find tests sans comments. Use -->[^\n]+<!-- to find overlapping comments. Use <!--฿[^฿]*<!--฿ to find comments within comments.
 
-SOMETHING -n YOUR-SERVICE-INSTANCE-NAME ELSE```
-```test -v 1.0.1 case```
+See tap-test
+See tap-test
 See tap-test
 ![This alt text might be an acceptable length, but it has a %, and that's a no-go.](images/test-test.png)
 ![test test test test test graphic of test test test test test test test test test test test test test test test test test.](images/test-test.png)
@@ -11,11 +11,13 @@ See tap-test
 ![test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test](images/test-test.png)
-**NOTE:**
 * `PLACEHOLDER_TEXT` means something
 **This is a fantastically long unwieldy run-in heading that needs to be shortened to fewer than seventy-three characters.**
 [here and here](https://test.com/docs) start test
-    **Caution:**
+test <em>case</em>case
+test <strong>case</strong>case
+test<em>case</em> case
+test<strong>case</strong> case
 [Wrong Link Name](test.md#test-9) start test
 [Link Name](./address#anchor.html) start test
 test `tap-values.yml` case
@@ -36,72 +38,69 @@ test `tap-values.yml` case
 [Link Name] (https://docs.broken-link.com/some-doc) start test
 [database](database.test.hbs.md)
 [database](database.test.html)
-![test](images/new-accelerator-deployed-v1.1.png)
-**Important**
+![This is a reasonably long alt text description.](images/new-accelerator-deployed-v1.1.png)
 **Start** is inactive
 > **Warning:**
+||
+|n/a|
+See tap-test
+See tap-test
+See tap-test
+Choose **save**
+choose **save**
+Navigate to [Microsoft documentation](some-link)
+navigate to [Microsoft documentation](some-link)
+See tap-test
+run: <code>$ start test
+run: <pre class="terminal"> start test</pre>
+running: <code>$ start test
+See tap-test
+Type `case`
+type `case`
+See tap-test
+See tap-test
+See tap-test
+Start test CVE-2016-1234
+## <a id="anchor"></a> Testing Start
+## <a id="anchor"></a>1. test 1
+`errand_name` errand is wrong.
+`errand_name` errands are wrong.
+`this is an unescaped {{ vars.tap_version }}`
+See tap-test
+Start test `kubectl`.
+test `tanzu` CLI
+Read more at <a href="#anchor">Link Name</a> start test.
+[Link Name](#anchor) start test.
+See tap-test
+See tap-test
+See tap-test
+# <a id='test'></a> Testing header
+See tap-test
+See tap-test
+See tap-test
+## <a id='test'></a> test case
+### <a id='test'></a> Test Case Case
+## <a id='test'></a> 1. testing header
+## Testing header
+See tap-test
+See tap-test
+See tap-test
+See tap-test
 ## <a id='test-lorem-ipsum-lorem-ipsum'></a> Add
 ## <a id='test.contains-a-period'></a> Add
 ## <a id='test contains-a-space'></a> Add
 Start test <code>kubectl</code>.
 <h1>This is the Largest Header</h1>
-<td></td>
 <td>n/a</td>
->NOTE:
-||
-|n/a|
-See tap-test
-See tap-test
-SOMETHING -n APP ELSE```
-Choose **save**
-choose **save**
-Navigate to [some site](some-link)
-navigate to [some site](some-link)
-SOMETHING -n PRIVATE-KEY-FILE ELSE```
-run: <code>$ start test
-run: ```$ start test```
-run: <pre class="terminal"> start test</pre>
-running: <code>$ start test
-running: ```$ start test```
-SOMETHING -n SERVICE-INSTANCE ELSE```
-Type `case`
-type `case`
-SOMETHING -n YOUR-PRIVATE-KEY ELSE```
-SOMETHING -n YOUR-VM ELSE```
-```This is a PLACE-HOLDER```
-Start test CVE-2016-1234
-## testing Start
-## <a id="anchor"></a>1. test 1
-`errand_name` errand is wrong.
-`errand_name` errands are wrong.
-`this is an unescaped {{ vars.tap_version }}`
-```<strong>test</strong>```
-Start test `kubectl`.
-test `tanzu` CLI
-Read more at <a href="#anchor">Link Name</a> start test.
-[Link Name](#anchor) start test.
-**Caution:**
-See tap-test
-See tap-test
-# <a id='test'></a> Add
-See tap-test
-See tap-test
-See tap-test
-## test Case
-# test case
-### test case Case
-## <a id='test'></a> header
-# <a id='test'></a> test Case
-<PLACEHOLDER_TEXT>```
-<PLACEHOLDER-TEXT>```
-<PLACEHOLDER\ TEXT>```
-<PLACEHOLDER TEXT>```
+<td></td>
 [Link Name](http://docs-pcf-staging.cfapps.io/some-page)
 [Uninstall](./upgrading.html#uninstall) earlier start test.
 [Uninstall](./upgrading.html#uninstall) later start test.
-test https://docs-staging.com/some-doc
-SOMETHING -n PATH-TO-MANIFEST ELSE```
-SOMETHING -n PATH-TO-VARIABLES ELSE```
+test [Link Name](https://docs-staging.com/some-doc)
+See tap-test
+See tap-test
+See tap-test
+See tap-test
 Where `PLACEHOLDER_TEXT` means something
 
 
@@ -109,8 +108,12 @@ Where `PLACEHOLDER_TEXT` means something
 See tap-test
 Do this, then do that start test.
 test real time case
+test repo case
+start check test
+test Check case
 test image registry case
 This is Maestro start test
+test use the command line case
 test for emulator case
 test SAWS case
 test Tanzu Network case
@@ -123,7 +126,6 @@ In .html format start test
 in a .zip file start test
 /test-case
 Before 1.22.33 start test
-start check test
 E.g: start test
 e.g: start test
 E.g start test
@@ -136,8 +138,8 @@ E.g. start test
 e.g. start test
 eg.: start test
 eg. start test
-test http://www.vmware.com case
-test https://www.vmware.com case
+test http://www.some-website.com case
+test https://www.some-website.com case
 test Mail case
 test mail case
 test On-demand case
@@ -145,10 +147,6 @@ Red, orange, yellow, green, blue, indigo, and violet start test.
 test Chart test case
 test json case
 test yaml case
-test <em>case</em>case
-test <strong>case</strong>case
-test<em>case</em> case
-test<strong>case</strong> case
 test `_` character case
 test "_" characters
 To x, do the following:
@@ -164,7 +162,6 @@ this & that case
 Container(s) start test
 (link.md) page case
 (link.md) topic case
-<sup>*</sup>
 | Options are good. |
 test the Kafka backed case
 test Architect case
@@ -251,6 +248,14 @@ test Administrator case
 test administrator case
 test administrators case
 test Administrators case
+test advertise case
+test advertised case
+test advertises case
+test advertising case
+test advertize case
+test advertized case
+test advertizes case
+test advertizing case
 test affect case
 test After you are satisfied case
 test after you are satisfied case
@@ -315,9 +320,8 @@ test Application VM case
 test Application Workload case
 test Application Workloads case
 test AppTX case
-Apr 1st  start test
-test Apr case
-April 1st  start test
+Apr 1st start test
+April 1st start test
 test are going to case
 test Artefact case
 test artefact case
@@ -337,9 +341,8 @@ test At the time of writing case
 test at the time of writing case
 test At this point case
 test at this point case
-Aug 1st  start test
-test Aug case
-August 1st  start test
+Aug 1st start test
+August 1st start test
 test auth case
 test Auto-run case
 test auto-run case
@@ -551,7 +554,6 @@ test Check points case
 test check points case
 test check the box case
 Check the box case
-test Check case
 test checkbox case
 test checkmark case
 test Chip set case
@@ -566,10 +568,10 @@ Clam AV start test
 Clamav start test
 test Clean-up case
 test clean-up case
-test Clear case
-test clear case
 test Clear text case
 test clear text case
+test Clear case
+test clear case
 test Cli text case
 test CLi text case
 test ClI case
@@ -621,6 +623,7 @@ test Cloud Service Broker on GCP case
 test CloudController case
 test Cloudformation case
 test CloudFoundry case
+test Cloudwatch case
 test CNAB Bundle case
 test CNAB bundle case
 test Co-processor case
@@ -685,7 +688,6 @@ Context menu case
 test Continuous Integration case
 test Control-C case
 test control-C case
-test could've case
 test could case
 test Coworker case
 test coworker case
@@ -758,7 +760,6 @@ De-registering case
 test de-registers case
 De-registers case
 Dec 1st start test
-test Dec case
 December 1st start test
 test dedicated VM Plan case
 test Dedicated VM Plan case
@@ -823,8 +824,11 @@ test do manual case
 test do one of the following actions case
 test do operations case
 test doc case
+test Docker hub case
 test Docker trusted registry case
 test docker case
+test Dockerhub case
+test DockerHub case
 test docs case
 test Docs case
 Test documentation about case
@@ -899,6 +903,7 @@ test ellipsis menu case
 End-users case
 test end up being case
 test ends up being case
+test enhanced monitoring metrics test
 Ensure case
 test ensure case
 test enter in case
@@ -947,7 +952,6 @@ test FASTT case
 test FASTT case
 test Fault Tolerance case
 Feb 1st start test
-test Feb case
 February 1st start test
 Female case
 test female case
@@ -1258,6 +1262,8 @@ Installation dashboard start test
 Some installation dashboard start test
 test Instructions on doing case
 test instructions on doing case
+test intellij case
+test Intellij case
 test intended to case
 interactivity start test
 test Internet Protocol case
@@ -1302,7 +1308,6 @@ it sees
 it understands
 it wants
 Jan 1st start test
-test Jan case
 January 1st start test
 test jar case
 test java case
@@ -1315,8 +1320,6 @@ Jul 1st start test
 July 1st start test
 Jun 1st start test
 June 1st start test
-test just so happened case
-test just so happens case
 test Just case
 test just case
 test K8S case
@@ -1344,6 +1347,7 @@ test kubectl CLI case
 test kubectl command line tool case
 test kubectl tool case
 test Kubectl case
+test kubectlCLI case
 test Kubernetes compatible case
 test Kubernetes Operator case
 test kubernetes case
@@ -1390,6 +1394,7 @@ test linebreak case
 Linebreak case
 test linebreaks case
 Linebreaks case
+test live update case
 test lives case
 test living case
 test Load the case
@@ -1431,7 +1436,6 @@ Males case
 test males case
 test manuals case
 Mar 1st start test
-test Mar case
 March 1st start test
 test marketplace case
 test master case
@@ -1442,11 +1446,11 @@ test Material data case
 test Max case
 test max case
 May 1st start test
-May 1st start test
 test may case
 test medium term case
 test Medium term case
 members of a project start test
+test memcached case
 test Menu list case
 test menu list case
 test Menu lists case
@@ -1459,8 +1463,22 @@ Meta-thing case
 test meta-thing case
 Meta thing case
 test meta thing case
+test micro-service case
+test Micro-service case
+test Micro-Service case
 test micro-services case
+test Micro-services case
+test micro-Services case
+test Micro-Services case
 test micro kernel case
+test micro service case
+test Micro service case
+test micro Service case
+test Micro Service case
+test micro services case
+test Micro services case
+test micro Services case
+test Micro Services case
 test Microsoft Corporation &trade;
 test might've case
 test Min case
@@ -1472,6 +1490,12 @@ test Modifies case
 test modifies case
 test Modify case
 test modify case
+test mono repo case
+Mono repo case
+Mono Repo case
+test mono repos case
+Mono repos case
+Mono Repos case
 test more information is case
 test More information can case
 Most end-users case
@@ -1542,7 +1566,6 @@ test notice that case
 test Notice that case
 test noting that case
 Nov 1st start test
-test Nov case
 test Novell Netware case
 November 1st start test
 now duplicated by you start test
@@ -1551,7 +1574,6 @@ test NSX Edge case
 test Oauth case
 test oAuth case
 Oct 1st start test
-test Oct case
 October 1st start test
 test of your choosing case
 test offering case
@@ -1653,11 +1675,11 @@ perform the below procedures start test
 Perform the below steps start test
 perform the below steps start test
 test perform one of the following actions case
-test Persistent Volume Claim case
 test Persistent Volume case
-test pick and choose case
+test Persistent Volume Claim case
 test Pick case
 test pick case
+test pick and choose case
 test picking and choosing case
 test pid file case
 test PID file case
@@ -1819,7 +1841,6 @@ test Remove and replace case
 test remove and replace case
 test Removed and replaced case
 test removed and replaced case
-test repo case
 test requirement case
 test Resizeable case
 test resizeable case
@@ -1963,7 +1984,6 @@ test shift+click case
 test ships with case
 test short term case
 test Short term case
-test should've case
 test Should case
 test should case
 test shouldn't case
@@ -1989,6 +2009,8 @@ test Smoketest case
 test smoketest case
 test Smoketests case
 test smoketests case
+test so happened case
+test so happens case
 test Socks case
 test socks case
 test software application case
@@ -2088,7 +2110,6 @@ test sync.d case
 test Synch case
 test synch case
 test synchronize case
-test synchronized case
 Tab to case
 test tab to case
 <table></table> *
@@ -2104,29 +2125,26 @@ test Tanzu Application Platform capabilities case
 test Tanzu Application Platform capability case
 test Tanzu Application Platform plug-in
 test Tanzu Application Platform plug-ins case
+test Tanzu Dev Tools for VS Code case
 test Tanzu Developer Tools case
 test Tanzu net case
 test Tanzu Net case
 test Tanzu network case
 test Tanzu Tools case
 test tanzu case
+test tanzuCLI case
 test Tanzunet case
 test TanzuNet case
+test tanzunet case
 test TAP case
 test TAP GUI case
-test TAP Repo bundle case
-test TAP Repo Bundle case
 test TAP UI case
 Tap start test
-test TAP add-on case
-test TAP addon case
-test TAP addons cases
-test TAP capabilities case
-test TAP capability case
-test TAP plug-in case
-test TAP plug-ins case
-test TAP plugin case
-test TAP plugins case
+test Tanzu Application Platform add-on case
+test Tanzu Application Platform capabilities case
+test Tanzu Application Platform capability case
+test Tanzu Application Platform plug-in case
+test Tanzu Application Platform plug-ins case
 test tar case
 test Tasks case
 test terminal emulator case
@@ -2228,6 +2246,8 @@ test Thus case
 test thus case
 test tick case
 test Tick case
+test tiltfile case
+test tiltfiles case
 test Time-line case
 test time-line case
 test Time-lines case
@@ -2328,7 +2348,6 @@ test usage data case
 test Usage Service case
 test usage service case
 test use case
-test use the command line case
 test use the command case
 Usecase case
 test usecase case
@@ -2349,16 +2368,20 @@ test Username case
 test username case
 test Usernames case
 test usernames case
-test using the command line case
 test using the command case
+test using the command line case
 test Utilisation case
 test utilisation case
 Utilise case
 test utilise case
+test utilises case
+test utilising case
 test Utilization case
 test utilization case
 Utilize case
 test utilize case
+test utilizes case
+test utilizing case
 test uuid case
 test v 1.1. case
 V.1.1 case
@@ -2398,11 +2421,9 @@ test vm case
 test VMT Network case
 test VMT network case
 test VMTN case
-test Vmware.s case
-test VMware.s case
+test VMware's case
 test VMware network case
 test VMware Network case
-test VMware Tanzu network case
 test vmware case
 test VmWare case
 test Vmware case
@@ -2436,14 +2457,6 @@ test warning box case
 test warning is displayed case
 test warning window case
 test Warning window case
-test We'd case
-test we'd case
-test We'll case
-test we'll case
-test We're case
-test we're case
-test We've case
-test we've case
 test We case
 test we case
 test Web-page case
@@ -2618,14 +2631,11 @@ See tap-test
 # test\case topic title
 See tap-test
 See tap-test
-See tap-test
-Note - start test
 Release date: case
 Release Date: case
 test <code>}</code> character
 test <code>}</code> characters
-test <p class="note"> case
-test <p class="warning> case
+<sup>*</sup>
 <td style="text-align:center">-</td>
 <td style="text-align:center">–</td>
 <td style="text-align:center">—</td>
@@ -2643,4 +2653,4 @@ Select **button** case
 
 
 
-<!--฿ |twice| is preferred. ฿--><!--฿ |twice| is preferred. ฿-->
+<!--฿ This comment should only appear once after running the script. ฿--><!--฿ This comment should only appear once after running the script. ฿-->
