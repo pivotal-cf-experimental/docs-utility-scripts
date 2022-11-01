@@ -1,5 +1,5 @@
 "regreplace.commands": [
-  // Last updated: October 31, 2022
+  // Last updated: November 01, 2022
 
   // Substitute 2 spaces for each tab that does not precede a variable.
 
@@ -16,9 +16,9 @@
   {"name": "16",  "regexp": "(!\\[[^\\]]{0,44}\\]\\(.*\\.png\\))", "replace": "$1<!--฿ Alt text must describe the image in detail. ฿-->"},
   {"name": "17",  "regexp": "(!\\[[^\\]]{151,}\\]\\(.*\\.png\\))", "replace": "$1<!--฿ Reduce alt text to 150 characters or fewer. ฿-->"},
   {"name": "18",  "regexp": "(!\\[[^\\]]*[^\\.]]\\(.*\\.png\\))", "replace": "$1<!--฿ In alt text, use complete sentences that end with periods. ฿-->"},
-  {"name": "19",  "regexp": "([\\*\\+\\-]\\s`[A-Za-z]*_)", "replace": "$1<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->"},
-  {"name": "20",  "regexp": "([\\s\\n]+\\*\\*[^*]{96})", "replace": "$1<!--฿ Consider reducing this run-in heading to fewer than 100 characters. ฿-->"},
-  {"name": "21",  "regexp": "([^!]\\[[a-z]+\\s[^\\]]*\\]\\([^\\)]*\\))", "replace": "$1<!--฿ Verify that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->"},
+  {"name": "19",  "regexp": "((?<!!)\\[[a-z]+[^\\]]*\\]\\([^\\)]*\\))", "replace": "$1<!--฿ Verify that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->"},
+  {"name": "20",  "regexp": "([\\*\\+\\-]\\s`[A-Za-z]*_)", "replace": "$1<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->"},
+  {"name": "21",  "regexp": "([\\s\\n]+\\*\\*[^*]{96})", "replace": "$1<!--฿ Consider reducing this run-in heading to fewer than 100 characters. ฿-->"},
   {"name": "22",  "regexp": "([^\\s\\n]<\\/em>(?![\\s\\n<\\.:,-]))", "replace": "$1<!--฿ Needed whitespace is likely missing after the closing emphasis tag. ฿-->"},
   {"name": "23",  "regexp": "([^\\s\\n]<\\/strong>(?![\\s\\n<\\.:,-]))", "replace": "$1<!--฿ Needed whitespace is likely missing after the closing strong tag. ฿-->"},
   {"name": "24",  "regexp": "([^\\s\\n>](?=<em>))", "replace": "$1<!--฿ Needed whitespace is likely missing before the opening emphasis tag. ฿-->"},
@@ -66,7 +66,7 @@
   {"name": "66",  "regexp": "(\\bYOUR-VM\\b[^`]*```\\s)", "replace": "$1<!--฿ Specify the VM, as in |OPS-MANAGER-VM| or |STEMCELL-BASE-VM|. ฿-->"},
   {"name": "67",  "regexp": "(\\n```[^`]*[A-Z][A-Z]+[\\-\\_][^`]*```\\s(?![\\s\\n]*Where))", "replace": "$1<!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->"},
   {"name": "68",  "regexp": "(\\sCVE-\\d{4}(?!.*\\n?([^\\[]*\\]|[^>]*<\\/a>)))", "replace": "$1<!--฿ Link to the CVE page at https://nvd.nist.gov/ or, if unavailable, cve.org ฿-->"},
-  {"name": "69",  "regexp": "(##+[^\\n]*>\\s*[A-Z][a-z-]+ing\\b.*\\n\\n(.+\\n){1,}\\n+\\d\\.)", "replace": "$1<!--฿ Procedure headers use imperatives, not gerunds. ฿-->"},
+  {"name": "69",  "regexp": "(##+[^\\n]*>\\s*(?=[A-Z][a-z-]+ing\\b.*\\n\\n(.+\\n){1,}\\n+\\d\\.))", "replace": "$1<!--฿ Procedure headers use imperatives, not gerunds. ฿-->"},
   {"name": "70",  "regexp": "(##+\\s*<a\\sid=[^>]+>\\s*<\\/a>\\s*\\d\\.)", "replace": "$1<!--฿ Do not format a numbered step as a header. ฿-->"},
   {"name": "71",  "regexp": "(`.*[_\\A-Z].*`[\\s\\n]+errand\\b)", "replace": "$1<!--฿ Errands tend to be lowercase and they use dashes instead of underscores or spaces. ฿-->"},
   {"name": "72",  "regexp": "(`.*[_\\A-Z].*`[\\s\\n]+errands\\b)", "replace": "$1<!--฿ Errands tend to be lowercase and they use dashes instead of underscores or spaces. ฿-->"},

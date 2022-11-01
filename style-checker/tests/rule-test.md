@@ -1,6 +1,6 @@
 # Rule Test
 
-There are 2646 tests. Use ^(?!\n)(?!See tap-test)[^฿]+\n to find tests sans comments. Use -->[^\n]+<!-- to find overlapping comments. Use <!--฿[^฿]*<!--฿ to find comments within comments.
+There are 2647 tests. Use ^(?!\n)(?!See tap-test)[^฿]+\n to find tests sans comments. Use -->[^\n]+<!-- to find overlapping comments. Use <!--฿[^฿]*<!--฿ to find comments within comments.
 
 See tap-test
 See tap-test
@@ -11,9 +11,9 @@ See tap-test
 ![test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test](images/test-test.png)
+[here and here](https://test.com/docs) start test
 * `PLACEHOLDER_TEXT` means something
 **This is a fantastically long unwieldy run-in heading that needs to be shortened to fewer than seventy-three characters.**
-[here and here](https://test.com/docs) start test
 test <em>case</em>case
 test <strong>case</strong>case
 test<em>case</em> case
@@ -61,7 +61,7 @@ See tap-test
 See tap-test
 See tap-test
 Start test CVE-2016-1234
-## <a id="anchor"></a> Testing Start
+See tap-test
 ## <a id="anchor"></a>1. test 1
 `errand_name` errand is wrong.
 `errand_name` errands are wrong.
@@ -79,7 +79,6 @@ See tap-test
 See tap-test
 See tap-test
 ## <a id='test'></a> test case
-### <a id='test'></a> Test Case Case
 ## <a id='test'></a> 1. testing header
 ## Testing header
 See tap-test
@@ -1779,6 +1778,8 @@ test prompt case
 test Pros case
 test pros case
 test PSOD case
+test PSQL case
+test Psql case
 test Pull-down list case
 test pull-down list case
 test Purple screen of death case

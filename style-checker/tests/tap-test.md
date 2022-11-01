@@ -169,7 +169,7 @@ Operators adaptor are responsible for the following:
 
 <!-- Partials are in https://github.com/pivotal-cf/docs-services-partials -->
 
-## <a id="header1"></a> Header 1
+## <a id="gerund-is-bad"></a> Heading 1
 
 This is an improperly styled stem
 
