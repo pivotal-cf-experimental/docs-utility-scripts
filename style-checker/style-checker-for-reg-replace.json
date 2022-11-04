@@ -17,7 +17,7 @@
   {"name": "17",  "regexp": "(!\\[[^\\]]{151,}\\]\\(.*\\.png\\))", "replace": "$1<!--฿ Reduce alt text to 150 characters or fewer. ฿-->"},
   {"name": "18",  "regexp": "(!\\[[^\\]]*[^\\.]]\\(.*\\.png\\))", "replace": "$1<!--฿ In alt text, use complete sentences that end with periods. ฿-->"},
   {"name": "19",  "regexp": "((?<!!)\\[[a-z]+[^\\]]*\\]\\([^\\)]*\\))", "replace": "$1<!--฿ Verify that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->"},
-  {"name": "20",  "regexp": "([\\*\\+\\-]\\s`[A-Za-z]*_[^`]*`)", "replace": "$1<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->"},
+  {"name": "20",  "regexp": "([\\*\\+\\-]\\s`[A-Za-z-]*_.*`)", "replace": "$1<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->"},
   {"name": "21",  "regexp": "([\\s\\n]+\\*\\*[^*]{96})", "replace": "$1<!--฿ Consider reducing this run-in heading to fewer than 100 characters. ฿-->"},
   {"name": "22",  "regexp": "([^\\s\\n]<\\/em>(?![\\s\\n<\\.:,-]))", "replace": "$1<!--฿ Needed whitespace is likely missing after the closing emphasis tag. ฿-->"},
   {"name": "23",  "regexp": "([^\\s\\n]<\\/strong>(?![\\s\\n<\\.:,-]))", "replace": "$1<!--฿ Needed whitespace is likely missing after the closing strong tag. ฿-->"},
