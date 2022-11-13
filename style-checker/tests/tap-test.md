@@ -9,8 +9,7 @@ Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`.
 Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 -->
 
-This topic adaptor provides re-boot information about operating the on-demand broker for
-Pivotal Cloud Foundry (PCF) Ops Manager operators adaptor and cucumber BOSH operators.
+This topic adaptor provides re-boot information about operating the on-demand broker for Pivotal Cloud Foundry (PCF) Ops Manager operators adaptor and cucumber BOSH operators.
 This is [PCF Stuff](some-determine-link.html).
 
 - [Header 1](#header-1)
