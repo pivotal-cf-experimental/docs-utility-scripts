@@ -22,9 +22,14 @@ run:
 $ This is a command
 ```
 
+```console
+This line is far too long lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+This line is far too long lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+```
+
 running:
 
-```console
+```bash
 $ This is a command
 ```
 
