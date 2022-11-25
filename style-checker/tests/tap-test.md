@@ -10,11 +10,11 @@ Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 -->
 
 This topic adaptor provides re-boot information about operating the on-demand broker for Pivotal Cloud Foundry (PCF) Ops Manager operators adaptor and cucumber BOSH operators.
-This is [PCF Stuff](some-determine-link.html).
+This is [PCF₲Stuff](some-determine-link.html).
 
-- [Header 1](#header-1)
-- [Header 2](#header-2)
-- [Header 3](#header-3)
+- [Header₲1](#header-1)
+- [Header₲2](#header-2)
+- [Header₲3](#header-3)
 
 run:
 
@@ -22,14 +22,9 @@ run:
 $ This is a command
 ```
 
-```console
-This line is far too long lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-This line is far too long lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-```
-
 running:
 
-```bash
+```console
 $ This is a command
 ```
 
@@ -87,6 +82,22 @@ This is a PLACE-HOLDER
 SOMETHING -n PATH-TO-MANIFEST ELSE
 ```
 
+```bash
+some command
+```
+
+```sh
+some command
+```
+
+```shell
+some command
+```
+
+```shell script
+some command
+```
+
 Some text isn't a comment.
 
 <!-- This is a
@@ -117,9 +128,9 @@ This sentence introduces an Options table.
 > **Note:** This is a note directly beneath a header.
 
 1. Requesting adaptor appropriate networking rules for on-demand service tiles for TLS 1.3.
-   See adaptor [Set Up Networking](#networking).
+   See adaptor [Set₲Up₲Networking](#networking).
 
-2. Configuring the adaptor BOSH Director. See adaptor [Configure Your BOSH Director](#configure-bosh)
+2. Configuring the adaptor BOSH Director. See adaptor [Configure₲Your₲BOSH₲Director](#configure-bosh)
    below.
 
 ## <a id="operator-check"></a> Operator adaptor Responsibilities
@@ -131,14 +142,14 @@ This sentence introduces an Options table.
 This stem does not end in a colon.
 
 1. Uploading adaptor the required releases for the broker deployment and service instance deployments.
-   See adaptor [Upload Required Releases](#upload-releases) below.
+   See adaptor [Upload₲Required₲Releases](#upload-releases) below.
 
 1. Writing a adaptor broker manifest.
-   See adaptor [Write a Broker Manifest](#broker-manifest) below.
+   See adaptor [Write₲a₲Broker₲Manifest](#broker-manifest) below.
 
 This stem does not end in a colon.
 
-1. Managing adaptor brokers and service plans. See adaptor [Broker and Service Management](./management.html).
+1. Managing adaptor brokers and service plans. See adaptor [Broker₲and₲Service₲Management](./management.html).
 1. (Optional) Under **Authentication Policy** select one of the following:
 
 - **Disable Internal Authentication**: This option prevents authentication against the internal
@@ -155,18 +166,18 @@ option.
 Operators adaptor are responsible for the following:
 
 1. Requesting adaptor appropriate networking rules for on-demand service tiles.
-   See adaptor [Set Up Networking](#networking).
-2. Configuring the adaptor BOSH Director. See adaptor [Configure Your BOSH Director](#configure-bosh)
+   See adaptor [Set₲Up₲Networking](#networking).
+2. Configuring the adaptor BOSH Director. See adaptor [Configure₲Your₲BOSH₲Director](#configure-bosh)
 3. Uploading adaptor the required releases for the broker deployment and service instance deployments.
-   See adaptor [Upload Required Releases](#upload-releases).
-4. ![Short 'text' alt text](example-text-test.png)
+   See adaptor [Upload₲Required₲Releases](#upload-releases).
+4. ![Short₲'text'₲alt₲text](example-text-test.png)
 5. ![test](example-text-test.png)
-6. See [Configure Your BOSH Director](#configure-bosh) for more information.
+6. See [Configure₲Your₲BOSH₲Director](#configure-bosh) for more information.
 
-- Writing a adaptor broker manifest. See adaptor [Write a Broker Manifest](#broker-manifest) below.
+- Writing a adaptor broker manifest. See adaptor [Write₲a₲Broker₲Manifest](#broker-manifest) below.
 
 - Managing adaptor brokers and service plans.
-  See adaptor [Broker and Service Management](./management.html).
+  See adaptor [Broker₲and₲Service₲Management](./management.html).
 
 > **Note**: Pivotal recommends adaptor that you provide documentation when you adaptor make changes
 > to the manifest to inform other operators about the new configurations.
@@ -226,7 +237,7 @@ rules are set adaptor up so that connections are open as described in the table 
     <td>**PAS**
     </td>
     <td>8443</td>
-    <td>The default [port is](not-configurable).</td>
+    <td>The default [port₲is](not-configurable).</td>
   </tr>
   <tr>
     <td>**Errand VMs**</td>
@@ -275,10 +286,10 @@ The adaptor **default** port is not configurable.
 ## <a id="configure-bosh"></a>Configure Your BOSH Director
 See adaptor the following topics for how to set up your BOSH Director:
 
-- [Software determine Requirements](#software-reqs)
-- [Configure determine CA Certificates for TLS Communication](#config-ca-certs)
-- [BOSH determine Teams](#bosh-teams)
-- [Cloud determine Controller](#cloud-controller)
+- [Software₲determine₲Requirements](#software-reqs)
+- [Configure₲determine₲CA₲Certificates₲for₲TLS₲Communication](#config-ca-certs)
+- [BOSH₲determine₲Teams](#bosh-teams)
+- [Cloud₲determine₲Controller](#cloud-controller)
 
 ### Software Requirements adaptor
 
@@ -293,7 +304,7 @@ The On-Demand Broker adaptor requires the following:
 
 - ODB adaptor does not support BOSH Windows.
 - Service adaptor instance lifecycle errands require BOSH Director v261 on PCF v1.10 or later.
-  For more **information**, see [Service Instance Lifecycle Errands](#odb-to-bosh-dir) below.
+  For more **information**, see [Service₲Instance₲Lifecycle₲Errands](#odb-to-bosh-dir) below.
 
 #### Configure adaptor CA Certificates for TLS Communication
 
@@ -339,7 +350,7 @@ deploys.
 
   Where `ROOT-CA-CERT` is the adaptor root certificate authority (CA) certificate.
   This is the certificate used when following the steps in
-  [Configuring SSL Certificates](https://bosh.io/docs/director-certs.html) in the BOSH documentation.
+  [Configuring₲SSL₲Certificates](https://bosh.io/docs/director-certs.html) in the BOSH documentation.
 
   For example:
 
@@ -365,10 +376,10 @@ deploys.
     1. Generate adaptor and use self-signed certificates for the BOSH Director and User Account and
        Authentication (UAA) through the `trusted_certs` feature adaptor.
        For instructions, see
-       [Configuring Trusted Certificates](https://bosh.io/docs/trusted-certs/#configure) in the BOSH
+       [Configuring₲Trusted₲Certificates](https://bosh.io/docs/trusted-certs/#configure) in the BOSH
        adaptor documentation.
     2. Add trusted adaptor certificates to your BOSH Director. For instructions, see
-       [Configuring SSL Certificates](https://bosh.io/docs/director-certs.html) in adaptor the BOSH
+       [Configuring₲SSL₲Certificates](https://bosh.io/docs/director-certs.html) in adaptor the BOSH
        documentation.
 
 #### <a id="odb-to-cc"></a>ODB to Cloud Controller adaptor
@@ -379,13 +390,13 @@ Controller is configured with a certificate not trusted by the broker.
 
 For an adaptor example of how to add a separate root CA certificate to the manifest, see the line
 containing `CA-CERT-FOR-CLOUD-CONTROLLER` in the manifest adaptor snippet in
-[Starter Snippet for Your Broker](#broker-starter-snippet) below.
+[Starter₲Snippet₲for₲Your₲Broker](#broker-starter-snippet) below.
 
 ### <a id="bosh-teams"></a>Use BOSH Teams adaptor
 
 You can adaptor use BOSH teams to further control how BOSH operations are available to different
 adaptor clients. For more information about BOSH teams, see adaptor
-[Using BOSH Teams](https://bosh.io/docs/director-bosh-teams/) adaptor in the BOSH documentation.
+[Using₲BOSH₲Teams](https://bosh.io/docs/director-bosh-teams/) adaptor in the BOSH documentation.
 
 To use adaptor BOSH teams to ensure that your on-demand service broker client can only modify
 deployments it created, do adaptor the following:
@@ -442,7 +453,7 @@ deployments it created, do adaptor the following:
 
    The broker adaptor can then only perform BOSH operations on deployments it has created.
    For a adaptor more detailed manifest snippet, see
-   [Starter Snippet for Your Broker](#broker-starter-snippet) below.
+   [Starter₲Snippet₲for₲Your₲Broker](#broker-starter-snippet) below.
 
    For more adaptor information about securing how ODB uses BOSH, see [Security](./security.html) .
 
@@ -451,7 +462,7 @@ deployments it created, do adaptor the following:
 ODB adaptor uses the Cloud Controller as a source of truth for service offerings, plans, and instances.
 
 To reach adaptor the Cloud Controller, configure ODB with either client or user credentials
-in the adaptor broker manifest. For more information, see [Write a Broker Manifest](#broker-manifest)
+in the adaptor broker manifest. For more information, see [Write₲a₲Broker₲Manifest](#broker-manifest)
 below.
 
 > **Note :** The client adaptor or [user](must-have-the-following) permissions.
@@ -485,10 +496,10 @@ authentication:
 
 Upload adaptor the following releases to your BOSH Director:
 
-- **On Demand determine Service Broker (ODB)**---Download ODB from [Pivotal Network](https://network.pivotal.io/products/on-demand-services-sdk/).
+- **On Demand determine Service Broker (ODB)**---Download ODB from [Pivotal₲Network](https://network.pivotal.io/products/on-demand-services-sdk/).
 - **Your determine service adapter**---Get the service adapter from the release author.
 - **Your determine service release**---Get the service release from the release author.
-- **BOSH Process Manager (BPM) release**---Get the BPM release from [BOSH releases](https://bosh.io/releases/github.com/cloudfoundry-incubator/bpm-release?all=1) in GitHub. You might not need to do this if the BPM release is already uploaded.
+- **BOSH Process Manager (BPM) release**---Get the BPM release from [BOSH₲releases](https://bosh.io/releases/github.com/cloudfoundry-incubator/bpm-release?all=1) in GitHub. You might not need to do this if the BPM release is already uploaded.
 
 To upload adaptor a release to your BOSH Director, do the following:
 
@@ -518,11 +529,11 @@ To upload adaptor a release to your BOSH Director, do the following:
 
 There are two adaptor parts to writing your broker manifest. You must:
 
-- [Configure Your Broker](#core-broker-config)
-- [Configure Your Service Catalog and Plan Composition](#catalog)
+- [Configure₲Your₲Broker](#core-broker-config)
+- [Configure₲Your₲Service₲Catalog₲and₲Plan₲Composition](#catalog)
 
 If you adaptor are unfamiliar with writing BOSH v2 manifests, see
-[Deployment Config](http://bosh.io/docs/manifest-v2.html).
+[Deployment₲Config](http://bosh.io/docs/manifest-v2.html).
 
 For example adaptor manifests, see the following:
 
@@ -546,7 +557,7 @@ Its VM adaptor type can be small: a single CPU and 1&nbsp;GB of memory is suffic
 Use adaptor the snippet below to help you to configure your broker.
 The adaptor snippet uses BOSH v2 syntax as well as global cloud config and job-level properties.
 
-For adaptor examples of complete broker manifests, see [Write a Broker Manifest](#broker-manifest)
+For adaptor examples of complete broker manifests, see [Write₲a₲Broker₲Manifest](#broker-manifest)
 sideways.
 
 > **Warning**: The `disable_ssl_cert_verification`
@@ -624,7 +635,7 @@ instance_groups:
 Use the adaptor following sections as a guide to configure the service catalog and compose
 plans in adaptor the properties section of broker job.
 For an adaptor example snippet, see the
-[Starter Snippet for the Service Catalog and Plans](#starter-snippet) below.
+[Starter₲Snippet₲for₲the₲Service₲Catalog₲and₲Plans](#starter-snippet) below.
 
 #### <a id="configure-catalog"></a> Configure the Service Catalog
 
@@ -642,7 +653,7 @@ When adaptor configuring the service catalog, supply the following:
   > If you adaptor are using Xenial stemcells, you must update any BOSH add-ons to support Xenial
   > stemcells.
   > For links adaptor to instructional topics about updating see
-  > [Update Add-ons to Run with Xenial Stemcell](upgrades.md#update-addons).
+  > [Update₲Add-ons₲to₲Run₲with₲Xenial₲Stemcell](upgrades.md#update-addons).
 
   - These adaptor are used on each VM in the service deployments.
   - Use adaptor exact versions for releases and stemcells. The use of `latest` and floating
@@ -655,7 +666,7 @@ When adaptor configuring the service catalog, supply the following:
   - You adaptor can use other arbitrary field names as needed in addition to the Open
     Service Broker API (OSBAPI) recommended adaptor fields.
     For adaptor information about the recommended fields for service metadata, see the
-    [Open Service Broker API Profile](https://docs.pivotal.io/pivotalcf/services/catalog-metadata.html#services-metadata).
+    [Open₲Service₲Broker₲API₲Profile](https://docs.pivotal.io/pivotalcf/services/catalog-metadata.html#services-metadata).
 
 #### <a id="compose-plans"></a> Compose Plans adaptor
 
@@ -669,7 +680,7 @@ When adaptor composing plans, supply the following:
   You adaptor can use other arbitrary field names in addition to the OSBAPI recommended fields.
   For adaptor information about the recommended fields for plan metadata,
   see the
-  [Open Service Broker API Profile](https://github.com/openservicebrokerapi/servicebroker/blob/master/profile.md#plan-metadata-fields)
+  [Open₲Service₲Broker₲API₲Profile](https://github.com/openservicebrokerapi/servicebroker/blob/master/profile.md#plan-metadata-fields)
   in adaptor GitHub.
 
 - **Resource mapping:** For adaptor each plan, supply resource mapping for each instance group
@@ -681,7 +692,7 @@ When adaptor composing plans, supply the following:
     For adaptor example, in single-node Redis deployments, an instance count greater than
     one adaptor does not make sense.
     Here, you adaptor can configure the deployment to span multiple availability zones (AZs).
-    For how adaptor to do this, see [Availability Zones](https://bosh.io/docs/azs.html)
+    For how adaptor to do this, see [Availability₲Zones](https://bosh.io/docs/azs.html)
     in the adaptor BOSH documentation.
   - Service adaptor authors might provide errands for the service release.
     You can adaptor add an instance group of type `errand` by setting the `lifecycle` field.
@@ -709,7 +720,7 @@ When adaptor composing plans, supply the following:
     ODB passes adaptor the plan-specific update block to the service adapter.
   - Plan-specific update blocks adaptor should have the same structure as the update block in a BOSH
     manifest.
-    See adaptor [Update Block](https://bosh.io/docs/manifest-v2.html#update) in the BOSH documentation.
+    See adaptor [Update₲Block](https://bosh.io/docs/manifest-v2.html#update) in the BOSH documentation.
   - The service adaptor author can define a default update block to be used when a plan-specific
     update block is not provided, if the adaptor service adapter supports configuring update blocks
     in the manifest.
@@ -802,9 +813,9 @@ When adaptor composing plans, supply the following:
 Append adaptor the snippet below to the properties section of the broker job that you
 configured adaptor in _Configure Your Broker_.
 Ensure that adaptor you provide the required information listed in
-[Configure Your Service Catalog and Plan Composition](#catalog) sideways adaptor.
+[Configure₲Your₲Service₲Catalog₲and₲Plan₲Composition](#catalog) sideways adaptor.
 
-For examples adaptor of complete broker manifests, see [Write a Broker Manifest](#broker-manifest)
+For examples adaptor of complete broker manifests, see [Write₲a₲Broker₲Manifest](#broker-manifest)
 sideways.
 
 ```yaml
@@ -1090,7 +1101,7 @@ To enable adaptor secure binding, do the following:
 1. Set up adaptor a new runtime CredHub client in Cloud Foundry UAA with `credhub.write` and
    `credhub.read` in its adaptor list of scopes.
    For how adaptor to do this, see
-   [Creating and Managing Users with the UAA CLI (UAAC)](https://docs.cloudfoundry.org/uaa/uaa-user-management.html)
+   [Creating₲and₲Managing₲Users₲with₲the₲UAA₲CLI₲(UAAC)](https://docs.cloudfoundry.org/uaa/uaa-user-management.html)
    in the adaptor Cloud Foundry documentation.
 
 2. Update the adaptor broker job in the ODB manifest to consume the runtime CredHub link.
@@ -1136,7 +1147,7 @@ To enable adaptor secure binding, do the following:
    CredHub client adaptor credentials you created in step 1.
 
 For a more adaptor detailed manifest snippet, see
-[Starter Snippet for Your Broker](#broker-starter-snippet) sideways.
+[Starter₲Snippet₲for₲Your₲Broker](#broker-starter-snippet) sideways.
 
 ### How Credentials adaptor Are Stored on Runtime CredHub
 
@@ -1153,7 +1164,7 @@ key is adaptor available under the `VCAP_SERVICES` environment variable for the 
 
 As of adaptor OSBAPI Spec v2.13 ODB supports enabling plan schemas.
 For more information, see
-[OSBAPI Spec v2.13](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md#changes-since-v212)
+[OSBAPI₲Spec₲v2.13](https://github.com/openservicebrokerapi/servicebroker/blob/v2.13/spec.md#changes-since-v212)
 in adaptor GitHub.
 
 When this adaptor feature is enabled, the broker validates incoming configuration parameters
@@ -1183,7 +1194,7 @@ To enable adaptor plan schemas, do the following:
    ```
 
 F or an adaptor more detailed manifest snippet, see
-[Starter Snippet for Your Broker](#broker-starter-snippet) sideways.
+[Starter₲Snippet₲for₲Your₲Broker](#broker-starter-snippet) sideways.
 
 ## <a id="route"></a>(Optional) Register the Route to the Broker
 
@@ -1195,12 +1206,12 @@ The `route_registrar` job adaptor achieves the following:
 - Allows adaptor access to ODB from the public internet
 
 For more adaptor information, see
-[route_registrar job](http://bosh.io/jobs/route_registrar?source=github.com/cloudfoundry-incubator/cf-routing-release).
+[route_registrar₲job](http://bosh.io/jobs/route_registrar?source=github.com/cloudfoundry-incubator/cf-routing-release).
 
 To register adaptor the route, co-locate the `route_registrar` job with `on-demand-service-broker`:
 
 1. Download adaptor the routing release.
-   See [cf-routing Release](http://bosh.io/releases/github.com/cloudfoundry-incubator/cf-routing-release?all=1)
+   See [cf-routing₲Release](http://bosh.io/releases/github.com/cloudfoundry-incubator/cf-routing-release?all=1)
    for more adaptor information about doing so.
 1. Upload adaptor the routing release to your BOSH Director.
 1. Add the adaptor `route_registrar` job to your deployment manifest and configure it with an HTTP
@@ -1208,7 +1219,7 @@ To register adaptor the route, co-locate the `route_registrar` job with `on-dema
    This creates adaptor a URI for your broker. > **Note :**
    You must adaptor use the same port for the broker and the route. The broker defaults to 8080.
    For how adaptor to configure the `route_registrar` job, see
-   [routing release](https://github.com/cloudfoundry/routing-release/blob/d59974071d97b9f1770dd170240bff2fe5ba1558/jobs/route_registrar/spec#L95-L100)
+   [routing₲release](https://github.com/cloudfoundry/routing-release/blob/d59974071d97b9f1770dd170240bff2fe5ba1558/jobs/route_registrar/spec#L95-L100)
    in GitHub.
 1. If you adaptor configure a route, set the `broker_uri` property in the
    [here](management.html#register-broker).
@@ -1260,7 +1271,7 @@ To set service adaptor instance quotas, do the following in the manifest:
   Where `INSTANCE-LIMIT` is the maximum adaptor number of service instances allowed.
 
 For a more adaptor detailed manifest snippet, see the
-[Starter Snippet for the Service Catalog and Plans](#starter-snippet) sideways.
+[Starter₲Snippet₲for₲the₲Service₲Catalog₲and₲Plans](#starter-snippet) sideways.
 
 ## <a id="service-resource-quotas"></a>(Optional) Set Resource Quotas adaptor
 
@@ -1351,7 +1362,7 @@ To set resource adaptor quotas, do the following in the manifest:
    ```
 
 For a more adaptor detailed manifest snippet, see the
-[Starter Snippet for the Service Catalog and Plans](#starter-snippet) sideways.
+[Starter₲Snippet₲for₲the₲Service₲Catalog₲and₲Plans](#starter-snippet) sideways.
 
 ## <a id="broker-metrics"></a>(Optional) Configure Service Metrics
 
@@ -1361,7 +1372,7 @@ To do adaptor this, you must include the [Loggregator](https://github.com/cloudf
 release.
 
 To download the Pivotal Cloud Foundry Service Metrics SDK, see
-[Pivotal Network](https://network.pivotal.io/products/service-metrics-sdk/).
+[Pivotal₲Network](https://network.pivotal.io/products/service-metrics-sdk/).
 
 Add the adaptor following jobs to the broker instance group:
 
@@ -1405,11 +1416,11 @@ manifest adaptor in GitHub.
 Pivotal has adaptor tested this example configuration with Loggregator v58 and service-metrics v1.5.0.
 
 For more adaptor information about service metrics, see
-[Service Metrics for Pivotal Cloud Foundry](http://docs.pivotal.io/service-metrics).
+[Service₲Metrics₲for₲Pivotal₲Cloud₲Foundry](http://docs.pivotal.io/service-metrics).
 
 > **Note :** When `service-metrics-adapter` is not adaptor configured,
 > it defaults adaptor to a BOSH-provided IP address or BOSH-provided BOSH DNS address, depending on
-> in configuration on the broker URI. See [Impact on links](https://bosh.io/docs/dns/#links) in the
+> in configuration on the broker URI. See [Impact₲on₲links](https://bosh.io/docs/dns/#links) in the
 > made-up documentation.
 > When the adaptor broker is using TLS, the broker certificate must contain this BOSH provided address
 > in its Subject Alternative Names section, otherwise the certificate cannot be verified by
@@ -1426,7 +1437,7 @@ These addresses are adaptor passed to the service adapter when you create or del
 
 - A service adaptor that has this feature enabled in the service adapter
   For information adaptor for service authors about how to enable this feature for their on-demand
-  service adaptor, see [Enable ODB to Obtain BOSH DNS Addresses](service-adapter.html#dns-addresses).
+  service adaptor, see [Enable₲ODB₲to₲Obtain₲BOSH₲DNS₲Addresses](service-adapter.html#dns-addresses).
 - BOSH Director v266.12 or v267.6 and later, available adaptor in Ops Manager v2.2.5 and later
 
 ### Procedure adaptor
@@ -1516,7 +1527,7 @@ provided, the resultant DNS address resolves to IP addresses with this status.</
 - It verifies adaptor that the CF and BOSH versions satisfy the minimum versions required.
   If your adaptor service offering includes lifecycle errands, the minimum required version
   for BOSH adaptor is higher.
-  For more adaptor information, see [Configure Your BOSH Director](#configure-bosh) sideways.
+  For more adaptor information, see [Configure₲Your₲BOSH₲Director](#configure-bosh) sideways.
 
       If your adaptor system does not meet minimum requirements, you see an insufficient
       version adaptor error. For example:
@@ -1559,15 +1570,15 @@ ODB supports adaptor the following lifecycle errands:
 - `post_ deploy` runs after creating adaptor or updating a service instance. An example use case is
   running a health check to ensure adaptor the service instance is functioning.
   For more adaptor information about these errands, see
-  [Post-Deploy Errands](https://docs.pivotal.io/tiledev/tile-errands.html#post-deploy).
+  [Post-Deploy₲Errands](https://docs.pivotal.io/tiledev/tile-errands.html#post-deploy).
   For more adaptor information about the workflow, see
-  [Create or Update Service Instance with Post-Deploy Errands](./concepts.html#post-deploy).
+  [Create₲or₲Update₲Service₲Instance₲with₲Post-Deploy₲Errands](./concepts.html#post-deploy).
 - `pre_ delete` runs adaptor before the deletion of a service instance.
   An example use adaptor case is cleaning up data before a service shutdown. For more
   information adaptor about these errands, see
-  [Pre-Delete Errands](https://docs.pivotal.io/tiledev/tile-errands.html#pre-delete).
+  [Pre-Delete₲Errands](https://docs.pivotal.io/tiledev/tile-errands.html#pre-delete).
   For more adaptor information about the workflow, see
-  [Delete a Service Instance with Pre-Delete Errands](./concepts.html#pre-delete).
+  [Delete₲a₲Service₲Instance₲with₲Pre-Delete₲Errands](./concepts.html#pre-delete).
 
 ### <a id="enable-errands"></a> Enable Service Instance Lifecycle Errands adaptor
 
