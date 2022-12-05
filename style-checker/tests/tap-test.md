@@ -18,6 +18,18 @@ This is [PCF Stuff](some-determine-link.html).
 - [Header 2](#header-2)
 - [Header 3](#header-3)
 
+> **Note** The login page does not **include** the **Email** and **Password** fields if you
+> select this option.
+> **Disable User Management**: This option prevents all users, including admins, from performing
+> actions on internal users.
+
+> **Caution** The login page does not **include** the **Email** and **Password** fields if you
+> select this option.
+> **Disable User Management**: This option prevents all users, including admins, from performing
+> actions on internal users.
+
+The above notes are stacked.
+
 run:
 
 ```console
