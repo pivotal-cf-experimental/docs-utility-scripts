@@ -1,6 +1,6 @@
 # Rule Test
 
-There are 2678 tests. Use ^(?!\n)(?!See tap-test)[^฿]+\n to find tests sans comments. Use -->[^\n]+<!-- to find overlapping comments. Use <!--฿[^฿]*<!--฿ to find comments within comments.
+There are 2696 tests. Use ^(?!\n)(?!See tap-test)[^฿]+\n to find tests sans comments. Use -->[^\n]+<!-- to find overlapping comments. Use <!--฿[^฿]*<!--฿ to find comments within comments.
 
 See tap-test
 See tap-test
@@ -14,7 +14,6 @@ See tap-test
 ![test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test.](images/test-test.png)
 ![test test test test test test test test test test test test test test test test test test test test test test test](images/test-test.png)
-[here and here](https://test.com/docs) start test
 * `PLACEHOLDER_TEXT` means something
 **This is a fantastically long unwieldy run-in heading that needs to be shortened to fewer than seventy-three characters.**
 test <em>case</em>case
@@ -38,6 +37,7 @@ test `tap-values.yml` case
 [Wrong Link Name](https://www.rabbitmq.com/some-doc) start test
 [Wrong Link Name](https://www.terraform.io/docs/import/index.html) start test
 [Wrong Link Name](https://community.pivotal.io./some-doc) start test
+[some-topic](/some-folder/some-topic.hbs.md#anchor) test case
 [Link Name] (https://docs.broken-link.com/some-doc) start test
 [database](database.test.hbs.md)
 [database](database.test.html)
@@ -65,7 +65,6 @@ See tap-test
 See tap-test
 Start test CVE-2016-1234
 See tap-test
-See tap-test
 ## <a id="anchor"></a>1. test 1
 `errand_name` errand is wrong.
 `errand_name` errands are wrong.
@@ -84,6 +83,7 @@ See tap-test
 See tap-test
 See tap-test
 # <a id='test'></a> Testing header
+See tap-test
 See tap-test
 See tap-test
 See tap-test
@@ -117,6 +117,7 @@ See tap-test
 Do this, then do that start test.
 test realise case
 test realize case
+See tap-test
 test real time case
 test repo case
 start check test
@@ -165,9 +166,6 @@ might or might not start test
 Test style case
 start, test and test
 start, test or test
-> **Note:** test
-> **Important:** test
-> **Caution:** test
 test semi-colon; case sentence.
 seventeen start test
 this & that case
@@ -175,6 +173,9 @@ this & that case
 Container(s) start test
 (link.md) page case
 (link.md) topic case
+> **Caution:** test
+> **Important:** test
+> **Note:** test
 | Options are good. |
 test the Kafka backed case
 test Architect case
@@ -618,6 +619,7 @@ test cloud-native application bundle case
 test Cloud-Native buildpack case
 test Cloud-Native Buildpack case
 test Cloud-native Buildpack case
+test cloud-native buildpacks case
 test Cloud Controller API case
 test cloud controller case
 test Cloud foundries case
@@ -634,6 +636,8 @@ test cloud native application bundle case
 test Cloud native application bundle case
 test Cloud Native buildpack case
 test cloud native buildpack case
+test cloud native buildpacks case
+test Cloud Native buildpacks case
 test cloud service broker on AWS case
 test Cloud Service Broker on AWS case
 test cloud service broker on Azure case
@@ -884,6 +888,7 @@ test drop-down case
 test Drop-down list case
 test drop-down list case
 test drop down case
+test drop downs case
 test Dropdown case
 test dropdown case
 test dropdown list case
@@ -999,6 +1004,8 @@ test Filesystem case
 test filesystem case
 test Filesystems case
 test filesystems case
+test filter on case
+Filter on case
 test fingerd case
 test Fire-wall case
 test fire-wall case
@@ -1018,6 +1025,9 @@ For example start test
 for example start test
 test For instance, case
 test for instance: case
+test for more detail.
+test for more details.
+test for more info.
 test for more information.
 test For the sake of case
 test for the sake of case
@@ -1108,6 +1118,7 @@ test handicapping case
 Handicaps case
 test handicaps case
 test hang case
+test hanging case
 test hangs case
 test hankering case
 test Haproxy case
@@ -1347,6 +1358,7 @@ test just case
 test K8S case
 test k8s case
 test K8s case
+test Kaniko case
 Kebab case
 test kebab case
 test keep-alive case
@@ -1420,6 +1432,7 @@ test linebreak case
 Linebreak case
 test linebreaks case
 Linebreaks case
+test linux case
 test live update case
 test lives case
 test living case
@@ -2179,6 +2192,10 @@ test Tanzu Application Platform capability case
 test Tanzu Application Platform plug-in case
 test Tanzu Application Platform plug-ins case
 test tar case
+Test taskrun case
+Taskrun case
+Test taskruns case
+Taskruns case
 test Tasks case
 test terminal emulator case
 test Terminate case
@@ -2659,6 +2676,7 @@ test she case
 * START-test is the name of your test.
 * This is a test case:
 test Cloud Controller Database case
+See tap-test
 See tap-test
 # test\case topic title
 See tap-test
