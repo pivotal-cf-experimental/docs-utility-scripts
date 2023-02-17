@@ -2,7 +2,7 @@
 
 Style Checker is a script that adds comments to your document.
 The comments flag deviations from
-[IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards),
+[IX Content Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards),
 passive voice constructions, redundancy, awkward phrasing, and accessibility problems.
 
 Follow these procedures to install Style Checker.
