@@ -19,6 +19,9 @@ This is a link that should not contain backticks: [`Test Case` case](tap-docs/so
 - [Header 2](#header-2)
 - [Header 3](#header-3)
 
+{{#unless adaptor vars.hide_content }}
+{{/unless}}
+
 > **Note** The login page does not **include** the **Email** and **Password** fields if you
 > select this option.
 > **Disable User Management**: This option prevents all users, including admins, from performing
