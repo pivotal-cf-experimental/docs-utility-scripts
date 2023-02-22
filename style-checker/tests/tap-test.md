@@ -34,6 +34,14 @@ This is a link that should not contain backticks: [`Test Case` case](tap-docs/so
 
 The above notes are stacked.
 
+`this-contains-{{that-could-be-mistaken-for-HBS}}`
+
+```console
+this also
+contains
+{{that-could-be-mistaken-for-HBS}}
+```
+
 This tab `title` has backticks
 : Here is some tab text
 
