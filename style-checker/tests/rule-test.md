@@ -1,7 +1,6 @@
 # Rule Test
 
-There are 2766 tests. Use ^(?!\n)(?!See tap-test)[^฿]+\n to find tests sans comments. Use -->[^\n]+<!-- to find overlapping comments. Use <!--฿[^฿]*<!--฿ to find comments within comments.
-
+There are 2765 tests. Use ^(?!\n)(?!See tap-test)[^฿]+\n to find tests sans comments. Use -->[^\n]+<!-- to find overlapping comments. Use <!--฿[^฿]*<!--฿ to find comments within comments.
 See tap-test
 See tap-test
 See tap-test
@@ -69,7 +68,6 @@ See tap-test
 ## <a id="anchor"></a>1. test 1
 `errand_name` errand is wrong.
 `errand_name` errands are wrong.
-`these are unescaped {{ Handlebars tags }}`
 See tap-test
 See tap-test
 See tap-test
@@ -116,9 +114,6 @@ See tap-test
 See tap-test
 See tap-test
 Where `PLACEHOLDER_TEXT` means something
-
-
-
 See tap-test
 Do this, then do that start test.
 test realise case
@@ -333,12 +328,12 @@ test App Developer case
 test App manager case
 test Appendices case
 test appendices case
-test application Accelerator GUI case
-test Application accelerator GUI case
-test application accelerator GUI case
 test application Accelerator case
 test Application accelerator case
 test application accelerator case
+test application Accelerator GUI case
+test Application accelerator GUI case
+test application accelerator GUI case
 test application developer case
 test Application live view case
 test application program interface case
@@ -2770,7 +2765,4 @@ Test press **button** case
 Press **button** case
 Test select **button** case
 Select **button** case
-
-
-
 <!--฿ This comment should only appear once after running the script. ฿--><!--฿ This comment should only appear once after running the script. ฿-->
