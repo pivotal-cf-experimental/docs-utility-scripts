@@ -154,6 +154,10 @@ This sentence introduces an Options table.
 2. This steps has sub-steps and wrongly ends in a colon.
    1. This is a sub-step.
 
+{{> partial/some-file }}
+
+1. This step formatting doesn't work because of the partial being almost immediately above.
+
 ## <a id="determine-checklist"></a> Operator Responsibilities
 
 > **Note:** This is a note directly beneath a header.
