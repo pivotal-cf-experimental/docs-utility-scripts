@@ -239,6 +239,8 @@ This is an improperly styled stem
 
 ## <a id="networking"></a> Setting Up Networking adaptor
 
+## <a id="install"></a> Installation of the network adaptor
+
 Regardless of adaptor the specific network layout, you must ensure network
 rules are set adaptor up so that connections are open as described in the table below.
 
