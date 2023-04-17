@@ -1,5 +1,7 @@
 # New Release Playbook
 
+**Note:** These playbooks are out of date. For current practices, see [Publishing PCF Documentation on Release Day](https://docs-wiki.cfapps.io/wiki/pipelines/release-day.html) in the docs wiki.
+
 Refer to the [Release Operations Overview](https://github.com/pivotal-cf-experimental/docs-utility-scripts/blob/master/docs-ops-docs/release-operations-overview.md) before you start this playbook.
 
 ## Step One: Prepare cf-current Pipeline

@@ -1,5 +1,7 @@
 # Doc Ops Release Playbooks
 
+**Note:** These playbooks are out of date. For current practices, see [Work With Pipelines](https://docs-wiki.cfapps.io/wiki/pipelines/index.html) in the docs wiki.
+
 ## Overview
 
 This document addresses the two playbooks used by the docs team to accomplish a quarterly release cycle:

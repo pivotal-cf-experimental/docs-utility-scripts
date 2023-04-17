@@ -1,0 +1,936 @@
+{
+  "_comment" : "Created with OWL2VOWL (version 0.3.7), http://vowl.visualdataweb.org",
+  "header" : {
+    "languages" : [ "en", "undefined" ],
+    "baseIris" : [ "http://www.w3.org/1999/02/22-rdf-syntax-ns", "http://www.w3.org/2000/01/rdf-schema", "http://www.w3.org/2001/XMLSchema", "http://xmlns.com/foaf/0.1", "http://cookingbigdata.com/linkeddata/ccinstances" ],
+    "prefixList" : {
+      "owl" : "http://www.w3.org/2002/07/owl#",
+      "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "xsd" : "http://www.w3.org/2001/XMLSchema#",
+      "" : "http://cookingbigdata.com/linkeddata/ccinstances#",
+      "dc" : "http://purl.org/dc/terms/",
+      "cc" : "http://creativecommons.org/ns#",
+      "xml" : "http://www.w3.org/XML/1998/namespace",
+      "foaf" : "http://xmlns.com/foaf/0.1/",
+      "rdfs" : "http://www.w3.org/2000/01/rdf-schema#"
+    },
+    "title" : {
+      "en" : "Ontology for Cloud Computing instances"
+    },
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#",
+    "version" : "1.0",
+    "author" : [ "http://cookingbigdata.com/linkeddata/ccinstances#manuelparra" ],
+    "description" : {
+      "en" : "Ontology for Cloud Computing Instances. Instance are classes of VM that comprise varying combinations of CPU, memory, storage, and networking capacity. This ontology allows to define the instantiation model of MVs used in large cloud computing providers such as Amazon, Azure, etc."
+    },
+    "labels" : {
+      "en" : "Cloud Instances definition"
+    },
+    "other" : {
+      "license" : [ {
+        "identifier" : "license",
+        "language" : "undefined",
+        "value" : "http://creativecommons.org/licenses/by/3.0/",
+        "type" : "iri"
+      } ],
+      "creator" : [ {
+        "identifier" : "creator",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances#manuelparra",
+        "type" : "iri"
+      } ],
+      "created" : [ {
+        "identifier" : "created",
+        "language" : "undefined",
+        "value" : "2018-03-06",
+        "type" : "label"
+      } ],
+      "rights" : [ {
+        "identifier" : "rights",
+        "language" : "undefined",
+        "value" : "Copyright © 2018 Manuel Parra-Royón",
+        "type" : "label"
+      } ],
+      "publisher" : [ {
+        "identifier" : "publisher",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances#cookingbigdata",
+        "type" : "iri"
+      } ],
+      "modified" : [ {
+        "identifier" : "modified",
+        "language" : "undefined",
+        "value" : "2018-04-03",
+        "type" : "label"
+      } ],
+      "versionInfo" : [ {
+        "identifier" : "versionInfo",
+        "language" : "undefined",
+        "value" : "1.0",
+        "type" : "label"
+      } ],
+      "title" : [ {
+        "identifier" : "title",
+        "language" : "en",
+        "value" : "Ontology for Cloud Computing instances",
+        "type" : "label"
+      } ],
+      "issued" : [ {
+        "identifier" : "issued",
+        "language" : "undefined",
+        "value" : "2018-04-20",
+        "type" : "label"
+      } ]
+    }
+  },
+  "namespace" : [ ],
+  "class" : [ {
+    "id" : "7",
+    "type" : "owl:Class"
+  }, {
+    "id" : "8",
+    "type" : "owl:Class"
+  }, {
+    "id" : "23",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "13",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "6",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "20",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "28",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "29",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "30",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "31",
+    "type" : "owl:Class"
+  }, {
+    "id" : "15",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "18",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "1",
+    "type" : "owl:Class"
+  }, {
+    "id" : "33",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "36",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "17",
+    "type" : "owl:Class"
+  }, {
+    "id" : "37",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "22",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "11",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "2",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "4",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "38",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "40",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "42",
+    "type" : "rdfs:Datatype"
+  }, {
+    "id" : "10",
+    "type" : "owl:Class"
+  }, {
+    "id" : "25",
+    "type" : "owl:Class"
+  }, {
+    "id" : "27",
+    "type" : "owl:Class"
+  } ],
+  "classAttribute" : [ {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#network",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "instances" : 0,
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "network",
+      "en" : "Network"
+    },
+    "comment" : {
+      "en" : "Network"
+    },
+    "id" : "7"
+  }, {
+    "iri" : "http://xmlns.com/foaf/0.1/Organization",
+    "baseIri" : "http://xmlns.com/foaf/0.1",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Organization"
+    },
+    "individuals" : [ {
+      "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cookingbigdata",
+      "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+      "annotations" : {
+        "name" : [ {
+          "identifier" : "name",
+          "language" : "undefined",
+          "value" : "CookingBigData",
+          "type" : "label"
+        } ],
+        "seeAlso" : [ {
+          "identifier" : "seeAlso",
+          "language" : "undefined",
+          "value" : "http://cookingbigdata.com/about",
+          "type" : "iri"
+        } ],
+        "homepage" : [ {
+          "identifier" : "homepage",
+          "language" : "undefined",
+          "value" : "http://cookingbigdata.com",
+          "type" : "iri"
+        } ]
+      },
+      "labels" : {
+        "IRI-based" : "cookingbigdata"
+      }
+    } ],
+    "attributes" : [ "external" ],
+    "id" : "8"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "23",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "13",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#integer",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "6",
+    "label" : {
+      "IRI-based" : "integer"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "20",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "28",
+    "label" : {
+      "IRI-based" : "decimal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "29",
+    "label" : {
+      "IRI-based" : "decimal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#integer",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "30",
+    "label" : {
+      "IRI-based" : "integer"
+    }
+  }, {
+    "iri" : "http://xmlns.com/foaf/0.1/Person",
+    "baseIri" : "http://xmlns.com/foaf/0.1",
+    "instances" : 0,
+    "label" : {
+      "IRI-based" : "Person"
+    },
+    "individuals" : [ {
+      "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#manuelparra",
+      "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+      "annotations" : {
+        "name" : [ {
+          "identifier" : "name",
+          "language" : "undefined",
+          "value" : "Manuel Parra-Royon",
+          "type" : "label"
+        } ],
+        "mbox" : [ {
+          "identifier" : "mbox",
+          "language" : "undefined",
+          "value" : "manuparra@gmail.com",
+          "type" : "label"
+        } ],
+        "seeAlso" : [ {
+          "identifier" : "seeAlso",
+          "language" : "undefined",
+          "value" : "https://twitter.com/manugrapevine",
+          "type" : "iri"
+        } ],
+        "homepage" : [ {
+          "identifier" : "homepage",
+          "language" : "undefined",
+          "value" : "https://twitter.com/manugrapevine",
+          "type" : "iri"
+        } ]
+      },
+      "labels" : {
+        "IRI-based" : "manuelparra"
+      }
+    } ],
+    "attributes" : [ "external" ],
+    "id" : "31"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "15",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#integer",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "18",
+    "label" : {
+      "IRI-based" : "integer"
+    }
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "instances" : 0,
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "cpu",
+      "en" : "CPU"
+    },
+    "subClasses" : [ "27" ],
+    "comment" : {
+      "en" : "CPU"
+    },
+    "id" : "1"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "33",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#integer",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "36",
+    "label" : {
+      "IRI-based" : "integer"
+    }
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#ram",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "instances" : 0,
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "ram",
+      "en" : "RAM"
+    },
+    "comment" : {
+      "en" : "RAM"
+    },
+    "id" : "17"
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "37",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "22",
+    "label" : {
+      "IRI-based" : "decimal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#string",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "11",
+    "label" : {
+      "IRI-based" : "string"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#integer",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "2",
+    "label" : {
+      "IRI-based" : "integer"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#integer",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "4",
+    "label" : {
+      "IRI-based" : "integer"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#integer",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "38",
+    "label" : {
+      "IRI-based" : "integer"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "40",
+    "label" : {
+      "IRI-based" : "decimal"
+    }
+  }, {
+    "iri" : "http://www.w3.org/2001/XMLSchema#decimal",
+    "baseIri" : "http://www.w3.org/2001/XMLSchema",
+    "id" : "42",
+    "label" : {
+      "IRI-based" : "decimal"
+    }
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#Instance",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "instances" : 0,
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "Instance",
+      "en" : "Instance"
+    },
+    "comment" : {
+      "en" : "Instance"
+    },
+    "id" : "10"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#storage",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "instances" : 0,
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "storage",
+      "en" : "Storage"
+    },
+    "comment" : {
+      "en" : "Storage"
+    },
+    "id" : "25"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#gpu",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "instances" : 0,
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "gpu",
+      "en" : "GPU"
+    },
+    "comment" : {
+      "en" : "GPU"
+    },
+    "id" : "27",
+    "superClasses" : [ "1" ]
+  } ],
+  "property" : [ {
+    "id" : "0",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "3",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "5",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "9",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "12",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "14",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "16",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "19",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "21",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "24",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "26",
+    "type" : "rdfs:SubClassOf"
+  }, {
+    "id" : "32",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "34",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "35",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "39",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "41",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "43",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "44",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "45",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "46",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "47",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "48",
+    "type" : "owl:datatypeProperty"
+  }, {
+    "id" : "49",
+    "type" : "owl:objectProperty"
+  }, {
+    "id" : "50",
+    "type" : "owl:datatypeProperty"
+  } ],
+  "propertyAttribute" : [ {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_cores",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "2",
+    "label" : {
+      "IRI-based" : "cpu_cores",
+      "en" : "CPU cores"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "Numer of physical cores. For example: 6"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "0"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_spped",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "4",
+    "label" : {
+      "IRI-based" : "cpu_spped",
+      "en" : "CPU bus speed"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "A bus is a subsystem that transfers data between computer components or between computers. Types include (FSB) (DMI) (Intel I/O) (QPI)"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "3"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_threads",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "6",
+    "label" : {
+      "IRI-based" : "cpu_threads",
+      "en" : "CPU threads"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "CPU threads"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "5"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#type",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "11",
+    "label" : {
+      "IRI-based" : "type",
+      "en" : "Type Code"
+    },
+    "domain" : "10",
+    "comment" : {
+      "en" : "Name that groups together instances of the same or similar type under a common name; for example: Basic Group"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "9"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_code",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "13",
+    "label" : {
+      "IRI-based" : "cpu_code",
+      "en" : "CPU ID"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "Processor Number. For example: i5-8600T"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "12"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_model",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "15",
+    "label" : {
+      "IRI-based" : "cpu_model",
+      "en" : "CPU Model"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "Model of CPU. For example: 8th Generation Intel® Core™ i5 Processors"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "14"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#ram_size",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "18",
+    "label" : {
+      "IRI-based" : "ram_size",
+      "en" : "RAM size"
+    },
+    "domain" : "17",
+    "comment" : {
+      "en" : "RAM size of the instance. For example: 256 GB"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "16"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#model",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "20",
+    "label" : {
+      "IRI-based" : "model",
+      "en" : "Model Code"
+    },
+    "domain" : "10",
+    "comment" : {
+      "en" : "Unique identifier of the instance. It allows to know the name of the instance in a quick way. For instance: t2.medium"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "19"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_frecuency",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "22",
+    "label" : {
+      "IRI-based" : "cpu_frecuency",
+      "en" : "CPU Frecuency"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "Processor Base Frequency describes the rate at which the processor's transistors open and close. The processor base frequency is the operating point where TDP is defined. Frequency is measured in gigahertz (GHz), or billion cycles per second."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "21"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#storage_technology",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "23",
+    "label" : {
+      "IRI-based" : "storage_technology",
+      "en" : "Storage Technology"
+    },
+    "domain" : "25",
+    "comment" : {
+      "en" : "Storage Technology. For instance: SSD/HDD/..."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "24"
+  }, {
+    "range" : "1",
+    "domain" : "27",
+    "attributes" : [ "anonymous", "object" ],
+    "id" : "26"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#hasCPU",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "1",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasCPU",
+      "en" : "Has CPU"
+    },
+    "domain" : "10",
+    "comment" : {
+      "en" : "Specifies that the instance is provided with CPU"
+    },
+    "attributes" : [ "object" ],
+    "id" : "32"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#hasStorage",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "25",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasStorage",
+      "en" : "Has storage"
+    },
+    "domain" : "10",
+    "comment" : {
+      "en" : "Specifies that the instance is provided with storage"
+    },
+    "attributes" : [ "object" ],
+    "id" : "34"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#hasNetwork",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "7",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasNetwork",
+      "en" : "Has network"
+    },
+    "domain" : "10",
+    "comment" : {
+      "en" : "Specifies that the instance is provided with network"
+    },
+    "attributes" : [ "object" ],
+    "id" : "35"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#network_bandwidth",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "28",
+    "label" : {
+      "IRI-based" : "network_bandwidth",
+      "en" : "Network bandwidth"
+    },
+    "domain" : "7",
+    "comment" : {
+      "en" : "Network bandwidth in Mbps. For example: 1000 Mbps"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "39"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#ram_frecuency",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "38",
+    "label" : {
+      "IRI-based" : "ram_frecuency",
+      "en" : "RAM frecuency"
+    },
+    "domain" : "17",
+    "comment" : {
+      "en" : "RAM frecuency in MHz. For example: 2300 MHz"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "41"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_max_frecuency",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "40",
+    "label" : {
+      "IRI-based" : "cpu_max_frecuency",
+      "en" : "CPU Max Frecuency"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "Max turbo frequency is the maximum single core frequency at which the processor is capable of operating using Intel® Turbo Boost Technology. Frequency is measured in gigahertz (GHz), or billion cycles per second."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "43"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#ram_type",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "37",
+    "label" : {
+      "IRI-based" : "ram_type",
+      "en" : "RAM Type"
+    },
+    "domain" : "17",
+    "comment" : {
+      "en" : "RAM Type. For example: DDR3"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "44"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#storage_size",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "29",
+    "label" : {
+      "IRI-based" : "storage_size",
+      "en" : "Storage size"
+    },
+    "domain" : "25",
+    "comment" : {
+      "en" : "Storage size. For example: 500 GB"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "45"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#code",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "33",
+    "label" : {
+      "IRI-based" : "code",
+      "en" : "Short Code"
+    },
+    "domain" : "10",
+    "comment" : {
+      "en" : "Instance group code"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "46"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_consumition",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "42",
+    "label" : {
+      "IRI-based" : "cpu_consumition",
+      "en" : "CPU TDP"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "CPU Thermal Design Power (TDP) represents the average power, in watts, the processor dissipates when operating at Base Frequency with all cores active under an Intel-defined, high-complexity workload"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "47"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#cpu_cache",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "36",
+    "label" : {
+      "IRI-based" : "cpu_cache",
+      "en" : "CPU Cache"
+    },
+    "domain" : "1",
+    "comment" : {
+      "en" : "CPU Cache is an area of fast memory located on the processor. It refers to the architecture that allows all cores to dynamically share access to the last level cache."
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "48"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#hasRAM",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "17",
+    "annotations" : {
+      "isDefinedBy" : [ {
+        "identifier" : "isDefinedBy",
+        "language" : "undefined",
+        "value" : "http://cookingbigdata.com/linkeddata/ccinstances",
+        "type" : "iri"
+      } ]
+    },
+    "label" : {
+      "IRI-based" : "hasRAM",
+      "en" : "Has RAM"
+    },
+    "domain" : "10",
+    "comment" : {
+      "en" : "Specifies that the instance is provided with RAM"
+    },
+    "attributes" : [ "object" ],
+    "id" : "49"
+  }, {
+    "iri" : "http://cookingbigdata.com/linkeddata/ccinstances#storage_bandwidth",
+    "baseIri" : "http://cookingbigdata.com/linkeddata/ccinstances",
+    "range" : "30",
+    "label" : {
+      "IRI-based" : "storage_bandwidth",
+      "en" : "Storage Bandwidth"
+    },
+    "domain" : "25",
+    "comment" : {
+      "en" : "Storage bandwidth in MB/s"
+    },
+    "attributes" : [ "datatype" ],
+    "id" : "50"
+  } ]
+}
