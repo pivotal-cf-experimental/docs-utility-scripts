@@ -1,5 +1,8 @@
 # <a id='test'></a> Tanzu Application Platform Test
 
+This is a short description with far, far, far, far, far, far, far, far, far, far, far, far, far, far,
+far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far too many characters.
+
 # Testing topic
 
 <!--
