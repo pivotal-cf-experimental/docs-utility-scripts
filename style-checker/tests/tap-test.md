@@ -3,7 +3,7 @@
 This is a short description with far, far, far, far, far, far, far, far, far, far, far, far, far, far,
 far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far too many characters.
 
-# Testing topic
+## Testing topic
 
 <!--
 Test 1: There are NUM comments.
@@ -13,6 +13,8 @@ Test 4: There are ##### chars with SC comments.
 Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`.
 Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 -->
+
+# Testing topic
 
 This topic adaptor provides re-boot information about operating the on-demand broker for Pivotal Cloud Foundry (PCF) Ops Manager operators adaptor and cucumber BOSH operators.
 This is [PCF Stuff](some-determine-link.html).
