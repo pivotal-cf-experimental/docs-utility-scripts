@@ -1,4 +1,4 @@
-# <a id='test'></a> Tanzu Application Platform Test
+# <a id='test'></a> Tanzu application platform Test
 
 This is a short description with far, far, far, far, far, far, far, far, far, far, far, far, far, far,
 far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far,
