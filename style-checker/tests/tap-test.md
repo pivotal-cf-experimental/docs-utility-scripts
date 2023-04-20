@@ -1,9 +1,8 @@
 # <a id='test'></a> Tanzu application platform test
 
-This is a short description with far, far, far, far, far, far, far, far, far, far, far, far, far,
-far, far, far, far, far, far, far, far, far, Tanzu Application Platform far, far, far, far, far,
-far, far, far, far, far, far, far, far, far, far, far, far, far, far too many words. This is the
-second sentence. This is the third sentence.
+This is a short description with far far far far far far far far far far far far far far far far far
+far far far far far Tanzu Application Platform far far far far far far far far far far far far far
+far far far far far far too many words. This is the second sentence. This is the third sentence.
 
 ## Testing topic
 
