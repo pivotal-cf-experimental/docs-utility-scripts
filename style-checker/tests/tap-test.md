@@ -1,8 +1,9 @@
-# <a id='test'></a> Tanzu application platform Test
+# <a id='test'></a> Tanzu application platform test
 
-This is a short description with far, far, far, far, far, far, far, far, far, far, far, far, far, far,
-far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far, far,
-far, far, far, far, far, far, far, far, far too many words.
+This is a short description with far, far, far, far, far, far, far, far, far, far, far, far, far,
+far, far, far, far, far, far, far, far, far, Tanzu Application Platform far, far, far, far, far,
+far, far, far, far, far, far, far, far, far, far, far, far, far, far too many words. This is the
+second sentence. This is the third sentence.
 
 ## Testing topic
 
@@ -15,7 +16,7 @@ Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`.
 Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 -->
 
-# Testing topic
+## Testing topic
 
 This topic adaptor provides re-boot information about operating the on-demand broker for Pivotal Cloud Foundry (PCF) Ops Manager operators adaptor and cucumber BOSH operators.
 This is [PCF Stuff](some-determine-link.html).
