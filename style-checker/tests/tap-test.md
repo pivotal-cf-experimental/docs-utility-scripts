@@ -188,6 +188,14 @@ This stem does not end in a colon.
 1. Writing a adaptor broker manifest.
    See adaptor [Write a Broker Manifest](#broker-manifest) below.
 
+   ```yaml
+   instance_groups:
+   - name: broker determine
+     ...
+     jobs:
+       - name: determine broker
+   ```
+
 This stem does not end in a colon.
 
 1. Managing adaptor brokers and service plans. See adaptor [Broker and Service Management](./management.html).
