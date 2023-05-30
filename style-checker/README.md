@@ -2,15 +2,15 @@
 
 Style Checker is a script that adds comments to your document.
 The comments flag deviations from
-[IX Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards),
+[IX Content Standards](https://confluence.eng.vmware.com/display/public/IXCS/IX+Content+Standards),
 passive voice constructions, redundancy, awkward phrasing, and accessibility problems.
 
 Follow these procedures to install Style Checker.
 
-> **Note:** If you use Style Checker with the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules),
-> I recommend you try the much faster
-> [RegReplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace) extension as
-> described in the installation steps.
+> **Important** Style Checker is only maintained to run through the
+> [RegReplace](https://marketplace.visualstudio.com/items?itemName=DomiR.regreplace) extension.
+> If you're still using the [Replace Rules extension](https://marketplace.visualstudio.com/items?itemName=bhughes339.replacerules),
+> you need to upgrade.
 
 ## <a id="prereqs"></a> Prerequisites
 

@@ -1,6 +1,10 @@
-# <a id='test'></a> Tanzu Application Platform Test
+# <a id='test'></a> Tanzu application platform test
 
-# Testing topic
+This is a short description with far far far far far far far far far far far far far far far far far
+far far far far far Tanzu Application Platform far far far far far far far far far far far far far
+far far far far far far too many words. This is the second sentence. This is the third sentence.
+
+## Testing topic
 
 <!--
 Test 1: There are NUM comments.
@@ -11,12 +15,43 @@ Test 5: There are no instances of `<!-\-฿[^฿]*<!-\-฿`.
 Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 -->
 
+## Testing topic
+
 This topic adaptor provides re-boot information about operating the on-demand broker for Pivotal Cloud Foundry (PCF) Ops Manager operators adaptor and cucumber BOSH operators.
 This is [PCF Stuff](some-determine-link.html).
+This is a link that should not contain backticks: [`Test Case` case](tap-docs/some-file.html#anchor).
 
 - [Header 1](#header-1)
 - [Header 2](#header-2)
 - [Header 3](#header-3)
+
+{{#unless adaptor vars.hide_content }}
+{{/unless}}
+
+> **Note** The login page does not **include** the **Email** and **Password** fields if you
+> select this option.
+> **Disable User Management**: This option prevents all users, including admins, from performing
+> actions on internal users.
+
+> **Caution** The login page does not **include** the **Email** and **Password** fields if you
+> select this option.
+> **Disable User Management**: This option prevents all users, including admins, from performing
+> actions on internal users.
+
+The above notes are stacked.
+
+`this-contains-{{that-could-be-mistaken-for-HBS}}`
+
+```console
+this also
+contains
+{{that-could-be-mistaken-for-HBS}}
+```
+
+This tab `title` has backticks
+: Here is some tab text
+
+  1. And a step
 
 run:
 
@@ -125,6 +160,10 @@ This sentence introduces an Options table.
 2. This steps has sub-steps and wrongly ends in a colon.
    1. This is a sub-step.
 
+{{> partial/some-file }}
+
+1. This step formatting doesn't work because of the partial being almost immediately above.
+
 ## <a id="determine-checklist"></a> Operator Responsibilities
 
 > **Note:** This is a note directly beneath a header.
@@ -148,6 +187,14 @@ This stem does not end in a colon.
 
 1. Writing a adaptor broker manifest.
    See adaptor [Write a Broker Manifest](#broker-manifest) below.
+
+   ```yaml
+   instance_groups:
+   - name: broker determine
+     ...
+     jobs:
+       - name: determine broker
+   ```
 
 This stem does not end in a colon.
 
@@ -205,6 +252,8 @@ This is an improperly styled stem
 **This is a lead-in heading:**
 
 ## <a id="networking"></a> Setting Up Networking adaptor
+
+## <a id="install"></a> Installation of the network adaptor
 
 Regardless of adaptor the specific network layout, you must ensure network
 rules are set adaptor up so that connections are open as described in the table below.
