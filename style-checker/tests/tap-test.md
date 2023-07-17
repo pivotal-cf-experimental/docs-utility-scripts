@@ -342,6 +342,8 @@ See adaptor the following topics for how to set up your BOSH Director:
 - [BOSH determine Teams](#bosh-teams)
 - [Cloud determine Controller](#cloud-controller)
 
+This shouldn't end in a colon:
+
 ### Software Requirements adaptor
 
 The On-Demand Broker adaptor requires the following:
