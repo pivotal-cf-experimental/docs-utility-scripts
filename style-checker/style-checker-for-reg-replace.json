@@ -10,7 +10,7 @@
   {"name": "10",  "regexp": "(!\\[.*Screen[\\s\\n]+shot.*\\]\\(.*\\.png\\))", "replace": "$1<!--฿ |Screenshot| is one word. Consider whether the word is really needed in the alt text. ฿-->"},
   {"name": "11",  "regexp": "(!\\[.*screen[\\s\\n]+shot.*\\]\\(.*\\.png\\))", "replace": "$1<!--฿ |screenshot| is one word. Consider whether the word is really needed in the alt text. ฿-->"},
   {"name": "12",  "regexp": "(!\\[[^\\]]{0,44}\\]\\(.*\\.png\\))", "replace": "$1<!--฿ Alt text must describe the image in detail. ฿-->"},
-  {"name": "13",  "regexp": "(!\\[[^\\]]{151,}\\]\\(.*\\.png\\))", "replace": "$1<!--฿ Reduce alt text to 150 characters or fewer. ฿-->"},
+  {"name": "13",  "regexp": "(!\\[[^\\]]{141,}\\]\\(.*\\.png\\))", "replace": "$1<!--฿ Reduce alt text to 140 characters or fewer. ฿-->"},
   {"name": "14",  "regexp": "(!\\[[^\\]]*[^\\.]]\\(.*\\.png\\))", "replace": "$1<!--฿ In alt text, write a coherent sentence that ends with a period. ฿-->"},
   {"name": "15",  "regexp": "([\\*\\+\\-]\\s`[A-Za-z-]*_.*(`\\s|`$))", "replace": "$1<!--฿ If this is a placeholder, use dashes for spaces instead of underscores. ฿-->"},
   {"name": "16",  "regexp": "([\\s\\n]+\\*\\*[^*]{96,})", "replace": "$1<!--฿ Consider reducing this run-in heading to fewer than 100 characters. ฿-->"},
