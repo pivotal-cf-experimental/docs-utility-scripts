@@ -26,7 +26,6 @@ mapping_relationship = {
     "fluxcd.source.controller.tanzu.vmware.com": "Flux CD Source Controller",
     "grype.scanning.apps.tanzu.vmware.com": "Grype Scanner for SCST - Scan",
     "local-source-proxy.apps.tanzu.vmware.com": "Local Source Proxy",
-    "managed-resource-controller.apps.tanzu.vmware.com": "Managed Resource Controller (beta)",
     "namespace-provisioner.apps.tanzu.vmware.com": "Namespace Provisioner",
     "ootb-delivery-basic.tanzu.vmware.com": "Out of the Box Delivery - Basic",
     "ootb-supply-chain-basic.tanzu.vmware.com": "Out of the Box Supply Chain - Basic",
@@ -49,7 +48,6 @@ mapping_relationship = {
     "tpb.tanzu.vmware.com": "Tanzu Developer Portal Configurator",
     "tap-telemetry.tanzu.vmware.com": "Tanzu Application Platform Telemetry",
     "buildservice.tanzu.vmware.com": "Tanzu Build Service",
-    "supply-chain.apps.tanzu.vmware.com": "Tanzu Supply Chain (beta)",
     "tekton.tanzu.vmware.com": "Tekton Pipelines",
     "managed-resource-controller.apps.tanzu.vmware.com": "Managed Resource Controller (beta)",
     "supply-chain.apps.tanzu.vmware.com": "Tanzu Supply Chain (beta)"
