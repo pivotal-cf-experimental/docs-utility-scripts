@@ -43,3 +43,5 @@ The script takes a YAML file containing information about package versions, maps
 7. Replace the two placeholders for "Tanzu CLI" and "Cartographer Conventions" with their real version numbers.
 
 8. Sort these two rows in alphabetical order.
+
+9. Check alpha/beta labels are on the correct components.
