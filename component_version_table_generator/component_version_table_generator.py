@@ -33,6 +33,7 @@ mapping_relationship = {
     "ootb-supply-chain-testing-scanning.tanzu.vmware.com": "Out of the Box Supply Chain - Testing and Scanning",
     "ootb-templates.tanzu.vmware.com": "Out of the Box Templates",
     "servicebinding.tanzu.vmware.com": "Service Bindings",
+    "service-bindings.labs.vmware.com": "Service Bindings",
     "service-registry.spring.apps.tanzu.vmware.com": "Service Registry",
     "services-toolkit.tanzu.vmware.com": "Services Toolkit",
     "snyk.scanning.apps.tanzu.vmware.com": "Snyk Scanner for SCST - Scan (beta)",
@@ -50,7 +51,10 @@ mapping_relationship = {
     "buildservice.tanzu.vmware.com": "Tanzu Build Service",
     "tekton.tanzu.vmware.com": "Tekton Pipelines",
     "managed-resource-controller.apps.tanzu.vmware.com": "Managed Resource Controller (beta)",
-    "supply-chain.apps.tanzu.vmware.com": "Tanzu Supply Chain (beta)"
+    "supply-chain.apps.tanzu.vmware.com": "Tanzu Supply Chain (beta)",
+    "eventing.tanzu.vmware.com": "Eventing (deprecated)",
+    "learningcenter.tanzu.vmware.com": "Learning Center (deprecated)",
+    "workshops.learningcenter.tanzu.vmware.com": "Learning Center workshops (deprecated)"
 }
 
 # Read YAML data from file
