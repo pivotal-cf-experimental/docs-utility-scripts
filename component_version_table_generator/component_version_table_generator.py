@@ -24,6 +24,7 @@ mapping_relationship = {
     "developer-conventions.tanzu.vmware.com": "Developer Conventions",
     "external-secrets.apps.tanzu.vmware.com": "External Secrets Operator",
     "fluxcd-source-controller.tanzu.vmware.com": "Flux CD Source Controller",
+    "fluxcd.source.controller.tanzu.vmware.com": "Flux CD Source Controller",
     "grype.scanning.apps.tanzu.vmware.com": "Grype Scanner for SCST - Scan",
     "local-source-proxy.apps.tanzu.vmware.com": "Local Source Proxy",
     "namespace-provisioner.apps.tanzu.vmware.com": "Namespace Provisioner",
