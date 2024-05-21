@@ -22,6 +22,7 @@ mapping_relationship = {
     "crossplane.tanzu.vmware.com": "Crossplane",
     "tap-auth.tanzu.vmware.com": "Default Roles",
     "developer-conventions.tanzu.vmware.com": "Developer Conventions",
+    "config-server.spring.tanzu.vmware.com": "Enterprise Config Server",
     "external-secrets.apps.tanzu.vmware.com": "External Secrets Operator",
     "fluxcd-source-controller.tanzu.vmware.com": "Flux CD Source Controller",
     "fluxcd.source.controller.tanzu.vmware.com": "Flux CD Source Controller",
@@ -38,6 +39,7 @@ mapping_relationship = {
     "service-registry.spring.apps.tanzu.vmware.com": "Service Registry",
     "services-toolkit.tanzu.vmware.com": "Services Toolkit",
     "snyk.scanning.apps.tanzu.vmware.com": "Snyk Scanner for SCST - Scan (beta)",
+#    "sonarqube.component.apps.tanzu.vmware.com": "SonarQube Scan Supply Chain Component (alpha)",
     "spring-boot-conventions.tanzu.vmware.com": "Spring Boot conventions",
     "spring-cloud-gateway.tanzu.vmware.com": "Spring Cloud Gateway",
     "cartographer.tanzu.vmware.com": "Supply Chain Choreographer",
@@ -59,7 +61,7 @@ mapping_relationship = {
 }
 
 # Read YAML data from file
-yaml_file_path = "1.7.4.yaml"
+yaml_file_path = "PATH-TO-YAML-FILE/1.10.0.yaml"
 with open(yaml_file_path, "r") as file:
     yaml_data = file.read()
 
