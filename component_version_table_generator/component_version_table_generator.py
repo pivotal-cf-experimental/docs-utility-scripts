@@ -61,7 +61,7 @@ mapping_relationship = {
 }
 
 # Read YAML data from file
-yaml_file_path = "PATH-TO-YAML-FILE/1.10.0.yaml"
+yaml_file_path = "FILE-NAME.yaml"
 with open(yaml_file_path, "r") as file:
     yaml_data = file.read()
 
