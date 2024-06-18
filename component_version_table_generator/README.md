@@ -40,8 +40,8 @@ The script takes a YAML file containing information about package versions, maps
  
 8. Copy the content of the Markdown file to the release notes.
 
-9. Replace the two placeholders for "Tanzu CLI" and "Cartographer Conventions" with their real version numbers.
+9. Replace the version placeholders in the Tanzu CLI and Cartographer Conventions rows with the real version numbers.
 
-10. Sort these two rows in alphabetical order.
+10. Move the Tanzu CLI and Cartographer Conventions rows so that they are in alphabetical order with the rest of the rows.
 
 11. Verify that any necessary alpha and beta labels are on the correct components.
