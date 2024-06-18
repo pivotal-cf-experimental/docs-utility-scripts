@@ -15,7 +15,7 @@ The script takes a YAML file containing information about package versions, maps
 - Install `PyYAML`:
 
     ```console
-    pip install pyyaml
+    pip3 install pyyaml
     ```
 
 ## Instructions
