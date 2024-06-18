@@ -26,7 +26,7 @@ The script takes a YAML file containing information about package versions, maps
 
 3. Move the YAML file to the directory that `component_version_table_generator.py` is in.
 
-4. Open `component_version_table_generator.py` in a text editor. Replace the file path `yaml_file_path` with the name of the `yaml` file. For example, by running:
+4. Open `component_version_table_generator.py` in a text editor. Replace the file path `yaml_file_path` with the name of the `yaml` file. For example:
 
     ```py
     yaml_file_path = "1.7.4.yaml"
