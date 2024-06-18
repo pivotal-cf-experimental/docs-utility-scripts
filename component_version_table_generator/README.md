@@ -22,7 +22,7 @@ The script takes a YAML file containing information about package versions, maps
 
 1. Download the `component_version_table_generator.py` script to your local machine.
 
-2. Download the YAML file for the relevant docs version from [artifactory.eng.vmware.com](https://artifactory.eng.vmware.com/ui/native/tap-builds-generic-local/).
+2. Download the most recently modified YAML file for the relevant docs version from [artifactory.eng.vmware.com](https://artifactory.eng.vmware.com/ui/native/tap-builds-generic-local/).
 
 3. Move the YAML file to the directory that `component_version_table_generator.py` is in.
 
