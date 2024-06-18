@@ -22,26 +22,28 @@ The script takes a YAML file containing information about package versions, maps
 
 1. Download the `component_version_table_generator.py` script to your local machine.
 
-2. Download the `yaml` file to the the same directory as the `component_version_table_generator.py` script from [here](https://artifactory.eng.vmware.com/ui/native/tap-builds-generic-local/).
+2. Download the YAML file for the relevant docs version from [artifactory.eng.vmware.com](https://artifactory.eng.vmware.com/ui/native/tap-builds-generic-local/).
 
-3. Open `component_version_table_generator.py` using a text editor. Replace the file path `yaml_file_path` with the name of the `yaml` file. For exmaple:
+3. Move the YAML file to the directory that `component_version_table_generator.py` is in.
+
+4. Open `component_version_table_generator.py` in a text editor. Replace the file path `yaml_file_path` with the name of the `yaml` file. For example, by running:
 
     ```py
     yaml_file_path = "1.7.4.yaml"
     ```
 
-4. Run the `component_version_table_generator.py` script in the directory that the script is located in:
+5. Run the `component_version_table_generator.py` script in the directory that the script is located in:
 
     ```console
     python3 component_version_table_generator.py
     ```
 
-5. Open the markdown file. The file should have the same name as the input `yaml` file. For example, if the yaml file is named `1.7.4.yaml`, the output markdown file named `1.7.4.md` will present in the same directory.
+6. Open the Markdown file. The file should have the same name as the input YAML file. For example, if the YAML file is named `1.7.4.yaml`, the output Markdown file named `1.7.4.md` appears in the same directory.
 
-6. Copy the markdown content to the release notes.
+7. Copy the Markdown content to the release notes.
 
-7. Replace the two placeholders for "Tanzu CLI" and "Cartographer Conventions" with their real version numbers.
+8. Replace the two placeholders for "Tanzu CLI" and "Cartographer Conventions" with their real version numbers.
 
-8. Sort these two rows in alphabetical order.
+9. Sort these two rows in alphabetical order.
 
-9. Check alpha/beta labels are on the correct components.
+10. Verify that any necessary alpha and beta labels are on the correct components.
