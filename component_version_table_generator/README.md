@@ -36,7 +36,7 @@ The script takes a YAML file containing information about package versions, maps
    python3 component_version_table_generator.py
    ```
 
-7. Verify that the Markdown file has the same name as the input YAML file. For example, if the YAML file is named `1.10.1.yaml` then the output Markdown file is named `1.10.1.md` and it appears in the same directory.
+7. Verify that the produced Markdown file has the same name as the input YAML file. For example, if the YAML file is named `1.10.1.yaml` then the output Markdown file is named `1.10.1.md`.
  
 8. Copy the content of the Markdown file to the release notes.
 
