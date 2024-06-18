@@ -26,24 +26,26 @@ The script takes a YAML file containing information about package versions, maps
 
 3. Move the YAML file to the directory that `component_version_table_generator.py` is in.
 
-4. Open `component_version_table_generator.py` in a text editor. Replace the file path `yaml_file_path` with the name of the `yaml` file. For example:
+4. Open `component_version_table_generator.py` in a text editor. 
 
-    ```py
-    yaml_file_path = "1.7.4.yaml"
-    ```
+5. Replace `PATH-TO-YAML-FILE` with the name of the `yaml` file. For example:
 
-5. Run the `component_version_table_generator.py` script in the directory that the script is located in:
+   ```py
+   yaml_file_path = "1.10.1.yaml"
+   ```
 
-    ```console
-    python3 component_version_table_generator.py
-    ```
+6. Run the `component_version_table_generator.py` script in the directory that the script is located in:
 
-6. Open the Markdown file. The file should have the same name as the input YAML file. For example, if the YAML file is named `1.7.4.yaml`, the output Markdown file named `1.7.4.md` appears in the same directory.
+   ```console
+   python3 component_version_table_generator.py
+   ```
 
-7. Copy the Markdown content to the release notes.
+7. Verify that the Markdown file has the same name as the input YAML file. For example, if the YAML file is named `1.10.1.yaml` then the output Markdown file is named `1.10.1.md` and it appears in the same directory.
+ 
+8. Copy the content of the Markdown file to the release notes.
 
-8. Replace the two placeholders for "Tanzu CLI" and "Cartographer Conventions" with their real version numbers.
+9. Replace the two placeholders for "Tanzu CLI" and "Cartographer Conventions" with their real version numbers.
 
-9. Sort these two rows in alphabetical order.
+10. Sort these two rows in alphabetical order.
 
-10. Verify that any necessary alpha and beta labels are on the correct components.
+11. Verify that any necessary alpha and beta labels are on the correct components.
