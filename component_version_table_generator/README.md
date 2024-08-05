@@ -30,7 +30,7 @@ The script takes a YAML file containing information about package versions, maps
 
 1. Change the value of `yaml_file_path` to the name of the YAML file you downloaded and include the `.yaml` extension. For example, `1.10.1.yaml`.
 
-1. Run the `component_version_table_generator.py` script:
+1. From within the `component_version_table_generator` folder, run the `component_version_table_generator.py` script:
 
    ```console
    python3 component_version_table_generator.py
