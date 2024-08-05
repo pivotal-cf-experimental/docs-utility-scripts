@@ -45,3 +45,5 @@ The script takes a YAML file containing information about package versions, maps
 1. Move the Tanzu CLI and Cartographer Conventions rows so that they are in alphabetical order with the rest of the rows.
 
 1. Verify that any necessary alpha and beta labels are on the correct components.
+
+1. Delete your YAML and Markdown files the `component_version_table_generator` folder.
