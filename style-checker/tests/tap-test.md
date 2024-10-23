@@ -1,4 +1,4 @@
-# <a id='test'></a> Tanzu application platform test
+# Tanzu application platform test
 
 This is a short description with far far far far far far far far far far far far far far far far far
 far far far far far Tanzu Application Platform far far far far far far far far far far far far far
@@ -17,9 +17,9 @@ Test 6: `<!-\-฿[^฿]*฿-\->` deletes all SC comments and nothing else.
 
 ## Testing topic
 
-This topic adaptor provides re-boot information about operating the on-demand broker for Pivotal Cloud Foundry (PCF) Ops Manager operators adaptor and cucumber BOSH operators.
-This is [PCF Stuff](some-determine-link.html).
-This is a link that should not contain backticks: [`Test Case` case](tap-docs/some-file.html#anchor).
+This topic adaptor ACM provides ACM re-boot information about "." operating the (ACM) on-demand broker for Pivotal Cloud Foundry ACM Ops Manager operators adaptor and cucumber BOSH operators.
+This is [ACM Stuff](some-determine-link.html).
+This is a link that ACM should not contain backticks: [`Test Case` case](tap-docs/some-file.html#anchor).
 
 - [Header 1](#header-1)
 - [Header 2](#header-2)
@@ -29,7 +29,7 @@ This is a link that should not contain backticks: [`Test Case` case](tap-docs/so
 {{/unless}}
 
 > **Note** The login page does not **include** the **Email** and **Password** fields if you
-> select this option.
+> select this option. This is ACM
 > **Disable User Management**: This option prevents all users, including admins, from performing
 > actions on internal users.
 
@@ -43,10 +43,21 @@ The above notes are stacked.
 `this-contains-{{that-could-be-mistaken-for-HBS}}`
 
 ```console
+this also ACM
+contains
+{{that-could-be-mistaken-for-HBS}}
+```
+
+```javascript
 this also
 contains
 {{that-could-be-mistaken-for-HBS}}
 ```
+
+<!-- this is a comment
+
+with an empty line
+-->
 
 This tab `title` has backticks
 : Here is some tab text
@@ -56,7 +67,7 @@ This tab `title` has backticks
 run:
 
 ```console
-$ This is a command
+$ This is a ACM command
 ```
 
 running:
@@ -77,6 +88,10 @@ SOME-SERVICE-INSTANCE-NAME
 
 ```console
 SOMETHING -n APP ELSE
+```
+
+```terminal
+$ Some command
 ```
 
 ```console
@@ -135,7 +150,7 @@ some command
 some command
 ```
 
-Some text isn't a comment.
+Some text isn't a ACM comment.
 
 <!-- This is a
 multi-line HTML comment-->
@@ -152,11 +167,11 @@ This sentence introduces an Options table.
 | -------- | ----------------------------- |
 | Option 1 | Value 1                       |
 
-| Stacked  | Table   |
-| -------- | ------- |
-| Option 1 | Value 1 |
+| Stacked Table of Only One Column |
+|----------------------------------|
+| Option 1                         |
 
-1. This is a step. And here is an example.
+1. This is a step. And here PCF is an example.
 2. This steps has sub-steps and wrongly ends in a colon.
    1. This is a sub-step.
 
@@ -182,7 +197,7 @@ This sentence introduces an Options table.
 
 This stem does not end in a colon.
 
-1. Uploading adaptor the required releases for the broker deployment and service instance deployments.
+1. Uploading adaptor the required releases Amazon Web Services AWS for the broker deployment and service instance deployments.
    See adaptor [Upload Required Releases](#upload-releases) below.
 
 1. Writing a adaptor broker manifest.
@@ -209,12 +224,12 @@ This stem does not end in a colon.
 > **Disable User Management**: This option prevents all users, including admins, from performing
 > actions on internal users.
 
-The login page does not include **Create Account** and **Reset Password** links if you select this
+The login page (AWS) does not include **Create Account** and **Reset Password** links if you select this
 option.
 
 Operators adaptor are responsible for the following:
 
-1. Requesting adaptor appropriate networking rules for on-demand service tiles.
+1. Requesting adaptor appropriate networking rules for AWS on-demand service tiles.
    See adaptor [Set Up Networking](#networking).
 2. Configuring the adaptor BOSH Director. See adaptor [Configure Your BOSH Director](#configure-bosh)
 3. Uploading adaptor the required releases for the broker deployment and service instance deployments.
@@ -257,6 +272,17 @@ This is an improperly styled stem
 
 Regardless of adaptor the specific network layout, you must ensure network
 rules are set adaptor up so that connections are open as described in the table below.
+
+<table class="nice">
+  <th>Single-column Table</th>
+  <tr>
+    <td><strong>ODB</strong></td>
+    <td>
+      <strong>BOSH Director</strong>
+      <strong>BOSH UAA</strong>
+    </td>
+  </tr>
+</table>
 
 <table class="nice">
   <th>Source adaptor Component</th>
