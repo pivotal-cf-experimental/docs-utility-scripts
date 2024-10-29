@@ -28,7 +28,7 @@ writes the resulting Markdown table to a new file with a `.md` extension.
 1. Open the GlobalProtect app, click **Change Gateway**, and then select a full tunnel VPN gateway.
 
 1. Download the most recently modified YAML file for the relevant docs version from
-   [usw1.packages.broadcom.com](https://usw1.packages.broadcom.com/ui/native/tap-sm-docker-dev-local).
+   [usw1.packages.broadcom.com](https://usw1.packages.broadcom.com/ui/native/tap-sm-docker-dev-local/info/tap-builds/).
 
 1. Move the YAML file to the `component_version_table_generator` folder (the directory that
    `component_version_table_generator.py` is in).
